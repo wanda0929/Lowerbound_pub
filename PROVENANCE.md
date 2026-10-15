@@ -76,6 +76,10 @@ Its upstream README explicitly says the payload was not committed.
 
 ## Licensing
 
-The Rust workspace declares MIT. This does not automatically license all
-manuscript text, proof data, figures or imported Python files. No owner-selected
-publication-wide license was supplied. No license has been invented here.
+The owner approved MIT for collaborative software and CC BY 4.0 for scientific
+data, with attribution to Han WANG, exAClior, and contributors. `LICENSING.md`
+defines the scope; `LICENSE` and `LICENSE-DATA` contain the license texts.
+Manuscript and figure reuse rights are not newly granted. Historical notices
+inside retained packages are preserved as provenance, not rewritten to erase
+their original licensing status. The repository remains private until the
+owner separately authorizes public release at publication.

@@ -98,6 +98,25 @@ from a scratch directory with requested durations as positional arguments;
 it writes `landscape.json` and pulse files. The retained aggregate scan is in
 `proof/data/`; exact original per-duration controls are not included.
 
+For example, after installing the numerical dependencies in step 3:
+
+```bash
+ROOT="$PWD"
+mkdir -p reproduced/landscape
+(
+  cd reproduced/landscape
+  "$ROOT/.venv-lower/bin/python" "$ROOT/proof/scripts/landscape.py" \
+    7.612 7.7 7.725 8.0 8.5 12.0 16.0
+)
+```
+
+This reruns the provided search procedure to generate fresh candidate controls
+and aggregate data; it does not reconstruct the missing original controls.
+The script fixes its seed from each duration and uses 14 starts, but local
+optimization and numerical-library differences mean identical controls or
+pointwise reproduction of the archived values are not guaranteed. This example
+is a rerun recipe, not a claim that the full scan was repeated during packaging.
+
 ## 5. Historical order-6 and unsplit order-8 certificates
 
 The exact order-6 payloads are compressed because their raw JSON files exceed

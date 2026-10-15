@@ -11,8 +11,8 @@ The headline interval is
 This is a curated snapshot, not a merge of development histories. It includes
 the lower-proof dependency chain, not just its final checker. The original
 manuscript is copied unchanged; its old companion-repository paths are mapped
-below. This repository is intended to remain private until the author resolves
-the release items in `RELEASE_CHECKLIST.md`.
+below. At the owner's direction, this repository remains private until public
+release is separately authorized at publication. See `RELEASE_CHECKLIST.md`.
 
 ## Contents
 
@@ -55,11 +55,14 @@ of global optimality.
   That row is not independently replayable from this snapshot. It is not a
   prerequisite for the stronger headline proof.
 - Duration-scan aggregate data are retained. Individual controls for each
-  duration were not retained upstream here; rerunning the search is different
-  from repropagating every original scan point.
+  duration were not retained upstream here. The provided search code enables
+  rerunning the numerical procedure and generating new pulse candidates and
+  aggregates, as documented in `REPRODUCE.md`. This is not a replay of the
+  missing original controls; identical pointwise results are not guaranteed.
 - The 192-segment illustrative pulse is not the 12,672-segment rigorous upper
   witness. Both are included and labeled separately.
 - Optional Lean material and unrelated finite-blockade/local-addressing
   investigations are excluded; they do not establish the current headline.
-- No new blanket license is assigned. Preserve source provenance and decide
-  redistribution terms before making this repository public.
+- Software is MIT licensed; scientific data are CC BY 4.0. Manuscript and
+  figure reuse rights are not newly granted. See `LICENSING.md` for scope and
+  attribution, and preserve existing third-party notices.

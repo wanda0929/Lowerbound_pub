@@ -5,14 +5,17 @@
 - Completed 2026-10-15: uploaded `publication`, now the default branch, and
   verified that the remote commit and complete file tree match the local snapshot.
   The repository remains private; no push to `main` was made.
-- Choose explicit code/data/manuscript redistribution licenses and confirm
-  rights for imported materials. The snapshot currently grants no new license.
+- Resolved by author approval: collaborative software is MIT licensed and
+  scientific data are CC BY 4.0; see `LICENSING.md`. Manuscript and figure
+  reuse rights are not newly granted. Third-party notices remain in force.
 - Resolved by author decision: retain the disclosure that the historical
   three-cell 2.9250 comparison has audit evidence but no retained exact payload.
   Recovery is optional, not a release prerequisite. The current headline lower
   and upper proofs do not depend on that row.
-- Decide whether the absent per-duration pulse controls must be recovered for
-  the landscape scan, or explicitly retain aggregate-only availability.
+- Resolved by author decision: retain aggregate-only landscape availability
+  and disclose the absent original per-duration controls. The provided source
+  enables rerunning the search to generate new candidates; identical original
+  controls and pointwise numerical outcomes are not guaranteed.
 - Supply final authors, affiliations and citation metadata. The manuscript
   snapshot still contains author queries and has not been silently edited.
 - Agree the manuscript's Code and Data Availability wording through the
@@ -20,4 +23,5 @@
 - Before changing visibility, rerun the root manifest and the reproduction
   commands, and inspect the final committed tree for private material.
 
-The user authorized creation of a private repository, not public release.
+The owner explicitly deferred public release until publication. Keep this
+repository private; changing visibility still requires separate authorization.
