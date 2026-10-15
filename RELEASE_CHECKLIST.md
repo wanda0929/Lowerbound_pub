@@ -7,9 +7,10 @@
   The repository remains private; no push to `main` was made.
 - Choose explicit code/data/manuscript redistribution licenses and confirm
   rights for imported materials. The snapshot currently grants no new license.
-- Recover and audit the historical three-cell 2.9250 exact certificate, or
-  disclose that this comparison row has audit evidence but no retained payload.
-  The current headline lower and upper proofs do not depend on that row.
+- Resolved by author decision: retain the disclosure that the historical
+  three-cell 2.9250 comparison has audit evidence but no retained exact payload.
+  Recovery is optional, not a release prerequisite. The current headline lower
+  and upper proofs do not depend on that row.
 - Decide whether the absent per-duration pulse controls must be recovered for
   the landscape scan, or explicitly retain aggregate-only availability.
 - Supply final authors, affiliations and citation metadata. The manuscript
