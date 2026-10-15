@@ -1,10 +1,10 @@
 # Before public release
 
-- Create `wanda0929/Lowerbound_pub` as a **private, empty** GitHub repository.
-  The current GitHub integration can read the sources but its repository-create
-  operation was denied. Do not initialize a competing remote history.
-- Push the local `publication` branch after the repository exists; do not push
-  to `main`. No remote upload has yet occurred.
+- Completed 2026-10-15: the owner created `wanda0929/Lowerbound_pub` as a
+  private, empty repository after the integration's create operation was denied.
+- Completed 2026-10-15: uploaded `publication`, now the default branch, and
+  verified that the remote commit and complete file tree match the local snapshot.
+  The repository remains private; no push to `main` was made.
 - Choose explicit code/data/manuscript redistribution licenses and confirm
   rights for imported materials. The snapshot currently grants no new license.
 - Recover and audit the historical three-cell 2.9250 exact certificate, or
