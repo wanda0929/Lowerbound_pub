@@ -1,0 +1,56 @@
+VERIFIED_REACHABILITY_INTERVAL 0 changed 1
+VERIFIED_REACHABILITY_INTERVAL 32 changed 31
+VERIFIED_REACHABILITY_INTERVAL 64 changed 63
+VERIFIED_REACHABILITY_INTERVAL 96 changed 95
+VERIFIED_REACHABILITY_INTERVAL 128 changed 114
+VERIFIED_REACHABILITY_INTERVAL 160 changed 114
+VERIFIED_REACHABILITY_INTERVAL 192 changed 114
+VERIFIED_REACHABILITY_INTERVAL 224 changed 135
+VERIFIED_REACHABILITY_INTERVAL 256 changed 167
+VERIFIED_REACHABILITY_INTERVAL 288 changed 199
+PASS {
+  "status": "PASS",
+  "certified_lower_bound": "2931287271171/1000000000000",
+  "bound_decimal": "2.931287271171",
+  "previous_lower_bound": "2931286076089/1000000000000",
+  "increase_decimal": "0.000001195082",
+  "exact_increase": "597541/500000000000",
+  "remaining_gap_strictly_less_than": "0.004587954673105",
+  "counterexample_cap": "733/250",
+  "changed_intervals": 230,
+  "cost_intervals": 320,
+  "excluded_population_boxes": 8306,
+  "retained_population_boxes": 6414,
+  "exact_tensor_inequalities": 6157440,
+  "exact_gram_budget_checks": 1137333,
+  "inherited_projection_ids": 5090,
+  "additional_slack_decimal": "0.00000124905179476777761066457373589748062147881267192476245022081",
+  "barrier_residual_coefficients_nonnegative": true,
+  "endpoint_interpolation_identities": 14,
+  "strictly_positive_endpoint_coefficients": 14,
+  "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52",
+  "base_certificate_sha256": "3e2fbd42d779da00e1800ee2c5ae62e51c240f7b245c67139b12864576ba18bb",
+  "regional_certificate_sha256": "ca4813512b0b3b911ed37815012c29b1688173e3e5f8ebeb6a31361674a9b772",
+  "previous_certificate_sha256": "356384c59c270f7cf893c2b6c8a075951abfea66ef29b8ee2a6593881acd9129",
+  "arithmetic": "exact rational",
+  "floating_point_used_for_acceptance": false,
+  "optimizer_used_for_acceptance": false,
+  "scope": "all-duration ideal-blockade stationary-torus",
+  "dependency": "All pinned predecessor certificates and the original exact global audit; hashes bind inputs, not mathematical correctness.",
+  "tests": [
+    "zero-cost origin remains 0",
+    "zero-cost origin remains 1/1000",
+    "zero-cost origin remains 1",
+    "exact strict corner exclusion",
+    "rejected false target",
+    "rejected doubled occupation increment",
+    "rejected negative endpoint coefficient",
+    "rejected cap below target",
+    "rejected invented excluded rectangle",
+    "rejected inflated reachable polynomial",
+    "rejected missing cost interval",
+    "rejected wrong barrier order"
+  ],
+  "tests_passed": 13,
+  "certificate_sha256": "cce6d0af84023f0d8619686d0b94f4f51f515c0b99c68560acfbea6489c144bd"
+}

@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "order": 6,
+      "table_dimensions_match": true,
+      "objective": 2.862459569797198
+    },
+    {
+      "order": 7,
+      "table_dimensions_match": true,
+      "objective": 2.8819341860624377
+    },
+    {
+      "order": 8,
+      "table_dimensions_match": true,
+      "objective": 2.888931017810112
+    },
+    {
+      "order": 9,
+      "table_dimensions_match": true,
+      "objective": 2.8981494706764064
+    },
+    {
+      "order": 10,
+      "table_dimensions_match": true,
+      "objective": 2.901646000244462
+    },
+    {
+      "order": 11,
+      "table_dimensions_match": true,
+      "objective": 2.9047452601349986
+    }
+  ]
+}

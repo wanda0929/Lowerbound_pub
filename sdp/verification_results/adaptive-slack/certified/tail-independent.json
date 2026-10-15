@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "certified_lower_bound": "2931286076089/1000000000000",
+  "bound_decimal": "2.931286076089",
+  "regional_bound": "1465642825777/500000000000",
+  "previous_round_bound": "2931272845583/1000000000000",
+  "increase_over_regional_bound": "4.24535E-7",
+  "increase_over_previous_round": "0.000013230506",
+  "remaining_gap_strictly_less_than": "0.004589149755105",
+  "additional_occupation_slack": "59108347203558028707611076014290087782907869543532622401372248332754402304983816909022993534833334468273591691547681924444619844324219140409530275909510482297991478027739017087388367184260626025153510711189053763513544020804839470467/133216247439975331746933058167400499749494189810610338780250838815738960887718225212274702006078082210640962931951652692047548129334253082678248760246534144000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "additional_occupation_slack_decimal": "4.43702238574098166075158966120749307179699571143297739756893E-7",
+  "tail_coefficient_inequalities": 15360,
+  "endpoint_identities": 14,
+  "positive_endpoint_coefficients": 14,
+  "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52",
+  "regional_certificate_sha256": "ca4813512b0b3b911ed37815012c29b1688173e3e5f8ebeb6a31361674a9b772",
+  "arithmetic": "exact rational",
+  "scope": "all-duration ideal-blockade stationary-torus",
+  "dependency": "Regional certificate and complete original-dependent predecessor proof chain.",
+  "rejected_mutations": [
+    "overlap with prior prefix",
+    "unproved future prefix",
+    "false tail integral",
+    "inflated tail profile",
+    "changed target",
+    "wrong predecessor"
+  ],
+  "tests_passed": 7,
+  "certificate_sha256": "356384c59c270f7cf893c2b6c8a075951abfea66ef29b8ee2a6593881acd9129"
+}

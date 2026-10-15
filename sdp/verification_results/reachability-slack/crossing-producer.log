@@ -1,0 +1,32 @@
+REACHABLE_CROSSING 0 old 7.216405510612035e-06 new 7.216405516540154e-06 excluded 203
+REACHABLE_CROSSING 1 old 1.3450697485468861e-05 new 1.3544313340245002e-05 excluded 0
+REACHABLE_CROSSING 2 old 1.3430309708232127e-05 new 1.3529498054856198e-05 excluded 0
+REACHABLE_CROSSING 3 old 6.713247154230254e-06 new 6.867600209340191e-06 excluded 206
+PASS {
+  "status": "PASS",
+  "certified_lower_bound": "1465643801663/500000000000",
+  "bound_decimal": "2.931287603326",
+  "previous_repository_bound": "2931286076089/1000000000000",
+  "increase_over_previous_repository_bound": "0.000001527237",
+  "occupation_only_bound": "2931287271171/1000000000000",
+  "increase_over_occupation_only_bound": "3.32155E-7",
+  "remaining_gap_strictly_less_than": "0.004587622518105",
+  "counterexample_cap": "733/250",
+  "changed_crossings": 4,
+  "excluded_crossing_boxes": 409,
+  "exact_crossing_coefficients_checked": 39360,
+  "additional_crossing_slack": "11415691460675126277210319157097193357716454771/32883343360000000000000000000000000000000000000000000",
+  "additional_crossing_slack_decimal": "3.47157262438265835667456873737342301610673409669983143709144E-7",
+  "endpoint_interpolation_identities": 14,
+  "strictly_positive_endpoint_coefficients": 14,
+  "bindings": {
+    "occupation_certificate_sha256": "cce6d0af84023f0d8619686d0b94f4f51f515c0b99c68560acfbea6489c144bd",
+    "occupation_report_sha256": "b146036228320b452e88d980859a9cd910355357c6877214d7d6a1ae00dd593f",
+    "crossing_certificate_sha256": "98560cc0bd55714dfb74814e377caac64cb4c736652e33868925da7b25703fd7",
+    "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52"
+  },
+  "arithmetic": "exact rational; no optimizer or tolerance",
+  "scope": "all-duration ideal-blockade stationary-torus",
+  "dependency": "New occupation verifier plus all pinned predecessor extensions and original global source audit.",
+  "certificate_sha256": "5f5edbf79a66e4ee060ae0d069eeaabe772e30f2a6df64f29d626d2c956c0784"
+}

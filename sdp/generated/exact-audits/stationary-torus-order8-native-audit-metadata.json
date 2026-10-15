@@ -1,0 +1,41 @@
+{
+  "lane": "direct stationary-torus",
+  "command": "cargo run --release -- audit-exact certificates/jan22-cz-exposure-order8-exact-dual.json --audit-jobs 128 > audit-order8-report.json",
+  "exit_status": 0,
+  "started_at_utc": "2026-08-30T15:56:16.323633383Z",
+  "completed_at_utc": "2026-08-30T18:44:29.530642442Z",
+  "wrapper_wall_seconds": 10093.207,
+  "release_build_seconds": 96,
+  "approximate_audit_seconds": 9996,
+  "host": {
+    "name": "6xa800",
+    "kernel": "Linux 5.15.0-168-generic",
+    "architecture": "x86_64",
+    "cpu": "128 CPUs, Intel Xeon Platinum 8378A @ 3.00 GHz, 2 NUMA nodes",
+    "memory": "1.0 TiB RAM, 8 GiB swap"
+  },
+  "software": {
+    "rustc": "1.96.0 (ac68faa20 2026-05-25), LLVM 22.1.2",
+    "cargo": "1.96.0 (30a34c682 2026-05-25)"
+  },
+  "audit_binary": {
+    "bytes": 4586344,
+    "sha256": "366c633b4c3ddf8b61492dc8af8f0ed6fa47b3dfffc579304fd973ed3211e077"
+  },
+  "source": {
+    "remote_snapshot_has_git_metadata": false,
+    "local_base_commit_at_submission": "d8f1ec2063540c8b616bcc3c2fe91b24ffa5d41d",
+    "preserved_branch_commit": "20d06968e63220439e669baacdd47575c5d9b7ca",
+    "qualification": "The durable rsync snapshot had no .git directory. The preserved branch commit includes later non-semantic Clippy cleanup and is not claimed as the cryptographically exact build commit; the audit binary hash identifies the executed program."
+  },
+  "certificate": {
+    "path": "certificates/jan22-cz-exposure-order8-exact-dual.json",
+    "bytes": 21372015,
+    "sha256": "a2fb0117d29615a46c63ba07d1b2e3966e45f21b6e8e82d861f06cbb0313bc6e"
+  },
+  "report": {
+    "path": "generated/exact-audits/stationary-torus-order8-native-audit.json",
+    "bytes": 593,
+    "sha256": "813cd96816c6636e4a34cb5df60f3b4c83413a812c370d62cc294a3c44346a26"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "certified_lower_bound": "2930957146313/1000000000000",
+  "gram_blocks": 20,
+  "exact_quadratic_field_row_identities": 1044,
+  "mandatory_crossings": 4,
+  "exact_interpolation_identities": 14,
+  "strictly_positive_bernstein_coefficients": 14,
+  "interface_slack_lower_bound": "1107565238703/1000000000000000000",
+  "floating_point_used_for_acceptance": false,
+  "rejected_mutations": [
+    "source hash",
+    "Gram double counting",
+    "false feature",
+    "false total slack",
+    "false norm bound",
+    "false Schur margin",
+    "changed Gram",
+    "negative Bernstein coefficient",
+    "changed terminal Gram",
+    "changed target",
+    "changed inverse column"
+  ],
+  "tests_passed": 12,
+  "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52",
+  "source_audit_sha256": "001885fa84d5f1819992a8a041e94066eda40f4f6a2fbaaf8b81c8b8bb0f7b53",
+  "certificate_sha256": "de48f592c9ecbb2463bbeb0feb10e913c4a290e218cc50c339cb3ad29a040f2e"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "constructed; independent verification required",
+  "occupation_slack_display": 0.00030298592776841285,
+  "improved_intervals": 319,
+  "intervals": 320,
+  "grid": 4,
+  "bound": "1465642825777/500000000000",
+  "bound_decimal": "2.931285651554",
+  "exact_increase": "12805971/1000000000000",
+  "certificate_sha256": "ca4813512b0b3b911ed37815012c29b1688173e3e5f8ebeb6a31361674a9b772"
+}

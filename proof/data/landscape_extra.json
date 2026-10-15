@@ -1,0 +1,13 @@
+{
+  "_comment": "Additional duration-resolved points from warm-started/refined runs of session 01a048e6 (2026-08-28), complementing landscape.json. S=7.70 from the fine scan around the minimum; S=16.0 from a warm-started long-duration run (S=24,40 did not converge - optimizer difficulty, not infeasibility). JP literature value at T*Omega=30: 2.947.",
+  "7.7": {
+    "TR": 2.936454,
+    "Phi1": -2.05923,
+    "note": "fine scan around the minimum"
+  },
+  "16.0": {
+    "TR": 2.94003,
+    "Phi1": -2.0167,
+    "note": "warm-started long-duration run; gentle rise"
+  }
+}

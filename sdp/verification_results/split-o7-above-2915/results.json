@@ -1,0 +1,141 @@
+{
+  "schema": "minexposure/split-o7-above-2915-campaign-v1",
+  "source_commit": "59fd23f67d10abc370f5413c270a9088718aaaff",
+  "source_branch_note": "final exact closure, merged fraction-free native audit, and independent audit ran from source_commit; acceptance gates and certificate schema unchanged",
+  "model": "stationary_torus_hausdorff_split",
+  "order": 7,
+  "knots": ["0", "1/32", "31/32", "1"],
+  "certificate_schema": "jan22-cost-lifted-split-exact-dual-q-v1",
+  "reference": {
+    "objective": 2.930279100780325,
+    "sha256": "9160bea11fd0c98a72119fc62a50cdef1bf05e2cda8bc46e6ffdaf7fe204a052",
+    "size_bytes": 88176000,
+    "wall_seconds": 299.20,
+    "peak_rss_kib": 10672560
+  },
+  "rigorous_lower_bound": {
+    "exact": "117/40",
+    "floating": 2.925,
+    "certificate": "split-o7-target-2925-exact-certificate.json",
+    "certificate_sha256": "ef1f4f5a193b64100edabddd943386d070af9403c0bdbead09babf4a1c12b9ef",
+    "certificate_size_bytes": 279977609,
+    "certificate_committed": false,
+    "certificate_omission_reason": "exceeds the campaign's 95 MB Git retention ceiling",
+    "native_audit": "pass",
+    "independent_audit": "pass"
+  },
+  "certified_attempt": {
+    "target": "117/40",
+    "target_float": 2.925,
+    "facial_zero_threshold": 1e-7,
+    "fixed_target_seed_margin": 0.0029031613634593893,
+    "active_gram_count": 928,
+    "inactive_gram_count": 1554,
+    "seed_sha256": "2f3780e664cbf47e215b9dde1239dc3d2873b5f152944dfe50e185f24185efbc",
+    "seed_size_bytes": 87982464,
+    "all_exact_identities_closed": true,
+    "coefficient_count": 11139,
+    "positive_definite_gram_count": 1976,
+    "zero_gram_count": 289,
+    "residual_certified_gram_count": 2187,
+    "exact_ldl_certified_gram_count": 6,
+    "minimum_reconstructed_gram_eigenvalue": -3.463025804339165e-15,
+    "minimum_certified_gram_eigenvalue_lower_bound": "23636797414344388196264014285892770203663966697/18731823325732748675289309114169343981754777600000000000",
+    "cone_pass_newly_zeroed_rows": [1103, 125, 33, 0],
+    "native_audit": "pass",
+    "independent_audit": "pass",
+    "seed_wall_seconds": 420.33,
+    "seed_peak_rss_kib": 10740244,
+    "cone_stage_wall_seconds": 1672.855544571,
+    "exactifier_pipeline_wall_seconds": 186.164808037,
+    "exactifier_exact_repair_wall_seconds": 113.638700182,
+    "exactifier_pre_cone_exact_repair_wall_seconds": 50.939236416,
+    "exactifier_reconstructed_eigenvalue_wall_seconds": 6.925289975,
+    "exactifier_native_audit_wall_seconds": 55.208327676,
+    "final_exactifier_resume_outer_wall_seconds": 187.30,
+    "final_exactifier_resume_peak_rss_kib": 1341088,
+    "original_retained_task_observed_peak_rss_kib": 29085432,
+    "independent_audit_wall_seconds": 94.96,
+    "independent_audit_peak_rss_kib": 746732
+  },
+  "seed_probes": [
+    {
+      "target": "117/40",
+      "target_float": 2.925,
+      "margin": 0.0029031613634593893,
+      "active_gram_count": 928,
+      "inactive_gram_count": 1554,
+      "wall_seconds": 420.33,
+      "peak_rss_kib": 10740244,
+      "sha256": "2f3780e664cbf47e215b9dde1239dc3d2873b5f152944dfe50e185f24185efbc"
+    },
+    {
+      "target": "366/125",
+      "target_float": 2.928,
+      "margin": 0.00014831230797767266,
+      "active_gram_count": 928,
+      "inactive_gram_count": 1554,
+      "wall_seconds": 307.53,
+      "peak_rss_kib": 10395612,
+      "sha256": "9bc75f9202a983b73095cf35a76b5d305b0951415334cfa0d48268cf0d6a6235"
+    },
+    {
+      "target": "2929/1000",
+      "target_float": 2.929,
+      "margin": 0.0006116271464444463,
+      "active_gram_count": 928,
+      "inactive_gram_count": 1554,
+      "wall_seconds": 369.92,
+      "peak_rss_kib": 10965588,
+      "sha256": "37349de457b8ba0d1b5d90eb9327d8eebe4cfad824d1fc7749318e588e83030b"
+    },
+    {
+      "target": "293/100",
+      "target_float": 2.93,
+      "margin": -0.00000785767333036208,
+      "active_gram_count": 928,
+      "inactive_gram_count": 1554,
+      "wall_seconds": 347.74,
+      "peak_rss_kib": 10254652,
+      "sha256": "2be13709a5c53d712a44484097ab0e6ac88df1043ac9c1d196f1f2053ed9cd35",
+      "outcome": "screened_out_negative_margin"
+    }
+  ],
+  "failed_exactifications": [
+    {
+      "target": "366/125",
+      "facial_zero_threshold": 1e-7,
+      "outcome": "failed_to_stabilize_cone_face",
+      "cone_pass_newly_zeroed_rows": [612, 81, 100, 67, 15, 27, 4, 10],
+      "final_segment_wall_seconds": 437.49,
+      "final_segment_peak_rss_kib": 17711132,
+      "interrupted_monolithic_observed_peak_rss_kib": 29799820
+    },
+    {
+      "target": "366/125",
+      "facial_zero_threshold": 1e-6,
+      "outcome": "failed_reconstructed_cone_margin",
+      "cone_pass_newly_zeroed_rows": [989, 416, 108, 47, 3, 1, 0],
+      "minimum_reconstructed_gram_eigenvalue": -7.991929876368819e-7,
+      "maximum_segment_peak_rss_kib": 18978084
+    },
+    {
+      "target": "2929/1000",
+      "facial_zero_threshold": 1e-7,
+      "outcome": "failed_to_stabilize_cone_face",
+      "cone_pass_newly_zeroed_rows": [585, 11, 3, 10, 2, 3, 2, 4],
+      "maximum_segment_peak_rss_kib": 18273056
+    },
+    {
+      "target": "2929/1000",
+      "facial_zero_threshold": 1e-6,
+      "outcome": "failed_to_stabilize_cone_face",
+      "cone_pass_newly_zeroed_rows": [874, 10, 106, 11, 38, 3, 3, 14],
+      "maximum_segment_peak_rss_kib": 17824448
+    }
+  ],
+  "cloud_compute": {
+    "used": false,
+    "spend_cny": 0
+  }
+}

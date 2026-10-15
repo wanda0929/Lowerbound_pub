@@ -1,0 +1,35 @@
+{
+  "status": "FLOATING DIAGNOSTIC ONLY",
+  "raw_endpoint": 2.933253918843281,
+  "integrated_cost_loss": 0.011788783651769646,
+  "interface_loss": 0.002676512922379067,
+  "last_terminal_loss": 0.00020864579310386267,
+  "prospective_lower_bound": 2.9185799764760287,
+  "cells": [
+    {
+      "cell": 0,
+      "integrated_loss": 0.0029550727507163276,
+      "forbidden_residual_max": 1.1368683772161603e-13
+    },
+    {
+      "cell": 1,
+      "integrated_loss": 0.0012448293523538974,
+      "forbidden_residual_max": 2.2737367544323206e-13
+    },
+    {
+      "cell": 2,
+      "integrated_loss": 0.000768875620261493,
+      "forbidden_residual_max": 1.4210854715202004e-14
+    },
+    {
+      "cell": 3,
+      "integrated_loss": 0.001277831060640276,
+      "forbidden_residual_max": 6.394884621840902e-14
+    },
+    {
+      "cell": 4,
+      "integrated_loss": 0.005542174867797653,
+      "forbidden_residual_max": 3.694822225952521e-13
+    }
+  ]
+}

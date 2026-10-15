@@ -1,0 +1,67 @@
+{
+  "rigor": "FLOATING EXPLORATION ONLY; NOT A CERTIFICATE",
+  "source_sha256": "24842098c1850679aa2fc10e3eb2f348db9cc91a7345e87fc8a7e6291e95a020",
+  "raw_endpoint": 2.933253918843281,
+  "jet_repair": [
+    {
+      "cell": 0,
+      "jet_rows": 157,
+      "rank": 86,
+      "initial_full_residual_max": 1.0802823328233634e-06,
+      "correction_max": 6.336830397535203e-07,
+      "remaining_full_residual_max": 3.2037570334776176e-07
+    },
+    {
+      "cell": 1,
+      "jet_rows": 157,
+      "rank": 86,
+      "initial_full_residual_max": 1.7671036368760208e-06,
+      "correction_max": 1.2457403090989963e-06,
+      "remaining_full_residual_max": 3.103071188370035e-07
+    },
+    {
+      "cell": 2,
+      "jet_rows": 157,
+      "rank": 86,
+      "initial_full_residual_max": 1.6604460397551367e-06,
+      "correction_max": 1.117644430224912e-06,
+      "remaining_full_residual_max": 3.103162975186837e-07
+    },
+    {
+      "cell": 3,
+      "jet_rows": 157,
+      "rank": 86,
+      "initial_full_residual_max": 1.6599582140494274e-06,
+      "correction_max": 9.383091784307781e-07,
+      "remaining_full_residual_max": 3.1054812235108314e-07
+    },
+    {
+      "cell": 4,
+      "jet_rows": 157,
+      "rank": 86,
+      "initial_full_residual_max": 3.63511045381618e-06,
+      "correction_max": 1.317363349305135e-06,
+      "remaining_full_residual_max": 1.341281893551887e-06
+    }
+  ],
+  "cost_relative_l1_by_cell": [
+    0.002530927801881592,
+    0.0019441001479319046,
+    0.0013772683104310251,
+    0.001591377297304843,
+    0.0041790287472490886
+  ],
+  "forbidden_jet_residual_maxima": [
+    3.2037570334776176e-07,
+    3.103071188370035e-07,
+    3.103162975186837e-07,
+    3.1054812235108314e-07,
+    1.3412818965817496e-06
+  ],
+  "interface_discount": 0.001234479603097553,
+  "terminal_discount": 1.0404681842627814e-05,
+  "prospective_discounted_value": 2.9198070768477726,
+  "forced_zero_blocks": 420,
+  "minimum_original_eigenvalue": -3.517586942227209e-08,
+  "largest_gram_change": 3.5175870422272085e-08
+}

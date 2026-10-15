@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "quantity": "infimum of dimensionless Rydberg exposure over exact CZ pulses in the ideal global-drive, perfect-blockade model",
+  "symbol": "C_*",
+  "relation": "<",
+  "certified_upper_bound_decimal": "2.935875225844105",
+  "proof_type": "500-bit Arb interval Krawczyk inclusion",
+  "precision_bits": 500,
+  "box_radius_decimal": "1e-80",
+  "segment_count": 12672,
+  "amplitude": 1,
+  "variable_phase_indices_zero_based": [731, 6676, 8661, 11922],
+  "variable_count_including_duration": 5,
+  "local_root_uniqueness": true,
+  "global_optimality_claimed": false,
+  "source_revision": "ab9054174e83b6e2b78ce32417ab4fba533726f4",
+  "proof_introduction_revision": "4816d6859f64c1c45a4dab899ec49dfffff94005"
+}

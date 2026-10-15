@@ -1,0 +1,27 @@
+REJECTED duplicate projected contribution
+REJECTED matrix allocation greater than one
+REJECTED negative matrix allocation
+REJECTED unverified projection
+REJECTED missing population region
+REJECTED overlapping population regions
+REJECTED inflated interval polynomial
+REJECTED double-counted cost interval
+REJECTED misassigned cost interval
+REJECTED changed original dependency
+{
+  "status": "PASS",
+  "actual_certificate_mutations_rejected": 10,
+  "tests": [
+    "duplicate projected contribution",
+    "matrix allocation greater than one",
+    "negative matrix allocation",
+    "unverified projection",
+    "missing population region",
+    "overlapping population regions",
+    "inflated interval polynomial",
+    "double-counted cost interval",
+    "misassigned cost interval",
+    "changed original dependency"
+  ],
+  "certificate_sha256": "ca4813512b0b3b911ed37815012c29b1688173e3e5f8ebeb6a31361674a9b772"
+}

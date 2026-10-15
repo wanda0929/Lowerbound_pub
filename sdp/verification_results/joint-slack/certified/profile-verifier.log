@@ -1,0 +1,38 @@
+VERIFIED_PROFILE 0 polynomial_intervals 1
+VERIFIED_PROFILE 40 polynomial_intervals 41
+VERIFIED_PROFILE 80 polynomial_intervals 81
+VERIFIED_PROFILE 120 polynomial_intervals 121
+VERIFIED_PROFILE 160 polynomial_intervals 161
+VERIFIED_PROFILE 200 polynomial_intervals 201
+VERIFIED_PROFILE 240 polynomial_intervals 241
+VERIFIED_PROFILE 280 polynomial_intervals 281
+{
+  "status": "PASS",
+  "certified_lower_bound": "1465617421667/500000000000",
+  "previous_lower_bound": "1465612969253/500000000000",
+  "exact_increase": "2226207/250000000000",
+  "cost_intervals": 320,
+  "polynomial_intervals": 320,
+  "tensor_coefficient_inequalities": 4915200,
+  "endpoint_identities": 14,
+  "positive_endpoint_coefficients": 14,
+  "exact_rational_arithmetic": true,
+  "floating_point_used": false,
+  "optimization_used": false,
+  "scope": "all-duration ideal-blockade stationary-torus",
+  "tests": [
+    "affine degree 1",
+    "affine degree 7",
+    "affine degree 14",
+    "rejected target",
+    "rejected endpoint",
+    "rejected integral",
+    "exact Bernstein integrals"
+  ],
+  "tests_passed": 8,
+  "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52",
+  "base_certificate_sha256": "3e2fbd42d779da00e1800ee2c5ae62e51c240f7b245c67139b12864576ba18bb",
+  "refinement_certificate_sha256": "3932489adf01c5f6ca596663c1624c4ed71bae396d2922d2df2f2beeca882c14",
+  "certificate_sha256": "8952644ae8aff9d692ea7cb25a462de507f29f85af02b1578e063d0eba86a7f7",
+  "dependency": "Pinned original source, projection and population subdivision certificates; replay population-refinement/reproduce.sh"
+}

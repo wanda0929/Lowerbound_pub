@@ -1,0 +1,22 @@
+{
+  "segment_count": 12672,
+  "duration": 7.739116187913114,
+  "exposure": 2.93587522584344,
+  "expected_exposure_error": 0.0,
+  "one_atom_rydberg_residual": 8.646466548497708e-17,
+  "two_atom_rydberg_residual": 8.747648663061087e-16,
+  "cz_relative_phase_real": -1.0000000000006546,
+  "cz_relative_phase_imag": 0.0,
+  "one_atom_population_integral": 3.900431336787557,
+  "two_atom_population_integral": 3.9426382297986455,
+  "midpoint_overlap_re_im": [
+    -7.728550045171118e-06,
+    0.36756255049171116
+  ],
+  "midpoint_populations": [
+    0.8954742062735317,
+    0.44921736878776614
+  ],
+  "midpoint_cost_per_overlap_speed": 1.3196349678328163,
+  "same_overlap_cheaper_fiber_ratio": 1.0884442857180563
+}

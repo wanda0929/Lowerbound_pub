@@ -1,0 +1,245 @@
+{
+  "status": "PASS",
+  "certified_lower_bound": "2930957146313/1000000000000",
+  "gram_blocks": 20,
+  "exact_quadratic_field_row_identities": 1044,
+  "mandatory_crossings": 4,
+  "exact_interpolation_identities": 14,
+  "strictly_positive_bernstein_coefficients": 14,
+  "interface_slack_lower_bound": "1107565238703/1000000000000000000",
+  "floating_point_used_for_acceptance": false,
+  "rejected_mutations": [
+    "source hash",
+    "Gram double counting",
+    "false feature",
+    "false total slack",
+    "false norm bound",
+    "false Schur margin",
+    "changed Gram",
+    "negative Bernstein coefficient",
+    "changed terminal Gram",
+    "changed target",
+    "changed inverse column"
+  ],
+  "tests_passed": 12,
+  "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52",
+  "source_audit_sha256": "001885fa84d5f1819992a8a041e94066eda40f4f6a2fbaaf8b81c8b8bb0f7b53",
+  "certificate_sha256": "de48f592c9ecbb2463bbeb0feb10e913c4a290e218cc50c339cb3ad29a040f2e"
+}
+VERIFIED 0 OF 6494
+VERIFIED 100 OF 6494
+VERIFIED 200 OF 6494
+VERIFIED 300 OF 6494
+VERIFIED 400 OF 6494
+VERIFIED 500 OF 6494
+VERIFIED 600 OF 6494
+VERIFIED 700 OF 6494
+VERIFIED 800 OF 6494
+VERIFIED 900 OF 6494
+VERIFIED 1000 OF 6494
+VERIFIED 1100 OF 6494
+VERIFIED 1200 OF 6494
+VERIFIED 1300 OF 6494
+VERIFIED 1400 OF 6494
+VERIFIED 1500 OF 6494
+VERIFIED 1600 OF 6494
+VERIFIED 1700 OF 6494
+VERIFIED 1800 OF 6494
+VERIFIED 1900 OF 6494
+VERIFIED 2000 OF 6494
+VERIFIED 2100 OF 6494
+VERIFIED 2200 OF 6494
+VERIFIED 2300 OF 6494
+VERIFIED 2400 OF 6494
+VERIFIED 2500 OF 6494
+VERIFIED 2600 OF 6494
+VERIFIED 2700 OF 6494
+VERIFIED 2800 OF 6494
+VERIFIED 2900 OF 6494
+VERIFIED 3000 OF 6494
+VERIFIED 3100 OF 6494
+VERIFIED 3200 OF 6494
+VERIFIED 3300 OF 6494
+VERIFIED 3400 OF 6494
+VERIFIED 3500 OF 6494
+VERIFIED 3600 OF 6494
+VERIFIED 3700 OF 6494
+VERIFIED 3800 OF 6494
+VERIFIED 3900 OF 6494
+VERIFIED 4000 OF 6494
+VERIFIED 4100 OF 6494
+VERIFIED 4200 OF 6494
+VERIFIED 4300 OF 6494
+VERIFIED 4400 OF 6494
+VERIFIED 4500 OF 6494
+VERIFIED 4600 OF 6494
+VERIFIED 4700 OF 6494
+VERIFIED 4800 OF 6494
+VERIFIED 4900 OF 6494
+VERIFIED 5000 OF 6494
+VERIFIED 5100 OF 6494
+VERIFIED 5200 OF 6494
+VERIFIED 5300 OF 6494
+VERIFIED 5400 OF 6494
+VERIFIED 5500 OF 6494
+VERIFIED 5600 OF 6494
+VERIFIED 5700 OF 6494
+VERIFIED 5800 OF 6494
+VERIFIED 5900 OF 6494
+VERIFIED 6000 OF 6494
+VERIFIED 6100 OF 6494
+VERIFIED 6200 OF 6494
+VERIFIED 6300 OF 6494
+VERIFIED 6400 OF 6494
+{
+  "status": "PASS",
+  "certified_lower_bound": "732806221717/250000000000",
+  "previous_lower_bound": "2930957146313/1000000000000",
+  "exact_improvement": "53548111/200000000000",
+  "projection_records_checked": 6494,
+  "original_Gram_blocks_checked": 3171,
+  "selected_coordinates_checked": 12975,
+  "cost_intervals_checked": 320,
+  "Gram_budget_checks": 192852,
+  "population_Bernstein_inequalities": 20480,
+  "population_strict_inequalities": 19840,
+  "endpoint_exact_interpolation_identities": 14,
+  "positive_endpoint_Bernstein_coefficients": 14,
+  "Arb_precision_bits": 384,
+  "optimization_solver_used_in_verifier": false,
+  "floating_tolerance_used": false,
+  "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52",
+  "source_audit_sha256": "001885fa84d5f1819992a8a041e94066eda40f4f6a2fbaaf8b81c8b8bb0f7b53",
+  "metadata_sha256": "a55137ef29a9a7ba42e8927a43be62c35a7d831951957928a0c1b6f64d761f3b",
+  "certificate_sha256": "3e2fbd42d779da00e1800ee2c5ae62e51c240f7b245c67139b12864576ba18bb",
+  "interface_slack": "1107565238703/1000000000000000000",
+  "scope": "all-duration ideal-blockade stationary-torus"
+}
+CHECKED_INTERVAL 0
+CHECKED_INTERVAL 40
+CHECKED_INTERVAL 80
+CHECKED_INTERVAL 120
+CHECKED_INTERVAL 160
+CHECKED_INTERVAL 200
+CHECKED_INTERVAL 240
+CHECKED_INTERVAL 280
+PASS {"status": "PASS", "schema": "minexposure/exact-population-subdivision-v1", "certified_lower_bound": "1465612969253/500000000000", "base_certified_lower_bound": "732806221717/250000000000", "exact_improvement": "525819/500000000000", "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52", "base_certificate_sha256": "3e2fbd42d779da00e1800ee2c5ae62e51c240f7b245c67139b12864576ba18bb", "base_report_sha256": "7ae8854f63fed3c2ad8609ccbc7d586d86efb8287bc0c7c74f090779ccbaefe2", "certificate_sha256": "3932489adf01c5f6ca596663c1624c4ed71bae396d2922d2df2f2beeca882c14", "cost_intervals": 320, "population_boxes_per_interval": 16, "exact_population_coefficient_inequalities": 327680, "exact_endpoint_interpolation_identities": 14, "positive_endpoint_bernstein_coefficients": 14, "floating_point_used": false, "optimization_used": false, "tests_passed": 6, "tests": ["restriction basis degree 1", "restriction basis degree 3", "restriction basis degree 7", "rejected changed target", "rejected changed endpoint coefficient", "valid complete certificate"], "dependency": "full verification of hash-bound base certificate, original source, metadata, and interface proof is required", "scope": "all-duration ideal-blockade stationary-torus"}
+{"tests_run": 12, "failures": 0, "errors": 0, "status": "PASS"}
+VERIFIED: C* >= 1465612969253/500000000000 = 2.931225938506
+VERIFIED_CROSSING 0 blocks 131 bound 3232949668754191493968405517950973893741/448000000000000000000000000000000000000000000
+VERIFIED_CROSSING 1 blocks 134 bound 7532390591862562875909863091642773515503/560000000000000000000000000000000000000000000
+VERIFIED_CROSSING 2 blocks 134 bound 421174512450159512705515519148783038788901/31360000000000000000000000000000000000000000000
+VERIFIED_CROSSING 3 blocks 131 bound 601506945019030736999509910562387448961/89600000000000000000000000000000000000000000
+{
+  "status": "PASS",
+  "certified_lower_bound": "366407993089/125000000000",
+  "previous_lower_bound": "1465612969253/500000000000",
+  "exact_increase": "19003103/500000000000",
+  "new_interface_slack": "1279822293163917196284084707234182135355289/31360000000000000000000000000000000000000000000",
+  "old_interface_slack": "1107565238703/1000000000000000000",
+  "matrix_inequalities": 530,
+  "matrix_coordinates": 8146,
+  "selected_monomials": 1047,
+  "mandatory_crossings": 4,
+  "population_coefficient_inequalities": 1024,
+  "endpoint_polynomial_identities": 14,
+  "positive_endpoint_coefficients": 14,
+  "Arb_precision_bits": 384,
+  "optimization_solver_used": false,
+  "floating_tolerance_used": false,
+  "scope": "all-duration ideal-blockade stationary-torus",
+  "tests": [
+    "restriction degree 1",
+    "restriction degree 3",
+    "restriction degree 7",
+    "rejected changed target",
+    "rejected changed endpoint",
+    "rejected false total",
+    "rejected negative endpoint",
+    "positive matrix",
+    "indefinite matrix",
+    "singular matrix"
+  ],
+  "tests_passed": 11,
+  "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52",
+  "base_certificate_sha256": "3932489adf01c5f6ca596663c1624c4ed71bae396d2922d2df2f2beeca882c14",
+  "source_audit_sha256": "001885fa84d5f1819992a8a041e94066eda40f4f6a2fbaaf8b81c8b8bb0f7b53",
+  "certificate_sha256": "98560cc0bd55714dfb74814e377caac64cb4c736652e33868925da7b25703fd7",
+  "dependency": "Pinned global source, native bases, degree-seven occupation and subdivision certificates; replay with population-refinement/reproduce.sh"
+}
+VERIFIED_PROFILE 0 polynomial_intervals 1
+VERIFIED_PROFILE 40 polynomial_intervals 41
+VERIFIED_PROFILE 80 polynomial_intervals 81
+VERIFIED_PROFILE 120 polynomial_intervals 121
+VERIFIED_PROFILE 160 polynomial_intervals 161
+VERIFIED_PROFILE 200 polynomial_intervals 201
+VERIFIED_PROFILE 240 polynomial_intervals 241
+VERIFIED_PROFILE 280 polynomial_intervals 281
+{
+  "status": "PASS",
+  "certified_lower_bound": "1465617421667/500000000000",
+  "previous_lower_bound": "1465612969253/500000000000",
+  "exact_increase": "2226207/250000000000",
+  "cost_intervals": 320,
+  "polynomial_intervals": 320,
+  "tensor_coefficient_inequalities": 4915200,
+  "endpoint_identities": 14,
+  "positive_endpoint_coefficients": 14,
+  "exact_rational_arithmetic": true,
+  "floating_point_used": false,
+  "optimization_used": false,
+  "scope": "all-duration ideal-blockade stationary-torus",
+  "tests": [
+    "affine degree 1",
+    "affine degree 7",
+    "affine degree 14",
+    "rejected target",
+    "rejected endpoint",
+    "rejected integral",
+    "exact Bernstein integrals"
+  ],
+  "tests_passed": 8,
+  "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52",
+  "base_certificate_sha256": "3e2fbd42d779da00e1800ee2c5ae62e51c240f7b245c67139b12864576ba18bb",
+  "refinement_certificate_sha256": "3932489adf01c5f6ca596663c1624c4ed71bae396d2922d2df2f2beeca882c14",
+  "certificate_sha256": "8952644ae8aff9d692ea7cb25a462de507f29f85af02b1578e063d0eba86a7f7",
+  "dependency": "Pinned original source, projection and population subdivision certificates; replay population-refinement/reproduce.sh"
+}
+{
+  "status": "PASS",
+  "certified_lower_bound": "2931272845583/1000000000000",
+  "new_lower_bound_decimal": "2.931272845583",
+  "previous_lower_bound": "1465612969253/500000000000",
+  "exact_increase": "46907077/1000000000000",
+  "exact_increase_decimal": "0.000046907077",
+  "inherited_strict_upper_bound": "2.935875225844105",
+  "remaining_gap_strictly_less_than": "0.004602380261105",
+  "percentage_of_previous_gap_closed": "1.00890897010290667436893847647823341736633819795470221144133",
+  "crossing_only_bound": "366407993089/125000000000",
+  "profile_only_bound": "1465617421667/500000000000",
+  "endpoint_identities": 14,
+  "strictly_positive_endpoint_coefficients": 14,
+  "tests": [
+    "valid certificate",
+    "rejected changed target",
+    "rejected doubled increment",
+    "rejected changed endpoint",
+    "rejected changed dependency"
+  ],
+  "tests_passed": 5,
+  "arithmetic": "exact rational",
+  "scope": "all-duration ideal-blockade stationary-torus",
+  "bindings": {
+    "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52",
+    "refinement_certificate_sha256": "3932489adf01c5f6ca596663c1624c4ed71bae396d2922d2df2f2beeca882c14",
+    "crossing_certificate_sha256": "98560cc0bd55714dfb74814e377caac64cb4c736652e33868925da7b25703fd7",
+    "profile_certificate_sha256": "8952644ae8aff9d692ea7cb25a462de507f29f85af02b1578e063d0eba86a7f7",
+    "crossing_report_sha256": "b4cb7794e7781e22d1aa24362525bf661d593ee135ac4e6d5b711ed031892bd4",
+    "profile_report_sha256": "03d934b2f6846cb158132bcc365121ce19160b0b244eef62c019dd6621c80038"
+  },
+  "dependency": "Both extension verifiers and the inherited base proof must pass; see reproduce.sh",
+  "old_penalties_added_again": false,
+  "time_cap_used": false,
+  "certificate_sha256": "7d6e5c4c085331d7bf64a49fa2039910aaf4f34ac2e2c04c1e1c25bd87fdcc84"
+}
+VERIFIED: C* >= 2931272845583/1000000000000 = 2.931272845583

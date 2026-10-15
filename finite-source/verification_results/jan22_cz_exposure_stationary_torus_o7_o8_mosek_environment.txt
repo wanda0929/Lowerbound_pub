@@ -1,0 +1,6 @@
+python=3.14.0
+cvxpy=1.9.2
+numpy=2.4.6
+scipy=1.17.1
+Mosek=11.2.3
+installed_solvers=MOSEK,CLARABEL,SCS,SCIPY,HIGHS,OSQP

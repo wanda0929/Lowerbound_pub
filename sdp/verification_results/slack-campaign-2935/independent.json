@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "certified_lower_bound": "732821921703/250000000000",
+  "bound_decimal": "2.931287686812",
+  "increase_over_attachment": "8.3486E-8",
+  "occupation_gain": "2369543519841595398793213264572688288858161655594149227617494990381704619647148861456014260517789527880637500126771279755399694493026509260544805123231/28765755906655613542923765180632637848546557530408375098297156980639513253825995128147919348010870129133910416769645830543334950517604352000000000000000000000",
+  "crossing_replacement_gain": "123345215683678849274829661622452152599277527321/25254407700480000000000000000000000000000000000000000000",
+  "replaced_intervals": 16,
+  "allocation_coefficients": 983040,
+  "gram_budget_checks": 638611,
+  "crossing_coefficients": 615296,
+  "excluded_crossing_boxes": 6770,
+  "endpoint_identities_per_stage": 14,
+  "positive_endpoint_coefficients_per_stage": 14,
+  "tests": [
+    "rejected double occupation gain",
+    "rejected changed target",
+    "rejected changed counterexample cap",
+    "rejected negative endpoint coefficient",
+    "rejected over-budget allocation",
+    "rejected missing region",
+    "rejected inflated profile",
+    "rejected inflated crossing",
+    "rejected missing crossing",
+    "rejected unsupported barrier"
+  ],
+  "scope": "all-duration ideal-blockade stationary-torus",
+  "arithmetic": "exact rational; no optimizer acceptance",
+  "dependency": "Complete pinned original extension chain and original global source audit.",
+  "certificate_sha256": "106e5d046b22c8456135c40f9a77ee01f346a69c694983d917b69ab8675d830c"
+}

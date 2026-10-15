@@ -1,0 +1,27 @@
+REJECTED duplicate crossing allocation
+REJECTED unsafe original-matrix subtraction
+REJECTED invented population monomial
+REJECTED missing mandatory crossing
+REJECTED omitted selected matrix coordinate
+REJECTED inflated cost-profile coefficient
+REJECTED wrong cost-interval assignment
+REJECTED double-counted cost interval
+REJECTED false inherited occupation penalty
+REJECTED changed original projection certificate
+{
+  "status": "PASS",
+  "actual_certificate_mutations_rejected": 10,
+  "tests": [
+    "duplicate crossing allocation",
+    "unsafe original-matrix subtraction",
+    "invented population monomial",
+    "missing mandatory crossing",
+    "omitted selected matrix coordinate",
+    "inflated cost-profile coefficient",
+    "wrong cost-interval assignment",
+    "double-counted cost interval",
+    "false inherited occupation penalty",
+    "changed original projection certificate"
+  ],
+  "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52"
+}

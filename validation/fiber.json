@@ -1,0 +1,9 @@
+{
+  "analytical_constant_estimate": 2.4800793677059514,
+  "certified_strict_lower_bound": "2.48007",
+  "arb_lower_riemann_sum": "[2.480074365637698581649831774183464923875442 +/- 5.03e-43]",
+  "partition_segments": 233816,
+  "floating_partition_gap_target": 1e-05,
+  "floating_partition_gap": 9.999975450833824e-06,
+  "arb_seconds": 3.978321075439453
+}

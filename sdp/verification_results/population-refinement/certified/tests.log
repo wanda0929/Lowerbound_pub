@@ -1,0 +1,17 @@
+test_bernstein_partition_unity (__main__.VerificationTests.test_bernstein_partition_unity) ... ok
+test_cost_polynomial_identity (__main__.VerificationTests.test_cost_polynomial_identity) ... ok
+test_endpoint_negative_detected (__main__.VerificationTests.test_endpoint_negative_detected) ... ok
+test_interval_bound_nonconstant (__main__.VerificationTests.test_interval_bound_nonconstant) ... ok
+test_invalid_projection_order_rejected (__main__.VerificationTests.test_invalid_projection_order_rejected) ... ok
+test_negative_matrix_rejected (__main__.VerificationTests.test_negative_matrix_rejected) ... ok
+test_no_optimization_imports (__main__.VerificationTests.test_no_optimization_imports) ... ok
+test_nonzero_quadratic_field_sign (__main__.VerificationTests.test_nonzero_quadratic_field_sign) ... ok
+test_population_identities_exhaustive_degree_five (__main__.VerificationTests.test_population_identities_exhaustive_degree_five) ... ok
+test_singular_matrix_rejected (__main__.VerificationTests.test_singular_matrix_rejected) ... ok
+test_unsafe_scalar_rejected (__main__.VerificationTests.test_unsafe_scalar_rejected) ... ok
+test_valid_projection_order (__main__.VerificationTests.test_valid_projection_order) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.168s
+
+OK

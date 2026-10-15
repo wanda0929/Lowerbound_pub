@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "certified_lower_bound": "2931272845583/1000000000000",
+  "new_lower_bound_decimal": "2.931272845583",
+  "previous_lower_bound": "1465612969253/500000000000",
+  "exact_increase": "46907077/1000000000000",
+  "exact_increase_decimal": "0.000046907077",
+  "inherited_strict_upper_bound": "2.935875225844105",
+  "remaining_gap_strictly_less_than": "0.004602380261105",
+  "percentage_of_previous_gap_closed": "1.00890897010290667436893847647823341736633819795470221144133",
+  "crossing_only_bound": "366407993089/125000000000",
+  "profile_only_bound": "1465617421667/500000000000",
+  "endpoint_identities": 14,
+  "strictly_positive_endpoint_coefficients": 14,
+  "tests": [
+    "valid certificate",
+    "rejected changed target",
+    "rejected doubled increment",
+    "rejected changed endpoint",
+    "rejected changed dependency"
+  ],
+  "tests_passed": 5,
+  "arithmetic": "exact rational",
+  "scope": "all-duration ideal-blockade stationary-torus",
+  "bindings": {
+    "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52",
+    "refinement_certificate_sha256": "3932489adf01c5f6ca596663c1624c4ed71bae396d2922d2df2f2beeca882c14",
+    "crossing_certificate_sha256": "98560cc0bd55714dfb74814e377caac64cb4c736652e33868925da7b25703fd7",
+    "profile_certificate_sha256": "8952644ae8aff9d692ea7cb25a462de507f29f85af02b1578e063d0eba86a7f7",
+    "crossing_report_sha256": "b4cb7794e7781e22d1aa24362525bf661d593ee135ac4e6d5b711ed031892bd4",
+    "profile_report_sha256": "03d934b2f6846cb158132bcc365121ce19160b0b244eef62c019dd6621c80038"
+  },
+  "dependency": "Both extension verifiers and the inherited base proof must pass; see reproduce.sh",
+  "old_penalties_added_again": false,
+  "time_cap_used": false,
+  "certificate_sha256": "7d6e5c4c085331d7bf64a49fa2039910aaf4f34ac2e2c04c1e1c25bd87fdcc84"
+}

@@ -1,0 +1,9 @@
+PROFILE 0 mean 0.0007718531863290833 inherited 0.000708054757659493 polynomial_intervals 1
+PROFILE 40 mean 0.0007385226057270242 inherited 0.0007254186921297959 polynomial_intervals 41
+PROFILE 80 mean 5.272710931386677e-05 inherited 5.141058721624363e-05 polynomial_intervals 81
+PROFILE 120 mean 8.186366047396534e-05 inherited 7.932037764807532e-05 polynomial_intervals 121
+PROFILE 160 mean 5.016421461084793e-05 inherited 4.9746383613394496e-05 polynomial_intervals 161
+PROFILE 200 mean 4.935816110477396e-05 inherited 4.8027633810469555e-05 polynomial_intervals 201
+PROFILE 240 mean 7.854182111582573e-05 inherited 7.666119837959338e-05 polynomial_intervals 241
+PROFILE 280 mean 0.000652941755966045 inherited 0.0006446198110206018 polynomial_intervals 281
+SUMMARY {"status": "producer exact; independent verification required", "bound": "1465617421667/500000000000", "bound_decimal": "2.931234843334", "base_bound": "1465612969253/500000000000", "exact_increase": "2226207/250000000000", "occupation_slack_display": 0.00028960281667319914, "occupation_increase_display": 9.300827973091619e-06, "polynomial_intervals": 320, "certificate_sha256": "8952644ae8aff9d692ea7cb25a462de507f29f85af02b1578e063d0eba86a7f7"}

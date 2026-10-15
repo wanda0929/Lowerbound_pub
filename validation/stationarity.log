@@ -1,0 +1,5 @@
+1. discrete KKT stationarity: max 1.849e-08 rms 6.299e-09
+2. continuous PMP stationarity (midpoint): max 6.751e-06 rms 4.661e-06
+3. (lam.x)(S) = 5.675e-14 ; T_R = -0.5*((lam.x)(S)-(lam.x)(0)) = 2.9359556  vs direct 2.9359556
+4. transversality lam(S).tangent = -3.439e-15
+   phase-constraint multiplier nu5 = 0.17517; alpha-momentum endpoints: -0.350334 (sphere 1), 0.175167 (sphere 2 = nu5)

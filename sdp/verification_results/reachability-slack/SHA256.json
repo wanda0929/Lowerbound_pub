@@ -1,0 +1,21 @@
+{
+  "CROSSINGS.md": "450b06d7c241dc8cc14106193641cc77a06fc68c06891a82ee85e8c23f73508c",
+  "PROOF.md": "d4ab93491b22865b5277db7277749843406e1106d402e0427c54a616c43c94d6",
+  "README.md": "e08860e9f86bc9739fe2656a3e5565d984a3de6d995795a840803495cb468f99",
+  "RESULT.json": "3e0c32f51edeeb7040cdb7ab72977bbdb0d815eae58fda42a434e2071813b9de",
+  "certified/certificate.json": "5f5edbf79a66e4ee060ae0d069eeaabe772e30f2a6df64f29d626d2c956c0784",
+  "certified/independent.json": "fadca78e17f17fea2178bc0b9672d43643a6d305273e7e0cba4d109c18df7a84",
+  "certified/occupation-certificate.json": "cce6d0af84023f0d8619686d0b94f4f51f515c0b99c68560acfbea6489c144bd",
+  "certified/occupation-independent.json": "b146036228320b452e88d980859a9cd910355357c6877214d7d6a1ae00dd593f",
+  "crossing-producer.log": "fd8837bcdf2f3f3ee894e176c7178bb0a96ab96d2261e445e703a8a5753eb959",
+  "crossing-replay.log": "1a629b07e79d2eeb523926b7ebfd185232f1d87aeb55c383f411613119126be9",
+  "crossings.py": "d012c53b4565bc8335a15a8f3d03f692803a25aba48bac02094607c793698584",
+  "environment.json": "bc2c999bb75c7b8e17807a0817e651806a33875bd9649246a1d6c8072b5b2b86",
+  "occupation-producer.log": "e7bbffd5decb0d2b0e8b5b78067d2f77fedaf15ba6fc30775bc68f0f528b322f",
+  "occupation-replay.log": "f76576a3811e2d9e4c6b2bd3b5668b380c56d4ec6e905f5befcdea616673b279",
+  "predecessor-replay.json": "006624197fabce98796384ba18d58fd5cb13cc8c68426ac36314fa591843bd0e",
+  "predecessor-replay.log": "8f7d4da983865b8c3c661fea16f419d43765edb449827fc23ad7965ef4ff12ae",
+  "produce.py": "c45342728b3dd634eba2c258f227f749f7dccbe974adc7f08b1aa32faa8fb03f",
+  "reproduce.sh": "378ed8a9aaf87b14c0b7da483a2a4904842f07f128dcec08cdd6d6dc227fedd7",
+  "verify.py": "c91f204f168aa6f97af167df1996fb144b95d5e217fa7041cb10d251e880770a"
+}

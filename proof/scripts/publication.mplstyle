@@ -1,0 +1,16 @@
+font.family: sans-serif
+font.sans-serif: DejaVu Sans
+font.size: 9
+mathtext.fontset: dejavusans
+axes.labelsize: 10
+axes.linewidth: 0.8
+xtick.labelsize: 9
+ytick.labelsize: 9
+legend.fontsize: 9
+lines.linewidth: 1.5
+lines.markersize: 4
+savefig.dpi: 600
+pdf.fonttype: 42
+ps.fonttype: 42
+figure.facecolor: white
+axes.facecolor: white

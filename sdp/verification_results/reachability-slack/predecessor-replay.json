@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "certified_lower_bound": "2931286076089/1000000000000",
+  "all_predecessor_extensions_replayed": true,
+  "original_global_audit": "Inherited unchanged; original matrices re-read and used by extension verifiers. Full original native audit not rerun.",
+  "replay_log_sha256": "8f7d4da983865b8c3c661fea16f419d43765edb449827fc23ad7965ef4ff12ae"
+}

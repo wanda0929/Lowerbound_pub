@@ -1,0 +1,134 @@
+[
+  {
+    "grid": "shoulder",
+    "command": [
+      "/tmp/2930-audit.yNrfei/source/target/release/minexposure",
+      "audit-exact-split",
+      "/tmp/2930-audit.yNrfei/certificates/order-6-exact-split-dual-2930/split-o6-shoulder-1-26-target-293-exact-certificate.json",
+      "--audit-jobs",
+      "8"
+    ],
+    "started_utc": "2026-09-07T04:22:32.438956+00:00",
+    "exit_code": 0,
+    "wall_seconds": 35.38295550015755,
+    "certificate_sha256": "907835bf180ec890e7988057b25c308df7109f58f0f64802ac714b694602ddba",
+    "certificate_bytes": 109403268,
+    "report_path": "/Users/wanda/QSTC_PROJECT/min-exposure-sdp/.amp/in/artifacts/2930-audit/shoulder.fresh-audit.json",
+    "report_sha256": "eda531f9fe1d49096880831cf632e92d5e1cc916a392d6dca14be40e7dea8238",
+    "stderr_bytes": 0,
+    "resources_path": "/Users/wanda/QSTC_PROJECT/min-exposure-sdp/.amp/in/artifacts/2930-audit/shoulder.resources.txt",
+    "binary_sha256": "dbc21ce7e7fe277e4422dd62f48e15a2ca362cf9412a50f86a95c20fb1e2608c",
+    "DYLD_LIBRARY_PATH": "/private/tmp/2930-audit.yNrfei/source/target/release/build/mosek-c732a85c23729278/out/mosek/11.2/tools/platform/osxaarch64/bin",
+    "measurement_command": [
+      "/usr/bin/time",
+      "-l",
+      "-o",
+      "/Users/wanda/QSTC_PROJECT/min-exposure-sdp/.amp/in/artifacts/2930-audit/shoulder.resources.txt",
+      "/usr/bin/env",
+      "DYLD_LIBRARY_PATH=/private/tmp/2930-audit.yNrfei/source/target/release/build/mosek-c732a85c23729278/out/mosek/11.2/tools/platform/osxaarch64/bin",
+      "/tmp/2930-audit.yNrfei/source/target/release/minexposure",
+      "audit-exact-split",
+      "/tmp/2930-audit.yNrfei/certificates/order-6-exact-split-dual-2930/split-o6-shoulder-1-26-target-293-exact-certificate.json",
+      "--audit-jobs",
+      "8"
+    ],
+    "report": {
+      "sign_convention": "c + A_cell^T lambda + n*sum_cell terminal[0] - S^T Z = 0; bound=-sum(lambda*rhs)-n",
+      "coefficient_count": 9180,
+      "nonzero_exact_residual_count": 0,
+      "all_gram_matrices_exactly_positive_definite": false,
+      "all_gram_matrices_exactly_positive_semidefinite": true,
+      "positive_definite_gram_count": 2086,
+      "zero_gram_count": 332,
+      "residual_certified_gram_count": 2333,
+      "exact_ldl_certified_gram_count": 0,
+      "minimum_certified_gram_eigenvalue_lower_bound": "444280195169115950363598026645/85070591730234615865843651857942052864",
+      "minimum_exact_ldl_pivot": "not applicable (no Gram matrix required exact LDL)",
+      "exact_endpoint_bound": "293/100",
+      "cost_relative_residual_upper": "0",
+      "certified_bound": "293/100",
+      "endpoint_margin_after_residual": "0",
+      "strictly_exceeds_target": false,
+      "rigorous_bound": 2.93
+    },
+    "comparison": {
+      "native": {
+        "byte_identical": true,
+        "json_equal": true,
+        "archived_sha256": "eda531f9fe1d49096880831cf632e92d5e1cc916a392d6dca14be40e7dea8238"
+      },
+      "independent": {
+        "byte_identical": true,
+        "json_equal": true,
+        "archived_sha256": "eda531f9fe1d49096880831cf632e92d5e1cc916a392d6dca14be40e7dea8238"
+      }
+    },
+    "peak_rss_bytes": 316129280
+  },
+  {
+    "grid": "six-cell",
+    "command": [
+      "/tmp/2930-audit.yNrfei/source/target/release/minexposure",
+      "audit-exact-split",
+      "/tmp/2930-audit.yNrfei/certificates/order-6-exact-split-dual-2930/split-o6-six-cell-1-26-target-293-exact-certificate.json",
+      "--audit-jobs",
+      "8"
+    ],
+    "started_utc": "2026-09-07T04:23:07.828389+00:00",
+    "exit_code": 0,
+    "wall_seconds": 44.51752041699365,
+    "certificate_sha256": "43057f35f23a8553894c17727c827599544bc32e56ced1ef6b38a7789ae7756c",
+    "certificate_bytes": 128644774,
+    "report_path": "/Users/wanda/QSTC_PROJECT/min-exposure-sdp/.amp/in/artifacts/2930-audit/six-cell.fresh-audit.json",
+    "report_sha256": "08d55cd8a764db38ae5c3558146b2c878c8a5d805fab3bdc6eb483b4316f987c",
+    "stderr_bytes": 0,
+    "resources_path": "/Users/wanda/QSTC_PROJECT/min-exposure-sdp/.amp/in/artifacts/2930-audit/six-cell.resources.txt",
+    "binary_sha256": "dbc21ce7e7fe277e4422dd62f48e15a2ca362cf9412a50f86a95c20fb1e2608c",
+    "DYLD_LIBRARY_PATH": "/private/tmp/2930-audit.yNrfei/source/target/release/build/mosek-c732a85c23729278/out/mosek/11.2/tools/platform/osxaarch64/bin",
+    "measurement_command": [
+      "/usr/bin/time",
+      "-l",
+      "-o",
+      "/Users/wanda/QSTC_PROJECT/min-exposure-sdp/.amp/in/artifacts/2930-audit/six-cell.resources.txt",
+      "/usr/bin/env",
+      "DYLD_LIBRARY_PATH=/private/tmp/2930-audit.yNrfei/source/target/release/build/mosek-c732a85c23729278/out/mosek/11.2/tools/platform/osxaarch64/bin",
+      "/tmp/2930-audit.yNrfei/source/target/release/minexposure",
+      "audit-exact-split",
+      "/tmp/2930-audit.yNrfei/certificates/order-6-exact-split-dual-2930/split-o6-six-cell-1-26-target-293-exact-certificate.json",
+      "--audit-jobs",
+      "8"
+    ],
+    "report": {
+      "sign_convention": "c + A_cell^T lambda + n*sum_cell terminal[0] - S^T Z = 0; bound=-sum(lambda*rhs)-n",
+      "coefficient_count": 11048,
+      "nonzero_exact_residual_count": 0,
+      "all_gram_matrices_exactly_positive_definite": false,
+      "all_gram_matrices_exactly_positive_semidefinite": true,
+      "positive_definite_gram_count": 2517,
+      "zero_gram_count": 403,
+      "residual_certified_gram_count": 2815,
+      "exact_ldl_certified_gram_count": 0,
+      "minimum_certified_gram_eigenvalue_lower_bound": "16306274506101417141103451684857/1361129467683753853853498429727072845824",
+      "minimum_exact_ldl_pivot": "not applicable (no Gram matrix required exact LDL)",
+      "exact_endpoint_bound": "293/100",
+      "cost_relative_residual_upper": "0",
+      "certified_bound": "293/100",
+      "endpoint_margin_after_residual": "0",
+      "strictly_exceeds_target": false,
+      "rigorous_bound": 2.93
+    },
+    "comparison": {
+      "native": {
+        "byte_identical": true,
+        "json_equal": true,
+        "archived_sha256": "08d55cd8a764db38ae5c3558146b2c878c8a5d805fab3bdc6eb483b4316f987c"
+      },
+      "independent": {
+        "byte_identical": true,
+        "json_equal": true,
+        "archived_sha256": "08d55cd8a764db38ae5c3558146b2c878c8a5d805fab3bdc6eb483b4316f987c"
+      }
+    },
+    "peak_rss_bytes": 368476160
+  }
+]

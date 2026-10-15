@@ -1,0 +1,44 @@
+VERIFIED_REGIONAL_INTERVAL 0
+VERIFIED_REGIONAL_INTERVAL 32
+VERIFIED_REGIONAL_INTERVAL 64
+VERIFIED_REGIONAL_INTERVAL 96
+VERIFIED_REGIONAL_INTERVAL 128
+VERIFIED_REGIONAL_INTERVAL 160
+VERIFIED_REGIONAL_INTERVAL 192
+VERIFIED_REGIONAL_INTERVAL 224
+VERIFIED_REGIONAL_INTERVAL 256
+VERIFIED_REGIONAL_INTERVAL 288
+{
+  "status": "PASS",
+  "certified_lower_bound": "1465642825777/500000000000",
+  "bound_decimal": "2.931285651554",
+  "previous_lower_bound": "2931272845583/1000000000000",
+  "exact_increase": "12805971/1000000000000",
+  "increase_decimal": "0.000012805971",
+  "remaining_gap_strictly_less_than": "0.004589574290105",
+  "cost_intervals": 320,
+  "regional_intervals": 319,
+  "regions_per_interval": 16,
+  "tensor_coefficient_inequalities": 4899840,
+  "exact_gram_budget_checks": 3200013,
+  "previously_verified_projections_used": 6232,
+  "endpoint_interpolation_identities": 14,
+  "positive_endpoint_coefficients": 14,
+  "arithmetic": "exact rational; no floating tolerance or optimizer",
+  "source_certificate_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52",
+  "base_certificate_sha256": "3e2fbd42d779da00e1800ee2c5ae62e51c240f7b245c67139b12864576ba18bb",
+  "previous_certificate_sha256": "7d6e5c4c085331d7bf64a49fa2039910aaf4f34ac2e2c04c1e1c25bd87fdcc84",
+  "profile_certificate_sha256": "8952644ae8aff9d692ea7cb25a462de507f29f85af02b1578e063d0eba86a7f7",
+  "scope": "all-duration ideal-blockade stationary-torus",
+  "dependency": "Full predecessor extension chain and original exact source audit are required; hashes alone are not mathematical verification.",
+  "tests": [
+    "exact affine identity degree 1",
+    "exact affine identity degree 7",
+    "exact affine identity degree 14",
+    "rejected changed target",
+    "rejected changed endpoint coefficient",
+    "rejected doubled occupation gain"
+  ],
+  "tests_passed": 7,
+  "certificate_sha256": "ca4813512b0b3b911ed37815012c29b1688173e3e5f8ebeb6a31361674a9b772"
+}

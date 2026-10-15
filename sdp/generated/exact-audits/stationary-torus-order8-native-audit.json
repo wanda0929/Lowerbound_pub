@@ -1,0 +1,13 @@
+{
+  "sign_convention": "c + A^T lambda - S^T Z = 0",
+  "coefficient_count": 1854,
+  "nonzero_exact_residual_count": 0,
+  "all_gram_matrices_exactly_positive_definite": true,
+  "minimum_exact_ldl_pivot": "3440587625818746623/4556557008780000000000000",
+  "exact_endpoint_bound": "-8966181773693/3000000000000 + 20757923393689/5000000000000*sqrt(2)",
+  "cost_relative_residual_upper": "0",
+  "certified_bound": "1153/400",
+  "endpoint_margin_after_residual": "-17613681773693/3000000000000 + 20757923393689/5000000000000*sqrt(2)",
+  "strictly_exceeds_target": true,
+  "rigorous_bound": 2.8825
+}
