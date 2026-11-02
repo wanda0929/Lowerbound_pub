@@ -1,0 +1,6 @@
+Mon Nov  2 05:21:27 UTC 2026
+Python 3.11.6
+python-flint 0.8.0
+rustc 1.99.1 (58cf8f9c3 2026-10-13)
+cargo 1.99.1 (5f94df478 2026-08-27)
+3e6146bc9c873ea84e19548cc5c14d5796ac6036

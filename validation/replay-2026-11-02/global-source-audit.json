@@ -1,0 +1,19 @@
+{
+  "sign_convention": "c + A_cell^T lambda + n*sum_cell terminal[0] - S^T Z = 0; bound=-sum(lambda*rhs)-n",
+  "coefficient_count": 18739,
+  "nonzero_exact_residual_count": 0,
+  "all_gram_matrices_exactly_positive_definite": false,
+  "all_gram_matrices_exactly_positive_semidefinite": true,
+  "positive_definite_gram_count": 3363,
+  "zero_gram_count": 506,
+  "residual_certified_gram_count": 3720,
+  "exact_ldl_certified_gram_count": 0,
+  "minimum_certified_gram_eigenvalue_lower_bound": "246553280532227911527475802669/85070591730234615865843651857942052864",
+  "minimum_exact_ldl_pivot": "not applicable (no Gram matrix required exact LDL)",
+  "exact_endpoint_bound": "5861/2000",
+  "cost_relative_residual_upper": "0",
+  "certified_bound": "5861/2000",
+  "endpoint_margin_after_residual": "0",
+  "strictly_exceeds_target": false,
+  "rigorous_bound": 2.9305
+}
