@@ -1,0 +1,15 @@
+'CZExposure.SOSRepresentation.sum_variables' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SOSRepresentation.norm_generators' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SOSRepresentation.slice_archimedean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SOSRepresentation.freeze_norm_generator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SOSRepresentation.freeze_slice_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SOSRepresentation.physical_point_of_zeros' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SOSRepresentation.gram_contraction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SOSRepresentation.residual_squares' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SOSRepresentation.finite_order' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SOSRepresentation.exists_stationary_feasible_below_Cstar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+MatrixPositivstellensatz : Prop
+exists_stationary_feasible_below_Cstar : EuclideanDirectedArcSuperposition →
+  ∀ (a : ℝ), ↑a < Cstar → ∃ d W, StationaryFeasible d W ∧ a < (eval x0) W

@@ -1,0 +1,136 @@
+PositiveExposureSegment.mk : (a b : ℝ) →
+  a < b →
+    (cutoff : ℝ) →
+      0 < cutoff →
+        (y : ℝ → ExposureEuclidean) →
+          (lipConst : NNReal) →
+            LipschitzWith lipConst y →
+              (u : ℝ → ℂ) →
+                Measurable u →
+                  (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+                    (∀ t ∈ Set.Icc a b, y t ∈ euclideanExposureDomain) →
+                      (∀ t ∈ Set.Icc a b, cutoff ≤ euclideanExposureCost (y t)) →
+                        (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc a b),
+                            HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+                          PositiveExposureSegment
+PositiveExposureSegment.continuousOn_clock : ∀ (S : PositiveExposureSegment), ContinuousOn S.clock (Set.Icc S.a S.b)
+PositiveExposureSegment.clock_image_interval : ∀ (S : PositiveExposureSegment),
+  S.clock '' Set.Icc S.a S.b = Set.Icc 0 S.duration
+PositiveExposureSegment.clockOrderIso : (S : PositiveExposureSegment) → ↑(Set.Icc S.a S.b) ≃o ↑(Set.Icc 0 S.duration)
+PositiveExposureSegment.clockInverse : (S : PositiveExposureSegment) → ↑(Set.Icc 0 S.duration) → ↑(Set.Icc S.a S.b)
+PositiveExposureSegment.clockInverseReal : PositiveExposureSegment → ℝ → ℝ
+PositiveExposureSegment.clock_clockInverse : ∀ (S : PositiveExposureSegment) (s : ↑(Set.Icc 0 S.duration)),
+  S.clock ↑(S.clockInverse s) = ↑s
+PositiveExposureSegment.clock_dist_lower_bound : ∀ (S : PositiveExposureSegment) {s t : ℝ},
+  s ∈ Set.Icc S.a S.b → t ∈ Set.Icc S.a S.b → dist s t ≤ dist (S.clock s) (S.clock t)
+PositiveExposureSegment.lipschitz_clockInverse : ∀ (S : PositiveExposureSegment), LipschitzWith 1 S.clockInverse
+PositiveExposureSegment.clockInverseReal_of_mem : ∀ (S : PositiveExposureSegment) {s : ℝ}
+  (hs : s ∈ Set.Icc 0 S.duration), S.clockInverseReal s = ↑(S.clockInverse ⟨s, hs⟩)
+PositiveExposureSegment.lipschitz_clockInverseReal : ∀ (S : PositiveExposureSegment), LipschitzWith 1 S.clockInverseReal
+PositiveExposureSegment.clock_clockInverseReal : ∀ (S : PositiveExposureSegment) {s : ℝ},
+  s ∈ Set.Icc 0 S.duration → S.clock (S.clockInverseReal s) = s
+PositiveExposureSegment.clockInverseReal_clock : ∀ (S : PositiveExposureSegment) {t : ℝ},
+  t ∈ Set.Icc S.a S.b → S.clockInverseReal (S.clock t) = t
+PositiveExposureSegment.clockInverseReal_zero : ∀ (S : PositiveExposureSegment), S.clockInverseReal 0 = S.a
+PositiveExposureSegment.clockInverseReal_terminal : ∀ (S : PositiveExposureSegment), S.clockInverseReal S.duration = S.b
+PositiveExposureSegment.clockInverseReal_ae_transfer : ∀ (S : PositiveExposureSegment) {P : ℝ → Prop},
+  (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc S.a S.b), P t) →
+    ∀ᵐ (s : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 S.duration), P (S.clockInverseReal s)
+PositiveExposureSegment.exists_lipschitz_physicalPath : ∀ (S : PositiveExposureSegment),
+  ∃ K, LipschitzWith K S.physicalPath
+PositiveExposureSegment.physicalPath_mem : ∀ (S : PositiveExposureSegment) (s : ℝ), S.physicalPath s ∈ Xset
+PositiveExposureSegment.physicalPath_zero : ∀ (S : PositiveExposureSegment), S.physicalPath 0 = S.liftedState S.a
+PositiveExposureSegment.physicalPath_terminal : ∀ (S : PositiveExposureSegment),
+  S.physicalPath S.duration = S.liftedState S.b
+PositiveExposureSegment.measurable_physicalControl : ∀ (S : PositiveExposureSegment), Measurable S.physicalControl
+PositiveExposureSegment.physicalControl_bound : ∀ (S : PositiveExposureSegment) (s : ℝ), ‖S.physicalControl s‖ ≤ 1
+PositiveExposureSegment.cost_physicalPath_pos : ∀ (S : PositiveExposureSegment) (s : ℝ), 0 < cost (S.physicalPath s)
+PositiveExposureSegment.hasDerivAt_clockInverseReal : ∀ (S : PositiveExposureSegment) {s : ℝ},
+  s ∈ Set.Ioo 0 S.duration → HasDerivAt S.clockInverseReal (cost (S.physicalPath s)) s
+PositiveExposureSegment.ae_hasDerivAt_clockInverseReal : ∀ (S : PositiveExposureSegment),
+  ∀ᵐ (s : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 S.duration),
+    HasDerivAt S.clockInverseReal (cost (S.physicalPath s)) s
+PositiveExposureSegment.ae_hasDerivAt_physicalPath : ∀ (S : PositiveExposureSegment),
+  ∀ᵐ (s : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 S.duration),
+    HasDerivAt S.physicalPath (vf (S.physicalPath s) (S.physicalControl s)) s
+PositiveExposureSegment.intervalIntegrable_physicalVelocity : ∀ (S : PositiveExposureSegment) (i : Fin 8),
+  IntervalIntegrable (fun s => vf (S.physicalPath s) (S.physicalControl s) i) MeasureTheory.volume 0 S.duration
+PositiveExposureSegment.physicalPath_integralEquation : ∀ (S : PositiveExposureSegment) {s : ℝ},
+  s ∈ Set.Icc 0 S.duration →
+    ∀ (i : Fin 8),
+      S.physicalPath s i = S.physicalPath 0 i + ∫ (r : ℝ) in 0..s, vf (S.physicalPath r) (S.physicalControl r) i
+PositiveExposureSegment.intervalIntegrable_cost_physicalPath : ∀ (S : PositiveExposureSegment),
+  IntervalIntegrable (fun s => cost (S.physicalPath s)) MeasureTheory.volume 0 S.duration
+PositiveExposureSegment.integral_cost_physicalPath : ∀ (S : PositiveExposureSegment) {s : ℝ},
+  s ∈ Set.Icc 0 S.duration → ∫ (r : ℝ) in 0..s, cost (S.physicalPath r) = S.clockInverseReal s - S.a
+PositiveExposureSegment.physicalExposure_eq : ∀ (S : PositiveExposureSegment), S.physicalExposure = S.b - S.a
+PositiveExposureSegment.exists_physical_realization : ∀ (S : PositiveExposureSegment),
+  ∃ D,
+    0 < D ∧
+      D ≤ (S.b - S.a) / S.cutoff ∧
+        ∃ x u,
+          (∃ K, LipschitzWith K x) ∧
+            Measurable u ∧
+              (∀ (s : ℝ), ‖u s‖ ≤ 1) ∧
+                (∀ s ∈ Set.Icc 0 D, x s ∈ Xset) ∧
+                  x 0 = S.liftedState S.a ∧
+                    x D = S.liftedState S.b ∧
+                      (∀ (i : Fin 8), IntervalIntegrable (fun s => vf (x s) (u s) i) MeasureTheory.volume 0 D) ∧
+                        (∀ s ∈ Set.Icc 0 D, ∀ (i : Fin 8), x s i = x 0 i + ∫ (r : ℝ) in 0..s, vf (x r) (u r) i) ∧
+                          ∫ (s : ℝ) in 0..D, cost (x s) = S.b - S.a
+'CZExposure.PositiveExposureSegment.continuousOn_clock' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.clock_image_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.clockOrderIso' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.clockInverseReal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.clock_clockInverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.clock_dist_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.lipschitz_clockInverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.clockInverseReal_of_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.lipschitz_clockInverseReal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.clock_clockInverseReal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.clockInverseReal_clock' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.clockInverseReal_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.clockInverseReal_terminal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.clockInverseReal_ae_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.exists_lipschitz_physicalPath' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.physicalPath_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.physicalPath_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.physicalPath_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.measurable_physicalControl' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.physicalControl_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.cost_physicalPath_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.hasDerivAt_clockInverseReal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.ae_hasDerivAt_clockInverseReal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.ae_hasDerivAt_physicalPath' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.intervalIntegrable_physicalVelocity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.physicalPath_integralEquation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.intervalIntegrable_cost_physicalPath' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.integral_cost_physicalPath' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.physicalExposure_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.exists_physical_realization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

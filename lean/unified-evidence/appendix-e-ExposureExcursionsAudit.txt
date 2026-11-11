@@ -1,0 +1,71 @@
+costThreeHalves : ℝ → ℝ
+euclideanSquaredCostCLM : ExposureEuclidean →L[ℝ] ℝ
+continuous_costThreeHalves : Continuous costThreeHalves
+monotoneOn_costThreeHalves : MonotoneOn costThreeHalves (Set.Ici 0)
+strictMonoOn_costThreeHalves : StrictMonoOn costThreeHalves (Set.Ici 0)
+@abs_fderiv_cost_vf_le_sqrt : ∀ {x : State}, x ∈ Xset → ∀ {u : ℂ}, ‖u‖ ≤ 1 → |(fderiv ℝ cost x) (vf x u)| ≤ √(cost x)
+@euclideanSquaredCostCLM_nonneg : ∀ {z : ExposureEuclidean}, z ∈ euclideanExposureDomain → 0 ≤ euclideanSquaredCostCLM z
+@abs_euclideanSquaredCostCLM_Bfield_le : ∀ {z : ExposureEuclidean},
+  z ∈ euclideanExposureDomain →
+    ∀ {u : ℂ}, ‖u‖ ≤ 1 → |euclideanSquaredCostCLM (euclideanBfield z u)| ≤ 2 * √(euclideanExposureCost z)
+@lipschitzOn_costThreeHalves_exposure : ∀ {T : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ} {K : NNReal},
+  0 ≤ T →
+    LipschitzWith K y →
+      (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+        (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+          (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+            LipschitzOnWith (3 / 2) (fun t => costThreeHalves (euclideanExposureCost (y t))) (Set.Icc 0 T)
+@cost_excursion_duration_lower_bound : ∀ {c : ℝ → ℝ} {T α β l p r : ℝ},
+  LipschitzOnWith (3 / 2) (fun t => costThreeHalves (c t)) (Set.Icc 0 T) →
+    0 ≤ α →
+      α < β →
+        0 ≤ l →
+          l ≤ p → p ≤ r → r ≤ T → c l = α → c r = α → β ≤ c p → 4 / 3 * (costThreeHalves β - costThreeHalves α) ≤ r - l
+@sum_disjoint_interval_lengths_le : ∀ {A : Type u_1} (I : Finset A) (l r : A → ℝ) {T : ℝ},
+  0 ≤ T →
+    (∀ i ∈ I, 0 ≤ l i ∧ l i ≤ r i ∧ r i ≤ T) →
+      ((↑I).PairwiseDisjoint fun i => Set.Ioo (l i) (r i)) → ∑ i ∈ I, (r i - l i) ≤ T
+@cost_excursion_count_bound : ∀ {A : Type u_1} (I : Finset A) (l p r : A → ℝ) {c : ℝ → ℝ} {T α β : ℝ},
+  0 ≤ T →
+    LipschitzOnWith (3 / 2) (fun t => costThreeHalves (c t)) (Set.Icc 0 T) →
+      0 ≤ α →
+        α < β →
+          (∀ i ∈ I, 0 ≤ l i ∧ l i ≤ p i ∧ p i ≤ r i ∧ r i ≤ T) →
+            (∀ i ∈ I, c (l i) = α ∧ c (r i) = α ∧ β ≤ c (p i)) →
+              ((↑I).PairwiseDisjoint fun i => Set.Ioo (l i) (r i)) →
+                ↑I.card * (4 / 3 * (costThreeHalves β - costThreeHalves α)) ≤ T
+@cost_excursion_family_finite : ∀ {A : Type u_1} (l p r : A → ℝ) {c : ℝ → ℝ} {T α β : ℝ},
+  0 ≤ T →
+    LipschitzOnWith (3 / 2) (fun t => costThreeHalves (c t)) (Set.Icc 0 T) →
+      0 ≤ α →
+        α < β →
+          (∀ (i : A), 0 ≤ l i ∧ l i ≤ p i ∧ p i ≤ r i ∧ r i ≤ T) →
+            (∀ (i : A), c (l i) = α ∧ c (r i) = α ∧ β ≤ c (p i)) →
+              (Pairwise fun i j => Disjoint (Set.Ioo (l i) (r i)) (Set.Ioo (l j) (r j))) → Finite A
+@cost_excursion_count_bound_half_cutoff : ∀ {A : Type u_1} (I : Finset A) (l p r : A → ℝ) {c : ℝ → ℝ} {T α β : ℝ},
+  0 ≤ T →
+    LipschitzOnWith (3 / 2) (fun t => costThreeHalves (c t)) (Set.Icc 0 T) →
+      0 ≤ α →
+        0 < β →
+          α ≤ β / 2 →
+            (∀ i ∈ I, 0 ≤ l i ∧ l i ≤ p i ∧ p i ≤ r i ∧ r i ≤ T) →
+              (∀ i ∈ I, c (l i) = α ∧ c (r i) = α ∧ β ≤ c (p i)) →
+                ((↑I).PairwiseDisjoint fun i => Set.Ioo (l i) (r i)) → ↑I.card * (2 / 3 * costThreeHalves β) ≤ T
+@sum_retained_physicalExposure_le : ∀ {A : Type u_1} (I : Finset A) (segments : A → PositiveExposureSegment) {T : ℝ},
+  0 ≤ T →
+    (∀ i ∈ I, 0 ≤ (segments i).a ∧ (segments i).b ≤ T) →
+      ((↑I).PairwiseDisjoint fun i => Set.Ioo (segments i).a (segments i).b) →
+        ∑ i ∈ I, (segments i).physicalExposure ≤ T
+'CZExposure.continuous_costThreeHalves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.monotoneOn_costThreeHalves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.strictMonoOn_costThreeHalves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.abs_fderiv_cost_vf_le_sqrt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.euclideanSquaredCostCLM_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.abs_euclideanSquaredCostCLM_Bfield_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.lipschitzOn_costThreeHalves_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.cost_excursion_duration_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.sum_disjoint_interval_lengths_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.cost_excursion_count_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.cost_excursion_family_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.cost_excursion_count_bound_half_cutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.sum_retained_physicalExposure_le' depends on axioms: [propext, Classical.choice, Quot.sound]

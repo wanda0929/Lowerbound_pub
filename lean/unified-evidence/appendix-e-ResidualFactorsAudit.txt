@@ -1,0 +1,32 @@
+'CZExposure.MatrixExtraction.amplitudeIdeal_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.MatrixExtraction.exists_matrix_of_mem_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.MatrixExtraction.symmetrize_symmetric' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.MatrixExtraction.symmetrize_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.MatrixExtraction.symmetrize_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.MatrixExtraction.exists_symmetric_matrix_of_mem_cube' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.ResidualFactors.lieDeriv_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.lieDeriv_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.lieDeriv_C' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.lieDeriv_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.lieDeriv_X' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.lieDeriv_zReal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.lieDeriv_zImag' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.progress_drift_mem_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.cost_mem_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.cost_drift_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.cost_square_drift_mem_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.Jpoly_drift_mem_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.pullback_drift_mem_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.strictPolynomial_drift_mem_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.costDiagonal_posDef' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.costMatrix_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.eval_faceIdeal_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualFactors.exists_residual_matrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+exists_residual_matrix : ∀ (P : ExposurePoly) (η α : ℝ),
+  ∃ A,
+    A.IsSymm ∧
+      amplitudes ⬝ᵥ A *ᵥ amplitudes = cpoly + lieDeriv (strictPolynomial P η α) ∧
+        ∀ (y : Var → ℝ),
+          (∀ (i : Fin 4), (eval y) (amplitudes i) = 0) → ∀ (i j : Fin 4), (eval y) (A i j) = diagonal costWeights i j

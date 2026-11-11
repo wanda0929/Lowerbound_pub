@@ -1,0 +1,2 @@
+PASS: 319 reachable profiles, full traversal layout, 14 terminal identities/signs and four negative controls
+PASS: final 321-profile terminal identity, 14 rescaling identities and three final negative controls

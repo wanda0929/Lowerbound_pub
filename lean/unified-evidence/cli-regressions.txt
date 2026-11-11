@@ -1,0 +1,10 @@
+test_changed_interface_weights_cannot_reuse_old_evidence (test_acceptance.AcceptanceCLI.test_changed_interface_weights_cannot_reuse_old_evidence) ... ok
+test_changed_report_cannot_be_rebound (test_acceptance.AcceptanceCLI.test_changed_report_cannot_be_rebound) ... ok
+test_missing_replay_cannot_be_recreated_by_write (test_acceptance.AcceptanceCLI.test_missing_replay_cannot_be_recreated_by_write) ... ok
+test_negative_terminal_diagonal_cannot_reuse_old_evidence (test_acceptance.AcceptanceCLI.test_negative_terminal_diagonal_cannot_reuse_old_evidence) ... ok
+test_unchanged_replay_can_refresh_and_verify (test_acceptance.AcceptanceCLI.test_unchanged_replay_can_refresh_and_verify) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 4.318s
+
+OK

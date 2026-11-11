@@ -1,0 +1,48 @@
+'CZExposure.ResidualSymmetry.residual_projections' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualSymmetry.stationary_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@mixedPoint_ext : ∀ {p q : MixedPoly},
+  (∀ (ξ : ℝ) (x : State) (u : ℂ), (eval (mixedPoint ξ x u)) p = (eval (mixedPoint ξ x u)) q) → p = q
+@residual_chargePart : ∀ {W : StatePoly},
+  (IsGInvariant fun x => (eval x) W) → (chargePart 0) (embed (cpoly + lieDeriv W)) = embed (cpoly + lieDeriv W)
+@residual_reflectionAverage : ∀ {W : StatePoly},
+  (IsGInvariant fun x => (eval x) W) → reflectionAverage (embed (cpoly + lieDeriv W)) = embed (cpoly + lieDeriv W)
+@stationary_identity : ∀ {d : ℕ} {W : StatePoly},
+  StationaryFeasible d W →
+    ∃ s Q,
+      s ⊆ NormalFaceBasis.basis d ∧
+        Q.PosSemidef ∧
+          (∀ (i j : ↥s), monomialCharge ⇑↑i ≠ monomialCharge ⇑↑j → Q i j = 0) ∧
+            embed (cpoly + lieDeriv W) - reflectionAverage (gram Q fun i => term (⇑↑i) 1) ∈ relations
+'CZExposure.ResidualSymmetry.reflect_rephased_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualSymmetry.reflectionAverage_rephased_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualSymmetry.rephaseMatrix_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualSymmetry.stationary_real_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@stationary_real_identity : ∀ {d : ℕ} {W : StatePoly},
+  StationaryFeasible d W →
+    ∃ s B,
+      s ⊆ NormalFaceBasis.basis d ∧
+        B.PosSemidef ∧
+          (∀ (i j : ↥s), monomialCharge ⇑↑i ≠ monomialCharge ⇑↑j → B i j = 0) ∧
+            (embed (cpoly + lieDeriv W) -
+                gram (B.map Complex.ofReal) fun i => C (rephaser (decide (Odd (↑i 1 + ↑i 2)))) * term (⇑↑i) 1) ∈
+              relations
+'CZExposure.ResidualSymmetry.pad_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualSymmetry.stationary_fixed_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@stationary_fixed_identity : ∀ {d : ℕ} {W : StatePoly},
+  StationaryFeasible d W →
+    ∃ B,
+      B.PosSemidef ∧
+        (∀ (i j : ↥(NormalFaceBasis.basis d)), monomialCharge ⇑↑i ≠ monomialCharge ⇑↑j → B i j = 0) ∧
+          (embed (cpoly + lieDeriv W) -
+              gram (B.map Complex.ofReal) fun i => C (rephaser (decide (Odd (↑i 1 + ↑i 2)))) * term (⇑↑i) 1) ∈
+            relations
+'CZExposure.ResidualSymmetry.compressed_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ResidualSymmetry.stationary_compressed_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@stationary_compressed_identity : ∀ {d : ℕ} {W : StatePoly},
+  StationaryFeasible d W →
+    ∃ Q,
+      (∀ (q : Charge), (Q q).PosSemidef) ∧
+        (embed (cpoly + lieDeriv W) -
+            ∑ q ∈ ConjugateGram.retained d,
+              gram ((Q q).map Complex.ofReal) fun i => C (rephaser (decide (Odd (↑i 1 + ↑i 2)))) * term (⇑↑i) 1) ∈
+          relations

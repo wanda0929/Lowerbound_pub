@@ -1,0 +1,16 @@
+RUN build
+RUN potential
+RUN allocation
+RUN regional
+RUN interface
+RUN factors
+RUN archive
+RUN coverage
+RUN prefix
+RUN archive-binding
+RUN coverage-binding
+RUN prefix-binding
+RUN endpoint-binding
+PASS: fresh decoder outputs bound to unchanged numerical reports
+PASS: 65 acceptance leaf fields mapped; 327 local file hashes match
+Evidence index only: external finite checks remain hypotheses, not kernel proof terms.

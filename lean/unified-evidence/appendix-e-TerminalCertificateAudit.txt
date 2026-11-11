@@ -1,0 +1,18 @@
+'CZExposure.TerminalCertificate.orbit_of_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.TerminalCertificate.invariant_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.TerminalCertificate.eval_terminalRestriction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.TerminalCertificate.terminalRestriction_on_orbit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.TerminalCertificate.terminalRestriction_stationary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.TerminalCertificate.constant_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.TerminalCertificate.stationary_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.TerminalCertificate.constantGram_psd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.TerminalCertificate.constantGram_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.TerminalCertificate.stationary_terminal_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.TerminalCertificate.stationary_embedding' depends on axioms: [propext, Classical.choice, Quot.sound]
+@stationary_terminal_gram : ∀ {d : ℕ} {W : StatePoly},
+  StationaryFeasible d W →
+    ∃ Q,
+      Q.PosSemidef ∧
+        -terminalRestriction ((rename some) W) = ∑ i, ∑ j, monomialColumn d i * C (Q i j) * monomialColumn d j

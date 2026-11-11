@@ -1,0 +1,95 @@
+@FiniteExcursionSelection.start_injective : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u), Function.Injective fun i => (S.segment i).a
+@FiniteExcursionSelection.exists_chronologicalOrder : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u), ∃ e, StrictMono fun i => (S.segment (e i)).a
+@FiniteExcursionSelection.chronologicalOrder : {T α β : ℝ} →
+  {y : ℝ → ExposureEuclidean} → {u : ℝ → ℂ} → (S : FiniteExcursionSelection T α β y u) → Equiv.Perm (Fin S.count)
+@FiniteExcursionSelection.chronologicalOrder_strictMono : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u), StrictMono fun i => (S.segment (S.chronologicalOrder i)).a
+@FiniteExcursionSelection.orderedSegment : {T α β : ℝ} →
+  {y : ℝ → ExposureEuclidean} →
+    {u : ℝ → ℂ} → (S : FiniteExcursionSelection T α β y u) → Fin S.count → PositiveExposureSegment
+@FiniteExcursionSelection.orderedSegment_separated : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) {i j : Fin S.count}, i < j → (S.orderedSegment i).b ≤ (S.orderedSegment j).a
+@FiniteExcursionSelection.gapLeft : {T α β : ℝ} →
+  {y : ℝ → ExposureEuclidean} → {u : ℝ → ℂ} → (S : FiniteExcursionSelection T α β y u) → Fin (S.count + 1) → ℝ
+@FiniteExcursionSelection.gapRight : {T α β : ℝ} →
+  {y : ℝ → ExposureEuclidean} → {u : ℝ → ℂ} → (S : FiniteExcursionSelection T α β y u) → Fin (S.count + 1) → ℝ
+@FiniteExcursionSelection.gapLeft_zero : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u), S.gapLeft 0 = 0
+@FiniteExcursionSelection.gapLeft_succ : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) (i : Fin S.count), S.gapLeft i.succ = (S.orderedSegment i).b
+@FiniteExcursionSelection.gapRight_last : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u), S.gapRight (Fin.last S.count) = T
+@FiniteExcursionSelection.gapRight_castSucc : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) (i : Fin S.count), S.gapRight i.castSucc = (S.orderedSegment i).a
+@FiniteExcursionSelection.gap_valid : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u),
+  0 ≤ T → ∀ (j : Fin (S.count + 1)), 0 ≤ S.gapLeft j ∧ S.gapLeft j ≤ S.gapRight j ∧ S.gapRight j ≤ T
+@FiniteExcursionSelection.gap_ordered : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) {i j : Fin (S.count + 1)}, i < j → S.gapRight i ≤ S.gapLeft j
+@FiniteExcursionSelection.gap_pairwiseDisjoint : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u),
+  Pairwise fun i j => Disjoint (Set.Ioo (S.gapLeft i) (S.gapRight i)) (Set.Ioo (S.gapLeft j) (S.gapRight j))
+@FiniteExcursionSelection.gap_subset_discardedTimes : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u),
+  0 ≤ T → ∀ (j : Fin (S.count + 1)), Set.Icc (S.gapLeft j) (S.gapRight j) ⊆ S.discardedTimes
+@FiniteExcursionSelection.iUnion_closed_gaps : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u), 0 ≤ T → ⋃ j, Set.Icc (S.gapLeft j) (S.gapRight j) = S.discardedTimes
+@FiniteExcursionSelection.iUnion_open_gaps_ae : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u),
+  0 ≤ T → ⋃ j, Set.Ioo (S.gapLeft j) (S.gapRight j) =ᵐ[MeasureTheory.volume] S.discardedTimes
+@FiniteExcursionSelection.cost_lt_on_gap : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u),
+  0 ≤ T → ∀ (j : Fin (S.count + 1)) {t : ℝ}, t ∈ Set.Icc (S.gapLeft j) (S.gapRight j) → euclideanExposureCost (y t) < β
+@FiniteExcursionSelection.chronological_gap_phase_accounting : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) {K : NNReal},
+  0 ≤ T →
+    LipschitzWith K y →
+      Measurable u →
+        (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+          (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+            (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+              β ≤ 1 / 12 →
+                ∑ j, |exposurePhaseIncrement y u (S.gapLeft j) (S.gapRight j)| ≤ 8 * T * √β ∧
+                  ∑ j, exposurePhaseIncrement y u (S.gapLeft j) (S.gapRight j) = S.discardedAngularIntegral ∧
+                    ∏ j,
+                          complexUnitPhase (exposureProgressPath y (S.gapRight j)) /
+                            complexUnitPhase (exposureProgressPath y (S.gapLeft j)) =
+                        phaseFactor S.discardedAngularIntegral ∧
+                      |S.discardedAngularIntegral| ≤ 8 * T * √β ∧
+                        ‖∏ j,
+                                complexUnitPhase (exposureProgressPath y (S.gapRight j)) /
+                                  complexUnitPhase (exposureProgressPath y (S.gapLeft j)) -
+                              1‖ ≤
+                          8 * T * √β
+'CZExposure.FiniteExcursionSelection.start_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.exists_chronologicalOrder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.FiniteExcursionSelection.chronologicalOrder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.chronologicalOrder_strictMono' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.FiniteExcursionSelection.orderedSegment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.orderedSegment_separated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.FiniteExcursionSelection.gapLeft' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.gapRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.gapLeft_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.gapLeft_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.gapRight_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.gapRight_castSucc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.gap_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.gap_ordered' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.gap_pairwiseDisjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.gap_subset_discardedTimes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.FiniteExcursionSelection.iUnion_closed_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.iUnion_open_gaps_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.cost_lt_on_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.chronological_gap_phase_accounting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

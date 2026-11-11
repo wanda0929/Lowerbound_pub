@@ -1,0 +1,55 @@
+import RequestProject.AppendixE.ExposureReparamODE
+
+open CZExposure
+
+#check @EuclideanArc.weightedParameterMeasure_univ
+#check @EuclideanArc.clockInverseReal_mem
+#check @EuclideanArc.clockInverseReal_of_mem
+#check @EuclideanArc.lipschitz_clockInverseReal
+#check @EuclideanArc.continuous_clockInverseReal
+#check @EuclideanArc.exposureClock_clockInverseReal
+#check @EuclideanArc.clockInverseReal_exposureClock
+#check @EuclideanArc.clockInverseReal_le_iff
+#check @EuclideanArc.lintegral_exposureTimeWeight_Icc_lt_top
+#check @EuclideanArc.exposureClock_eq_toReal_lintegral
+#check @EuclideanArc.weightedParameterMeasure_Iic
+#check @EuclideanArc.clockInverseReal_map_exposureMeasure
+#check @EuclideanArc.clockInverseReal_ae_transfer
+#check @EuclideanArc.ae_hasDerivAt_exposureClock
+#check @EuclideanArc.exposurePathReal_of_mem
+#check @EuclideanArc.exists_lipschitz_exposurePathReal
+#check @EuclideanArc.exposurePathReal_mem_domain
+#check @EuclideanArc.exposurePathReal_zero
+#check @EuclideanArc.exposurePathReal_terminal
+#check @EuclideanArc.measurable_exposureControl
+#check @EuclideanArc.exposureControl_bound
+#check @EuclideanArc.hasDerivAt_clockInverseReal
+#check @EuclideanArc.ae_hasDerivAt_clockInverseReal
+#check @EuclideanArc.ae_hasDerivAt_exposurePathReal
+#check @ExposureArcRealization.exists_exposure_time_trajectory
+
+#print axioms EuclideanArc.weightedParameterMeasure_univ
+#print axioms EuclideanArc.clockInverseReal_mem
+#print axioms EuclideanArc.clockInverseReal_of_mem
+#print axioms EuclideanArc.lipschitz_clockInverseReal
+#print axioms EuclideanArc.continuous_clockInverseReal
+#print axioms EuclideanArc.exposureClock_clockInverseReal
+#print axioms EuclideanArc.clockInverseReal_exposureClock
+#print axioms EuclideanArc.clockInverseReal_le_iff
+#print axioms EuclideanArc.lintegral_exposureTimeWeight_Icc_lt_top
+#print axioms EuclideanArc.exposureClock_eq_toReal_lintegral
+#print axioms EuclideanArc.weightedParameterMeasure_Iic
+#print axioms EuclideanArc.clockInverseReal_map_exposureMeasure
+#print axioms EuclideanArc.clockInverseReal_ae_transfer
+#print axioms EuclideanArc.ae_hasDerivAt_exposureClock
+#print axioms EuclideanArc.exposurePathReal_of_mem
+#print axioms EuclideanArc.exists_lipschitz_exposurePathReal
+#print axioms EuclideanArc.exposurePathReal_mem_domain
+#print axioms EuclideanArc.exposurePathReal_zero
+#print axioms EuclideanArc.exposurePathReal_terminal
+#print axioms EuclideanArc.measurable_exposureControl
+#print axioms EuclideanArc.exposureControl_bound
+#print axioms EuclideanArc.hasDerivAt_clockInverseReal
+#print axioms EuclideanArc.ae_hasDerivAt_clockInverseReal
+#print axioms EuclideanArc.ae_hasDerivAt_exposurePathReal
+#print axioms ExposureArcRealization.exists_exposure_time_trajectory

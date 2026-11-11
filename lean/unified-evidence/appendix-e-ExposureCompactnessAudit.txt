@@ -1,0 +1,13 @@
+CZExposure.continuous_balanceIntegral : ∀ (ψ : (Fin 11 → ℝ) → ℝ),
+  ContDiff ℝ 1 ψ →
+    Continuous fun μ => ∫ (p : CZExposure.ExposurePoint), (fderiv ℝ ψ (↑p).1) (CZExposure.Bfield (↑p).1 (↑p).2) ∂↑μ
+CZExposure.pushExposureMeasure_record_iff : ∀ (μ : MeasureTheory.FiniteMeasure CZExposure.ExposurePoint),
+  CZExposure.IsExposureRecord ↑(CZExposure.pushExposureMeasure μ) ↔ CZExposure.IsDomainExposureRecord μ
+CZExposure.exposureRecordBudget_eq_image : ∀ (M : NNReal),
+  CZExposure.exposureRecordBudget M = CZExposure.pushExposureMeasure '' CZExposure.domainExposureRecordBudget M
+CZExposure.isCompact_exposureRecordBudget : ∀ (M : NNReal), IsCompact (CZExposure.exposureRecordBudget M)
+'CZExposure.continuous_balanceIntegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.isCompact_domainExposureRecordBudget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.pushExposureMeasure_record_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exposureRecordBudget_eq_image' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.isCompact_exposureRecordBudget' depends on axioms: [propext, Classical.choice, Quot.sound]

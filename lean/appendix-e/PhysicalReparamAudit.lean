@@ -1,0 +1,67 @@
+import RequestProject.AppendixE.PhysicalReparam
+
+open CZExposure
+
+#check @PositiveExposureSegment.mk
+#check @PositiveExposureSegment.continuousOn_clock
+#check @PositiveExposureSegment.clock_image_interval
+#check @PositiveExposureSegment.clockOrderIso
+#check @PositiveExposureSegment.clockInverse
+#check @PositiveExposureSegment.clockInverseReal
+#check @PositiveExposureSegment.clock_clockInverse
+#check @PositiveExposureSegment.clock_dist_lower_bound
+#check @PositiveExposureSegment.lipschitz_clockInverse
+#check @PositiveExposureSegment.clockInverseReal_of_mem
+#check @PositiveExposureSegment.lipschitz_clockInverseReal
+#check @PositiveExposureSegment.clock_clockInverseReal
+#check @PositiveExposureSegment.clockInverseReal_clock
+#check @PositiveExposureSegment.clockInverseReal_zero
+#check @PositiveExposureSegment.clockInverseReal_terminal
+#check @PositiveExposureSegment.clockInverseReal_ae_transfer
+#check @PositiveExposureSegment.exists_lipschitz_physicalPath
+#check @PositiveExposureSegment.physicalPath_mem
+#check @PositiveExposureSegment.physicalPath_zero
+#check @PositiveExposureSegment.physicalPath_terminal
+#check @PositiveExposureSegment.measurable_physicalControl
+#check @PositiveExposureSegment.physicalControl_bound
+#check @PositiveExposureSegment.cost_physicalPath_pos
+#check @PositiveExposureSegment.hasDerivAt_clockInverseReal
+#check @PositiveExposureSegment.ae_hasDerivAt_clockInverseReal
+#check @PositiveExposureSegment.ae_hasDerivAt_physicalPath
+#check @PositiveExposureSegment.intervalIntegrable_physicalVelocity
+#check @PositiveExposureSegment.physicalPath_integralEquation
+#check @PositiveExposureSegment.intervalIntegrable_cost_physicalPath
+#check @PositiveExposureSegment.integral_cost_physicalPath
+#check @PositiveExposureSegment.physicalExposure_eq
+#check @PositiveExposureSegment.exists_physical_realization
+
+#print axioms PositiveExposureSegment.continuousOn_clock
+#print axioms PositiveExposureSegment.clock_image_interval
+#print axioms PositiveExposureSegment.clockOrderIso
+#print axioms PositiveExposureSegment.clockInverseReal
+#print axioms PositiveExposureSegment.clock_clockInverse
+#print axioms PositiveExposureSegment.clock_dist_lower_bound
+#print axioms PositiveExposureSegment.lipschitz_clockInverse
+#print axioms PositiveExposureSegment.clockInverseReal_of_mem
+#print axioms PositiveExposureSegment.lipschitz_clockInverseReal
+#print axioms PositiveExposureSegment.clock_clockInverseReal
+#print axioms PositiveExposureSegment.clockInverseReal_clock
+#print axioms PositiveExposureSegment.clockInverseReal_zero
+#print axioms PositiveExposureSegment.clockInverseReal_terminal
+#print axioms PositiveExposureSegment.clockInverseReal_ae_transfer
+#print axioms PositiveExposureSegment.exists_lipschitz_physicalPath
+#print axioms PositiveExposureSegment.physicalPath_mem
+#print axioms PositiveExposureSegment.physicalPath_zero
+#print axioms PositiveExposureSegment.physicalPath_terminal
+#print axioms PositiveExposureSegment.measurable_physicalControl
+#print axioms PositiveExposureSegment.physicalControl_bound
+#print axioms PositiveExposureSegment.cost_physicalPath_pos
+#print axioms PositiveExposureSegment.hasDerivAt_clockInverseReal
+#print axioms PositiveExposureSegment.ae_hasDerivAt_clockInverseReal
+#print axioms PositiveExposureSegment.ae_hasDerivAt_physicalPath
+#print axioms PositiveExposureSegment.intervalIntegrable_physicalVelocity
+#print axioms PositiveExposureSegment.physicalPath_integralEquation
+#print axioms PositiveExposureSegment.intervalIntegrable_cost_physicalPath
+#print axioms PositiveExposureSegment.integral_cost_physicalPath
+#print axioms PositiveExposureSegment.physicalExposure_eq
+#print axioms PositiveExposureSegment.exists_physical_realization

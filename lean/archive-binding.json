@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "source_sha256": "1f715c99684ed7dbbf1036f168eadac54043e0a235e0f9f273451f875db4bf52",
+  "nonterminal_blocks": 4216,
+  "terminal_matrices": 10,
+  "terminal_entries": 565,
+  "terminal_coefficient_identities": 75,
+  "decoded_sha256": "494b5084baff2dc026a9edccc7346e1259d71b000fae4802066df069a4b70e44",
+  "checker_sha256": "300a17921fa085a676b590d5d738321323b73cf18afdf55ee26b9f85efa6f871"
+}

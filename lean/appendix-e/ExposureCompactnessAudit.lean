@@ -1,0 +1,12 @@
+import RequestProject.AppendixE.ExposureCompactness
+
+#check @CZExposure.continuous_balanceIntegral
+#check @CZExposure.pushExposureMeasure_record_iff
+#check @CZExposure.exposureRecordBudget_eq_image
+#check @CZExposure.isCompact_exposureRecordBudget
+
+#print axioms CZExposure.continuous_balanceIntegral
+#print axioms CZExposure.isCompact_domainExposureRecordBudget
+#print axioms CZExposure.pushExposureMeasure_record_iff
+#print axioms CZExposure.exposureRecordBudget_eq_image
+#print axioms CZExposure.isCompact_exposureRecordBudget

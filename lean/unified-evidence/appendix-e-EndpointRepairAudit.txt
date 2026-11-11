@@ -1,0 +1,192 @@
+g1_mkState : ∀ (a b c d : ℂ), g1 (mkState a b c d) = a
+r1_mkState : ∀ (a b c d : ℂ), r1 (mkState a b c d) = b
+g2_mkState : ∀ (a b c d : ℂ), g2 (mkState a b c d) = c
+r2_mkState : ∀ (a b c d : ℂ), r2 (mkState a b c d) = d
+@state_ext : ∀ {x y : State}, g1 x = g1 y → r1 x = r1 y → g2 x = g2 y → r2 x = r2 y → x = y
+mkState_eta : ∀ (x : State), mkState (g1 x) (r1 x) (g2 x) (r2 x) = x
+@complexUnitPhase_of_norm_one : ∀ {z : ℂ}, ‖z‖ = 1 → complexUnitPhase z = z
+complexUnitPhase_mul : ∀ (z w : ℂ), complexUnitPhase (z * w) = complexUnitPhase z * complexUnitPhase w
+complexUnitPhase_conj : ∀ (z : ℂ), complexUnitPhase ((starRingEnd ℂ) z) = (starRingEnd ℂ) (complexUnitPhase z)
+@norm_complexUnitPhase_sub_self : ∀ {z : ℂ}, z ≠ 0 → ‖complexUnitPhase z - z‖ = |1 - ‖z‖|
+@norm_complexUnitPhase_sub_unit_le : ∀ {z w : ℂ}, z ≠ 0 → ‖w‖ = 1 → ‖complexUnitPhase z - w‖ ≤ 2 * ‖z - w‖
+@norm_ground_of_mem_Fface : ∀ {x : State}, x ∈ Fface → ‖g1 x‖ = 1 ∧ ‖g2 x‖ = 1
+@norm_zObs_of_mem_Fface : ∀ {x : State}, x ∈ Fface → ‖zObs x‖ = 1
+@mem_XCZ_iff_zObs_eq_neg_one : ∀ {x : State}, x ∈ Fface → (x ∈ XCZ ↔ zObs x = -1)
+faceProjection : State → State
+cost_faceProjection : ∀ (x : State), cost (faceProjection x) = 0
+@faceProjection_mem : ∀ {x : State}, x ∈ Xset → cost x ≤ 1 / 12 → faceProjection x ∈ Fface
+@zObs_faceProjection : ∀ {x : State}, x ∈ Xset → cost x ≤ 1 / 12 → zObs (faceProjection x) = complexUnitPhase (zObs x)
+@faceProjection_eq_self : ∀ {x : State}, x ∈ Fface → faceProjection x = x
+@norm_faceProjection_sub_le : ∀ {x : State}, x ∈ Xset → cost x ≤ 1 / 12 → ‖faceProjection x - x‖ ≤ 32 * √(cost x)
+faceCZTarget : State → State
+@faceCZTarget_mem : ∀ {x : State}, x ∈ Fface → faceCZTarget x ∈ XCZ
+@norm_faceCZTarget_sub_le : ∀ {x : State}, x ∈ Fface → ‖faceCZTarget x - x‖ ≤ ‖zObs x + 1‖
+@norm_faceCZTarget_sub_le_phase : ∀ {x : State},
+  x ∈ Fface → ∀ {θ : ℝ}, zObs x = -phaseFactor θ → ‖faceCZTarget x - x‖ ≤ |θ|
+PositiveExposureSegment.zObs_liftedState : ∀ (S : PositiveExposureSegment) {t : ℝ},
+  t ∈ Set.Icc S.a S.b → zObs (S.liftedState t) = exposureProgressPath S.y t
+@FiniteExcursionSelection.physical_endpoints_projection : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u),
+  α ≤ 1 / 12 →
+    ∀ (i : Fin S.count),
+      faceProjection ((S.segment i).physicalPath 0) ∈ Fface ∧
+        faceProjection ((S.segment i).physicalPath (S.segment i).duration) ∈ Fface ∧
+          ‖faceProjection ((S.segment i).physicalPath 0) - (S.segment i).physicalPath 0‖ ≤ 32 * √α ∧
+            ‖faceProjection ((S.segment i).physicalPath (S.segment i).duration) -
+                    (S.segment i).physicalPath (S.segment i).duration‖ ≤
+                32 * √α ∧
+              zObs (faceProjection ((S.segment i).physicalPath 0)) =
+                  complexUnitPhase (exposureProgressPath y (S.segment i).a) ∧
+                zObs (faceProjection ((S.segment i).physicalPath (S.segment i).duration)) =
+                  complexUnitPhase (exposureProgressPath y (S.segment i).b)
+sectorPhase : ℂ → ℂ → State → State
+sectorPhaseLM : ℂ → ℂ → State →ₗ[ℝ] State
+sectorPhaseCLM : ℂ → ℂ → State →L[ℝ] State
+sectorPhaseCLM_apply : ∀ (a b : ℂ) (x : State), (sectorPhaseCLM a b) x = sectorPhase a b x
+@sectorPhase_mem_Xset : ∀ {a b : ℂ}, ‖a‖ = 1 → ‖b‖ = 1 → ∀ {x : State}, x ∈ Xset → sectorPhase a b x ∈ Xset
+@sectorPhase_mem_Fface : ∀ {a b : ℂ}, ‖a‖ = 1 → ‖b‖ = 1 → ∀ {x : State}, x ∈ Fface → sectorPhase a b x ∈ Fface
+@cost_sectorPhase : ∀ {a b : ℂ}, ‖a‖ = 1 → ‖b‖ = 1 → ∀ (x : State), cost (sectorPhase a b x) = cost x
+zObs_sectorPhase : ∀ (a b : ℂ) (x : State), zObs (sectorPhase a b x) = (starRingEnd ℂ) b * a ^ 2 * zObs x
+sectorPhase_vf : ∀ (a b : ℂ) (x : State) (u : ℂ), sectorPhase a b (vf x u) = vf (sectorPhase a b x) u
+hasDerivAt_sectorPhase : ∀ (a b : ℂ) {x : ℝ → State} {u : ℂ} {s : ℝ},
+  HasDerivAt x (vf (x s) u) s → HasDerivAt (fun t => sectorPhase a b (x t)) (vf (sectorPhase a b (x s)) u) s
+sectorPhase_integralEquation : ∀ (a b : ℂ) {x : ℝ → State} {u : ℝ → ℂ} {s t : ℝ},
+  IntervalIntegrable (fun r => vf (x r) (u r)) MeasureTheory.volume s t →
+    x t = x s + ∫ (r : ℝ) in s..t, vf (x r) (u r) →
+      sectorPhase a b (x t) = sectorPhase a b (x s) + ∫ (r : ℝ) in s..t, vf (sectorPhase a b (x r)) (u r)
+@zObs_ratio_sectorPhase : ∀ {a b : ℂ},
+  ‖a‖ = 1 → ‖b‖ = 1 → ∀ (x₁ x₂ : State), zObs (sectorPhase a b x₂) / zObs (sectorPhase a b x₁) = zObs x₂ / zObs x₁
+@unitPhase_ratio_sectorPhase : ∀ {a b : ℂ},
+  ‖a‖ = 1 →
+    ‖b‖ = 1 →
+      ∀ (x₁ x₂ : State),
+        complexUnitPhase (zObs (sectorPhase a b x₂)) / complexUnitPhase (zObs (sectorPhase a b x₁)) =
+          complexUnitPhase (zObs x₂) / complexUnitPhase (zObs x₁)
+faceAlign : State → State → State → State
+@faceAlign_unit : ∀ {p q : State}, p ∈ Fface → q ∈ Fface → ‖g1 q / g1 p‖ = 1 ∧ ‖g2 q / g2 p‖ = 1
+@faceAlign_source : ∀ {p q : State}, p ∈ Fface → q ∈ Fface → faceAlign p q p = q
+@faceAlign_cost : ∀ {p q : State}, p ∈ Fface → q ∈ Fface → ∀ (x : State), cost (faceAlign p q x) = cost x
+@faceAlign_zObs_ratio : ∀ {p q : State},
+  p ∈ Fface → q ∈ Fface → ∀ (x : State), zObs (faceAlign p q x) / zObs q = zObs x / zObs p
+'CZExposure.g1_mkState' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.r1_mkState' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.g2_mkState' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.r2_mkState' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.state_ext' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.mkState_eta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.complexUnitPhase_of_norm_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.complexUnitPhase_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.complexUnitPhase_conj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_complexUnitPhase_sub_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_complexUnitPhase_sub_unit_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_ground_of_mem_Fface' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_zObs_of_mem_Fface' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.mem_XCZ_iff_zObs_eq_neg_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.faceProjection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.cost_faceProjection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.faceProjection_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.zObs_faceProjection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.faceProjection_eq_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_faceProjection_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.faceCZTarget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.faceCZTarget_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_faceCZTarget_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_faceCZTarget_sub_le_phase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.zObs_liftedState' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.physical_endpoints_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.sectorPhase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.sectorPhaseLM' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.sectorPhaseCLM' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.sectorPhaseCLM_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.sectorPhase_mem_Xset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.sectorPhase_mem_Fface' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.cost_sectorPhase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.zObs_sectorPhase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.sectorPhase_vf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.hasDerivAt_sectorPhase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.sectorPhase_integralEquation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.zObs_ratio_sectorPhase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.unitPhase_ratio_sectorPhase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.faceAlign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.faceAlign_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.faceAlign_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.faceAlign_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.faceAlign_zObs_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.mk : (radius : ℝ) →
+  0 < radius →
+    (K : ℝ) →
+      0 < K →
+        (∀ x ∈ Xset,
+            ∀ y ∈ Xset,
+              ‖y - x‖ ≤ radius → ∃ P, P.path 0 = x ∧ P.path P.duration = y ∧ P.duration ≤ K * ‖y - x‖.rpow (1 / 4)) →
+          LocalSteering
+'CZExposure.LocalSteering' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.timeBound : LocalSteering → ℝ → ℝ
+'CZExposure.LocalSteering.timeBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exposureBound : LocalSteering → ℝ → ℝ
+'CZExposure.LocalSteering.exposureBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.timeBound_nonneg : ∀ (H : LocalSteering) {d : ℝ}, 0 ≤ d → 0 ≤ H.timeBound d
+'CZExposure.LocalSteering.timeBound_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.timeBound_mono : ∀ (H : LocalSteering) {d e : ℝ}, 0 ≤ d → d ≤ e → H.timeBound d ≤ H.timeBound e
+'CZExposure.LocalSteering.timeBound_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.timeBound_zero : ∀ (H : LocalSteering), H.timeBound 0 = 0
+'CZExposure.LocalSteering.timeBound_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exposureBound_zero : ∀ (H : LocalSteering), H.exposureBound 0 = 0
+'CZExposure.LocalSteering.exposureBound_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exposureBound_nonneg : ∀ (H : LocalSteering) {d : ℝ}, 0 ≤ d → 0 ≤ H.exposureBound d
+'CZExposure.LocalSteering.exposureBound_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exposureBound_eq : ∀ (H : LocalSteering) {d : ℝ},
+  0 ≤ d → H.exposureBound d = H.K ^ 3 / 12 * d.rpow (3 / 4)
+'CZExposure.LocalSteering.exposureBound_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exists_from_face : ∀ (H : LocalSteering) {p x : State},
+  p ∈ Fface →
+    x ∈ Xset →
+      ∀ {d : ℝ},
+        ‖x - p‖ ≤ d →
+          d ≤ H.radius →
+            ∃ Q, Q.path 0 = p ∧ Q.path Q.duration = x ∧ Q.duration ≤ H.timeBound d ∧ Q.exposure ≤ H.exposureBound d
+'CZExposure.LocalSteering.exists_from_face' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exists_to_face : ∀ (H : LocalSteering) {x p : State},
+  x ∈ Xset →
+    p ∈ Fface →
+      ∀ {d : ℝ},
+        ‖p - x‖ ≤ d →
+          d ≤ H.radius →
+            ∃ Q, Q.path 0 = x ∧ Q.path Q.duration = p ∧ Q.duration ≤ H.timeBound d ∧ Q.exposure ≤ H.exposureBound d
+'CZExposure.LocalSteering.exists_to_face' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.projection_pair_exposureBound_eq : ∀ (H : LocalSteering) {α : ℝ},
+  0 ≤ α → 2 * H.exposureBound (32 * √α) = H.K ^ 3 * Real.rpow 32 (3 / 4) / 6 * α.rpow (3 / 8)
+'CZExposure.LocalSteering.projection_pair_exposureBound_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exists_repaired_faceBlock : ∀ (H : LocalSteering) (P : PhysicalSegment) {α : ℝ},
+  0 ≤ α →
+    α ≤ 1 / 12 →
+      cost (P.path 0) ≤ α →
+        cost (P.path P.duration) ≤ α →
+          32 * √α ≤ H.radius →
+            ∃ B,
+              B.initial = faceProjection (P.path 0) ∧
+                B.terminal = faceProjection (P.path P.duration) ∧
+                  B.segment.duration ≤ P.duration + 2 * H.timeBound (32 * √α) ∧
+                    B.segment.exposure ≤ P.exposure + 2 * H.exposureBound (32 * √α) ∧
+                      B.phaseRatio = complexUnitPhase (zObs (P.path P.duration)) / complexUnitPhase (zObs (P.path 0))
+'CZExposure.LocalSteering.exists_repaired_faceBlock' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exists_phase_repair : ∀ (H : LocalSteering) {x : State},
+  x ∈ Fface →
+    ∀ {θ : ℝ},
+      zObs x = -phaseFactor θ →
+        |θ| ≤ H.radius →
+          ∃ R,
+            R.initial = x ∧
+              R.terminal = faceCZTarget x ∧
+                R.segment.duration ≤ H.timeBound |θ| ∧
+                  R.segment.exposure ≤ H.exposureBound |θ| ∧ R.phaseRatio = phaseFactor (-θ)
+'CZExposure.LocalSteering.exists_phase_repair' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exists_closed_pulse : ∀ (H : LocalSteering) (P : PhysicalSegment),
+  P.path 0 = x0 →
+    P.path P.duration ∈ Fface →
+      ∀ {θ : ℝ},
+        zObs (P.path P.duration) = -phaseFactor θ →
+          |θ| ≤ H.radius → ∃ γ, γ.S ≤ P.duration + H.timeBound |θ| ∧ γ.exposure ≤ P.exposure + H.exposureBound |θ|
+'CZExposure.LocalSteering.exists_closed_pulse' depends on axioms: [propext, Classical.choice, Quot.sound]

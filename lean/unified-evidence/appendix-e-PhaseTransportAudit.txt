@@ -1,0 +1,160 @@
+complexUnitPhase : ℂ → ℂ
+phaseFactor : ℝ → ℂ
+complexPhaseLift : (ℝ → ℂ) → (ℝ → ℂ) → ℝ → ℝ → ℝ
+phaseFactor_zero : phaseFactor 0 = 1
+phaseFactor_add : ∀ (s t : ℝ), phaseFactor (s + t) = phaseFactor s * phaseFactor t
+norm_phaseFactor : ∀ (θ : ℝ), ‖phaseFactor θ‖ = 1
+@norm_complexUnitPhase : ∀ {z : ℂ}, z ≠ 0 → ‖complexUnitPhase z‖ = 1
+@phaseFactor_arg : ∀ {z : ℂ}, z ≠ 0 → phaseFactor z.arg = complexUnitPhase z
+@phaseFactor_sum : ∀ {A : Type u_1} (I : Finset A) (θ : A → ℝ), phaseFactor (∑ i ∈ I, θ i) = ∏ i ∈ I, phaseFactor (θ i)
+norm_phaseFactor_sub_one_le : ∀ (θ : ℝ), ‖phaseFactor θ - 1‖ ≤ |θ|
+lipschitz_phaseFactor : LipschitzWith 1 phaseFactor
+@hasDerivAt_phaseFactor_comp : ∀ {θ : ℝ → ℝ} {ω t : ℝ},
+  HasDerivAt θ ω t → HasDerivAt (fun s => phaseFactor (θ s)) (phaseFactor (θ t) * Complex.I * ↑ω) t
+@contDiffAt_complexUnitPhase : ∀ {z : ℂ}, z ≠ 0 → ContDiffAt ℝ 1 complexUnitPhase z
+@hasDerivAt_complexUnitPhase : ∀ {f : ℝ → ℂ} {v : ℂ} {t : ℝ},
+  HasDerivAt f v t →
+    f t ≠ 0 → HasDerivAt (fun s => complexUnitPhase (f s)) (Complex.I * ↑(v / f t).im * complexUnitPhase (f t)) t
+@complex_phase_transport : ∀ {f v : ℝ → ℂ} {K : NNReal} {a b : ℝ},
+  a ≤ b →
+    LipschitzWith K f →
+      (∀ t ∈ Icc a b, f t ≠ 0) →
+        (∀ᵐ (t : ℝ) ∂volume.restrict (Icc a b), HasDerivAt f (v t) t) →
+          IntervalIntegrable (fun t => (v t / f t).im) volume a b →
+            ∀ t ∈ Icc a b,
+              complexUnitPhase (f t) = phaseFactor (∫ (s : ℝ) in a..t, (v s / f s).im) * complexUnitPhase (f a)
+@complexPhaseLift_spec : ∀ {f v : ℝ → ℂ} {K : NNReal} {a b : ℝ},
+  a ≤ b →
+    LipschitzWith K f →
+      (∀ t ∈ Icc a b, f t ≠ 0) →
+        (∀ᵐ (t : ℝ) ∂volume.restrict (Icc a b), HasDerivAt f (v t) t) →
+          IntervalIntegrable (fun t => (v t / f t).im) volume a b →
+            complexPhaseLift f v a a = (f a).arg ∧
+              AbsolutelyContinuousOnInterval (complexPhaseLift f v a) a b ∧
+                (∀ᵐ (t : ℝ) ∂volume.restrict (Icc a b), HasDerivAt (complexPhaseLift f v a) (v t / f t).im t) ∧
+                  (∀ t ∈ Icc a b, phaseFactor (complexPhaseLift f v a t) = complexUnitPhase (f t)) ∧
+                    complexPhaseLift f v a b - complexPhaseLift f v a a = ∫ (t : ℝ) in a..b, (v t / f t).im
+exposurePhaseIncrement : (ℝ → ExposureEuclidean) → (ℝ → ℂ) → ℝ → ℝ → ℝ
+@low_cost_phase_lift : ∀ {T a b β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ} {K : NNReal},
+  LipschitzWith K y →
+    Measurable u →
+      (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+        (∀ t ∈ Icc 0 T, y t ∈ euclideanExposureDomain) →
+          (∀ᵐ (t : ℝ) ∂volume.restrict (Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+            0 ≤ a →
+              a ≤ b →
+                b ≤ T →
+                  β ≤ 1 / 12 →
+                    (∀ t ∈ Icc a b, euclideanExposureCost (y t) ≤ β) →
+                      AbsolutelyContinuousOnInterval
+                          (complexPhaseLift (exposureProgressPath y) (exposureProgressVelocity y u) a) a b ∧
+                        (∀ᵐ (t : ℝ) ∂volume.restrict (Icc a b),
+                            HasDerivAt (complexPhaseLift (exposureProgressPath y) (exposureProgressVelocity y u) a)
+                              (euclideanAngularRate (y t) (u t)) t) ∧
+                          (∀ t ∈ Icc a b,
+                              phaseFactor
+                                  (complexPhaseLift (exposureProgressPath y) (exposureProgressVelocity y u) a t) =
+                                complexUnitPhase (exposureProgressPath y t)) ∧
+                            complexPhaseLift (exposureProgressPath y) (exposureProgressVelocity y u) a b -
+                                complexPhaseLift (exposureProgressPath y) (exposureProgressVelocity y u) a a =
+                              exposurePhaseIncrement y u a b
+@low_cost_phase_transport : ∀ {T a b β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ} {K : NNReal},
+  LipschitzWith K y →
+    Measurable u →
+      (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+        (∀ t ∈ Icc 0 T, y t ∈ euclideanExposureDomain) →
+          (∀ᵐ (t : ℝ) ∂volume.restrict (Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+            0 ≤ a →
+              a ≤ b →
+                b ≤ T →
+                  β ≤ 1 / 12 →
+                    (∀ t ∈ Icc a b, euclideanExposureCost (y t) ≤ β) →
+                      complexUnitPhase (exposureProgressPath y b) =
+                          phaseFactor (exposurePhaseIncrement y u a b) * complexUnitPhase (exposureProgressPath y a) ∧
+                        |exposurePhaseIncrement y u a b| ≤ 8 * √β * (b - a)
+@low_cost_normalized_progress_increment_le : ∀ {T a b β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ} {K : NNReal},
+  LipschitzWith K y →
+    Measurable u →
+      (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+        (∀ t ∈ Icc 0 T, y t ∈ euclideanExposureDomain) →
+          (∀ᵐ (t : ℝ) ∂volume.restrict (Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+            0 ≤ a →
+              a ≤ b →
+                b ≤ T →
+                  β ≤ 1 / 12 →
+                    (∀ t ∈ Icc a b, euclideanExposureCost (y t) ≤ β) →
+                      ‖complexUnitPhase (exposureProgressPath y b) - complexUnitPhase (exposureProgressPath y a)‖ ≤
+                        8 * √β * (b - a)
+@finite_low_cost_phase_accounting : ∀ {A : Type u_1} (I : Finset A) (l r : A → ℝ) {T β : ℝ} {y : ℝ → ExposureEuclidean}
+  {u : ℝ → ℂ} {K : NNReal},
+  0 ≤ T →
+    LipschitzWith K y →
+      Measurable u →
+        (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+          (∀ t ∈ Icc 0 T, y t ∈ euclideanExposureDomain) →
+            (∀ᵐ (t : ℝ) ∂volume.restrict (Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+              β ≤ 1 / 12 →
+                (∀ i ∈ I, 0 ≤ l i ∧ l i ≤ r i ∧ r i ≤ T) →
+                  ((↑I).PairwiseDisjoint fun i => Ioo (l i) (r i)) →
+                    (∀ i ∈ I, ∀ t ∈ Icc (l i) (r i), euclideanExposureCost (y t) ≤ β) →
+                      ∑ i ∈ I, |exposurePhaseIncrement y u (l i) (r i)| ≤ 8 * T * √β ∧
+                        |∑ i ∈ I, exposurePhaseIncrement y u (l i) (r i)| ≤ 8 * T * √β ∧
+                          ∑ i ∈ I, exposurePhaseIncrement y u (l i) (r i) =
+                              ∫ (t : ℝ) in ⋃ i ∈ I, Ioo (l i) (r i), euclideanAngularRate (y t) (u t) ∧
+                            ∏ i ∈ I,
+                                  complexUnitPhase (exposureProgressPath y (r i)) /
+                                    complexUnitPhase (exposureProgressPath y (l i)) =
+                                phaseFactor (∑ i ∈ I, exposurePhaseIncrement y u (l i) (r i)) ∧
+                              ‖∏ i ∈ I,
+                                      complexUnitPhase (exposureProgressPath y (r i)) /
+                                        complexUnitPhase (exposureProgressPath y (l i)) -
+                                    1‖ ≤
+                                8 * T * √β
+@FiniteExcursionSelection.discarded_phase_product_of_gap_cover : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  {A : Type u_1} (S : FiniteExcursionSelection T α β y u) (I : Finset A) (l r : A → ℝ) {K : NNReal},
+  0 ≤ T →
+    LipschitzWith K y →
+      Measurable u →
+        (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+          (∀ t ∈ Icc 0 T, y t ∈ euclideanExposureDomain) →
+            (∀ᵐ (t : ℝ) ∂volume.restrict (Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+              β ≤ 1 / 12 →
+                (∀ i ∈ I, 0 ≤ l i ∧ l i ≤ r i ∧ r i ≤ T) →
+                  ((↑I).PairwiseDisjoint fun i => Ioo (l i) (r i)) →
+                    (∀ i ∈ I, Icc (l i) (r i) ⊆ S.discardedTimes) →
+                      ⋃ i ∈ I, Ioo (l i) (r i) =ᶠ[ae volume] S.discardedTimes →
+                        ∑ i ∈ I, exposurePhaseIncrement y u (l i) (r i) = S.discardedAngularIntegral ∧
+                          ∏ i ∈ I,
+                                complexUnitPhase (exposureProgressPath y (r i)) /
+                                  complexUnitPhase (exposureProgressPath y (l i)) =
+                              phaseFactor S.discardedAngularIntegral ∧
+                            |S.discardedAngularIntegral| ≤ 8 * T * √β ∧
+                              ‖∏ i ∈ I,
+                                      complexUnitPhase (exposureProgressPath y (r i)) /
+                                        complexUnitPhase (exposureProgressPath y (l i)) -
+                                    1‖ ≤
+                                8 * T * √β
+'CZExposure.complexUnitPhase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.phaseFactor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.complexPhaseLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.phaseFactor_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.phaseFactor_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_phaseFactor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_complexUnitPhase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.phaseFactor_arg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.phaseFactor_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_phaseFactor_sub_one_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.lipschitz_phaseFactor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.hasDerivAt_phaseFactor_comp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.contDiffAt_complexUnitPhase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.hasDerivAt_complexUnitPhase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.complex_phase_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.complexPhaseLift_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exposurePhaseIncrement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.low_cost_phase_lift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.low_cost_phase_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.low_cost_normalized_progress_increment_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.finite_low_cost_phase_accounting' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.discarded_phase_product_of_gap_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,29 @@
+import RequestProject.AppendixE.ExposureSuperposition
+
+open CZExposure
+
+#check @EuclideanNormalCurrentData.mk
+#check @EuclideanCurrentArcData.mk
+#print EuclideanCurrentArcData.IsDirected
+#print EuclideanDirectedArcSuperposition
+#check @External.euclideanDirectedArcSuperposition
+#print axioms External.euclideanDirectedArcSuperposition
+#check @exposureEuclidean_y0_ne_yPi
+#check @EuclideanCurrentArcData.toExposureDecomposition
+#check @EuclideanCurrentArcData.toExposureArcRealization
+#check @EuclideanArc.isDirectedBy_iff_polar
+#check @EuclideanCurrentArcData.ae_isDirectedBy
+#check @EuclideanExposureFlow.exists_exposure_time_trajectory_of_superposition
+#check @exists_exposure_time_trajectory_of_record_of_superposition
+#check @EuclideanExposureFlow.exists_exposure_time_trajectory
+#check @exists_exposure_time_trajectory_of_record
+
+#print axioms exposureEuclidean_y0_ne_yPi
+#print axioms EuclideanCurrentArcData.toExposureDecomposition
+#print axioms EuclideanCurrentArcData.toExposureArcRealization
+#print axioms EuclideanArc.isDirectedBy_iff_polar
+#print axioms EuclideanCurrentArcData.ae_isDirectedBy
+#print axioms EuclideanExposureFlow.exists_exposure_time_trajectory_of_superposition
+#print axioms exists_exposure_time_trajectory_of_record_of_superposition
+#print axioms EuclideanExposureFlow.exists_exposure_time_trajectory
+#print axioms exists_exposure_time_trajectory_of_record

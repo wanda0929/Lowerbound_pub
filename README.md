@@ -11,8 +11,15 @@ The headline interval is
 This is a curated snapshot, not a merge of development histories. It includes
 the lower-proof dependency chain, not just its final checker. The original
 manuscript is copied unchanged; its old companion-repository paths are mapped
-below. At the owner's direction, this repository remains private until public
-release is separately authorized at publication. See `RELEASE_CHECKLIST.md`.
+below. The repository is public. The complete Lean proof and acceptance
+snapshot was added on 2026-11-11 without changing the manuscript or numerical
+certificate data.
+
+**For reviewers:** start with [Lean verification scope and reproduction](LEAN_VERIFICATION.md).
+It links each accepted conclusion to its theorem, retained hypotheses, audit
+and numerical evidence. The main bound combines Lean reasoning with external
+finite certificate checks; Appendix E retains an explicit flow-decomposition
+hypothesis. This is not an unconditional Lean proof of every paper statement.
 
 ## Contents
 
@@ -25,7 +32,8 @@ release is separately authorized at publication. See `RELEASE_CHECKLIST.md`.
 | `proof/` | Archived 192-segment waveform, duration scan, propagation, optimization and stationarity diagnostics |
 | `figures/` | The manuscript's three figures and available figure sources |
 | `historical-source/` | Historical auditor source snapshots named by the manuscript |
-| `validation/` | Fresh verification evidence from this packaging run |
+| `validation/` | Original numerical packaging evidence and the new Lean-transfer integrity checks |
+| `lean/` | Complete accepted Lean sources, fixed data, dependency locks, external-check scripts, audit logs and receipts |
 
 See `PROVENANCE.md` for exact source revisions and `REPRODUCE.md` for commands.
 `SHA256SUMS` covers retained package files, excluding Git metadata and build
@@ -61,8 +69,10 @@ of global optimality.
   missing original controls; identical pointwise results are not guaranteed.
 - The 192-segment illustrative pulse is not the 12,672-segment rigorous upper
   witness. Both are included and labeled separately.
-- Optional Lean material and unrelated finite-blockade/local-addressing
-  investigations are excluded; they do not establish the current headline.
+- The accepted Lean main-bound, NoGo and Appendix B/D/E snapshot is now included.
+  Legacy axiom-backed declarations remain for provenance but are not the
+  accepted endpoints; see `LEAN_VERIFICATION.md`. Unrelated finite-blockade
+  and local-addressing investigations remain excluded.
 - Software is MIT licensed; scientific data are CC BY 4.0. Manuscript and
   figure reuse rights are not newly granted. See `LICENSING.md` for scope and
   attribution, and preserve existing third-party notices.

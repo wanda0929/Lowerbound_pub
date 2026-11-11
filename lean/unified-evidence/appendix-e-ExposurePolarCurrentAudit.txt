@@ -1,0 +1,68 @@
+@withDensity_vectorMeasure_variation_eq_simpleFunc : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] [inst_2 : NormedSpace ℝ E] [CompleteSpace E] {μ : MeasureTheory.Measure X}
+  [MeasureTheory.IsFiniteMeasure μ] (g : MeasureTheory.SimpleFunc X E),
+  MeasureTheory.Integrable (⇑g) μ → (μ.withDensityᵥ ⇑g).variation = μ.withDensity fun x => ‖g x‖ₑ
+@withDensity_vectorMeasure_variation_eq : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] [inst_2 : NormedSpace ℝ E] [CompleteSpace E] {μ : MeasureTheory.Measure X}
+  [MeasureTheory.IsFiniteMeasure μ] {v : X → E},
+  MeasureTheory.Integrable v μ → (μ.withDensityᵥ v).variation = μ.withDensity fun x => ‖v x‖ₑ
+EuclideanExposureFlow.variation_eq_massBound : ∀ (F : EuclideanExposureFlow), F.vectorMeasure.variation = F.massBound
+EuclideanExposureFlow.measurable_polarDirection : ∀ (F : EuclideanExposureFlow), Measurable F.polarDirection
+EuclideanExposureFlow.norm_smul_polarDirection : ∀ (F : EuclideanExposureFlow) (z : ExposureEuclidean),
+  ‖F.velocity z‖ • F.polarDirection z = F.velocity z
+EuclideanExposureFlow.norm_polarDirection_of_ne_zero : ∀ (F : EuclideanExposureFlow) {z : ExposureEuclidean},
+  F.velocity z ≠ 0 → ‖F.polarDirection z‖ = 1
+EuclideanExposureFlow.ae_velocity_ne_zero_variation : ∀ (F : EuclideanExposureFlow),
+  ∀ᵐ (z : ExposureEuclidean) ∂F.vectorMeasure.variation, F.velocity z ≠ 0
+EuclideanExposureFlow.ae_norm_polarDirection : ∀ (F : EuclideanExposureFlow),
+  ∀ᵐ (z : ExposureEuclidean) ∂F.vectorMeasure.variation, ‖F.polarDirection z‖ = 1
+EuclideanExposureFlow.integrable_polarDirection : ∀ (F : EuclideanExposureFlow),
+  MeasureTheory.Integrable F.polarDirection F.vectorMeasure.variation
+EuclideanExposureFlow.vectorMeasure_eq_withDensity_polar : ∀ (F : EuclideanExposureFlow),
+  F.vectorMeasure = F.vectorMeasure.variation.withDensityᵥ F.polarDirection
+EuclideanExposureFlow.integrable_action_polar_iff : ∀ (F : EuclideanExposureFlow)
+  (ω : ExposureEuclidean → ExposureEuclidean →L[ℝ] ℝ),
+  MeasureTheory.Integrable (fun z => (ω z) (F.polarDirection z)) F.vectorMeasure.variation ↔
+    MeasureTheory.Integrable (fun z => (ω z) (F.velocity z)) F.stateMeasure
+EuclideanExposureFlow.action_eq_integral_polar : ∀ (F : EuclideanExposureFlow)
+  (ω : ExposureEuclidean → ExposureEuclidean →L[ℝ] ℝ),
+  F.action ω = ∫ (z : ExposureEuclidean), (ω z) (F.polarDirection z) ∂F.vectorMeasure.variation
+EuclideanExposureFlow.polar_boundary_integrable : ∀ (F : EuclideanExposureFlow) {ψ : ExposureEuclidean → ℝ},
+  ContDiff ℝ (↑⊤) ψ →
+    HasCompactSupport ψ →
+      MeasureTheory.Integrable (fun z => (fderiv ℝ ψ z) (F.polarDirection z)) F.vectorMeasure.variation
+EuclideanExposureFlow.polar_boundary_eq : ∀ (F : EuclideanExposureFlow) {ψ : ExposureEuclidean → ℝ},
+  ContDiff ℝ (↑⊤) ψ →
+    HasCompactSupport ψ →
+      ∫ (z : ExposureEuclidean), (fderiv ℝ ψ z) (F.polarDirection z) ∂F.vectorMeasure.variation =
+        ψ (exposureEuclideanEquiv yPi) - ψ (exposureEuclideanEquiv y0)
+EuclideanExposureFlow.toNormalCurrentData : EuclideanExposureFlow → EuclideanNormalCurrentData
+EuclideanExposureFlow.toNormalCurrentData_action : ∀ (F : EuclideanExposureFlow)
+  (ω : ExposureEuclidean → ExposureEuclidean →L[ℝ] ℝ), F.toNormalCurrentData.action ω = F.action ω
+EuclideanNormalCurrentData.action : EuclideanNormalCurrentData → (ExposureEuclidean → ExposureEuclidean →L[ℝ] ℝ) → ℝ
+'CZExposure.withDensity_vectorMeasure_variation_eq_simpleFunc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.withDensity_vectorMeasure_variation_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.variation_eq_massBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.measurable_polarDirection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.norm_smul_polarDirection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.norm_polarDirection_of_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.EuclideanExposureFlow.ae_velocity_ne_zero_variation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.EuclideanExposureFlow.ae_norm_polarDirection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.integrable_polarDirection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.vectorMeasure_eq_withDensity_polar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.EuclideanExposureFlow.integrable_action_polar_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.EuclideanExposureFlow.action_eq_integral_polar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.polar_boundary_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.polar_boundary_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.toNormalCurrentData' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.toNormalCurrentData_action' depends on axioms: [propext, Classical.choice, Quot.sound]

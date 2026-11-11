@@ -1,0 +1,46 @@
+'CZExposure.PolynomialIntegration.polynomialIntegral_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialIntegration.linearMap_polynomialIntegral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PolynomialIntegration.continuous_coeff_aeval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAction.rotate_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAction.rotate_vf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAction.rotate_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAction.rotatePoly_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAction.rotatePoly_drift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAction.continuous_coeff_rotatePoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.rotationAverage_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.rotationAverage_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.rotationAverage_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.rotationAverage_target_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.rotationAverage_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.Jmap_rotate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.exposureRotate_yPi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.rotationAverage_strictPolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.symmetryAverage_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.symmetryAverage_isGInvariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.symmetryAverage_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.symmetryAverage_target_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.symmetryAverage_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.symmetryAverage_strictPolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.RotationAverage.exists_G_invariant_candidate_below_Cstar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@symmetryAverage_initial : ∀ {W : StatePoly},
+  (∀ (x : State), Jmap x = y0 → (eval x) W = (eval x0) W) → (eval x0) (symmetryAverage W) = (eval x0) W
+symmetryAverage_strictPolynomial : ∀ (P : ExposurePoly) (η α : ℝ),
+  symmetryAverage (strictPolynomial P η α) =
+    strictPolynomial (exposureReflectionAverage (exposureRotationAverage P)) η α
+exists_G_invariant_candidate_below_Cstar : EuclideanDirectedArcSuperposition →
+  ∀ (a : ℝ),
+    ↑a < Cstar →
+      ∃ P η α,
+        0 < η ∧
+          0 < α ∧
+            α < 1 ∧
+              a < (eval x0) (strictPolynomial P η α) ∧
+                (IsGInvariant fun x => (eval x) (strictPolynomial P η α)) ∧
+                  (∀ x ∈ XCZ, (eval x) (strictPolynomial P η α) = 0) ∧
+                    ∀ x ∈ Xset,
+                      ∀ (u : ℂ),
+                        ‖u‖ ≤ 1 → ∀ (ξ : ℝ), α * cost x ≤ (eval (pt ξ x u)) (cpoly + lieDeriv (strictPolynomial P η α))

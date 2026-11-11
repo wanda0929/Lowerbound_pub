@@ -1,0 +1,159 @@
+@contDiff_eval : ∀ {σ : Type u_1} [inst : Fintype σ] (p : MvPolynomial σ ℝ),
+  ContDiff ℝ ⊤ fun x => (MvPolynomial.eval x) p
+'CZExposure.contDiff_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+@fderiv_eval_apply : ∀ {σ : Type u_1} [inst : Fintype σ] (p : MvPolynomial σ ℝ) (x v : σ → ℝ),
+  (fderiv ℝ (fun y => (MvPolynomial.eval y) p) x) v = ∑ i, (MvPolynomial.eval x) ((MvPolynomial.pderiv i) p) * v i
+'CZExposure.fderiv_eval_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+ExposurePoly : Type
+'CZExposure.PolynomialApproximation.ExposurePoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+costPoly : StatePoly
+'CZExposure.PolynomialApproximation.costPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+zRealPoly : StatePoly
+'CZExposure.PolynomialApproximation.zRealPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+zImagPoly : StatePoly
+'CZExposure.PolynomialApproximation.zImagPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+Jpoly : Fin 11 → StatePoly
+'CZExposure.PolynomialApproximation.Jpoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+pullbackPoly : ExposurePoly → StatePoly
+'CZExposure.PolynomialApproximation.pullbackPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+normalizedPolynomial : ExposurePoly → ℝ → StatePoly
+'CZExposure.PolynomialApproximation.normalizedPolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+strictPolynomial : ExposurePoly → ℝ → ℝ → StatePoly
+'CZExposure.PolynomialApproximation.strictPolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+centeredPullback : ((Fin 11 → ℝ) → ℝ) → State → ℝ
+'CZExposure.PolynomialApproximation.centeredPullback' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CZExposure.PolynomialApproximation.C1ApproxOnY : ((Fin 11 → ℝ) → ℝ) → ExposurePoly → ℝ → Prop :=
+fun φ P η => (∀ y ∈ Yset, |(eval y) P - φ y| ≤ η) ∧ ∀ y ∈ Yset, ‖fderiv ℝ (fun z => (eval z) P) y - fderiv ℝ φ y‖ ≤ η
+'CZExposure.PolynomialApproximation.C1ApproxOnY' depends on axioms: [propext, Classical.choice, Quot.sound]
+eval_costPoly : ∀ (x : State), (eval x) costPoly = cost x
+'CZExposure.PolynomialApproximation.eval_costPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+eval_zRealPoly : ∀ (x : State), (eval x) zRealPoly = (zObs x).re
+'CZExposure.PolynomialApproximation.eval_zRealPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+eval_zImagPoly : ∀ (x : State), (eval x) zImagPoly = (zObs x).im
+'CZExposure.PolynomialApproximation.eval_zImagPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+eval_Jpoly : ∀ (x : State) (i : Fin 11), (eval x) (Jpoly i) = Jmap x i
+'CZExposure.PolynomialApproximation.eval_Jpoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+eval_pullbackPoly : ∀ (P : ExposurePoly) (x : State), (eval x) (pullbackPoly P) = (eval (Jmap x)) P
+'CZExposure.PolynomialApproximation.eval_pullbackPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+eval_normalizedPolynomial : ∀ (P : ExposurePoly) (η : ℝ) (x : State),
+  (eval x) (normalizedPolynomial P η) = ((eval (Jmap x)) P - (eval yPi) P) / (1 + 32 * η)
+'CZExposure.PolynomialApproximation.eval_normalizedPolynomial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+eval_strictPolynomial : ∀ (P : ExposurePoly) (η α : ℝ) (x : State),
+  (eval x) (strictPolynomial P η α) = (1 - α) * (eval x) (normalizedPolynomial P η)
+'CZExposure.PolynomialApproximation.eval_strictPolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+y0_mem_Yset : y0 ∈ Yset
+'CZExposure.PolynomialApproximation.y0_mem_Yset' depends on axioms: [propext, Classical.choice, Quot.sound]
+yPi_mem_Yset : yPi ∈ Yset
+'CZExposure.PolynomialApproximation.yPi_mem_Yset' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Bfield_le_32 : ∀ {x : State}, x ∈ Xset → ∀ {u : ℂ}, ‖u‖ ≤ 1 → ‖Bfield (Jmap x) u‖ ≤ 32
+'CZExposure.PolynomialApproximation.Bfield_le_32' depends on axioms: [propext, Classical.choice, Quot.sound]
+@centeredPullback_fderiv : ∀ {φ : (Fin 11 → ℝ) → ℝ} {x : State},
+  DifferentiableAt ℝ φ (Jmap x) → fderiv ℝ (centeredPullback φ) x = (fderiv ℝ φ (Jmap x)).comp (fderiv ℝ Jmap x)
+'CZExposure.PolynomialApproximation.centeredPullback_fderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+@centeredPullback_drift_eq : ∀ {φ : (Fin 11 → ℝ) → ℝ} {x : State},
+  DifferentiableAt ℝ φ (Jmap x) →
+    ∀ (u : ℂ), (fderiv ℝ (centeredPullback φ) x) (vf x u) = cost x * (fderiv ℝ φ (Jmap x)) (Bfield (Jmap x) u)
+'CZExposure.PolynomialApproximation.centeredPullback_drift_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@centeredPullback_drift_error : ∀ {φ ψ : (Fin 11 → ℝ) → ℝ} {x : State},
+  x ∈ Xset →
+    ∀ {u : ℂ},
+      ‖u‖ ≤ 1 →
+        ∀ {η : ℝ},
+          0 ≤ η →
+            DifferentiableAt ℝ φ (Jmap x) →
+              DifferentiableAt ℝ ψ (Jmap x) →
+                ‖fderiv ℝ ψ (Jmap x) - fderiv ℝ φ (Jmap x)‖ ≤ η →
+                  |(fderiv ℝ (centeredPullback ψ) x) (vf x u) - (fderiv ℝ (centeredPullback φ) x) (vf x u)| ≤
+                    32 * η * cost x
+'CZExposure.PolynomialApproximation.centeredPullback_drift_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+eval_lieDeriv_eq_fderiv : ∀ (W : StatePoly) (ξ : ℝ) (x : State) (u : ℂ),
+  (eval (pt ξ x u)) (lieDeriv W) = (fderiv ℝ (fun y => (eval y) W) x) (vf x u)
+'CZExposure.PolynomialApproximation.eval_lieDeriv_eq_fderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+@normalization_denominator_pos : ∀ {η : ℝ}, 0 ≤ η → 0 < 1 + 32 * η
+'CZExposure.PolynomialApproximation.normalization_denominator_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+normalized_fderiv_apply : ∀ (P : ExposurePoly) (η : ℝ) (x v : State),
+  (fderiv ℝ (fun y => (eval y) (normalizedPolynomial P η)) x) v =
+    (1 + 32 * η)⁻¹ * (fderiv ℝ (centeredPullback fun y => (eval y) P) x) v
+'CZExposure.PolynomialApproximation.normalized_fderiv_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+normalized_drift_zero_of_cost_zero : ∀ (P : ExposurePoly) (η : ℝ) {x : State},
+  cost x = 0 → ∀ (u : ℂ), (fderiv ℝ (fun y => (eval y) (normalizedPolynomial P η)) x) (vf x u) = 0
+'CZExposure.PolynomialApproximation.normalized_drift_zero_of_cost_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@normalized_drift_bound : ∀ {φ : (Fin 11 → ℝ) → ℝ},
+  Differentiable ℝ φ →
+    (∀ x ∈ Xset, ∀ (u : ℂ), ‖u‖ ≤ 1 → |(fderiv ℝ (centeredPullback φ) x) (vf x u)| ≤ cost x) →
+      ∀ {P : ExposurePoly} {η : ℝ},
+        0 ≤ η →
+          C1ApproxOnY φ P η →
+            ∀ {x : State},
+              x ∈ Xset →
+                ∀ {u : ℂ}, ‖u‖ ≤ 1 → |(fderiv ℝ (fun y => (eval y) (normalizedPolynomial P η)) x) (vf x u)| ≤ cost x
+'CZExposure.PolynomialApproximation.normalized_drift_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+normalized_target_zero : ∀ (P : ExposurePoly) (η : ℝ) {x : State}, x ∈ XCZ → (eval x) (normalizedPolynomial P η) = 0
+'CZExposure.PolynomialApproximation.normalized_target_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+@normalized_initial_error : ∀ {φ : (Fin 11 → ℝ) → ℝ} {P : ExposurePoly} {η : ℝ},
+  0 ≤ η → C1ApproxOnY φ P η → |(eval x0) (normalizedPolynomial P η) - (φ y0 - φ yPi)| ≤ (2 + 32 * |φ y0 - φ yPi|) * η
+'CZExposure.PolynomialApproximation.normalized_initial_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+@strict_drift_bound : ∀ {φ : (Fin 11 → ℝ) → ℝ},
+  Differentiable ℝ φ →
+    (∀ x ∈ Xset, ∀ (u : ℂ), ‖u‖ ≤ 1 → |(fderiv ℝ (centeredPullback φ) x) (vf x u)| ≤ cost x) →
+      ∀ {P : ExposurePoly} {η α : ℝ},
+        0 ≤ η →
+          α ≤ 1 →
+            C1ApproxOnY φ P η →
+              ∀ {x : State},
+                x ∈ Xset →
+                  ∀ {u : ℂ},
+                    ‖u‖ ≤ 1 → |(fderiv ℝ (fun y => (eval y) (strictPolynomial P η α)) x) (vf x u)| ≤ (1 - α) * cost x
+'CZExposure.PolynomialApproximation.strict_drift_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+@strict_residual_bound : ∀ {φ : (Fin 11 → ℝ) → ℝ},
+  Differentiable ℝ φ →
+    (∀ x ∈ Xset, ∀ (u : ℂ), ‖u‖ ≤ 1 → |(fderiv ℝ (centeredPullback φ) x) (vf x u)| ≤ cost x) →
+      ∀ {P : ExposurePoly} {η α : ℝ},
+        0 ≤ η →
+          α ≤ 1 →
+            C1ApproxOnY φ P η →
+              ∀ {x : State},
+                x ∈ Xset →
+                  ∀ {u : ℂ},
+                    ‖u‖ ≤ 1 → ∀ (ξ : ℝ), α * cost x ≤ (eval (pt ξ x u)) (cpoly + lieDeriv (strictPolynomial P η α))
+'CZExposure.PolynomialApproximation.strict_residual_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+strict_target_zero : ∀ (P : ExposurePoly) (η α : ℝ) {x : State}, x ∈ XCZ → (eval x) (strictPolynomial P η α) = 0
+'CZExposure.PolynomialApproximation.strict_target_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+@strict_initial_error : ∀ {φ : (Fin 11 → ℝ) → ℝ} {P : ExposurePoly} {η α : ℝ},
+  0 ≤ η →
+    0 ≤ α →
+      α ≤ 1 →
+        C1ApproxOnY φ P η →
+          |(eval x0) (strictPolynomial P η α) - (φ y0 - φ yPi)| ≤ α * |φ y0 - φ yPi| + (2 + 32 * |φ y0 - φ yPi|) * η
+'CZExposure.PolynomialApproximation.strict_initial_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+exists_small_parameters : ∀ (a b : ℝ), a < b → ∃ α η, 0 < α ∧ α < 1 ∧ 0 < η ∧ α * |b| + (2 + 32 * |b|) * η < b - a
+'CZExposure.PolynomialApproximation.exists_small_parameters' depends on axioms: [propext, Classical.choice, Quot.sound]
+@exists_tolerance_for_strict_candidate : ∀ {φ : (Fin 11 → ℝ) → ℝ},
+  Differentiable ℝ φ →
+    (∀ x ∈ Xset, ∀ (u : ℂ), ‖u‖ ≤ 1 → |(fderiv ℝ (centeredPullback φ) x) (vf x u)| ≤ cost x) →
+      ∀ a < φ y0 - φ yPi,
+        ∃ α η,
+          0 < α ∧
+            α < 1 ∧
+              0 < η ∧
+                ∀ (P : ExposurePoly),
+                  C1ApproxOnY φ P η →
+                    a < (eval x0) (strictPolynomial P η α) ∧
+                      (∀ x ∈ XCZ, (eval x) (strictPolynomial P η α) = 0) ∧
+                        ∀ x ∈ Xset,
+                          ∀ (u : ℂ),
+                            ‖u‖ ≤ 1 →
+                              ∀ (ξ : ℝ), α * cost x ≤ (eval (pt ξ x u)) (cpoly + lieDeriv (strictPolynomial P η α))
+'CZExposure.PolynomialApproximation.exists_tolerance_for_strict_candidate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

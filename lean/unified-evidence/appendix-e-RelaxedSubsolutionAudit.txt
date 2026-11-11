@@ -1,0 +1,56 @@
+@CZExposure.pRelaxed_le_domainMass : ∀ {μ : MeasureTheory.FiniteMeasure CZExposure.ExposurePoint},
+  CZExposure.IsDomainExposureRecord μ → CZExposure.pRelaxed ≤ ↑↑μ.mass
+CZExposure.exists_finite_balance_obstruction : ∀ (M : NNReal),
+  ↑↑M < CZExposure.pRelaxed → ∃ s, CZExposure.finiteBalanceTarget s ∉ CZExposure.attainableBalanceSet s M
+CZExposure.convex_attainableBalanceSet : ∀ (s : Finset CZExposure.ExposureTest) (M : NNReal),
+  Convex ℝ (CZExposure.attainableBalanceSet s M)
+CZExposure.exists_smooth_balance_separator : ∀ (M : NNReal),
+  ↑↑M < CZExposure.pRelaxed →
+    ∃ ψ,
+      ContDiff ℝ (↑⊤) ψ ∧
+        HasCompactSupport ψ ∧
+          ∃ r,
+            0 < r ∧
+              (∀ (μ : MeasureTheory.FiniteMeasure CZExposure.ExposurePoint),
+                  μ.mass ≤ M →
+                    ∫ (p : CZExposure.ExposurePoint), (fderiv ℝ ψ (↑p).1) (CZExposure.Bfield (↑p).1 (↑p).2) ∂↑μ < r) ∧
+                r < ψ CZExposure.yPi - ψ CZExposure.y0
+CZExposure.exists_unit_balance_subsolution : ∀ (a : ℝ),
+  ↑a < CZExposure.pRelaxed →
+    ∃ φ,
+      ContDiff ℝ (↑⊤) φ ∧
+        HasCompactSupport φ ∧
+          (∀ y ∈ CZExposure.Yset, ∀ (u : ℂ), ‖u‖ ≤ 1 → |(fderiv ℝ φ y) (CZExposure.Bfield y u)| ≤ 1) ∧
+            a < φ CZExposure.y0 - φ CZExposure.yPi
+CZExposure.smooth_subsolution_relaxed : ∀ (a : ℝ),
+  ↑a < CZExposure.pRelaxed →
+    ∃ φ,
+      ContDiff ℝ (↑⊤) φ ∧
+        HasCompactSupport φ ∧
+          (∀ x ∈ CZExposure.Xset,
+              ∀ (u : ℂ),
+                ‖u‖ ≤ 1 →
+                  |(fderiv ℝ (fun x' => φ (CZExposure.Jmap x') - φ CZExposure.yPi) x) (CZExposure.vf x u)| ≤
+                    CZExposure.cost x) ∧
+            (∀ x ∈ CZExposure.XCZ, φ (CZExposure.Jmap x) - φ CZExposure.yPi = 0) ∧
+              a < φ (CZExposure.Jmap CZExposure.x0) - φ CZExposure.yPi
+CZExposure.smooth_subsolution_of_realization : CZExposure.Cstar ≤ CZExposure.pRelaxed →
+  ∀ (a : ℝ),
+    ↑a < CZExposure.Cstar →
+      ∃ φ,
+        ContDiff ℝ (↑⊤) φ ∧
+          HasCompactSupport φ ∧
+            (∀ x ∈ CZExposure.Xset,
+                ∀ (u : ℂ),
+                  ‖u‖ ≤ 1 →
+                    |(fderiv ℝ (fun x' => φ (CZExposure.Jmap x') - φ CZExposure.yPi) x) (CZExposure.vf x u)| ≤
+                      CZExposure.cost x) ∧
+              (∀ x ∈ CZExposure.XCZ, φ (CZExposure.Jmap x) - φ CZExposure.yPi = 0) ∧
+                a < φ (CZExposure.Jmap CZExposure.x0) - φ CZExposure.yPi
+'CZExposure.pRelaxed_le_domainMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exists_finite_balance_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.convex_attainableBalanceSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exists_smooth_balance_separator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exists_unit_balance_subsolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.smooth_subsolution_relaxed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.smooth_subsolution_of_realization' depends on axioms: [propext, Classical.choice, Quot.sound]

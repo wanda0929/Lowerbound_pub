@@ -1,0 +1,187 @@
+@PhysicalSegment.Concatenation.splice : {E : Type u_1} → ℝ → (ℝ → E) → (ℝ → E) → ℝ → E
+'CZExposure.PhysicalSegment.Concatenation.splice' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PhysicalSegment.Concatenation.intervalIntegrable_splice : ∀ {E : Type u_1} [inst : NormedAddCommGroup E]
+  [NormedSpace ℝ E] [CompleteSpace E] {a b : ℝ},
+  0 ≤ a →
+    0 ≤ b →
+      ∀ {f g : ℝ → E},
+        IntervalIntegrable f MeasureTheory.volume 0 a →
+          IntervalIntegrable g MeasureTheory.volume 0 b →
+            IntervalIntegrable (PhysicalSegment.Concatenation.splice a f g) MeasureTheory.volume 0 (a + b)
+'CZExposure.PhysicalSegment.Concatenation.intervalIntegrable_splice' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@PhysicalSegment.Concatenation.integral_splice : ∀ {E : Type u_1} [inst : NormedAddCommGroup E]
+  [inst_1 : NormedSpace ℝ E] [CompleteSpace E] {a b : ℝ},
+  0 ≤ a →
+    0 ≤ b →
+      ∀ {f g : ℝ → E},
+        IntervalIntegrable f MeasureTheory.volume 0 a →
+          IntervalIntegrable g MeasureTheory.volume 0 b →
+            ∫ (t : ℝ) in 0..a + b, PhysicalSegment.Concatenation.splice a f g t =
+              (∫ (t : ℝ) in 0..a, f t) + ∫ (t : ℝ) in 0..b, g t
+'CZExposure.PhysicalSegment.Concatenation.integral_splice' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.UnitControl : PhysicalSegment → Prop
+PhysicalSegment.unitZero : (x : State) → x ∈ Xset → PhysicalSegment
+'CZExposure.PhysicalSegment.unitZero' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.unitZero_duration : ∀ (x : State) (hx : x ∈ Xset), (PhysicalSegment.unitZero x hx).duration = 0
+'CZExposure.PhysicalSegment.unitZero_duration' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.unitZero_path : ∀ (x : State) (hx : x ∈ Xset) (s : ℝ), (PhysicalSegment.unitZero x hx).path s = x
+'CZExposure.PhysicalSegment.unitZero_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.unitZero_exposure : ∀ (x : State) (hx : x ∈ Xset), (PhysicalSegment.unitZero x hx).exposure = 0
+'CZExposure.PhysicalSegment.unitZero_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.unitZero_unit : ∀ (x : State) (hx : x ∈ Xset), (PhysicalSegment.unitZero x hx).UnitControl
+'CZExposure.PhysicalSegment.unitZero_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.concat : (P Q : PhysicalSegment) → P.path P.duration = Q.path 0 → PhysicalSegment
+'CZExposure.PhysicalSegment.concat' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.concat_duration : ∀ (P Q : PhysicalSegment) (hmatch : P.path P.duration = Q.path 0),
+  (P.concat Q hmatch).duration = P.duration + Q.duration
+'CZExposure.PhysicalSegment.concat_duration' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.concat_initial : ∀ (P Q : PhysicalSegment) (hmatch : P.path P.duration = Q.path 0),
+  (P.concat Q hmatch).path 0 = P.path 0
+'CZExposure.PhysicalSegment.concat_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.concat_terminal : ∀ (P Q : PhysicalSegment) (hmatch : P.path P.duration = Q.path 0),
+  (P.concat Q hmatch).path (P.duration + Q.duration) = Q.path Q.duration
+'CZExposure.PhysicalSegment.concat_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.concat_path_left : ∀ (P Q : PhysicalSegment) (hmatch : P.path P.duration = Q.path 0) {s : ℝ},
+  s ≤ P.duration → (P.concat Q hmatch).path s = P.path s
+'CZExposure.PhysicalSegment.concat_path_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.concat_path_right : ∀ (P Q : PhysicalSegment) (hmatch : P.path P.duration = Q.path 0) {s : ℝ},
+  P.duration ≤ s → (P.concat Q hmatch).path s = Q.path (s - P.duration)
+'CZExposure.PhysicalSegment.concat_path_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.concat_control_left : ∀ (P Q : PhysicalSegment) (hmatch : P.path P.duration = Q.path 0) {s : ℝ},
+  s ≤ P.duration → (P.concat Q hmatch).control s = P.control s
+'CZExposure.PhysicalSegment.concat_control_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.concat_control_right : ∀ (P Q : PhysicalSegment) (hmatch : P.path P.duration = Q.path 0) {s : ℝ},
+  P.duration < s → (P.concat Q hmatch).control s = Q.control (s - P.duration)
+'CZExposure.PhysicalSegment.concat_control_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.concat_exposure : ∀ (P Q : PhysicalSegment) (hmatch : P.path P.duration = Q.path 0),
+  (P.concat Q hmatch).exposure = P.exposure + Q.exposure
+'CZExposure.PhysicalSegment.concat_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.concat_unit : ∀ (P Q : PhysicalSegment) (hmatch : P.path P.duration = Q.path 0),
+  P.UnitControl → Q.UnitControl → (P.concat Q hmatch).UnitControl
+'CZExposure.PhysicalSegment.concat_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock : Type
+FaceBlock.mk : (segment : PhysicalSegment) → segment.path 0 ∈ Fface → segment.path segment.duration ∈ Fface → FaceBlock
+FaceBlock.initial : FaceBlock → State
+'CZExposure.FaceBlock.initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.terminal : FaceBlock → State
+'CZExposure.FaceBlock.terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.phaseRatio : FaceBlock → ℂ
+'CZExposure.FaceBlock.phaseRatio' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.unitZero : (p : State) → p ∈ Fface → FaceBlock
+'CZExposure.FaceBlock.unitZero' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.unitZero_initial : ∀ (p : State) (hp : p ∈ Fface), (FaceBlock.unitZero p hp).initial = p
+'CZExposure.FaceBlock.unitZero_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.unitZero_terminal : ∀ (p : State) (hp : p ∈ Fface), (FaceBlock.unitZero p hp).terminal = p
+'CZExposure.FaceBlock.unitZero_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.unitZero_duration : ∀ (p : State) (hp : p ∈ Fface), (FaceBlock.unitZero p hp).segment.duration = 0
+'CZExposure.FaceBlock.unitZero_duration' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.unitZero_exposure : ∀ (p : State) (hp : p ∈ Fface), (FaceBlock.unitZero p hp).segment.exposure = 0
+'CZExposure.FaceBlock.unitZero_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.unitZero_phaseRatio : ∀ (p : State) (hp : p ∈ Fface), (FaceBlock.unitZero p hp).phaseRatio = 1
+'CZExposure.FaceBlock.unitZero_phaseRatio' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.unitZero_unit : ∀ (p : State) (hp : p ∈ Fface), (FaceBlock.unitZero p hp).segment.UnitControl
+'CZExposure.FaceBlock.unitZero_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.align : FaceBlock → (p : State) → p ∈ Fface → FaceBlock
+'CZExposure.FaceBlock.align' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.align_initial : ∀ (B : FaceBlock) (p : State) (hp : p ∈ Fface), (B.align p hp).initial = p
+'CZExposure.FaceBlock.align_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.align_terminal : ∀ (B : FaceBlock) (p : State) (hp : p ∈ Fface),
+  (B.align p hp).terminal = faceAlign B.initial p B.terminal
+'CZExposure.FaceBlock.align_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.align_duration : ∀ (B : FaceBlock) (p : State) (hp : p ∈ Fface),
+  (B.align p hp).segment.duration = B.segment.duration
+'CZExposure.FaceBlock.align_duration' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.align_exposure : ∀ (B : FaceBlock) (p : State) (hp : p ∈ Fface),
+  (B.align p hp).segment.exposure = B.segment.exposure
+'CZExposure.FaceBlock.align_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.align_phaseRatio : ∀ (B : FaceBlock) (p : State) (hp : p ∈ Fface), (B.align p hp).phaseRatio = B.phaseRatio
+'CZExposure.FaceBlock.align_phaseRatio' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.align_unit : ∀ (B : FaceBlock) (p : State) (hp : p ∈ Fface),
+  B.segment.UnitControl → (B.align p hp).segment.UnitControl
+'CZExposure.FaceBlock.align_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.concat : (P Q : FaceBlock) → P.terminal = Q.initial → FaceBlock
+'CZExposure.FaceBlock.concat' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.concat_initial : ∀ (P Q : FaceBlock) (hmatch : P.terminal = Q.initial),
+  (P.concat Q hmatch).initial = P.initial
+'CZExposure.FaceBlock.concat_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.concat_terminal : ∀ (P Q : FaceBlock) (hmatch : P.terminal = Q.initial),
+  (P.concat Q hmatch).terminal = Q.terminal
+'CZExposure.FaceBlock.concat_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.concat_duration : ∀ (P Q : FaceBlock) (hmatch : P.terminal = Q.initial),
+  (P.concat Q hmatch).segment.duration = P.segment.duration + Q.segment.duration
+'CZExposure.FaceBlock.concat_duration' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.concat_exposure : ∀ (P Q : FaceBlock) (hmatch : P.terminal = Q.initial),
+  (P.concat Q hmatch).segment.exposure = P.segment.exposure + Q.segment.exposure
+'CZExposure.FaceBlock.concat_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.concat_phaseRatio : ∀ (P Q : FaceBlock) (hmatch : P.terminal = Q.initial),
+  (P.concat Q hmatch).phaseRatio = P.phaseRatio * Q.phaseRatio
+'CZExposure.FaceBlock.concat_phaseRatio' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.concat_unit : ∀ (P Q : FaceBlock) (hmatch : P.terminal = Q.initial),
+  P.segment.UnitControl → Q.segment.UnitControl → (P.concat Q hmatch).segment.UnitControl
+'CZExposure.FaceBlock.concat_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.appendAligned : FaceBlock → FaceBlock → FaceBlock
+'CZExposure.FaceBlock.appendAligned' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.appendAligned_initial : ∀ (P Q : FaceBlock), (P.appendAligned Q).initial = P.initial
+'CZExposure.FaceBlock.appendAligned_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.appendAligned_duration : ∀ (P Q : FaceBlock),
+  (P.appendAligned Q).segment.duration = P.segment.duration + Q.segment.duration
+'CZExposure.FaceBlock.appendAligned_duration' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.appendAligned_exposure : ∀ (P Q : FaceBlock),
+  (P.appendAligned Q).segment.exposure = P.segment.exposure + Q.segment.exposure
+'CZExposure.FaceBlock.appendAligned_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.appendAligned_phaseRatio : ∀ (P Q : FaceBlock), (P.appendAligned Q).phaseRatio = P.phaseRatio * Q.phaseRatio
+'CZExposure.FaceBlock.appendAligned_phaseRatio' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.appendAligned_unit : ∀ (P Q : FaceBlock),
+  P.segment.UnitControl → Q.segment.UnitControl → (P.appendAligned Q).segment.UnitControl
+'CZExposure.FaceBlock.appendAligned_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.chainFrom : FaceBlock → List FaceBlock → FaceBlock
+'CZExposure.FaceBlock.chainFrom' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.chainFrom_initial : ∀ (P : FaceBlock) (blocks : List FaceBlock), (P.chainFrom blocks).initial = P.initial
+'CZExposure.FaceBlock.chainFrom_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.chainFrom_duration : ∀ (P : FaceBlock) (blocks : List FaceBlock),
+  (P.chainFrom blocks).segment.duration = P.segment.duration + (List.map (fun B => B.segment.duration) blocks).sum
+'CZExposure.FaceBlock.chainFrom_duration' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.chainFrom_exposure : ∀ (P : FaceBlock) (blocks : List FaceBlock),
+  (P.chainFrom blocks).segment.exposure = P.segment.exposure + (List.map (fun B => B.segment.exposure) blocks).sum
+'CZExposure.FaceBlock.chainFrom_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.chainFrom_phaseRatio : ∀ (P : FaceBlock) (blocks : List FaceBlock),
+  (P.chainFrom blocks).phaseRatio = P.phaseRatio * (List.map FaceBlock.phaseRatio blocks).prod
+'CZExposure.FaceBlock.chainFrom_phaseRatio' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.chainFrom_unit : ∀ (P : FaceBlock) (blocks : List FaceBlock),
+  P.segment.UnitControl → (∀ B ∈ blocks, B.segment.UnitControl) → (P.chainFrom blocks).segment.UnitControl
+'CZExposure.FaceBlock.chainFrom_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.assemble : (p : State) → p ∈ Fface → List FaceBlock → FaceBlock
+'CZExposure.FaceBlock.assemble' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.assemble_initial : ∀ (p : State) (hp : p ∈ Fface) (blocks : List FaceBlock),
+  (FaceBlock.assemble p hp blocks).initial = p
+'CZExposure.FaceBlock.assemble_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.assemble_duration : ∀ (p : State) (hp : p ∈ Fface) (blocks : List FaceBlock),
+  (FaceBlock.assemble p hp blocks).segment.duration = (List.map (fun B => B.segment.duration) blocks).sum
+'CZExposure.FaceBlock.assemble_duration' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.assemble_exposure : ∀ (p : State) (hp : p ∈ Fface) (blocks : List FaceBlock),
+  (FaceBlock.assemble p hp blocks).segment.exposure = (List.map (fun B => B.segment.exposure) blocks).sum
+'CZExposure.FaceBlock.assemble_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.assemble_phaseRatio : ∀ (p : State) (hp : p ∈ Fface) (blocks : List FaceBlock),
+  (FaceBlock.assemble p hp blocks).phaseRatio = (List.map FaceBlock.phaseRatio blocks).prod
+'CZExposure.FaceBlock.assemble_phaseRatio' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.assemble_unit : ∀ (p : State) (hp : p ∈ Fface) (blocks : List FaceBlock),
+  (∀ B ∈ blocks, B.segment.UnitControl) → (FaceBlock.assemble p hp blocks).segment.UnitControl
+'CZExposure.FaceBlock.assemble_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.x0_mem_Fface : x0 ∈ Fface
+'CZExposure.FaceBlock.x0_mem_Fface' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.assemble_terminal_mem_XCZ : ∀ (blocks : List FaceBlock),
+  (List.map FaceBlock.phaseRatio blocks).prod = -1 →
+    (FaceBlock.assemble x0 FaceBlock.x0_mem_Fface blocks).terminal ∈ XCZ
+'CZExposure.FaceBlock.assemble_terminal_mem_XCZ' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.assemblePulse : (blocks : List FaceBlock) →
+  (∀ B ∈ blocks, B.segment.UnitControl) → (List.map FaceBlock.phaseRatio blocks).prod = -1 → Pulse
+'CZExposure.FaceBlock.assemblePulse' depends on axioms: [propext, Classical.choice, Quot.sound]
+FaceBlock.assemblePulse_exposure : ∀ (blocks : List FaceBlock) (hus : ∀ B ∈ blocks, B.segment.UnitControl)
+  (hphase : (List.map FaceBlock.phaseRatio blocks).prod = -1),
+  (FaceBlock.assemblePulse blocks hus hphase).exposure = (List.map (fun B => B.segment.exposure) blocks).sum
+'CZExposure.FaceBlock.assemblePulse_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+appendix-e/PhysicalAssemblyAudit.lean:230:9: warning: unused variable `B`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`

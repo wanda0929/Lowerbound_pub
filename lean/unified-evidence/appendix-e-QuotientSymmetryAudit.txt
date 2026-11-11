@@ -1,0 +1,10 @@
+'CZExposure.QuotientSymmetry.stationary_projected_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@stationary_projected_identity : ∀ {d : ℕ} {W : StatePoly},
+  StationaryFeasible d W →
+    ∃ s Q,
+      s ⊆ NormalFaceBasis.basis d ∧
+        Q.PosSemidef ∧
+          (∀ (i j : ↥s), monomialCharge ⇑↑i ≠ monomialCharge ⇑↑j → Q i j = 0) ∧
+            reflectionAverage ((chargePart 0) (embed (cpoly + lieDeriv W))) -
+                reflectionAverage (gram Q fun i => term (⇑↑i) 1) ∈
+              relations

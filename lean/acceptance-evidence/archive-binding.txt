@@ -1,0 +1,1 @@
+PASS: all 4216 fixed block maps and all 565 terminal entries match the original archive

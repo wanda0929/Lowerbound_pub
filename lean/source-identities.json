@@ -1,0 +1,103 @@
+{
+  "status": "PASS",
+  "python_flint": "0.9.0",
+  "negative_controls": {
+    "reversed potential sign": 5871,
+    "omitted cell width": 1511,
+    "swapped sector cost weights": 1511,
+    "doubled real representatives": 5871,
+    "reversed interface jump": 384,
+    "wrong interface endpoint": 292,
+    "omitted off-diagonal on mixed-phase control": 2
+  },
+  "replacement": {
+    "cell": 2,
+    "blocks": 736,
+    "regions": 1024,
+    "all_source_entries_equal": true
+  },
+  "occupation": [
+    {
+      "cell": 0,
+      "blocks": 736,
+      "normal_components": 5871,
+      "nonzero_residuals": 0
+    },
+    {
+      "cell": 1,
+      "blocks": 736,
+      "normal_components": 5871,
+      "nonzero_residuals": 0
+    },
+    {
+      "cell": 2,
+      "blocks": 736,
+      "normal_components": 5871,
+      "nonzero_residuals": 0
+    },
+    {
+      "cell": 3,
+      "blocks": 736,
+      "normal_components": 5871,
+      "nonzero_residuals": 0
+    },
+    {
+      "cell": 4,
+      "blocks": 736,
+      "normal_components": 5871,
+      "nonzero_residuals": 0
+    }
+  ],
+  "interfaces": [
+    {
+      "knot": 0,
+      "blocks": 134,
+      "normal_components": 384,
+      "nonzero_residuals": 0
+    },
+    {
+      "knot": 1,
+      "blocks": 134,
+      "normal_components": 384,
+      "nonzero_residuals": 0
+    },
+    {
+      "knot": 2,
+      "blocks": 134,
+      "normal_components": 384,
+      "nonzero_residuals": 0
+    },
+    {
+      "knot": 3,
+      "blocks": 134,
+      "normal_components": 384,
+      "nonzero_residuals": 0
+    }
+  ],
+  "decoded_sha256": {
+    "potential": "e6cb1585c1ecd9ef9612d0d5a15c8022b85fb7e459399716bb03b070334ad36a",
+    "allocation": "ead50f20b6737aa27efbd84c6f292d2ebfb52ec8ff58f634b6da7ba765883b5c",
+    "regional": "23c3cd728a0bc046a8be3598ce352fd9edc9781a6f65b363c3fe7f2433021e9c",
+    "interface": "30393516a4c260192bc32bb5ce246752ef22d762112f3f0b85e1873dd67a608f"
+  },
+  "trust_boundary": "external exact Q(sqrt(2),i) coefficient check; no kernel proof term",
+  "source_psd_replayed": false,
+  "definitions_sha256": {
+    "/home/user/workspace/repo/lean/check_source_identities.py": "2a96205be5864ffaf37bf835b78569908ea74cd238c44ca3a64702bc10494dd6",
+    "check_allocated_identities.py": "9f123929c482b9a4f4c54b4ead999eda3e27c75b6153c7973e7f5f5799ad5ac8",
+    "SourceIdentityDataAudit.lean": "3bdd66552d18abd490641fa6d22353472e5f652b209bb549c7335ce6b6c271dc",
+    "AllocationDataAudit.lean": "2a7adc71816ac669708e7638ee9fb219cd3d820bd2d272ff706d61541b1679d3",
+    "RegionalDataAudit.lean": "8686d879d4163aff36b7cd424836baa9cef15d6bbba06daa95ecbe302de5103f",
+    "InterfaceDataAudit.lean": "32b0b932991392e682f066ce573164ea1bdcd91014df1e6ff703cf18ac656705",
+    "LowerBoundCZ/PinnedCertificates.lean": "16e74946555ceb585797977dea5ea433f39c2944021c6cf3d1ecd5ca717de865",
+    "LowerBoundCZ/PotentialBasis.lean": "363f2752b732fb5558dd65dbae15672312164383ec3fbb098a2565761aee95bc",
+    "LowerBoundCZ/PinnedAllocations.lean": "869b6d4c7f716dea5af66cac2483ba06aaf8ed127f22a01a3aa9640214520cb0",
+    "LowerBoundCZ/PinnedRegions.lean": "75ffd64dfc31805a89ca41b6277f65d5d7cc65a26eee162f463035ea57f95adf",
+    "LowerBoundCZ/PinnedInterfaces.lean": "68495c2b11a8b5781096e5214bf8ea5847b109778a60832a2e51be89e00e23e9",
+    "LowerBoundCZ/SlackAllocation.lean": "3aea98aa7adb23ba0dd6bb8d884ba42759f84100d9f26f95230f2dacc8ccdbd2",
+    "LowerBoundCZ/SlackCrossing.lean": "1227cddd86d46e2962a112ca3353cd4b4bebce261b874e551792b834aed8c6b8",
+    "appendix-e/RequestProject/AppendixE/Hierarchy.lean": "2fddd6062a13db2c927a8aa22a20596f88916fc0002e7356c3249f4dc428c0c8",
+    "appendix-e/RequestProject/AppendixE/QuotientNormalForm.lean": "add0eefe96a28683cbea873cd9d0f17c49126c5c0b641ae32a6a778b26d278be",
+    "appendix-e/RequestProject/AppendixE/QuotientCertificate.lean": "426d620c21175df62de54a270138c4aaf8157a441d3961557d66030e83822ab6"
+  }
+}

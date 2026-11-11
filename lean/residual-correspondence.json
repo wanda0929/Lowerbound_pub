@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "python_flint": "0.9.0",
+  "negative_controls": [
+    "interior coefficient perturbation",
+    "transposed affine axes",
+    "swapped cost-sector weights",
+    "equal but negative coefficient"
+  ],
+  "allocation": {
+    "regions": 1024,
+    "coefficients_compared": 983040,
+    "nonnegative_coefficients": 983040,
+    "minimum": "0"
+  },
+  "regional": {
+    "regions": 9728,
+    "coefficients_compared": 9338880,
+    "nonnegative_coefficients": 9338880,
+    "minimum": "0"
+  },
+  "interface": {
+    "boxes": 16384,
+    "coefficients_compared": 1048576,
+    "nonnegative_coefficients": 615296,
+    "minimum": "0",
+    "excluded_boxes_compared_but_not_required_nonnegative": true
+  },
+  "method": "complete compositional residual evaluation from Lean primitive tables; exact finite-sum regrouping",
+  "direct_Lean_residual_execution_at_every_index": false,
+  "kernel_proof_term": false,
+  "sha256": {
+    "/home/user/workspace/repo/lean/check_residual_correspondence.py": "c3696c887df24139ca4e74b752fa983b77504a99193b76a6dc92876274e74825",
+    "ResidualFactorsAudit.lean": "2d6718e6c8a080cb6dd7da409dec95251b063878bb23317078decf205f95f4bf",
+    "source-identities.json": "a7cfcc7889e09f28a2075112b9ebcaf8b2a8a64e6a042e813711bd95b7685439",
+    "check_allocated_identities.py": "9f123929c482b9a4f4c54b4ead999eda3e27c75b6153c7973e7f5f5799ad5ac8",
+    "/tmp/cz-publication/sdp/verification_results/adaptive-slack/verify.py": "43f5f97f43f054975130ad76a9af71b965fb665209dfd3c41b12282e608f07cd",
+    "/tmp/residual-factors.txt": "d0bff3fcbb9b02472103f35d4f490c0041c84bd3337747d0c467739ea4fbdc25",
+    "/tmp/identity-allocation.txt": "ead50f20b6737aa27efbd84c6f292d2ebfb52ec8ff58f634b6da7ba765883b5c",
+    "/tmp/identity-regional.txt": "23c3cd728a0bc046a8be3598ce352fd9edc9781a6f65b363c3fe7f2433021e9c",
+    "/tmp/identity-interface.txt": "30393516a4c260192bc32bb5ce246752ef22d762112f3f0b85e1873dd67a608f"
+  }
+}

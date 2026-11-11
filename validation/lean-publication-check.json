@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "checked_utc": "2026-11-11T13:38:31.707902+00:00",
+  "source_repository": "wanda0929/LowerBoundCZ",
+  "source_commit": "7f9d30aa63e55d3b68f65a6e67b5ef64e2b0e6fb",
+  "copied_lean_files": 469,
+  "copied_git_blobs_match": true,
+  "unified_source_hashes": 366,
+  "unified_run_logs": 67,
+  "retained_snapshot_sha256": "2b2acaeeddbd3e9e66ff608968b85000924e24c535ebd0fd359b7bca1c2db020",
+  "retained_unified_receipt_sha256": "fdeb73dde83ee50cf86907af10dd5606f5920e4e64f412a06583b78596347070",
+  "original_non_documentation_files_unchanged": 255,
+  "manuscript_sha256": {
+    "main.tex": "a66f065eeb3e74ef29a8243f524cc1d4904f0f628e81dfaf5dd7c5e31a78f26e",
+    "main.pdf": "d39df0b94dd4ed0f05f3671b55fa965f923570fb8189bd53bdafaae5a5ba95f1"
+  },
+  "pinned_data_revision": "139dfc0aeb39fbc09d9352a3cbfcd603cb6612e2",
+  "documented_detached_worktree_test": "PASS: clean pinned revision and actual checker import",
+  "high_confidence_credential_scan": "No matching private-key or token patterns; not an exhaustive privacy guarantee",
+  "checks": [
+    {
+      "command": [
+        "sha256sum",
+        "-c",
+        "SNAPSHOT-SHA256.txt"
+      ],
+      "cwd": "lean",
+      "exit_code": 0,
+      "output": "All 468 snapshot checksums passed."
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "check_acceptance.py"
+      ],
+      "cwd": "lean",
+      "exit_code": 0,
+      "output": "PASS: 65 acceptance leaf fields mapped; 327 local file hashes match\nEvidence index only: external finite checks remain hypotheses, not kernel proof terms.\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_acceptance"
+      ],
+      "cwd": "lean",
+      "exit_code": 0,
+      "output": "test_changed_interface_weights_cannot_reuse_old_evidence (test_acceptance.AcceptanceCLI.test_changed_interface_weights_cannot_reuse_old_evidence) ... ok\ntest_changed_report_cannot_be_rebound (test_acceptance.AcceptanceCLI.test_changed_report_cannot_be_rebound) ... ok\ntest_missing_replay_cannot_be_recreated_by_write (test_acceptance.AcceptanceCLI.test_missing_replay_cannot_be_recreated_by_write) ... ok\ntest_negative_terminal_diagonal_cannot_reuse_old_evidence (test_acceptance.AcceptanceCLI.test_negative_terminal_diagonal_cannot_reuse_old_evidence) ... ok\ntest_unchanged_replay_can_refresh_and_verify (test_acceptance.AcceptanceCLI.test_unchanged_replay_can_refresh_and_verify) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 4.231s\n\nOK\n"
+    }
+  ],
+  "full_unified_replay_rerun_for_transfer": false,
+  "scope": "Publication portability/integrity checks on byte-identical accepted sources; mathematical acceptance is the retained 2026-11-11 run."
+}

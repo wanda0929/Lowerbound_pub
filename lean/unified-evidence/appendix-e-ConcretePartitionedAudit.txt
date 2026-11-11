@@ -1,0 +1,34 @@
+def CZExposure.ConcretePartitioned.Feasible : ExposurePartition → ℝ → ℕ → (ℕ → CellPoly) → Prop :=
+fun P U d W =>
+  ∀ j < P.J,
+    totalDegree (W j) ≤ 2 * d - 1 ∧
+      (∀ (ξ : ℝ), IsGInvariant fun x => evalCell ξ x (W j)) ∧
+        OccupationCone d (QuotientCertificate.embed (cpoly + cellOp (1 / (U * P.width j)) (W j))) ∧
+          (j + 1 < P.J →
+              GramCone (interfaceBasis d) (QuotientCertificate.embed (ofState (atXi 0 (W (j + 1)) - atXi 1 (W j))))) ∧
+            TerminalCone d (-terminalRestriction (W j))
+@of_stationary : ∀ {d : ℕ} {W : StatePoly},
+  ConcreteStationary.Feasible d W → ∀ (P : ExposurePartition) (U : ℝ), Feasible P U d fun x => (rename some) W
+'CZExposure.ConcretePartitioned.of_stationary' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Feasible.weak_duality : ∀ {P : ExposurePartition} {U : ℝ} {d : ℕ} {W : ℕ → CellPoly},
+  Feasible P U d W → ∀ (γ : Pulse), γ.exposure < U → evalCell 0 x0 (W 0) ≤ γ.exposure
+@Feasible.le_Cstar : ∀ {P : ExposurePartition} {U : ℝ} {d : ℕ} {W : ℕ → CellPoly},
+  Feasible P U d W → (∃ γ, γ.exposure < U) → ↑(evalCell 0 x0 (W 0)) ≤ Cstar
+'CZExposure.ConcretePartitioned.Feasible.weak_duality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ConcretePartitioned.Feasible.le_Cstar' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CZExposure.ConcretePartitioned.optimum : ExposurePartition → ℝ → ℕ → EReal :=
+fun P U d => ⨆ W, ⨆ (_ : Feasible P U d W), ↑(evalCell 0 x0 (W 0))
+fixed_partition_convergence : EuclideanDirectedArcSuperposition →
+  ∀ (P : ExposurePartition) (U : ℝ), (∃ γ, γ.exposure < U) → Filter.Tendsto (optimum P U) Filter.atTop (nhds Cstar)
+'CZExposure.ConcretePartitioned.fixed_partition_convergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Feasible.mono : ∀ {P : ExposurePartition} {U : ℝ} {d e : ℕ} {W : ℕ → CellPoly},
+  Feasible P U d W → d ≤ e → Feasible P U e W
+'CZExposure.ConcretePartitioned.optimum_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CZExposure.ConcretePartitioned.potentialOptimum : ExposurePartition → ℝ → ℕ → EReal :=
+fun P U d => ⨆ n, ⨆ V, ⨆ (_ : PotentialFeasible P U d n V), ↑(-n - evalCell 0 x0 (V 0))
+'CZExposure.ConcretePartitioned.potentialOptimum_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+CZExposure.ConcretePartitioned.feasible_shifted_iff (P : ExposurePartition) (U : ℝ) (d : ℕ) (n : ℝ) (V : ℕ → CellPoly) :
+  (Feasible P U d fun j => shifted n (V j)) ↔ PotentialFeasible P U d n V
+'CZExposure.ConcretePartitioned.occupation_iff_with_scalar_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

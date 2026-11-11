@@ -1,0 +1,6 @@
+PASS CZExposure.ShortSegmentApproximation.segment_action_error: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ShortSegmentApproximation.realization_mass_le: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ShortSegmentApproximation.realization_action_error: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ShortSegmentApproximation.realization_action_error_of_mass: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ShortSegmentApproximation.realization_boundary: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ShortSegmentApproximation.exists_segment_sampling: [propext, Quot.sound, Classical.choice]

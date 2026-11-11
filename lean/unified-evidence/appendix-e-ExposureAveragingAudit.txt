@@ -1,0 +1,41 @@
+CZExposure.vfControlCLM_apply : ∀ (x : CZExposure.State) (u : ℂ), (CZExposure.vfControlCLM x) u = CZExposure.vf x u
+CZExposure.BfieldControlCLM_apply : ∀ (y : Fin 11 → ℝ) (u : ℂ),
+  (CZExposure.BfieldControlCLM y) u = CZExposure.Bfield y u
+CZExposure.integral_Bfield : ∀ (y : Fin 11 → ℝ) {μ : MeasureTheory.Measure ℂ},
+  MeasureTheory.Integrable (fun u => u) μ → ∫ (u : ℂ), CZExposure.Bfield y u ∂μ = CZExposure.Bfield y (∫ (u : ℂ), u ∂μ)
+@CZExposure.norm_mean_control_le_one : ∀ {μ : MeasureTheory.Measure ℂ} [MeasureTheory.IsProbabilityMeasure μ],
+  (∀ᵐ (u : ℂ) ∂μ, ‖u‖ ≤ 1) → ‖∫ (u : ℂ), u ∂μ‖ ≤ 1
+CZExposure.integral_balance_Bfield : ∀ (y : Fin 11 → ℝ) (ψ : (Fin 11 → ℝ) → ℝ) {μ : MeasureTheory.Measure ℂ},
+  MeasureTheory.Integrable (fun u => u) μ →
+    ∫ (u : ℂ), (fderiv ℝ ψ y) (CZExposure.Bfield y u) ∂μ = (fderiv ℝ ψ y) (CZExposure.Bfield y (∫ (u : ℂ), u ∂μ))
+@CZExposure.exposure_condKernel_disk_support : ∀ {ν : MeasureTheory.Measure CZExposure.ExposureAmbient}
+  [inst : MeasureTheory.IsFiniteMeasure ν],
+  CZExposure.IsExposureRecord ν → ∀ᵐ (y : Fin 11 → ℝ) ∂ν.fst, ∀ᵐ (u : ℂ) ∂ν.condKernel y, ‖u‖ ≤ 1
+CZExposure.measurable_exposureAdmissibleControl : ∀ (ν : MeasureTheory.Measure CZExposure.ExposureAmbient)
+  [inst : MeasureTheory.IsFiniteMeasure ν], Measurable (CZExposure.exposureAdmissibleControl ν)
+@CZExposure.exposureAdmissibleControl_eq_mean_ae : ∀ {ν : MeasureTheory.Measure CZExposure.ExposureAmbient}
+  [inst : MeasureTheory.IsFiniteMeasure ν],
+  CZExposure.IsExposureRecord ν → CZExposure.exposureAdmissibleControl ν =ᵐ[ν.fst] CZExposure.exposureMeanControl ν
+CZExposure.exists_averaged_exposure_flow : ∀ (ν : MeasureTheory.Measure CZExposure.ExposureAmbient),
+  CZExposure.IsExposureRecord ν →
+    ∃ ubar,
+      Measurable ubar ∧
+        (∀ (y : Fin 11 → ℝ), ‖ubar y‖ ≤ 1) ∧
+          ν.fst CZExposure.Ysetᶜ = 0 ∧
+            MeasureTheory.Integrable (fun y => CZExposure.Bfield y (ubar y)) ν.fst ∧
+              (∀ (ψ : (Fin 11 → ℝ) → ℝ),
+                  ContDiff ℝ (↑⊤) ψ →
+                    HasCompactSupport ψ →
+                      MeasureTheory.Integrable (fun y => (fderiv ℝ ψ y) (CZExposure.Bfield y (ubar y))) ν.fst ∧
+                        ∫ (y : Fin 11 → ℝ), (fderiv ℝ ψ y) (CZExposure.Bfield y (ubar y)) ∂ν.fst =
+                          ψ CZExposure.yPi - ψ CZExposure.y0) ∧
+                ν.fst Set.univ = ν Set.univ
+'CZExposure.vfControlCLM_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.BfieldControlCLM_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.integral_Bfield' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_mean_control_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.integral_balance_Bfield' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exposure_condKernel_disk_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.measurable_exposureAdmissibleControl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exposureAdmissibleControl_eq_mean_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exists_averaged_exposure_flow' depends on axioms: [propext, Classical.choice, Quot.sound]

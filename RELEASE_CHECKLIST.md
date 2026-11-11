@@ -1,5 +1,11 @@
 # Before public release
 
+**Status checked 2026-11-11:** the repository is already public. The Lean
+publication update does not change its visibility. The private-release
+milestones below record the original 2026-10-15 packaging state; they are not
+a statement that the current repository is private. The accepted Lean scope
+and reproducible commands are now documented in `LEAN_VERIFICATION.md`.
+
 - Completed 2026-10-15: the owner created `wanda0929/Lowerbound_pub` as a
   private, empty repository after the integration's create operation was denied.
 - Completed 2026-10-15: uploaded `publication`, now the default branch, and
@@ -23,5 +29,6 @@
 - Before changing visibility, rerun the root manifest and the reproduction
   commands, and inspect the final committed tree for private material.
 
-The owner explicitly deferred public release until publication. Keep this
-repository private; changing visibility still requires separate authorization.
+At the original packaging date, the owner explicitly deferred public release
+until publication. Any further visibility change still requires separate
+authorization; this Lean publication update makes no such change.

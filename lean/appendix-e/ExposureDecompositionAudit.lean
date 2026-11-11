@@ -1,0 +1,31 @@
+import RequestProject.AppendixE.ExposureDecomposition
+
+open CZExposure
+
+#check @LocalizedMeasureDecomposition.eq_bind
+#check @LocalizedMeasureDecomposition.measurable_component_lintegral
+#check @LocalizedMeasureDecomposition.lintegral_components
+#check @LocalizedMeasureDecomposition.ae_components
+#check @ExposureMeasureDecomposition.isProbabilityMeasure_ensemble
+#check @ExposureMeasureDecomposition.ae_endpoints
+#check @ExposureMeasureDecomposition.measurable_componentTime
+#check @ExposureMeasureDecomposition.average_componentTime
+#check @ExposureMeasureDecomposition.average_componentTime_le
+#check @ExposureMeasureDecomposition.ae_componentTime_lt_top
+#check @ExposureMeasureDecomposition.ae_component_domain
+#check @ExposureMeasureDecomposition.ae_component_velocity_ne_zero
+#check @ExposureMeasureDecomposition.exists_component_le_exposure_mass
+
+#print axioms LocalizedMeasureDecomposition.eq_bind
+#print axioms LocalizedMeasureDecomposition.measurable_component_lintegral
+#print axioms LocalizedMeasureDecomposition.lintegral_components
+#print axioms LocalizedMeasureDecomposition.ae_components
+#print axioms ExposureMeasureDecomposition.isProbabilityMeasure_ensemble
+#print axioms ExposureMeasureDecomposition.ae_endpoints
+#print axioms ExposureMeasureDecomposition.measurable_componentTime
+#print axioms ExposureMeasureDecomposition.average_componentTime
+#print axioms ExposureMeasureDecomposition.average_componentTime_le
+#print axioms ExposureMeasureDecomposition.ae_componentTime_lt_top
+#print axioms ExposureMeasureDecomposition.ae_component_domain
+#print axioms ExposureMeasureDecomposition.ae_component_velocity_ne_zero
+#print axioms ExposureMeasureDecomposition.exists_component_le_exposure_mass

@@ -19,9 +19,13 @@ repositories. "Retained report" does not mean a fresh audit was executed here.
 | Occupation schematic | `figures/fig_occupation.tex`, `.pdf` | Diagram source and manuscript asset retained |
 | Symmetry schematic | `figures/fig_symmetry.tex`, `.pdf` | Diagram source and manuscript asset retained; block dimensions checked against solver outputs |
 | Pulse figure | `proof/scripts/make_fig_pulse.py`, `publication.mplstyle`, archived pulse, `figures/fig_pulse.pdf`, `.png` | Original plotting path and assets retained |
-| No-go theorems, active-time reduction, nonlocal-phase identity | `main.tex` analytical arguments | No external numerical artifact required |
+| No-go theorems, active-time reduction, nonlocal-phase identity | `main.tex`; `lean/LowerBoundCZ/NoGo.lean`, `lean/LowerBoundCZ/AppendixD.lean`, active-time modules in `lean/appendix-e/` | Lean sources and dependency audits included; exact accepted entries and hypotheses in `LEAN_VERIFICATION.md` |
+| Main-bound Lean reasoning and finite-certificate connection | `lean/LowerBoundCZ/FixedArchive.lean`, `lean/Acceptance.md`, `lean/acceptance-manifest.json` | Conditional main-bound theorem plus explicit external evidence for 65 finite fields; no unconditional kernel instance of all numerical checks claimed |
+| Appendix B integral bound and limiting connection | `lean/LowerBoundCZ/AppendixB.lean`, `lean/AppendixBDAudit.lean` | Physical-pulse bound, fiber integrability and truncation convergence proved; decimal evaluation remains separate |
+| Appendix E completeness and convergence | `lean/appendix-e/RequestProject/AppendixE/ConditionalAcceptance.lean`, matching audit and external justification | Conditional Lean proofs with explicit `EuclideanCurrentSuperposition`; not a claim that this external input has been proved in Lean |
 | Discussion percentage and noise-threshold comparisons | Main bound endpoints and retained pulse/scan values | Derived arithmetic, not additional experiments |
 
 Excluded: development histories, review ledgers, private agent configuration,
-stale gap plots using the old 2.930 headline, unrelated finite-blockade and
-local-addressing searches, and the optional older conditional Lean window.
+stale gap plots using the old 2.930 headline, and unrelated finite-blockade and
+local-addressing searches. The complete accepted Lean snapshot is now included;
+its legacy declarations are distinguished from the accepted final entries.

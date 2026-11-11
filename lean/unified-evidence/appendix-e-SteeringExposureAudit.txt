@@ -1,0 +1,122 @@
+@uIcc_subset_uIcc_of_mem : ∀ {D a b : ℝ}, a ∈ Icc 0 D → b ∈ Icc 0 D → uIcc a b ⊆ uIcc 0 D
+@mem_Icc_of_mem_uIoc : ∀ {D s t : ℝ}, s ∈ Icc 0 D → t ∈ uIoc 0 s → t ∈ Icc 0 D
+@mem_Icc_sub : ∀ {D s : ℝ}, s ∈ Icc 0 D → D - s ∈ Icc 0 D
+PhysicalSegment.vf_neg_control : ∀ (x : State) (u : ℂ), vf x (-u) = -vf x u
+'CZExposure.uIcc_subset_uIcc_of_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.mem_Icc_of_mem_uIoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.mem_Icc_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.vf_neg_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment : Type
+PhysicalSegment.mk : (duration : ℝ) →
+  0 ≤ duration →
+    (path : ℝ → State) →
+      (control : ℝ → ℂ) →
+        Measurable control →
+          (∀ s ∈ Icc 0 duration, ‖control s‖ ≤ 1) →
+            (∀ s ∈ Icc 0 duration, path s ∈ Xset) →
+              IntervalIntegrable (fun s => vf (path s) (control s)) volume 0 duration →
+                (∀ s ∈ Icc 0 duration, path s = path 0 + ∫ (r : ℝ) in 0..s, vf (path r) (control r)) → PhysicalSegment
+PhysicalSegment.exposure : PhysicalSegment → ℝ
+PhysicalSegment.velocity_integrable_subinterval : ∀ (P : PhysicalSegment) {a b : ℝ},
+  a ∈ Icc 0 P.duration → b ∈ Icc 0 P.duration → IntervalIntegrable (fun s => vf (P.path s) (P.control s)) volume a b
+PhysicalSegment.integral_velocity : ∀ (P : PhysicalSegment) {a b : ℝ},
+  a ∈ Icc 0 P.duration → b ∈ Icc 0 P.duration → ∫ (s : ℝ) in a..b, vf (P.path s) (P.control s) = P.path b - P.path a
+PhysicalSegment.path_lipschitzOn : ∀ (P : PhysicalSegment), LipschitzOnWith 1 P.path (Icc 0 P.duration)
+PhysicalSegment.continuousOn_path : ∀ (P : PhysicalSegment), ContinuousOn P.path (Icc 0 P.duration)
+PhysicalSegment.cost_intervalIntegrable : ∀ (P : PhysicalSegment),
+  IntervalIntegrable (fun s => cost (P.path s)) volume 0 P.duration
+PhysicalSegment.exposure_nonneg : ∀ (P : PhysicalSegment), 0 ≤ P.exposure
+'CZExposure.PhysicalSegment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.velocity_integrable_subinterval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.integral_velocity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.path_lipschitzOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.continuousOn_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.cost_intervalIntegrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.exposure_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.zero : (x : State) → x ∈ Xset → PhysicalSegment
+PhysicalSegment.zero_exposure : ∀ (x : State) (hx : x ∈ Xset), (PhysicalSegment.zero x hx).exposure = 0
+PhysicalSegment.ofPositiveExposureSegment : PositiveExposureSegment → PhysicalSegment
+PhysicalSegment.ofPositiveExposureSegment_exposure : ∀ (S : PositiveExposureSegment),
+  (PhysicalSegment.ofPositiveExposureSegment S).exposure = S.b - S.a
+PhysicalSegment.ofPositiveExposureSegment_endpoints : ∀ (S : PositiveExposureSegment),
+  (PhysicalSegment.ofPositiveExposureSegment S).path 0 = S.liftedState S.a ∧
+    (PhysicalSegment.ofPositiveExposureSegment S).path S.duration = S.liftedState S.b
+PhysicalSegment.reverse : PhysicalSegment → PhysicalSegment
+PhysicalSegment.reverse_duration : ∀ (P : PhysicalSegment), P.reverse.duration = P.duration
+PhysicalSegment.reverse_path : ∀ (P : PhysicalSegment) (s : ℝ), P.reverse.path s = P.path (P.duration - s)
+PhysicalSegment.reverse_control : ∀ (P : PhysicalSegment) (s : ℝ), P.reverse.control s = -P.control (P.duration - s)
+PhysicalSegment.reverse_endpoints : ∀ (P : PhysicalSegment),
+  P.reverse.path 0 = P.path P.duration ∧ P.reverse.path P.duration = P.path 0
+PhysicalSegment.reverse_exposure : ∀ (P : PhysicalSegment), P.reverse.exposure = P.exposure
+'CZExposure.PhysicalSegment.zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.zero_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.ofPositiveExposureSegment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.ofPositiveExposureSegment_exposure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PhysicalSegment.ofPositiveExposureSegment_endpoints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PhysicalSegment.reverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.reverse_duration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.reverse_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.reverse_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.reverse_endpoints' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.reverse_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.rephase : PhysicalSegment → (a b : ℂ) → ‖a‖ = 1 → ‖b‖ = 1 → PhysicalSegment
+PhysicalSegment.rephase_duration : ∀ (P : PhysicalSegment) (a b : ℂ) (ha : ‖a‖ = 1) (hb : ‖b‖ = 1),
+  (P.rephase a b ha hb).duration = P.duration
+PhysicalSegment.rephase_path : ∀ (P : PhysicalSegment) (a b : ℂ) (ha : ‖a‖ = 1) (hb : ‖b‖ = 1) (s : ℝ),
+  (P.rephase a b ha hb).path s = sectorPhase a b (P.path s)
+PhysicalSegment.rephase_control : ∀ (P : PhysicalSegment) (a b : ℂ) (ha : ‖a‖ = 1) (hb : ‖b‖ = 1),
+  (P.rephase a b ha hb).control = P.control
+PhysicalSegment.rephase_exposure : ∀ (P : PhysicalSegment) (a b : ℂ) (ha : ‖a‖ = 1) (hb : ‖b‖ = 1),
+  (P.rephase a b ha hb).exposure = P.exposure
+PhysicalSegment.toPulse : (P : PhysicalSegment) →
+  (∀ s ∈ Icc 0 P.duration, ‖P.control s‖ = 1) → P.path 0 = x0 → P.path P.duration ∈ XCZ → Pulse
+PhysicalSegment.toPulse_exposure : ∀ (P : PhysicalSegment) (hunit : ∀ s ∈ Icc 0 P.duration, ‖P.control s‖ = 1)
+  (hstart : P.path 0 = x0) (hend : P.path P.duration ∈ XCZ), (P.toPulse hunit hstart hend).exposure = P.exposure
+'CZExposure.PhysicalSegment.rephase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.rephase_duration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.rephase_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.rephase_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.rephase_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.toPulse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.toPulse_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+@norm_fC_rydberg1_le : ∀ {x : State}, x ∈ Xset → ∀ {u : ℂ}, ‖u‖ ≤ 1 → ‖fC x u 1‖ ≤ 1 / 2
+@norm_fC_rydberg2_le : ∀ {x : State}, x ∈ Xset → ∀ {u : ℂ}, ‖u‖ ≤ 1 → ‖fC x u 3‖ ≤ √2 / 2
+PhysicalSegment.rydberg_integralEquations : ∀ (P : PhysicalSegment) {s : ℝ},
+  s ∈ Icc 0 P.duration →
+    r1 (P.path s) = r1 (P.path 0) + ∫ (t : ℝ) in 0..s, fC (P.path t) (P.control t) 1 ∧
+      r2 (P.path s) = r2 (P.path 0) + ∫ (t : ℝ) in 0..s, fC (P.path t) (P.control t) 3
+PhysicalSegment.norm_r1_le_time : ∀ (P : PhysicalSegment),
+  P.path 0 ∈ Fface → ∀ {s : ℝ}, s ∈ Icc 0 P.duration → ‖r1 (P.path s)‖ ≤ s / 2
+PhysicalSegment.norm_r2_le_time : ∀ (P : PhysicalSegment),
+  P.path 0 ∈ Fface → ∀ {s : ℝ}, s ∈ Icc 0 P.duration → ‖r2 (P.path s)‖ ≤ √2 * s / 2
+PhysicalSegment.cost_le_time_sq_div_four : ∀ (P : PhysicalSegment),
+  P.path 0 ∈ Fface → ∀ {s : ℝ}, s ∈ Icc 0 P.duration → cost (P.path s) ≤ s ^ 2 / 4
+PhysicalSegment.cumulative_exposure_le_cube_div_twelve : ∀ (P : PhysicalSegment),
+  P.path 0 ∈ Fface → ∀ {s : ℝ}, s ∈ Icc 0 P.duration → ∫ (t : ℝ) in 0..s, cost (P.path t) ≤ s ^ 3 / 12
+PhysicalSegment.exposure_le_cube_div_twelve : ∀ (P : PhysicalSegment),
+  P.path 0 ∈ Fface → P.exposure ≤ P.duration ^ 3 / 12
+PhysicalSegment.cost_le_remaining_time_sq_div_four : ∀ (P : PhysicalSegment),
+  P.path P.duration ∈ Fface → ∀ {s : ℝ}, s ∈ Icc 0 P.duration → cost (P.path s) ≤ (P.duration - s) ^ 2 / 4
+PhysicalSegment.exposure_le_cube_div_twelve_of_end : ∀ (P : PhysicalSegment),
+  P.path P.duration ∈ Fface → P.exposure ≤ P.duration ^ 3 / 12
+'CZExposure.norm_fC_rydberg1_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_fC_rydberg2_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.rydberg_integralEquations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.norm_r1_le_time' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.norm_r2_le_time' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.cost_le_time_sq_div_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.cumulative_exposure_le_cube_div_twelve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PhysicalSegment.exposure_le_cube_div_twelve' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PhysicalSegment.cost_le_remaining_time_sq_div_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PhysicalSegment.exposure_le_cube_div_twelve_of_end' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

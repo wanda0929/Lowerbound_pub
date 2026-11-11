@@ -1,0 +1,165 @@
+IsCutoffExcursion : (ℝ → ℝ) → ℝ → ℝ → ℝ × ℝ → Prop
+retainedExcursionSet : (ℝ → ℝ) → ℝ → ℝ → ℝ → Set (ℝ × ℝ)
+@IsCutoffExcursion.cost_ge : ∀ {c : ℝ → ℝ} {T α : ℝ} {I : ℝ × ℝ},
+  IsCutoffExcursion c T α I → ∀ {t : ℝ}, t ∈ Set.Icc I.1 I.2 → α ≤ c t
+@IsCutoffExcursion.eq_of_overlap : ∀ {c : ℝ → ℝ} {T α : ℝ} {I J : ℝ × ℝ},
+  IsCutoffExcursion c T α I → IsCutoffExcursion c T α J → ∀ {t : ℝ}, t ∈ Set.Ioo I.1 I.2 → t ∈ Set.Ioo J.1 J.2 → I = J
+@IsCutoffExcursion.right_le_left_of_left_lt : ∀ {c : ℝ → ℝ} {T α : ℝ} {I J : ℝ × ℝ},
+  IsCutoffExcursion c T α I → IsCutoffExcursion c T α J → I.1 < J.1 → I.2 ≤ J.1
+@exists_cutoff_excursion_through : ∀ {c : ℝ → ℝ} {T α t : ℝ},
+  Continuous c → c 0 ≤ α → c T ≤ α → t ∈ Set.Icc 0 T → α < c t → ∃ I, IsCutoffExcursion c T α I ∧ t ∈ Set.Ioo I.1 I.2
+retainedExcursionSet_pairwiseDisjoint : ∀ (c : ℝ → ℝ) (T α β : ℝ),
+  (retainedExcursionSet c T α β).PairwiseDisjoint fun I => Set.Ioo I.1 I.2
+@exists_retainedExcursion_containing : ∀ {c : ℝ → ℝ} {T α β t : ℝ},
+  Continuous c →
+    c 0 ≤ α → c T ≤ α → α < β → t ∈ Set.Icc 0 T → β ≤ c t → ∃ I ∈ retainedExcursionSet c T α β, t ∈ Set.Ioo I.1 I.2
+@cost_lt_threshold_outside_retained : ∀ {c : ℝ → ℝ} {T α β t : ℝ},
+  Continuous c →
+    c 0 ≤ α → c T ≤ α → α < β → t ∈ Set.Icc 0 T → (∀ I ∈ retainedExcursionSet c T α β, t ∉ Set.Ioo I.1 I.2) → c t < β
+@retainedExcursionSet_finite : ∀ {c : ℝ → ℝ} {T α β : ℝ},
+  0 ≤ T →
+    LipschitzOnWith (3 / 2) (fun t => costThreeHalves (c t)) (Set.Icc 0 T) →
+      0 ≤ α → α < β → (retainedExcursionSet c T α β).Finite
+FiniteExcursionSelection : ℝ → ℝ → ℝ → (ℝ → ExposureEuclidean) → (ℝ → ℂ) → Type
+@FiniteExcursionSelection.mk : {T α β : ℝ} →
+  {y : ℝ → ExposureEuclidean} →
+    {u : ℝ → ℂ} →
+      (count : ℕ) →
+        (segment : Fin count → PositiveExposureSegment) →
+          (∀ (i : Fin count), 0 ≤ (segment i).a ∧ (segment i).b ≤ T) →
+            (∀ (i : Fin count), (segment i).y = y) →
+              (∀ (i : Fin count), (segment i).u = u) →
+                (∀ (i : Fin count), (segment i).cutoff = α) →
+                  (∀ (i : Fin count),
+                      euclideanExposureCost (y (segment i).a) = α ∧ euclideanExposureCost (y (segment i).b) = α) →
+                    (∀ (i : Fin count), ∀ t ∈ Set.Ioo (segment i).a (segment i).b, α < euclideanExposureCost (y t)) →
+                      (∀ (i : Fin count), ∃ p ∈ Set.Ioo (segment i).a (segment i).b, β ≤ euclideanExposureCost (y p)) →
+                        (Pairwise fun i j =>
+                            Disjoint (Set.Ioo (segment i).a (segment i).b) (Set.Ioo (segment j).a (segment j).b)) →
+                          (∀ t ∈ Set.Icc 0 T,
+                              β ≤ euclideanExposureCost (y t) → ∃ i, t ∈ Set.Ioo (segment i).a (segment i).b) →
+                            FiniteExcursionSelection T α β y u
+@FiniteExcursionSelection.ofTrajectory : {T α β : ℝ} →
+  {y : ℝ → ExposureEuclidean} →
+    {u : ℝ → ℂ} →
+      {K : NNReal} →
+        0 ≤ T →
+          0 < α →
+            α < β →
+              LipschitzWith K y →
+                Measurable u →
+                  (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+                    (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+                      (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+                          HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+                        euclideanExposureCost (y 0) ≤ α →
+                          euclideanExposureCost (y T) ≤ α → FiniteExcursionSelection T α β y u
+@FiniteExcursionSelection.cost_lt_outside : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) {t : ℝ},
+  t ∈ Set.Icc 0 T → (∀ (i : Fin S.count), t ∉ Set.Ioo (S.segment i).a (S.segment i).b) → euclideanExposureCost (y t) < β
+@FiniteExcursionSelection.right_le_left_of_start_lt : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) {i j : Fin S.count},
+  (S.segment i).a < (S.segment j).a → (S.segment i).b ≤ (S.segment j).a
+@FiniteExcursionSelection.exposure_le : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u), 0 ≤ T → ∑ i, (S.segment i).physicalExposure ≤ T
+@FiniteExcursionSelection.duration_le : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u), 0 ≤ T → 0 < α → ∑ i, (S.segment i).duration ≤ T / α
+@FiniteExcursionSelection.count_bound : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u),
+  0 ≤ T →
+    0 ≤ α →
+      α < β →
+        LipschitzOnWith (3 / 2) (fun t => costThreeHalves (euclideanExposureCost (y t))) (Set.Icc 0 T) →
+          ↑S.count * (4 / 3 * (costThreeHalves β - costThreeHalves α)) ≤ T
+@FiniteExcursionSelection.physical_endpoints_cost : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) (i : Fin S.count),
+  cost ((S.segment i).physicalPath 0) = α ∧ cost ((S.segment i).physicalPath (S.segment i).duration) = α
+euclideanExposureCost_y0 : euclideanExposureCost (exposureEuclideanEquiv y0) = 0
+euclideanExposureCost_yPi : euclideanExposureCost (exposureEuclideanEquiv yPi) = 0
+@exists_finite_excursion_selection : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ} {K : NNReal},
+  0 ≤ T →
+    0 < α →
+      α < β →
+        LipschitzWith K y →
+          Measurable u →
+            (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+              (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+                (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+                    HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+                  y 0 = exposureEuclideanEquiv y0 →
+                    y T = exposureEuclideanEquiv yPi →
+                      ∃ S,
+                        ↑S.count * (4 / 3 * (costThreeHalves β - costThreeHalves α)) ≤ T ∧
+                          ∑ i, (S.segment i).physicalExposure ≤ T ∧ ∑ i, (S.segment i).duration ≤ T / α
+exists_finite_excursion_selections_of_record_of_superposition : EuclideanDirectedArcSuperposition →
+  ∀ (ν : MeasureTheory.Measure ExposureAmbient),
+    IsExposureRecord ν →
+      ∃ T,
+        0 < T ∧
+          ENNReal.ofReal T ≤ ν Set.univ ∧
+            ∃ y u,
+              Measurable u ∧
+                (∀ (t : ℝ), ‖u t‖ ≤ 1) ∧
+                  (∃ K, LipschitzWith K y) ∧
+                    y 0 = exposureEuclideanEquiv y0 ∧
+                      y T = exposureEuclideanEquiv yPi ∧
+                        (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) ∧
+                          (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+                              HasDerivAt y (euclideanBfield (y t) (u t)) t) ∧
+                            ∀ (α : ℝ),
+                              0 < α →
+                                ∀ (β : ℝ),
+                                  α < β →
+                                    ∃ S,
+                                      ↑S.count * (4 / 3 * (costThreeHalves β - costThreeHalves α)) ≤ T ∧
+                                        ENNReal.ofReal (∑ i, (S.segment i).physicalExposure) ≤ ν Set.univ ∧
+                                          ∑ i, (S.segment i).duration ≤ T / α
+exists_finite_excursion_selections_of_record : ∀ (ν : MeasureTheory.Measure ExposureAmbient),
+  IsExposureRecord ν →
+    ∃ T,
+      0 < T ∧
+        ENNReal.ofReal T ≤ ν Set.univ ∧
+          ∃ y u,
+            Measurable u ∧
+              (∀ (t : ℝ), ‖u t‖ ≤ 1) ∧
+                (∃ K, LipschitzWith K y) ∧
+                  y 0 = exposureEuclideanEquiv y0 ∧
+                    y T = exposureEuclideanEquiv yPi ∧
+                      (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) ∧
+                        (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+                            HasDerivAt y (euclideanBfield (y t) (u t)) t) ∧
+                          ∀ (α : ℝ),
+                            0 < α →
+                              ∀ (β : ℝ),
+                                α < β →
+                                  ∃ S,
+                                    ↑S.count * (4 / 3 * (costThreeHalves β - costThreeHalves α)) ≤ T ∧
+                                      ENNReal.ofReal (∑ i, (S.segment i).physicalExposure) ≤ ν Set.univ ∧
+                                        ∑ i, (S.segment i).duration ≤ T / α
+'CZExposure.IsCutoffExcursion.cost_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.IsCutoffExcursion.eq_of_overlap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.IsCutoffExcursion.right_le_left_of_left_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exists_cutoff_excursion_through' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.retainedExcursionSet_pairwiseDisjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exists_retainedExcursion_containing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.cost_lt_threshold_outside_retained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.retainedExcursionSet_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.ofTrajectory' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.cost_lt_outside' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.right_le_left_of_start_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.FiniteExcursionSelection.exposure_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.duration_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.count_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.physical_endpoints_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.euclideanExposureCost_y0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.euclideanExposureCost_yPi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exists_finite_excursion_selection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exists_finite_excursion_selections_of_record_of_superposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.exists_finite_excursion_selections_of_record' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ CZExposure.External.euclideanDirectedArcSuperposition]

@@ -1,0 +1,38 @@
+import RequestProject.AppendixE.ExposurePolarCurrent
+
+open CZExposure
+
+#check @withDensity_vectorMeasure_variation_eq_simpleFunc
+#check @withDensity_vectorMeasure_variation_eq
+#check @EuclideanExposureFlow.variation_eq_massBound
+#check @EuclideanExposureFlow.measurable_polarDirection
+#check @EuclideanExposureFlow.norm_smul_polarDirection
+#check @EuclideanExposureFlow.norm_polarDirection_of_ne_zero
+#check @EuclideanExposureFlow.ae_velocity_ne_zero_variation
+#check @EuclideanExposureFlow.ae_norm_polarDirection
+#check @EuclideanExposureFlow.integrable_polarDirection
+#check @EuclideanExposureFlow.vectorMeasure_eq_withDensity_polar
+#check @EuclideanExposureFlow.integrable_action_polar_iff
+#check @EuclideanExposureFlow.action_eq_integral_polar
+#check @EuclideanExposureFlow.polar_boundary_integrable
+#check @EuclideanExposureFlow.polar_boundary_eq
+#check @EuclideanExposureFlow.toNormalCurrentData
+#check @EuclideanExposureFlow.toNormalCurrentData_action
+#check @EuclideanNormalCurrentData.action
+
+#print axioms withDensity_vectorMeasure_variation_eq_simpleFunc
+#print axioms withDensity_vectorMeasure_variation_eq
+#print axioms EuclideanExposureFlow.variation_eq_massBound
+#print axioms EuclideanExposureFlow.measurable_polarDirection
+#print axioms EuclideanExposureFlow.norm_smul_polarDirection
+#print axioms EuclideanExposureFlow.norm_polarDirection_of_ne_zero
+#print axioms EuclideanExposureFlow.ae_velocity_ne_zero_variation
+#print axioms EuclideanExposureFlow.ae_norm_polarDirection
+#print axioms EuclideanExposureFlow.integrable_polarDirection
+#print axioms EuclideanExposureFlow.vectorMeasure_eq_withDensity_polar
+#print axioms EuclideanExposureFlow.integrable_action_polar_iff
+#print axioms EuclideanExposureFlow.action_eq_integral_polar
+#print axioms EuclideanExposureFlow.polar_boundary_integrable
+#print axioms EuclideanExposureFlow.polar_boundary_eq
+#print axioms EuclideanExposureFlow.toNormalCurrentData
+#print axioms EuclideanExposureFlow.toNormalCurrentData_action

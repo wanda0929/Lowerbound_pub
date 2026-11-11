@@ -1,0 +1,39 @@
+'CZExposure.PositiveResidualMatrix.freeze' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveResidualMatrix.eval_freeze' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveResidualMatrix.freeze_amplitudes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveResidualMatrix.freeze_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveResidualMatrix.freeze_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveResidualMatrix.eval_amplitudes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveResidualMatrix.eval_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveResidualMatrix.cost_pos_of_amplitudes_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveResidualMatrix.continuous_pt_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveResidualMatrix.continuous_realAmplitudes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveResidualMatrix.eval_corrected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveResidualMatrix.exists_positive_residual_matrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveResidualMatrix.exists_positive_matrix_candidate_below_Cstar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+exists_positive_residual_matrix : ∀ (P : ExposurePoly) (η α : ℝ),
+  0 < α →
+    (∀ x ∈ Xset,
+        ∀ (u : ℂ), ‖u‖ ≤ 1 → ∀ (ξ : ℝ), α * cost x ≤ (eval (pt ξ x u)) (cpoly + lieDeriv (strictPolynomial P η α))) →
+      ∃ A,
+        A.IsSymm ∧
+          amplitudes ⬝ᵥ A *ᵥ amplitudes = cpoly + lieDeriv (strictPolynomial P η α) ∧
+            (∀ x ∈ Xset, ∀ (u : ℂ), ‖u‖ ≤ 1 → ∀ (ξ : ℝ), (A.map ⇑(eval (pt ξ x u))).PosDef) ∧
+              ∀ (x : State) (u : ℂ) (ξ : ℝ), A.map ⇑(eval (pt ξ x u)) = A.map ⇑(eval (pt 0 x u))
+exists_positive_matrix_candidate_below_Cstar : EuclideanDirectedArcSuperposition →
+  ∀ (a : ℝ),
+    ↑a < Cstar →
+      ∃ W A,
+        (IsGInvariant fun x => (eval x) W) ∧
+          a < (eval x0) W ∧
+            (∀ x ∈ XCZ, (eval x) W = 0) ∧
+              A.IsSymm ∧
+                amplitudes ⬝ᵥ A *ᵥ amplitudes = cpoly + lieDeriv W ∧
+                  (∀ x ∈ Xset, ∀ (u : ℂ), ‖u‖ ≤ 1 → ∀ (ξ : ℝ), (A.map ⇑(eval (pt ξ x u))).PosDef) ∧
+                    ∀ (x : State) (u : ℂ) (ξ : ℝ), A.map ⇑(eval (pt ξ x u)) = A.map ⇑(eval (pt 0 x u))

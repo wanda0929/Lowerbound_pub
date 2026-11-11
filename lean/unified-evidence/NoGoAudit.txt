@@ -1,0 +1,5 @@
+'LowerBoundCZ.exists_chirp_loop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.exists_detuning_for_phase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.chirpExposure_eq_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.theorem_free' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.theorem_relax'' depends on axioms: [propext, Classical.choice, Quot.sound]

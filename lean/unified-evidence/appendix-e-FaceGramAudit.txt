@@ -1,0 +1,13 @@
+'CZExposure.FaceGram.stationary_face_matrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+@stationary_face_matrix : ∀ {d : ℕ} {W : StatePoly},
+  StationaryFeasible d W →
+    ∃ B,
+      B.PosSemidef ∧
+        (∀ (i j : ↥(basis d)), monomialCharge ⇑↑i ≠ monomialCharge ⇑↑j → B i j = 0) ∧
+          ∀ (ξ : ℝ),
+            ∀ x ∈ Xset,
+              ∀ (u : ℂ),
+                ‖u‖ = 1 →
+                  (value (fun i j => ↑(B i j)) fun i =>
+                      rephaser (decide (Odd (↑i 1 + ↑i 2))) * (eval (mixedPoint ξ x u)) (term (⇑↑i) 1)) =
+                    ↑((eval (pt ξ x u)) (cpoly + lieDeriv W))

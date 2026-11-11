@@ -1,12 +1,12 @@
 # Licensing and attribution
 
 The repository owner approved these terms for the collaborative work by
-Han WANG, exAClior, and contributors on 2026-10-15. The repository remains
-private until the owner separately authorizes public release at publication.
+Han WANG, exAClior, and contributors on 2026-10-15. The repository is public
+as checked on 2026-11-11; this update does not change its visibility or grants.
 
 ## Software: MIT
 
-Author-contributed Python, Rust, shell, configuration and build source, and
+Author-contributed Lean, Python, Rust, shell, configuration and build source, and
 repository/reproduction documentation are licensed under the MIT License in
 `LICENSE`. This includes that software inside the retained source/proof
 archives. Preserve existing copyright and license notices.
@@ -18,6 +18,8 @@ Attribution 4.0 International license, whose full legal text is in
 `LICENSE-DATA`. This covers numerical pulse arrays, landscape aggregates,
 serialized exact certificates, audit/solver outputs, computational logs and
 their scientific metadata, including such data inside retained archives.
+The serialized numerical payloads in generated Lean data modules are scientific
+data under this grant; proof/checker source is software under the grant above.
 
 When reusing those data, credit Han WANG, exAClior, and contributors; identify
 the repository and the revision or version used; link to

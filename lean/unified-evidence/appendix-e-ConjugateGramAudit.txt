@@ -1,0 +1,11 @@
+'CZExposure.ConjugateGram.stationary_compressed' depends on axioms: [propext, Classical.choice, Quot.sound]
+@stationary_compressed : ∀ {d : ℕ} {W : StatePoly},
+  StationaryFeasible d W →
+    ∃ Q,
+      (∀ (q : Charge), (Q q).PosSemidef) ∧
+        ∀ (ξ : ℝ),
+          ∀ x ∈ Xset,
+            ∀ (u : ℂ),
+              ‖u‖ = 1 →
+                (∑ q ∈ retained d, value ((Q q).map Complex.ofReal) fun a => column (↑a) ξ x u) =
+                  ↑((eval (pt ξ x u)) (cpoly + lieDeriv W))

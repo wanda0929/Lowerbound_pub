@@ -1,0 +1,177 @@
+@ControlGeometry.stepFourFields : {n : ℕ} →
+  ((Fin n → ℝ) → Fin n → ℝ) → ((Fin n → ℝ) → Fin n → ℝ) → Fin 6 → (Fin n → ℝ) → Fin n → ℝ
+'CZExposure.ControlGeometry.stepFourFields' depends on axioms: [propext, Classical.choice, Quot.sound]
+structure CZExposure.ControlGeometry.RegularStepFourSystem (n m : ℕ) : Type
+number of parameters: 2
+fields:
+  CZExposure.ControlGeometry.RegularStepFourSystem.constraint : (Fin n → ℝ) → Fin m → ℝ
+  CZExposure.ControlGeometry.RegularStepFourSystem.level : Fin m → ℝ
+  CZExposure.ControlGeometry.RegularStepFourSystem.fieldX : (Fin n → ℝ) → Fin n → ℝ
+  CZExposure.ControlGeometry.RegularStepFourSystem.fieldY : (Fin n → ℝ) → Fin n → ℝ
+  CZExposure.ControlGeometry.RegularStepFourSystem.constraint_smooth : ContDiff ℝ ⊤ self.constraint
+  CZExposure.ControlGeometry.RegularStepFourSystem.fieldX_smooth : ContDiff ℝ ⊤ self.fieldX
+  CZExposure.ControlGeometry.RegularStepFourSystem.fieldY_smooth : ContDiff ℝ ⊤ self.fieldY
+  CZExposure.ControlGeometry.RegularStepFourSystem.compact : IsCompact {x | self.constraint x = self.level}
+  CZExposure.ControlGeometry.RegularStepFourSystem.regular : ∀ (x : Fin n → ℝ),
+      self.constraint x = self.level → Function.Surjective ⇑(fderiv ℝ self.constraint x)
+  CZExposure.ControlGeometry.RegularStepFourSystem.tangentX : ∀ (x : Fin n → ℝ),
+      self.constraint x = self.level → (fderiv ℝ self.constraint x) (self.fieldX x) = 0
+  CZExposure.ControlGeometry.RegularStepFourSystem.tangentY : ∀ (x : Fin n → ℝ),
+      self.constraint x = self.level → (fderiv ℝ self.constraint x) (self.fieldY x) = 0
+  CZExposure.ControlGeometry.RegularStepFourSystem.independent : ∀ (x : Fin n → ℝ),
+      self.constraint x = self.level →
+        LinearIndependent ℝ fun i => ControlGeometry.stepFourFields self.fieldX self.fieldY i x
+  CZExposure.ControlGeometry.RegularStepFourSystem.spanning : ∀ (x : Fin n → ℝ),
+      self.constraint x = self.level →
+        Submodule.span ℝ (Set.range fun i => ControlGeometry.stepFourFields self.fieldX self.fieldY i x) =
+          (↑(fderiv ℝ self.constraint x)).ker
+constructor:
+  CZExposure.ControlGeometry.RegularStepFourSystem.mk {n m : ℕ} (constraint : (Fin n → ℝ) → Fin m → ℝ)
+    (level : Fin m → ℝ) (fieldX fieldY : (Fin n → ℝ) → Fin n → ℝ) (constraint_smooth : ContDiff ℝ ⊤ constraint)
+    (fieldX_smooth : ContDiff ℝ ⊤ fieldX) (fieldY_smooth : ContDiff ℝ ⊤ fieldY)
+    (compact : IsCompact {x | constraint x = level})
+    (regular : ∀ (x : Fin n → ℝ), constraint x = level → Function.Surjective ⇑(fderiv ℝ constraint x))
+    (tangentX : ∀ (x : Fin n → ℝ), constraint x = level → (fderiv ℝ constraint x) (fieldX x) = 0)
+    (tangentY : ∀ (x : Fin n → ℝ), constraint x = level → (fderiv ℝ constraint x) (fieldY x) = 0)
+    (independent :
+      ∀ (x : Fin n → ℝ),
+        constraint x = level → LinearIndependent ℝ fun i => ControlGeometry.stepFourFields fieldX fieldY i x)
+    (spanning :
+      ∀ (x : Fin n → ℝ),
+        constraint x = level →
+          Submodule.span ℝ (Set.range fun i => ControlGeometry.stepFourFields fieldX fieldY i x) =
+            (↑(fderiv ℝ constraint x)).ker) :
+    ControlGeometry.RegularStepFourSystem n m
+ControlGeometry.RegularStepFourSystem : ℕ → ℕ → Type
+'CZExposure.ControlGeometry.RegularStepFourSystem' depends on axioms: [propext, Classical.choice, Quot.sound]
+structure CZExposure.ControlGeometry.QuadratureSegment {n m : ℕ} (S : ControlGeometry.RegularStepFourSystem n m) : Type
+number of parameters: 3
+fields:
+  CZExposure.ControlGeometry.QuadratureSegment.duration : ℝ
+  CZExposure.ControlGeometry.QuadratureSegment.duration_nonneg : 0 ≤ self.duration
+  CZExposure.ControlGeometry.QuadratureSegment.path : ℝ → Fin n → ℝ
+  CZExposure.ControlGeometry.QuadratureSegment.controlX : ℝ → ℝ
+  CZExposure.ControlGeometry.QuadratureSegment.controlY : ℝ → ℝ
+  CZExposure.ControlGeometry.QuadratureSegment.controlX_measurable : Measurable self.controlX
+  CZExposure.ControlGeometry.QuadratureSegment.controlY_measurable : Measurable self.controlY
+  CZExposure.ControlGeometry.QuadratureSegment.control_bound : ∀ t ∈ Set.Icc 0 self.duration,
+      self.controlX t ^ 2 + self.controlY t ^ 2 ≤ 1
+  CZExposure.ControlGeometry.QuadratureSegment.path_mem : ∀ t ∈ Set.Icc 0 self.duration,
+      S.constraint (self.path t) = S.level
+  CZExposure.ControlGeometry.QuadratureSegment.velocity_integrable : IntervalIntegrable
+      (fun t => self.controlX t • S.fieldX (self.path t) + self.controlY t • S.fieldY (self.path t))
+      MeasureTheory.volume 0 self.duration
+  CZExposure.ControlGeometry.QuadratureSegment.integralEquation : ∀ s ∈ Set.Icc 0 self.duration,
+      self.path s =
+        self.path 0 +
+          ∫ (t : ℝ) in 0..s, self.controlX t • S.fieldX (self.path t) + self.controlY t • S.fieldY (self.path t)
+constructor:
+  CZExposure.ControlGeometry.QuadratureSegment.mk {n m : ℕ} {S : ControlGeometry.RegularStepFourSystem n m}
+    (duration : ℝ) (duration_nonneg : 0 ≤ duration) (path : ℝ → Fin n → ℝ) (controlX controlY : ℝ → ℝ)
+    (controlX_measurable : Measurable controlX) (controlY_measurable : Measurable controlY)
+    (control_bound : ∀ t ∈ Set.Icc 0 duration, controlX t ^ 2 + controlY t ^ 2 ≤ 1)
+    (path_mem : ∀ t ∈ Set.Icc 0 duration, S.constraint (path t) = S.level)
+    (velocity_integrable :
+      IntervalIntegrable (fun t => controlX t • S.fieldX (path t) + controlY t • S.fieldY (path t)) MeasureTheory.volume
+        0 duration)
+    (integralEquation :
+      ∀ s ∈ Set.Icc 0 duration,
+        path s = path 0 + ∫ (t : ℝ) in 0..s, controlX t • S.fieldX (path t) + controlY t • S.fieldY (path t)) :
+    ControlGeometry.QuadratureSegment S
+@ControlGeometry.QuadratureSegment : {n m : ℕ} → ControlGeometry.RegularStepFourSystem n m → Type
+'CZExposure.ControlGeometry.QuadratureSegment' depends on axioms: [propext, Classical.choice, Quot.sound]
+structure CZExposure.ControlGeometry.BallBoxBound {n m : ℕ} (S : ControlGeometry.RegularStepFourSystem n m) : Type
+number of parameters: 3
+fields:
+  CZExposure.ControlGeometry.BallBoxBound.radius : ℝ
+  CZExposure.ControlGeometry.BallBoxBound.radius_pos : 0 < self.radius
+  CZExposure.ControlGeometry.BallBoxBound.K : ℝ
+  CZExposure.ControlGeometry.BallBoxBound.K_pos : 0 < self.K
+  CZExposure.ControlGeometry.BallBoxBound.connect : ∀ (x y : Fin n → ℝ) (w : ℝ → Fin n → ℝ) (L : ℝ),
+      0 ≤ L →
+        L ≤ self.radius →
+          ContDiffOn ℝ ⊤ w (Set.Icc 0 1) →
+            (∀ t ∈ Set.Icc 0 1, S.constraint (w t) = S.level) →
+              w 0 = x →
+                w 1 = y →
+                  eVariationOn w (Set.Icc 0 1) ≤ ENNReal.ofReal L →
+                    ∃ P, P.path 0 = x ∧ P.path P.duration = y ∧ P.duration ≤ self.K * L.rpow (1 / 4)
+constructor:
+  CZExposure.ControlGeometry.BallBoxBound.mk {n m : ℕ} {S : ControlGeometry.RegularStepFourSystem n m} (radius : ℝ)
+    (radius_pos : 0 < radius) (K : ℝ) (K_pos : 0 < K)
+    (connect :
+      ∀ (x y : Fin n → ℝ) (w : ℝ → Fin n → ℝ) (L : ℝ),
+        0 ≤ L →
+          L ≤ radius →
+            ContDiffOn ℝ ⊤ w (Set.Icc 0 1) →
+              (∀ t ∈ Set.Icc 0 1, S.constraint (w t) = S.level) →
+                w 0 = x →
+                  w 1 = y →
+                    eVariationOn w (Set.Icc 0 1) ≤ ENNReal.ofReal L →
+                      ∃ P, P.path 0 = x ∧ P.path P.duration = y ∧ P.duration ≤ K * L.rpow (1 / 4)) :
+    ControlGeometry.BallBoxBound S
+@ControlGeometry.BallBoxBound : {n m : ℕ} → ControlGeometry.RegularStepFourSystem n m → Type
+'CZExposure.ControlGeometry.BallBoxBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ControlGeometry.CompactRegularLevelBallBox' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CZExposure.ControlGeometry.CompactRegularLevelBallBox : Prop :=
+∀ {n m : ℕ} (S : ControlGeometry.RegularStepFourSystem n m), Nonempty (ControlGeometry.BallBoxBound S)
+StateGeometry.lipschitz_euclideanEquiv_symm : LipschitzWith 1 ⇑StateGeometry.euclideanEquiv.symm
+'CZExposure.StateGeometry.lipschitz_euclideanEquiv_symm' depends on axioms: [propext, Classical.choice, Quot.sound]
+@StateGeometry.GeometricPath.ambient_variation_le_length : ∀ {x y : State} (P : StateGeometry.GeometricPath x y),
+  eVariationOn P.path (Set.Icc 0 1) ≤ P.length
+'CZExposure.StateGeometry.GeometricPath.ambient_variation_le_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+BallBoxSteering.contDiff_normalization : ContDiff ℝ ⊤ ControlLie.normalization
+'CZExposure.BallBoxSteering.contDiff_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+@BallBoxSteering.normalization_fderiv_surjective : ∀ {x : State},
+  x ∈ Xset → Function.Surjective ⇑(fderiv ℝ ControlLie.normalization x)
+'CZExposure.BallBoxSteering.normalization_fderiv_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.normalization_ker : ∀ (x : State),
+  (↑(fderiv ℝ ControlLie.normalization x)).ker = ControlLie.tangentSpace x
+'CZExposure.BallBoxSteering.normalization_ker' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.stepFourFields_physical : ControlGeometry.stepFourFields ControlLie.driveX ControlLie.driveY =
+  ControlLie.bracketFields
+'CZExposure.BallBoxSteering.stepFourFields_physical' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.physicalSystem : ControlGeometry.RegularStepFourSystem 8 2
+'CZExposure.BallBoxSteering.physicalSystem' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.quadratureControl : ℝ → ℝ → ℂ
+'CZExposure.BallBoxSteering.quadratureControl' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.norm_quadratureControl_sq : ∀ (a b : ℝ), ‖BallBoxSteering.quadratureControl a b‖ ^ 2 = a ^ 2 + b ^ 2
+'CZExposure.BallBoxSteering.norm_quadratureControl_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.vf_quadrature : ∀ (x : State) (a b : ℝ),
+  vf x (BallBoxSteering.quadratureControl a b) = a • ControlLie.driveX x + b • ControlLie.driveY x
+'CZExposure.BallBoxSteering.vf_quadrature' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.toPhysicalSegment : ControlGeometry.QuadratureSegment BallBoxSteering.physicalSystem → PhysicalSegment
+'CZExposure.BallBoxSteering.toPhysicalSegment' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.toPhysicalSegment_duration : ∀ (P : ControlGeometry.QuadratureSegment BallBoxSteering.physicalSystem),
+  (BallBoxSteering.toPhysicalSegment P).duration = P.duration
+'CZExposure.BallBoxSteering.toPhysicalSegment_duration' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.toPhysicalSegment_path : ∀ (P : ControlGeometry.QuadratureSegment BallBoxSteering.physicalSystem),
+  (BallBoxSteering.toPhysicalSegment P).path = P.path
+'CZExposure.BallBoxSteering.toPhysicalSegment_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.localSteeringOfBound : ControlGeometry.BallBoxBound BallBoxSteering.physicalSystem → LocalSteering
+'CZExposure.BallBoxSteering.localSteeringOfBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.localSteeringOfBound_radius : ∀ (B : ControlGeometry.BallBoxBound BallBoxSteering.physicalSystem),
+  (BallBoxSteering.localSteeringOfBound B).radius = min (1 / 4) (B.radius / 16)
+'CZExposure.BallBoxSteering.localSteeringOfBound_radius' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.localSteeringOfBound_K : ∀ (B : ControlGeometry.BallBoxBound BallBoxSteering.physicalSystem),
+  (BallBoxSteering.localSteeringOfBound B).K = B.K * Real.rpow 16 (1 / 4)
+'CZExposure.BallBoxSteering.localSteeringOfBound_K' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.localSteeringOfBallBox : ControlGeometry.CompactRegularLevelBallBox → LocalSteering
+'CZExposure.BallBoxSteering.localSteeringOfBallBox' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.Cstar_le_pRelaxed_of_ballBox_of_superposition : ControlGeometry.CompactRegularLevelBallBox →
+  EuclideanDirectedArcSuperposition → Cstar ≤ pRelaxed
+'CZExposure.BallBoxSteering.Cstar_le_pRelaxed_of_ballBox_of_superposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+BallBoxSteering.pRelaxed_eq_Cstar_of_ballBox_of_superposition : ControlGeometry.CompactRegularLevelBallBox →
+  EuclideanDirectedArcSuperposition → pRelaxed = Cstar
+'CZExposure.BallBoxSteering.pRelaxed_eq_Cstar_of_ballBox_of_superposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+BallBoxSteering.pRelaxed_eq_Cstar_of_ballBox : ControlGeometry.CompactRegularLevelBallBox → pRelaxed = Cstar
+'CZExposure.BallBoxSteering.pRelaxed_eq_Cstar_of_ballBox' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ CZExposure.External.euclideanDirectedArcSuperposition]

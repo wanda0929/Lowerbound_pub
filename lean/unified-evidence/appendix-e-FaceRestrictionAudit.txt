@@ -1,0 +1,36 @@
+'CZExposure.FaceRestriction.character_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FaceRestriction.characters_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FaceRestriction.eq_zero_of_evaluate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FaceRestriction.phase_norm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FaceRestriction.faceState_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FaceRestriction.evaluate_mode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FaceRestriction.evaluate_realMode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FaceRestriction.evaluate_imagMode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FaceRestriction.evaluate_coordinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FaceRestriction.evaluate_restriction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FaceRestriction.restriction_zero_of_physical_vanishing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.FaceRestriction.stationary_factors_restriction_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.FaceRestriction.normIdeal_restriction_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FaceRestriction.mem_reduced_span_of_restriction_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.FaceRestriction.stationary_factor_mem_reduced_span' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@stationary_factors_restriction_zero : ∀ {W : StatePoly} {n : ℕ} {h : Fin n → Poly},
+  cpoly + lieDeriv W - ∑ l, h l ^ 2 ∈ normIdeal → ∀ (l : Fin n), restriction ((map Complex.ofRealHom) (h l)) = 0
+@stationary_factor_mem_reduced_span : ∀ {χ : Type u_1} {ι : Type u_2} [Fintype χ] [DecidableEq χ] [Fintype ι]
+  (keys : χ → Index),
+  Function.Injective keys →
+    ∀ (z : ι → ComplexPoly) (m : χ → ℕ → ComplexPoly) (n : χ → ℕ),
+      (∀ (i : ι), restriction (z i) = 0) →
+        (∀ (c : χ), ∀ i ≤ n c, restriction (m c i) = AddMonoidAlgebra.single (keys c) 1) →
+          ∀ {W : StatePoly} {N : ℕ} {h : Fin N → Poly},
+            cpoly + lieDeriv W - ∑ l, h l ^ 2 ∈ normIdeal →
+              ∀ (l : Fin N),
+                (map Complex.ofRealHom) (h l) ∈ Submodule.span ℂ (Set.range (ReducedBasis.originalColumn z m n)) →
+                  (map Complex.ofRealHom) (h l) ∈ Submodule.span ℂ (Set.range (ReducedBasis.reducedColumn z m n))

@@ -1,0 +1,21 @@
+'CZExposure.StationaryGram.residual_rotate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.StationaryGram.residual_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.StationaryGram.column_properties' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.StationaryGram.expansion_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.StationaryGram.factor_matrix_represents' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.StationaryGram.columnValues_rotate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.StationaryGram.columnValues_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.StationaryGram.stationary_matrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+@stationary_matrix : ∀ {d : ℕ} {W : StatePoly},
+  StationaryFeasible d W →
+    ∃ s B,
+      (∀ (i : ↥s), QuotientNormalForm.Normal ⇑↑i ∧ totalDegree (term (⇑↑i) 1) ≤ d) ∧
+        B.PosSemidef ∧
+          (∀ (i j : ↥s), monomialCharge ⇑↑i ≠ monomialCharge ⇑↑j → B i j = 0) ∧
+            ∀ (ξ : ℝ),
+              ∀ x ∈ Xset,
+                ∀ (u : ℂ),
+                  ‖u‖ = 1 →
+                    (value (fun i j => ↑(B i j)) fun i =>
+                        rephaser (decide (Odd (↑i 1 + ↑i 2))) * (eval (mixedPoint ξ x u)) (term (⇑↑i) 1)) =
+                      ↑((eval (pt ξ x u)) (cpoly + lieDeriv W))

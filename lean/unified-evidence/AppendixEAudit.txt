@@ -1,0 +1,28 @@
+'LowerBoundCZ.AppendixE.disk_infimum_eq_of_compression' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.physicalInfimum_le_of_patching' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.zero_gap_of_patching' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.ValueHierarchy.tendsto_of_finite_certificates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LowerBoundCZ.AppendixE.stationary_and_split_complete_of_common_certificates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LowerBoundCZ.AppendixE.physicalInfimum_stationary_and_split_complete_of_common_certificates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LowerBoundCZ.AppendixE.stationary_interface_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.augmentation_mulVec_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.quadratic_augmentation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.quadratic_augmentation_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.quadratic_add_smul_augmentation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.schur_quadratic_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.gram_contraction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.gram_contraction_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.gram_contraction_eval_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.gram_contraction_eval_zero_on_face' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.coupled_threshold_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.patching_error_tendsto_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.threshold_eventually_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LowerBoundCZ.AppendixE.physicalInfimum_le_of_threshold_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

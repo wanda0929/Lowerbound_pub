@@ -1,0 +1,54 @@
+EuclideanArc.lengthMeasure_univ : ∀ (γ : EuclideanArc), γ.lengthMeasure Set.univ = ENNReal.ofReal γ.length
+EuclideanArc.lengthMeasure_eq_map_speed : ∀ (γ : EuclideanArc),
+  γ.lengthMeasure = MeasureTheory.Measure.map γ.path (γ.parameterMeasure.withDensity fun s => ‖deriv γ.path s‖ₑ)
+EuclideanArc.lintegral_lengthMeasure : ∀ (γ : EuclideanArc) {w : ExposureEuclidean → ENNReal},
+  Measurable w → ∫⁻ (z : ExposureEuclidean), w z ∂γ.lengthMeasure = ∫⁻ (s : ℝ), w (γ.path s) ∂γ.parameterMeasure
+EuclideanArc.ae_path_of_ae_lengthMeasure : ∀ (γ : EuclideanArc) {P : ExposureEuclidean → Prop},
+  (∀ᵐ (z : ExposureEuclidean) ∂γ.lengthMeasure, P z) → ∀ᵐ (s : ℝ) ∂γ.parameterMeasure, P (γ.path s)
+EuclideanArc.mapsTo_of_ae_mem_closed : ∀ (γ : EuclideanArc) {K : Set ExposureEuclidean},
+  IsClosed K → (∀ᵐ (z : ExposureEuclidean) ∂γ.lengthMeasure, z ∈ K) → Set.MapsTo γ.path (Set.Icc 0 γ.length) K
+EuclideanArc.exposureTime_eq_lintegral : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  γ.exposureTime F = ∫⁻ (s : ℝ), F.exposureTimeWeight (γ.path s) ∂γ.parameterMeasure
+EuclideanArc.ae_velocity_ne_zero : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  γ.exposureTime F < ⊤ → ∀ᵐ (s : ℝ) ∂γ.parameterMeasure, F.velocity (γ.path s) ≠ 0
+EuclideanArc.inverseSpeed_eq_toReal : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow) (s : ℝ),
+  γ.inverseSpeed F s = (F.exposureTimeWeight (γ.path s)).toReal
+EuclideanArc.integrable_inverseSpeed : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  γ.exposureTime F < ⊤ → MeasureTheory.Integrable (γ.inverseSpeed F) γ.parameterMeasure
+EuclideanArc.integral_inverseSpeed : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  γ.exposureTime F < ⊤ → ∫ (s : ℝ), γ.inverseSpeed F s ∂γ.parameterMeasure = (γ.exposureTime F).toReal
+EuclideanArc.intervalIntegrable_inverseSpeed : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  γ.exposureTime F < ⊤ → IntervalIntegrable (γ.inverseSpeed F) MeasureTheory.volume 0 γ.length
+EuclideanArc.exposureClock_zero : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow), γ.exposureClock F 0 = 0
+EuclideanArc.exposureClock_terminal : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  γ.exposureTime F < ⊤ → γ.exposureClock F γ.length = (γ.exposureTime F).toReal
+EuclideanArc.absolutelyContinuous_exposureClock : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  γ.exposureTime F < ⊤ → AbsolutelyContinuousOnInterval (γ.exposureClock F) 0 γ.length
+@ExposureArcRealization.exists_arc_le_exposure_mass : ∀ {F : EuclideanExposureFlow} {A : Type u_1}
+  [inst : MeasurableSpace A] {D : ExposureMeasureDecomposition F A} (R : ExposureArcRealization D)
+  (Good : EuclideanArc → Prop),
+  (∀ᵐ (a : A) ∂D.ensemble, Good (R.arc a)) →
+    ∃ γ,
+      Good γ ∧
+        γ.path 0 = exposureEuclideanEquiv y0 ∧
+          γ.path γ.length = exposureEuclideanEquiv yPi ∧
+            Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain ∧
+              (∀ᵐ (s : ℝ) ∂γ.parameterMeasure, F.velocity (γ.path s) ≠ 0) ∧
+                γ.exposureTime F ≤ F.stateMeasure Set.univ ∧ γ.exposureTime F < ⊤
+'CZExposure.EuclideanArc.lengthMeasure_univ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.lengthMeasure_eq_map_speed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.lintegral_lengthMeasure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.ae_path_of_ae_lengthMeasure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.mapsTo_of_ae_mem_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.exposureTime_eq_lintegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.ae_velocity_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.inverseSpeed_eq_toReal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.integrable_inverseSpeed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.integral_inverseSpeed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.intervalIntegrable_inverseSpeed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.exposureClock_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.exposureClock_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.absolutelyContinuous_exposureClock' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ExposureArcRealization.exists_arc_le_exposure_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,25 @@
+def CZExposure.ConcreteStationary.Feasible : ℕ → StatePoly → Prop :=
+fun d W =>
+  totalDegree W ≤ 2 * d - 1 ∧
+    (IsGInvariant fun x => (eval x) W) ∧
+      ∃ Q T,
+        (∀ (q : ↥(ConjugateGram.retained d)), (Q q).PosSemidef) ∧
+          T.PosSemidef ∧
+            (QuotientCertificate.embed (cpoly + lieDeriv W) -
+                  ∑ q,
+                    QuotientCertificate.gram ((Q q).map Complex.ofReal) fun i =>
+                      C (SymmetryGram.rephaser (decide (Odd (↑i 1 + ↑i 2)))) * QuotientNormalForm.term (⇑↑i) 1) ∈
+                QuotientNormalForm.relations ∧
+              -terminalRestriction ((rename some) W) = ∑ i, ∑ j, monomialColumn d i * C (T i j) * monomialColumn d j
+@of_stationary : ∀ {d : ℕ} {W : StatePoly}, StationaryFeasible d W → Feasible d W
+'CZExposure.ConcreteStationary.of_stationary' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Feasible.weak_duality : ∀ {d : ℕ} {W : StatePoly}, Feasible d W → ∀ (γ : Pulse), (eval x0) W ≤ γ.exposure
+'CZExposure.ConcreteStationary.Feasible.weak_duality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ConcreteStationary.Feasible.le_Cstar' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CZExposure.ConcreteStationary.optimum : ℕ → EReal :=
+fun d => ⨆ W, ⨆ (_ : Feasible d W), ↑((eval x0) W)
+stationary_convergence : EuclideanDirectedArcSuperposition → Filter.Tendsto optimum Filter.atTop (nhds Cstar)
+'CZExposure.ConcreteStationary.stationary_convergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Feasible.mono : ∀ {d e : ℕ} {W : StatePoly}, Feasible d W → d ≤ e → Feasible e W
+'CZExposure.ConcreteStationary.Feasible.mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ConcreteStationary.optimum_mono' depends on axioms: [propext, Classical.choice, Quot.sound]

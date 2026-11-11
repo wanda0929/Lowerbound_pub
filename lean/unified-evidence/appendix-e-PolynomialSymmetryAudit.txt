@@ -1,0 +1,73 @@
+'CZExposure.PolynomialSymmetry.totalDegree_aeval_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectionSign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflection_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectionCLM' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectionCLM_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflection_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflection_x0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.cost_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflection_mem_Xset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflection_mem_XCZ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflection_vf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.eval_reflectPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectPoly_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectionAverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.eval_reflectionAverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectionAverage_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectionAverage_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectionAverage_initial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectionAverage_target_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectPoly_drift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectionAverage_drift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectionAverage_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.cost_opticalGauge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.cost_qubitGauge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.zObs_opticalGauge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.zObs_qubitGauge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.Jmap_eq_y0_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.generators_preserve_initial_fibre' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PolynomialSymmetry.strictPolynomial_initial_fibre' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PolynomialSymmetry.reflection_opticalGauge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflection_qubitGauge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectionAverage_isGInvariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PolynomialSymmetry.exposureReflectionSign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.exposureReflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.zObs_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.Jmap_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.exposureReflection_yPi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.exposureReflectionAverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PolynomialSymmetry.eval_exposureReflectionAverage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PolynomialSymmetry.reflectionAverage_strictPolynomial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PolynomialSymmetry.exists_reflection_candidate_below_Cstar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@reflectionAverage_isGInvariant : ∀ {W : StatePoly},
+  (∀ (x : State) (θ : ℝ), (eval (opticalGauge θ x)) W = (eval x) W) →
+    (∀ (x : State) (θ : ℝ), (eval (qubitGauge θ x)) W = (eval x) W) →
+      IsGInvariant fun x => (eval x) (reflectionAverage W)
+reflectionAverage_strictPolynomial : ∀ (P : ExposurePoly) (η α : ℝ),
+  reflectionAverage (strictPolynomial P η α) = strictPolynomial (exposureReflectionAverage P) η α
+exists_reflection_candidate_below_Cstar : EuclideanDirectedArcSuperposition →
+  ∀ (a : ℝ),
+    ↑a < Cstar →
+      ∃ P η α,
+        0 < η ∧
+          0 < α ∧
+            α < 1 ∧
+              a < (eval x0) (strictPolynomial P η α) ∧
+                (∀ (x : State), (eval (reflection x)) (strictPolynomial P η α) = (eval x) (strictPolynomial P η α)) ∧
+                  (∀ x ∈ XCZ, (eval x) (strictPolynomial P η α) = 0) ∧
+                    ∀ x ∈ Xset,
+                      ∀ (u : ℂ),
+                        ‖u‖ ≤ 1 → ∀ (ξ : ℝ), α * cost x ≤ (eval (pt ξ x u)) (cpoly + lieDeriv (strictPolynomial P η α))

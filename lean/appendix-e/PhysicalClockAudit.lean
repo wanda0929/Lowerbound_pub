@@ -1,0 +1,68 @@
+import RequestProject.AppendixE.PhysicalClock
+
+open CZExposure
+
+#check @PositiveExposureSegment.mk
+#check @PositiveExposureSegment.ofTrajectory
+#check @exposureStateLift_Jmap
+#check @contDiffAt_exposureStateLift
+#check @differentiableAt_exposureStateLift
+#check @fderiv_exposureStateLift_Jmap
+#check @exposureStateLift_mem_Xset
+#check @Jmap_exposureStateLift
+#check @cost_exposureStateLift
+#check @fderiv_exposureStateLift_Bfield
+#check @continuous_euclideanExposureCost
+#check @euclideanStateLift_spec
+#check @contDiffAt_euclideanStateLift
+#check @differentiableAt_euclideanStateLift
+#check @fderiv_euclideanStateLift_Bfield
+#check @hasDerivAt_lifted_exposure_path
+#check @PositiveExposureSegment.cost_pos
+#check @PositiveExposureSegment.liftedState_mem
+#check @PositiveExposureSegment.cost_liftedState
+#check @PositiveExposureSegment.exists_lipschitzOnWith_liftedState
+#check @PositiveExposureSegment.continuousOn_liftedState
+#check @PositiveExposureSegment.ae_hasDerivAt_liftedState
+#check @PositiveExposureSegment.continuousOn_clockRate
+#check @PositiveExposureSegment.measurable_clockRate
+#check @PositiveExposureSegment.intervalIntegrable_clockRate
+#check @PositiveExposureSegment.clock_at_start
+#check @PositiveExposureSegment.clockRate_bounds
+#check @PositiveExposureSegment.clock_increment_bounds
+#check @PositiveExposureSegment.strictMonoOn_clock
+#check @PositiveExposureSegment.duration_bounds
+#check @PositiveExposureSegment.hasDerivAt_clock
+#check @PositiveExposureSegment.absolutelyContinuous_clock
+#check @PositiveExposureSegment.integral_cost_mul_clockRate
+
+#print axioms PositiveExposureSegment.ofTrajectory
+#print axioms exposureStateLift_Jmap
+#print axioms contDiffAt_exposureStateLift
+#print axioms fderiv_exposureStateLift_Jmap
+#print axioms exposureStateLift_mem_Xset
+#print axioms Jmap_exposureStateLift
+#print axioms cost_exposureStateLift
+#print axioms fderiv_exposureStateLift_Bfield
+#print axioms continuous_euclideanExposureCost
+#print axioms euclideanStateLift_spec
+#print axioms contDiffAt_euclideanStateLift
+#print axioms fderiv_euclideanStateLift_Bfield
+#print axioms hasDerivAt_lifted_exposure_path
+#print axioms PositiveExposureSegment.cost_pos
+#print axioms PositiveExposureSegment.liftedState_mem
+#print axioms PositiveExposureSegment.cost_liftedState
+#print axioms PositiveExposureSegment.exists_lipschitzOnWith_liftedState
+#print axioms PositiveExposureSegment.continuousOn_liftedState
+#print axioms PositiveExposureSegment.ae_hasDerivAt_liftedState
+#print axioms PositiveExposureSegment.continuousOn_clockRate
+#print axioms PositiveExposureSegment.measurable_clockRate
+#print axioms PositiveExposureSegment.intervalIntegrable_clockRate
+#print axioms PositiveExposureSegment.clock_at_start
+#print axioms PositiveExposureSegment.clockRate_bounds
+#print axioms PositiveExposureSegment.clock_increment_bounds
+#print axioms PositiveExposureSegment.strictMonoOn_clock
+#print axioms PositiveExposureSegment.duration_bounds
+#print axioms PositiveExposureSegment.hasDerivAt_clock
+#print axioms PositiveExposureSegment.absolutelyContinuous_clock
+#print axioms PositiveExposureSegment.integral_cost_mul_clockRate

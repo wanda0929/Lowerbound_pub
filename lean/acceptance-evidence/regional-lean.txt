@@ -1,0 +1,1 @@
+PASS: 3680 sources, 6190 projections, 9728 regions; decoded shapes and ownership

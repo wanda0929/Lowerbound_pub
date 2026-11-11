@@ -1,0 +1,121 @@
+euclideanProgressCLM : ExposureEuclidean →L[ℝ] ℂ
+exposureProgressPath : (ℝ → ExposureEuclidean) → ℝ → ℂ
+exposureProgressVelocity : (ℝ → ExposureEuclidean) → (ℝ → ℂ) → ℝ → ℂ
+euclideanAngularRate : ExposureEuclidean → ℂ → ℝ
+euclideanProgressCLM_Jmap : ∀ (x : State), euclideanProgressCLM (exposureEuclideanEquiv (Jmap x)) = zObs x
+euclideanProgressCLM_fderiv_Jmap : ∀ (x v : State),
+  euclideanProgressCLM (exposureEuclideanEquiv ((fderiv ℝ Jmap x) v)) = (fderiv ℝ zObs x) v
+@norm_euclideanProgress_Bfield_le : ∀ {z : ExposureEuclidean},
+  z ∈ euclideanExposureDomain →
+    ∀ {u : ℂ}, ‖u‖ ≤ 1 → ‖euclideanProgressCLM (euclideanBfield z u)‖ ≤ 4 * √(euclideanExposureCost z)
+@euclideanExposureCost_le_one : ∀ {z : ExposureEuclidean}, z ∈ euclideanExposureDomain → euclideanExposureCost z ≤ 1
+@norm_zObs_ge_one_sub_six_cost : ∀ {x : State}, x ∈ Xset → 1 - 6 * cost x ≤ ‖zObs x‖
+@norm_euclideanProgress_ge_half : ∀ {z : ExposureEuclidean},
+  z ∈ euclideanExposureDomain → ∀ {β : ℝ}, euclideanExposureCost z ≤ β → β ≤ 1 / 12 → 1 / 2 ≤ ‖euclideanProgressCLM z‖
+@abs_euclideanAngularRate_le : ∀ {z : ExposureEuclidean},
+  z ∈ euclideanExposureDomain →
+    ∀ {u : ℂ}, ‖u‖ ≤ 1 → ∀ {β : ℝ}, euclideanExposureCost z ≤ β → β ≤ 1 / 12 → |euclideanAngularRate z u| ≤ 8 * √β
+@measurable_exposureProgressVelocity : ∀ {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ},
+  Measurable y → Measurable u → Measurable (exposureProgressVelocity y u)
+@measurable_exposureAngularRate : ∀ {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ},
+  Measurable y → Measurable u → Measurable fun t => euclideanAngularRate (y t) (u t)
+@integrableOn_exposureProgressVelocity : ∀ {T : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ},
+  Continuous y →
+    Measurable u →
+      (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+        (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+          MeasureTheory.IntegrableOn (exposureProgressVelocity y u) (Set.Icc 0 T) MeasureTheory.volume
+@ae_hasDerivAt_exposureProgressPath : ∀ {T : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ},
+  (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+    ∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+      HasDerivAt (exposureProgressPath y) (exposureProgressVelocity y u t) t
+@integral_exposureProgressVelocity : ∀ {T a b : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ} {K : NNReal},
+  LipschitzWith K y →
+    Measurable u →
+      (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+        (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+          (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+            0 ≤ a →
+              a ≤ b →
+                b ≤ T →
+                  ∫ (t : ℝ) in a..b, exposureProgressVelocity y u t =
+                    exposureProgressPath y b - exposureProgressPath y a
+@low_cost_progress_increment_le : ∀ {T a b β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ} {K : NNReal},
+  LipschitzWith K y →
+    Measurable u →
+      (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+        (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+          (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+            0 ≤ a →
+              a ≤ b →
+                b ≤ T →
+                  (∀ t ∈ Set.Icc a b, euclideanExposureCost (y t) ≤ β) →
+                    ‖exposureProgressPath y b - exposureProgressPath y a‖ ≤ 4 * √β * (b - a)
+@sum_low_cost_progress_increments_le : ∀ {A : Type u_1} (I : Finset A) (l r : A → ℝ) {T β : ℝ}
+  {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ} {K : NNReal},
+  0 ≤ T →
+    LipschitzWith K y →
+      Measurable u →
+        (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+          (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+            (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+              (∀ i ∈ I, 0 ≤ l i ∧ l i ≤ r i ∧ r i ≤ T) →
+                ((↑I).PairwiseDisjoint fun i => Set.Ioo (l i) (r i)) →
+                  (∀ i ∈ I, ∀ t ∈ Set.Icc (l i) (r i), euclideanExposureCost (y t) ≤ β) →
+                    ∑ i ∈ I, ‖exposureProgressPath y (r i) - exposureProgressPath y (l i)‖ ≤ 4 * T * √β
+@FiniteExcursionSelection.discardedTimes : {T α β : ℝ} →
+  {y : ℝ → ExposureEuclidean} → {u : ℝ → ℂ} → FiniteExcursionSelection T α β y u → Set ℝ
+@FiniteExcursionSelection.mem_discardedTimes_iff : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) {t : ℝ},
+  t ∈ S.discardedTimes ↔ t ∈ Set.Icc 0 T ∧ ∀ (i : Fin S.count), t ∉ Set.Ioo (S.segment i).a (S.segment i).b
+@FiniteExcursionSelection.isCompact_discardedTimes : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u), IsCompact S.discardedTimes
+@FiniteExcursionSelection.cost_lt_on_discarded : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) {t : ℝ}, t ∈ S.discardedTimes → euclideanExposureCost (y t) < β
+@FiniteExcursionSelection.volume_real_discardedTimes_le : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u), 0 ≤ T → MeasureTheory.volume.real S.discardedTimes ≤ T
+@FiniteExcursionSelection.discardedProgressSpeed : {T α β : ℝ} →
+  {y : ℝ → ExposureEuclidean} → {u : ℝ → ℂ} → FiniteExcursionSelection T α β y u → ℝ
+@FiniteExcursionSelection.discardedAngularIntegral : {T α β : ℝ} →
+  {y : ℝ → ExposureEuclidean} → {u : ℝ → ℂ} → FiniteExcursionSelection T α β y u → ℝ
+@FiniteExcursionSelection.discarded_progress_bounds : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) {K : NNReal},
+  0 ≤ T →
+    LipschitzWith K y →
+      Measurable u →
+        (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+          (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+            (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+              β ≤ 1 / 12 →
+                MeasureTheory.IntegrableOn (exposureProgressVelocity y u) S.discardedTimes MeasureTheory.volume ∧
+                  MeasureTheory.IntegrableOn (fun t => euclideanAngularRate (y t) (u t)) S.discardedTimes
+                      MeasureTheory.volume ∧
+                    (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict S.discardedTimes,
+                        HasDerivAt (exposureProgressPath y) (exposureProgressVelocity y u t) t) ∧
+                      (0 ≤ S.discardedProgressSpeed ∧ S.discardedProgressSpeed ≤ 4 * T * √β) ∧
+                        |S.discardedAngularIntegral| ≤ 8 * T * √β
+'CZExposure.euclideanProgressCLM_Jmap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.euclideanProgressCLM_fderiv_Jmap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_euclideanProgress_Bfield_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.euclideanExposureCost_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_zObs_ge_one_sub_six_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.norm_euclideanProgress_ge_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.abs_euclideanAngularRate_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.measurable_exposureProgressVelocity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.measurable_exposureAngularRate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.integrableOn_exposureProgressVelocity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ae_hasDerivAt_exposureProgressPath' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.integral_exposureProgressVelocity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.low_cost_progress_increment_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.sum_low_cost_progress_increments_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.mem_discardedTimes_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.isCompact_discardedTimes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.FiniteExcursionSelection.cost_lt_on_discarded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.FiniteExcursionSelection.volume_real_discardedTimes_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.FiniteExcursionSelection.discarded_progress_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

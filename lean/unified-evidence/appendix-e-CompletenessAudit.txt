@@ -1,0 +1,108 @@
+@Lunsplit_nonneg : ∀ {d : ℕ}, 1 ≤ d → 0 ≤ Lunsplit d
+'CZExposure.Lunsplit_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lunsplit_mono : ∀ (d : ℕ), Lunsplit d ≤ Lunsplit (d + 1)
+'CZExposure.Lunsplit_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lunsplit_le_Cstar : ∀ (d : ℕ), Lunsplit d ≤ Cstar
+'CZExposure.Lunsplit_le_Cstar' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lunsplit_le_Lsplit : ∀ (P : ExposurePartition) (U : ℝ) (d : ℕ), Lunsplit d ≤ Lsplit P U d
+'CZExposure.Lunsplit_le_Lsplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lsplit_mono : ∀ (P : ExposurePartition) (U : ℝ) (d : ℕ), Lsplit P U d ≤ Lsplit P U (d + 1)
+'CZExposure.Lsplit_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lsplit_le_Cstar : ∀ (P : ExposurePartition) {U : ℝ}, (∃ γ, γ.exposure < U) → ∀ (d : ℕ), Lsplit P U d ≤ Cstar
+'CZExposure.Lsplit_le_Cstar' depends on axioms: [propext, Classical.choice, Quot.sound]
+stationary_hierarchy_bounds : ∀ (d : ℕ),
+  1 ≤ d → 0 ≤ Lunsplit d ∧ Lunsplit d ≤ Lunsplit (d + 1) ∧ Lunsplit (d + 1) ≤ Cstar
+'CZExposure.stationary_hierarchy_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+split_hierarchy_bounds : ∀ (P : ExposurePartition) {U : ℝ},
+  (∃ γ, γ.exposure < U) →
+    ∀ (d : ℕ),
+      1 ≤ d →
+        0 ≤ Lunsplit d ∧ Lunsplit d ≤ Lsplit P U d ∧ Lsplit P U d ≤ Lsplit P U (d + 1) ∧ Lsplit P U (d + 1) ≤ Cstar
+'CZExposure.split_hierarchy_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+vf_neg : ∀ (x : State) (u : ℂ), vf x (-u) = -vf x u
+'CZExposure.vf_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+@cost_eq_zero_of_mem_Fface : ∀ {x : State}, x ∈ Fface → cost x = 0
+'CZExposure.cost_eq_zero_of_mem_Fface' depends on axioms: [propext, Classical.choice, Quot.sound]
+@sos_factors_vanish_on_face : ∀ {W : StatePoly} {n : ℕ} {h : Fin n → Poly},
+  cpoly + lieDeriv W - ∑ l, h l ^ 2 ∈ normIdeal →
+    ∀ {x : State},
+      x ∈ Fface →
+        ∀ {u : ℂ},
+          ‖u‖ = 1 →
+            ∀ (ξ : ℝ),
+              (MvPolynomial.eval (pt ξ x u)) (lieDeriv W) = 0 ∧ ∀ (l : Fin n), (MvPolynomial.eval (pt ξ x u)) (h l) = 0
+'CZExposure.sos_factors_vanish_on_face' depends on axioms: [propext, Classical.choice, Quot.sound]
+Cstar_le_pRelaxed : EuclideanDirectedArcSuperposition → Cstar ≤ pRelaxed
+'CZExposure.Cstar_le_pRelaxed' depends on axioms: [propext, Classical.choice, Quot.sound]
+pRelaxed_eq_Cstar : EuclideanDirectedArcSuperposition → pRelaxed = Cstar
+'CZExposure.pRelaxed_eq_Cstar' depends on axioms: [propext, Classical.choice, Quot.sound]
+smooth_subsolution : EuclideanDirectedArcSuperposition →
+  ∀ (a : ℝ),
+    ↑a < Cstar →
+      ∃ φ,
+        ContDiff ℝ (↑⊤) φ ∧
+          HasCompactSupport φ ∧
+            (∀ x ∈ Xset, ∀ (u : ℂ), ‖u‖ ≤ 1 → |(fderiv ℝ (fun x' => φ (Jmap x') - φ yPi) x) (vf x u)| ≤ cost x) ∧
+              (∀ x ∈ XCZ, φ (Jmap x) - φ yPi = 0) ∧ a < φ (Jmap x0) - φ yPi
+'CZExposure.smooth_subsolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CZExposure.ControlGeometry.CompactRegularLevelBallBox : Prop :=
+∀ {n m : ℕ} (S : ControlGeometry.RegularStepFourSystem n m), Nonempty (ControlGeometry.BallBoxBound S)
+def CZExposure.EuclideanDirectedArcSuperposition : Prop :=
+∀ (T : EuclideanNormalCurrentData) (source sink : ExposureEuclidean),
+  source ≠ sink →
+    T.boundaryPlus = MeasureTheory.Measure.dirac sink →
+      T.boundaryMinus = MeasureTheory.Measure.dirac source →
+        (∃ K, IsCompact K ∧ T.vectorMeasure.variation Kᶜ = 0) → ∃ A mA D, D.IsDirected
+def CZExposure.PolynomialGeometry.BoxC1PolynomialApproximation : Prop :=
+∀ (n : ℕ),
+  2 ≤ n →
+    ∀ (R : ℝ),
+      0 < R →
+        ∀ (φ : (Fin n → ℝ) → ℝ),
+          ContDiff ℝ 1 φ →
+            ∀ (δ : ℝ),
+              0 < δ →
+                ∃ P,
+                  (∀ x ∈ PolynomialGeometry.coordinateBox n R, |(MvPolynomial.eval x) P - φ x| ≤ δ) ∧
+                    ∀ x ∈ PolynomialGeometry.coordinateBox n R,
+                      ∀ (i : Fin n),
+                        |(MvPolynomial.eval x) ((MvPolynomial.pderiv i) P) - (fderiv ℝ φ x) (Pi.single i 1)| ≤ δ
+def CZExposure.PolynomialGeometry.MatrixPositivstellensatz : Prop :=
+∀ (σ : Type) [inst : Fintype σ] (k : ℕ),
+  0 < k →
+    ∀ (I : Ideal (MvPolynomial σ ℝ)),
+      PolynomialGeometry.IdealArchimedean I →
+        ∀ (A : Matrix (Fin k) (Fin k) (MvPolynomial σ ℝ)),
+          A.IsSymm →
+            (∀ (y : σ → ℝ), (∀ p ∈ I, (MvPolynomial.eval y) p = 0) → (A.map ⇑(MvPolynomial.eval y)).PosDef) →
+              ∃ m H, ∀ (i j : Fin k), A i j - ∑ l, H l i * H l j ∈ I
+polynomial_certificates : EuclideanDirectedArcSuperposition →
+  ∀ (a : ℝ), ↑a < Cstar → ∃ d W, StationaryFeasible d W ∧ a < (MvPolynomial.eval x0) W
+'CZExposure.polynomial_certificates' depends on axioms: [propext, Classical.choice, Quot.sound]
+stationary_completeness : EuclideanDirectedArcSuperposition →
+  (∀ (d : ℕ), 1 ≤ d → 0 ≤ Lunsplit d ∧ Lunsplit d ≤ Lunsplit (d + 1) ∧ Lunsplit (d + 1) ≤ Cstar) ∧
+    Filter.Tendsto Lunsplit Filter.atTop (nhds Cstar)
+'CZExposure.stationary_completeness' depends on axioms: [propext, Classical.choice, Quot.sound]
+fixed_partition_convergence : EuclideanDirectedArcSuperposition →
+  ∀ (P : ExposurePartition) (U : ℝ),
+    (∃ γ, γ.exposure < U) →
+      (∀ (d : ℕ),
+          1 ≤ d →
+            0 ≤ Lunsplit d ∧
+              Lunsplit d ≤ Lsplit P U d ∧ Lsplit P U d ≤ Lsplit P U (d + 1) ∧ Lsplit P U (d + 1) ≤ Cstar) ∧
+        Filter.Tendsto (Lsplit P U) Filter.atTop (nhds Cstar)
+'CZExposure.fixed_partition_convergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+BallBoxSteering.nonempty_pulse_of_ballBox : ControlGeometry.CompactRegularLevelBallBox → Nonempty Pulse
+'CZExposure.BallBoxSteering.nonempty_pulse_of_ballBox' depends on axioms: [propext, Classical.choice, Quot.sound]
+Cstar_finite_of_ballBox : ControlGeometry.CompactRegularLevelBallBox → Cstar ≠ ⊤ ∧ Cstar ≠ ⊥
+'CZExposure.Cstar_finite_of_ballBox' depends on axioms: [propext, Classical.choice, Quot.sound]
+polynomial_certificates_epsilon : EuclideanDirectedArcSuperposition →
+  ∀ {ε : ℝ}, 0 < ε → ∃ d W, 1 ≤ d ∧ StationaryFeasible d W ∧ Cstar.toReal - ε < (MvPolynomial.eval x0) W
+nonempty_physical_pulse : Nonempty Pulse
+'CZExposure.nonempty_physical_pulse' depends on axioms: [propext, Classical.choice, Quot.sound]
+Cstar_finite_physical : Cstar ≠ ⊤ ∧ Cstar ≠ ⊥
+'CZExposure.Cstar_finite_physical' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.LocalSteeringConstruction.exists_repaired_faceBlock' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.LocalSteeringConstruction.exists_closed_pulse' depends on axioms: [propext, Classical.choice, Quot.sound]

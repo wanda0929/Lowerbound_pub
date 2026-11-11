@@ -1,0 +1,9 @@
+CZExposure.Bfield_norm_le_sqrt_cost : ∃ K,
+  0 < K ∧
+    ∀ x ∈ CZExposure.Xset, ∀ (u : ℂ), ‖u‖ ≤ 1 → ‖CZExposure.Bfield (CZExposure.Jmap x) u‖ ≤ K * √(CZExposure.cost x)
+CZExposure.continuousOn_Bfield : ContinuousOn (fun p => CZExposure.Bfield p.1 p.2)
+  (CZExposure.Yset ×ˢ Metric.closedBall 0 1)
+CZExposure.Bfield_bounded : ∃ K, 0 ≤ K ∧ ∀ y ∈ CZExposure.Yset, ∀ (u : ℂ), ‖u‖ ≤ 1 → ‖CZExposure.Bfield y u‖ ≤ K
+'CZExposure.Bfield_norm_le_sqrt_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.continuousOn_Bfield' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.Bfield_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]

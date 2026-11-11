@@ -1,0 +1,144 @@
+EuclideanNormalCurrentData.mk : (vectorMeasure : MeasureTheory.VectorMeasure ExposureEuclidean ExposureEuclidean) →
+  MeasureTheory.IsFiniteMeasure vectorMeasure.variation →
+    (direction : ExposureEuclidean → ExposureEuclidean) →
+      Measurable direction →
+        MeasureTheory.Integrable direction vectorMeasure.variation →
+          (∀ᵐ (z : ExposureEuclidean) ∂vectorMeasure.variation, ‖direction z‖ = 1) →
+            vectorMeasure = vectorMeasure.variation.withDensityᵥ direction →
+              (boundaryPlus : MeasureTheory.Measure ExposureEuclidean) →
+                MeasureTheory.IsFiniteMeasure boundaryPlus →
+                  (boundaryMinus : MeasureTheory.Measure ExposureEuclidean) →
+                    MeasureTheory.IsFiniteMeasure boundaryMinus →
+                      (∀ (ψ : ExposureEuclidean → ℝ),
+                          ContDiff ℝ (↑⊤) ψ →
+                            HasCompactSupport ψ →
+                              MeasureTheory.Integrable (fun z => (fderiv ℝ ψ z) (direction z)) vectorMeasure.variation ∧
+                                ∫ (z : ExposureEuclidean), (fderiv ℝ ψ z) (direction z) ∂vectorMeasure.variation =
+                                  ∫ (z : ExposureEuclidean), ψ z ∂boundaryPlus -
+                                    ∫ (z : ExposureEuclidean), ψ z ∂boundaryMinus) →
+                        EuclideanNormalCurrentData
+@EuclideanCurrentArcData.mk : {T : EuclideanNormalCurrentData} →
+  {source sink : ExposureEuclidean} →
+    {A : Type u_1} →
+      [inst : MeasurableSpace A] →
+        (retained : MeasureTheory.VectorMeasure ExposureEuclidean ExposureEuclidean) →
+          IsVectorSubcurrent retained T.vectorMeasure →
+            (ensemble : MeasureTheory.Measure A) →
+              (massDecomposition : LocalizedMeasureDecomposition ensemble retained.variation) →
+                (arc : A → EuclideanArc) →
+                  (∀ᵐ (a : A) ∂ensemble, massDecomposition.component a = (arc a).lengthMeasure) →
+                    (Measurable fun a => (arc a).path 0) →
+                      (Measurable fun a => (arc a).path (arc a).length) →
+                        MeasureTheory.Measure.map (fun a => (arc a).path 0) ensemble =
+                            MeasureTheory.Measure.dirac source →
+                          MeasureTheory.Measure.map (fun a => (arc a).path (arc a).length) ensemble =
+                              MeasureTheory.Measure.dirac sink →
+                            EuclideanCurrentArcData T source sink A
+def CZExposure.EuclideanCurrentArcData.IsDirected.{u_1} : {T : EuclideanNormalCurrentData} →
+  {source sink : ExposureEuclidean} →
+    {A : Type u_1} → [inst : MeasurableSpace A] → EuclideanCurrentArcData T source sink A → Prop :=
+fun {T} {source sink} {A} [MeasurableSpace A] D =>
+  ∀ᵐ (a : A) ∂D.ensemble,
+    ∀ᵐ (s : ℝ) ∂(D.arc a).parameterMeasure, HasDerivAt (D.arc a).path (T.direction ((D.arc a).path s)) s
+def CZExposure.EuclideanDirectedArcSuperposition : Prop :=
+∀ (T : EuclideanNormalCurrentData) (source sink : ExposureEuclidean),
+  source ≠ sink →
+    T.boundaryPlus = MeasureTheory.Measure.dirac sink →
+      T.boundaryMinus = MeasureTheory.Measure.dirac source →
+        (∃ K, IsCompact K ∧ T.vectorMeasure.variation Kᶜ = 0) → ∃ A mA D, D.IsDirected
+External.euclideanDirectedArcSuperposition : EuclideanDirectedArcSuperposition
+'CZExposure.External.euclideanDirectedArcSuperposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ CZExposure.External.euclideanDirectedArcSuperposition]
+exposureEuclidean_y0_ne_yPi : exposureEuclideanEquiv y0 ≠ exposureEuclideanEquiv yPi
+@EuclideanCurrentArcData.toExposureDecomposition : {F : EuclideanExposureFlow} →
+  {A : Type u_1} →
+    [inst : MeasurableSpace A] →
+      EuclideanCurrentArcData F.toNormalCurrentData (exposureEuclideanEquiv y0) (exposureEuclideanEquiv yPi) A →
+        ExposureMeasureDecomposition F A
+@EuclideanCurrentArcData.toExposureArcRealization : {F : EuclideanExposureFlow} →
+  {A : Type u_1} →
+    [inst : MeasurableSpace A] →
+      (D : EuclideanCurrentArcData F.toNormalCurrentData (exposureEuclideanEquiv y0) (exposureEuclideanEquiv yPi) A) →
+        ExposureArcRealization D.toExposureDecomposition
+EuclideanArc.isDirectedBy_iff_polar : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  γ.IsDirectedBy F ↔ ∀ᵐ (s : ℝ) ∂γ.parameterMeasure, HasDerivAt γ.path (F.polarDirection (γ.path s)) s
+@EuclideanCurrentArcData.ae_isDirectedBy : ∀ {F : EuclideanExposureFlow} {A : Type u_1} [inst : MeasurableSpace A]
+  (D : EuclideanCurrentArcData F.toNormalCurrentData (exposureEuclideanEquiv y0) (exposureEuclideanEquiv yPi) A),
+  D.IsDirected → ∀ᵐ (a : A) ∂D.toExposureDecomposition.ensemble, (D.toExposureArcRealization.arc a).IsDirectedBy F
+EuclideanExposureFlow.exists_exposure_time_trajectory_of_superposition : ∀ (F : EuclideanExposureFlow),
+  EuclideanDirectedArcSuperposition →
+    ∃ T,
+      0 < T ∧
+        ENNReal.ofReal T ≤ F.stateMeasure Set.univ ∧
+          ∃ y u,
+            Measurable u ∧
+              (∀ (t : ℝ), ‖u t‖ ≤ 1) ∧
+                (∃ K, LipschitzWith K y) ∧
+                  y 0 = exposureEuclideanEquiv y0 ∧
+                    y T = exposureEuclideanEquiv yPi ∧
+                      (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) ∧
+                        ∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+                          HasDerivAt y (euclideanBfield (y t) (u t)) t
+exists_exposure_time_trajectory_of_record_of_superposition : EuclideanDirectedArcSuperposition →
+  ∀ (ν : MeasureTheory.Measure ExposureAmbient),
+    IsExposureRecord ν →
+      ∃ T,
+        0 < T ∧
+          ENNReal.ofReal T ≤ ν Set.univ ∧
+            ∃ y u,
+              Measurable u ∧
+                (∀ (t : ℝ), ‖u t‖ ≤ 1) ∧
+                  (∃ K, LipschitzWith K y) ∧
+                    y 0 = exposureEuclideanEquiv y0 ∧
+                      y T = exposureEuclideanEquiv yPi ∧
+                        (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) ∧
+                          ∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+                            HasDerivAt y (euclideanBfield (y t) (u t)) t
+EuclideanExposureFlow.exists_exposure_time_trajectory : ∀ (F : EuclideanExposureFlow),
+  ∃ T,
+    0 < T ∧
+      ENNReal.ofReal T ≤ F.stateMeasure Set.univ ∧
+        ∃ y u,
+          Measurable u ∧
+            (∀ (t : ℝ), ‖u t‖ ≤ 1) ∧
+              (∃ K, LipschitzWith K y) ∧
+                y 0 = exposureEuclideanEquiv y0 ∧
+                  y T = exposureEuclideanEquiv yPi ∧
+                    (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) ∧
+                      ∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+                        HasDerivAt y (euclideanBfield (y t) (u t)) t
+exists_exposure_time_trajectory_of_record : ∀ (ν : MeasureTheory.Measure ExposureAmbient),
+  IsExposureRecord ν →
+    ∃ T,
+      0 < T ∧
+        ENNReal.ofReal T ≤ ν Set.univ ∧
+          ∃ y u,
+            Measurable u ∧
+              (∀ (t : ℝ), ‖u t‖ ≤ 1) ∧
+                (∃ K, LipschitzWith K y) ∧
+                  y 0 = exposureEuclideanEquiv y0 ∧
+                    y T = exposureEuclideanEquiv yPi ∧
+                      (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) ∧
+                        ∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+                          HasDerivAt y (euclideanBfield (y t) (u t)) t
+'CZExposure.exposureEuclidean_y0_ne_yPi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanCurrentArcData.toExposureDecomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanCurrentArcData.toExposureArcRealization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.isDirectedBy_iff_polar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanCurrentArcData.ae_isDirectedBy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.exists_exposure_time_trajectory_of_superposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.exists_exposure_time_trajectory_of_record_of_superposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.EuclideanExposureFlow.exists_exposure_time_trajectory' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ CZExposure.External.euclideanDirectedArcSuperposition]
+'CZExposure.exists_exposure_time_trajectory_of_record' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ CZExposure.External.euclideanDirectedArcSuperposition]

@@ -1,0 +1,58 @@
+exists_current_sampling : ∀ (T : EuclideanNormalCurrentData) {K : Set ExposureEuclidean},
+  IsCompact K →
+    T.vectorMeasure.variation Kᶜ = 0 →
+      ∃ q,
+        (∀ (n : ℕ), ∀ x ∈ K, (q n) x ∈ K ∧ dist x ((q n) x) < 1 / (↑n + 1)) ∧
+          (∀ (n : ℕ), ∑ z ∈ (q n).range, ‖↑T.vectorMeasure (⇑(q n) ⁻¹' {z})‖ₑ ≤ T.vectorMeasure.variation univ) ∧
+            ∀ (ω : ExposureEuclidean → ExposureEuclidean →L[ℝ] ℝ),
+              Continuous ω →
+                Filter.Tendsto (fun n => ∑ z ∈ (q n).range, (ω z) (↑T.vectorMeasure (⇑(q n) ⁻¹' {z}))) Filter.atTop
+                  (nhds (T.action ω))
+@exists_atomic_correction_sequence : ∀ {K : Set ExposureEuclidean},
+  IsCompact K →
+    ∀ (ε : ℕ → ℝ),
+      (∀ (n : ℕ), 0 < ε n) →
+        Filter.Tendsto ε Filter.atTop (nhds 0) →
+          ∀ {ι : ℕ → Type u_1} [inst : (n : ℕ) → Fintype (ι n)] (w : (n : ℕ) → ι n → ℝ)
+            (x : (n : ℕ) → ι n → ExposureEuclidean),
+            (∀ (n : ℕ) (i : ι n), x n i ∈ K) →
+              ∀ (M : ℝ≥0∞),
+                M ≠ ∞ →
+                  (∀ (n : ℕ), ∑ i, ‖w n i‖ₑ ≤ M) →
+                    ∃ q,
+                      (∀ (n : ℕ), ∀ z ∈ K, (q n) z ∈ K ∧ dist z ((q n) z) < ε n) ∧
+                        Filter.Tendsto
+                          (fun n =>
+                            (AtomicBoundaryCorrection.correction (w n) (x n) fun i => (q n) (x n i)).variation univ)
+                          Filter.atTop (nhds 0)
+sampled_action_eq_sum : ∀ (T : EuclideanNormalCurrentData) (q : SimpleFunc ExposureEuclidean ExposureEuclidean)
+  (ω : ExposureEuclidean → ExposureEuclidean →L[ℝ] ℝ),
+  ∫ (x : ExposureEuclidean), (ω (q x)) (T.direction x) ∂T.vectorMeasure.variation =
+    ∑ z ∈ q.range, (ω z) (↑T.vectorMeasure (⇑q ⁻¹' {z}))
+sampled_mass_le : ∀ (T : EuclideanNormalCurrentData) (q : SimpleFunc ExposureEuclidean ExposureEuclidean),
+  ∑ z ∈ q.range, ‖↑T.vectorMeasure (⇑q ⁻¹' {z})‖ₑ ≤ T.vectorMeasure.variation univ
+integral_tendsto : ∀ (μ : Measure ExposureEuclidean) [IsFiniteMeasure μ] {K : Set ExposureEuclidean},
+  IsCompact K →
+    μ Kᶜ = 0 →
+      ∀ (q : ℕ → SimpleFunc ExposureEuclidean ExposureEuclidean) (ε : ℕ → ℝ),
+        (∀ (n : ℕ), ∀ x ∈ K, (q n) x ∈ K ∧ dist x ((q n) x) ≤ ε n) →
+          Filter.Tendsto ε Filter.atTop (nhds 0) →
+            ∀ {f : ExposureEuclidean → ℝ},
+              Continuous f →
+                Filter.Tendsto (fun n => ∫ (z : ExposureEuclidean), f z ∂Measure.map (⇑(q n)) μ) Filter.atTop
+                  (nhds (∫ (x : ExposureEuclidean), f x ∂μ))
+PASS CZExposure.CompactQuantization.exists_quantizer: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.transport_cost_le: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.map_eq_atoms: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.map_mass: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.map_carrier: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.integral_error_le: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.integral_tendsto: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.exists_quantizer_sequence: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.integrable_sampled_action: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.sampled_action_eq_sum: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.sampled_mass_le: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.sampled_action_tendsto: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.exists_current_sampling: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.exists_atomic_correction: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.CompactQuantization.exists_atomic_correction_sequence: [propext, Quot.sound, Classical.choice]

@@ -1,0 +1,124 @@
+@CZExposure.vectorMeasure_variation_le_of_bound : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] (T : MeasureTheory.VectorMeasure X E) (m : MeasureTheory.Measure X),
+  (∀ (s : Set X), MeasurableSet s → ‖↑T s‖ₑ ≤ m s) → T.variation ≤ m
+@CZExposure.withDensity_vectorMeasure_variation_le : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] [inst_2 : NormedSpace ℝ E] {μ : MeasureTheory.Measure X} {v : X → E},
+  MeasureTheory.Integrable v μ → (μ.withDensityᵥ v).variation ≤ μ.withDensity fun x => ‖v x‖ₑ
+@CZExposure.fderiv_comp_exposureEuclideanEquiv : ∀ {ψ : CZExposure.ExposureEuclidean → ℝ},
+  ContDiff ℝ 1 ψ →
+    ∀ (y w : Fin 11 → ℝ),
+      (fderiv ℝ (fun y' => ψ (CZExposure.exposureEuclideanEquiv y')) y) w =
+        (fderiv ℝ ψ (CZExposure.exposureEuclideanEquiv y)) (CZExposure.exposureEuclideanEquiv w)
+CZExposure.exists_euclidean_exposure_flow : ∀ (ν : MeasureTheory.Measure CZExposure.ExposureAmbient),
+  CZExposure.IsExposureRecord ν →
+    ∃ F,
+      F.stateMeasure = MeasureTheory.Measure.map (⇑CZExposure.exposureEuclideanEquiv) ν.fst ∧
+        F.stateMeasure Set.univ = ν Set.univ
+CZExposure.EuclideanExposureFlow.vectorMeasure_apply : ∀ (F : CZExposure.EuclideanExposureFlow)
+  {s : Set CZExposure.ExposureEuclidean},
+  MeasurableSet s → ↑F.vectorMeasure s = ∫ (z : CZExposure.ExposureEuclidean) in s, F.velocity z ∂F.stateMeasure
+CZExposure.EuclideanExposureFlow.variation_le_massBound : ∀ (F : CZExposure.EuclideanExposureFlow),
+  F.vectorMeasure.variation ≤ F.massBound
+CZExposure.EuclideanExposureFlow.variation_univ_lt_top : ∀ (F : CZExposure.EuclideanExposureFlow),
+  F.vectorMeasure.variation Set.univ < ⊤
+CZExposure.EuclideanExposureFlow.variation_support : ∀ (F : CZExposure.EuclideanExposureFlow),
+  F.vectorMeasure.variation CZExposure.euclideanExposureDomainᶜ = 0
+CZExposure.EuclideanExposureFlow.action_add : ∀ (F : CZExposure.EuclideanExposureFlow)
+  (ω η : CZExposure.ExposureEuclidean → CZExposure.ExposureEuclidean →L[ℝ] ℝ),
+  MeasureTheory.Integrable (fun z => (ω z) (F.velocity z)) F.stateMeasure →
+    MeasureTheory.Integrable (fun z => (η z) (F.velocity z)) F.stateMeasure → F.action (ω + η) = F.action ω + F.action η
+CZExposure.EuclideanExposureFlow.action_smul : ∀ (F : CZExposure.EuclideanExposureFlow) (a : ℝ)
+  (ω : CZExposure.ExposureEuclidean → CZExposure.ExposureEuclidean →L[ℝ] ℝ), F.action (a • ω) = a * F.action ω
+CZExposure.EuclideanExposureFlow.action_integrable_of_bound : ∀ (F : CZExposure.EuclideanExposureFlow)
+  {ω : CZExposure.ExposureEuclidean → CZExposure.ExposureEuclidean →L[ℝ] ℝ},
+  Measurable ω →
+    ∀ {C : ℝ},
+      0 ≤ C →
+        (∀ z ∈ CZExposure.euclideanExposureDomain, ‖ω z‖ ≤ C) →
+          MeasureTheory.Integrable (fun z => (ω z) (F.velocity z)) F.stateMeasure
+CZExposure.EuclideanExposureFlow.action_norm_le : ∀ (F : CZExposure.EuclideanExposureFlow)
+  {ω : CZExposure.ExposureEuclidean → CZExposure.ExposureEuclidean →L[ℝ] ℝ},
+  Measurable ω →
+    ∀ {C : ℝ},
+      0 ≤ C →
+        (∀ z ∈ CZExposure.euclideanExposureDomain, ‖ω z‖ ≤ C) →
+          |F.action ω| ≤ C * ∫ (z : CZExposure.ExposureEuclidean), ‖F.velocity z‖ ∂F.stateMeasure
+CZExposure.EuclideanExposureFlow.boundary_eq : ∀ (F : CZExposure.EuclideanExposureFlow)
+  {ψ : CZExposure.ExposureEuclidean → ℝ},
+  ContDiff ℝ (↑⊤) ψ →
+    HasCompactSupport ψ →
+      F.boundary ψ =
+        ψ (CZExposure.exposureEuclideanEquiv CZExposure.yPi) - ψ (CZExposure.exposureEuclideanEquiv CZExposure.y0)
+CZExposure.EuclideanExposureFlow.boundary_norm_le : ∀ (F : CZExposure.EuclideanExposureFlow)
+  {ψ : CZExposure.ExposureEuclidean → ℝ},
+  ContDiff ℝ (↑⊤) ψ →
+    HasCompactSupport ψ →
+      ∀ {C : ℝ},
+        |ψ (CZExposure.exposureEuclideanEquiv CZExposure.y0)| ≤ C →
+          |ψ (CZExposure.exposureEuclideanEquiv CZExposure.yPi)| ≤ C → |F.boundary ψ| ≤ 2 * C
+CZExposure.exists_exposure_current : ∀ (ν : MeasureTheory.Measure CZExposure.ExposureAmbient),
+  CZExposure.IsExposureRecord ν →
+    ∃ F,
+      F.stateMeasure = MeasureTheory.Measure.map (⇑CZExposure.exposureEuclideanEquiv) ν.fst ∧
+        F.stateMeasure Set.univ = ν Set.univ ∧
+          F.vectorMeasure.variation Set.univ < ⊤ ∧
+            F.vectorMeasure.variation CZExposure.euclideanExposureDomainᶜ = 0 ∧
+              ∀ (ψ : CZExposure.ExposureEuclidean → ℝ),
+                ContDiff ℝ (↑⊤) ψ →
+                  HasCompactSupport ψ →
+                    F.boundary ψ =
+                      ψ (CZExposure.exposureEuclideanEquiv CZExposure.yPi) -
+                        ψ (CZExposure.exposureEuclideanEquiv CZExposure.y0)
+CZExposure.EuclideanExposureFlow.measurable_exposureTimeWeight : ∀ (F : CZExposure.EuclideanExposureFlow),
+  Measurable F.exposureTimeWeight
+CZExposure.EuclideanExposureFlow.exposureTimeWeight_eq_top_of_velocity_eq_zero : ∀
+  (F : CZExposure.EuclideanExposureFlow) {z : CZExposure.ExposureEuclidean},
+  F.velocity z = 0 → F.exposureTimeWeight z = ⊤
+CZExposure.EuclideanExposureFlow.weighted_massBound_le : ∀ (F : CZExposure.EuclideanExposureFlow),
+  ∫⁻ (z : CZExposure.ExposureEuclidean), F.exposureTimeWeight z ∂F.massBound ≤ F.stateMeasure Set.univ
+CZExposure.EuclideanExposureFlow.weighted_variation_le : ∀ (F : CZExposure.EuclideanExposureFlow),
+  ∫⁻ (z : CZExposure.ExposureEuclidean), F.exposureTimeWeight z ∂F.vectorMeasure.variation ≤ F.stateMeasure Set.univ
+CZExposure.EuclideanExposureFlow.weighted_submeasure_le : ∀ (F : CZExposure.EuclideanExposureFlow)
+  {m : MeasureTheory.Measure CZExposure.ExposureEuclidean},
+  m ≤ F.vectorMeasure.variation →
+    ∫⁻ (z : CZExposure.ExposureEuclidean), F.exposureTimeWeight z ∂m ≤ F.stateMeasure Set.univ
+CZExposure.EuclideanExposureFlow.weighted_submeasure_lt_top : ∀ (F : CZExposure.EuclideanExposureFlow)
+  {m : MeasureTheory.Measure CZExposure.ExposureEuclidean},
+  m ≤ F.vectorMeasure.variation → ∫⁻ (z : CZExposure.ExposureEuclidean), F.exposureTimeWeight z ∂m < ⊤
+CZExposure.EuclideanExposureFlow.exists_component_le_exposure_mass : ∀ (F : CZExposure.EuclideanExposureFlow)
+  {A : Type u_1} [inst : MeasurableSpace A] (η : MeasureTheory.Measure A) [MeasureTheory.IsProbabilityMeasure η]
+  (componentTime : A → ENNReal) (Good : A → Prop),
+  AEMeasurable componentTime η →
+    (∀ᵐ (a : A) ∂η, Good a) →
+      ∀ {m : MeasureTheory.Measure CZExposure.ExposureEuclidean},
+        m ≤ F.vectorMeasure.variation →
+          ∫⁻ (a : A), componentTime a ∂η = ∫⁻ (z : CZExposure.ExposureEuclidean), F.exposureTimeWeight z ∂m →
+            ∃ a, Good a ∧ componentTime a ≤ F.stateMeasure Set.univ ∧ componentTime a < ⊤
+'CZExposure.vectorMeasure_variation_le_of_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.withDensity_vectorMeasure_variation_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.fderiv_comp_exposureEuclideanEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exists_euclidean_exposure_flow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.vectorMeasure_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.variation_le_massBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.variation_univ_lt_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.variation_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.action_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.action_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.action_integrable_of_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.action_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.boundary_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.boundary_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exists_exposure_current' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.measurable_exposureTimeWeight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.EuclideanExposureFlow.exposureTimeWeight_eq_top_of_velocity_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.EuclideanExposureFlow.weighted_massBound_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.weighted_variation_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.weighted_submeasure_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.weighted_submeasure_lt_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.exists_component_le_exposure_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

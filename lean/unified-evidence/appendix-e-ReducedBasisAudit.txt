@@ -1,0 +1,30 @@
+'CZExposure.ReducedBasis.difference_mem_span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ReducedBasis.group_conversion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ReducedBasis.groupColumn_restrict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ReducedBasis.restriction_group_sums' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ReducedBasis.grouped_conversion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ReducedBasis.face_span_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ReducedBasis.groupColumn_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ReducedBasis.reducedColumn_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ReducedBasis.gram_conversion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ReducedBasis.face_sos_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+@face_span_eq : ∀ {K : Type u_1} {V : Type u_2} {χ : Type u_3} {ι : Type u_4} [inst : Field K] [CharZero K]
+  [inst_2 : AddCommGroup V] [inst_3 : Module K V] [Fintype χ] [DecidableEq χ] [Fintype ι] (T : V →ₗ[K] χ →₀ K)
+  (z : ι → V) (m : χ → ℕ → V) (n : χ → ℕ),
+  (∀ (i : ι), T (z i) = 0) →
+    (∀ (c : χ), ∀ i ≤ n c, T (m c i) = fun₀ | c => 1) →
+      Submodule.span K (Set.range (originalColumn z m n)) ⊓ T.ker = Submodule.span K (Set.range (reducedColumn z m n))
+@face_sos_gram : ∀ {σ : Type u_1} {χ : Type u_2} {ι : Type u_3} {κ : Type u_4} [inst : Fintype χ] [DecidableEq χ]
+  [inst_2 : Fintype ι] [inst_3 : Fintype κ] (T : MvPolynomial σ ℝ →ₗ[ℝ] χ →₀ ℝ) (z : ι → MvPolynomial σ ℝ)
+  (m : χ → ℕ → MvPolynomial σ ℝ) (n : χ → ℕ),
+  (∀ (i : ι), T (z i) = 0) →
+    (∀ (c : χ), ∀ i ≤ n c, T (m c i) = fun₀ | c => 1) →
+      ∀ (d : ℕ),
+        (∀ (i : ι), (z i).totalDegree ≤ d) →
+          (∀ (c : χ), ∀ i ≤ n c, (m c i).totalDegree ≤ d) →
+            ∀ (f : κ → MvPolynomial σ ℝ),
+              (∀ (k : κ), f k ∈ Submodule.span ℝ (Set.range (originalColumn z m n))) →
+                (∀ (k : κ), T (f k) = 0) →
+                  have h := reducedColumn z m n;
+                  (∀ (j : ι ⊕ (c : χ) × Fin (n c)), (h j).totalDegree ≤ d) ∧
+                    ∃ Q, Q.PosSemidef ∧ ∑ k, f k ^ 2 = ∑ i, ∑ j, h i * C (Q i j) * h j

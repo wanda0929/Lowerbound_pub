@@ -1,0 +1,138 @@
+PositiveExposureSegment.mk : (a b : ℝ) →
+  a < b →
+    (cutoff : ℝ) →
+      0 < cutoff →
+        (y : ℝ → ExposureEuclidean) →
+          (lipConst : NNReal) →
+            LipschitzWith lipConst y →
+              (u : ℝ → ℂ) →
+                Measurable u →
+                  (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+                    (∀ t ∈ Set.Icc a b, y t ∈ euclideanExposureDomain) →
+                      (∀ t ∈ Set.Icc a b, cutoff ≤ euclideanExposureCost (y t)) →
+                        (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc a b),
+                            HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+                          PositiveExposureSegment
+@PositiveExposureSegment.ofTrajectory : {T a b δ : ℝ} →
+  {y : ℝ → ExposureEuclidean} →
+    {u : ℝ → ℂ} →
+      {K : NNReal} →
+        0 ≤ a →
+          a < b →
+            b ≤ T →
+              0 < δ →
+                LipschitzWith K y →
+                  Measurable u →
+                    (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+                      (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+                        (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+                            HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+                          (∀ t ∈ Set.Icc a b, δ ≤ euclideanExposureCost (y t)) → PositiveExposureSegment
+@exposureStateLift_Jmap : ∀ {x : State}, cost x ≠ 0 → exposureStateLift (Jmap x) = x
+@contDiffAt_exposureStateLift : ∀ {y : Fin 11 → ℝ}, y 2 ≠ 0 → ContDiffAt ℝ 1 exposureStateLift y
+@differentiableAt_exposureStateLift : ∀ {y : Fin 11 → ℝ}, y 2 ≠ 0 → DifferentiableAt ℝ exposureStateLift y
+@fderiv_exposureStateLift_Jmap : ∀ {x : State},
+  cost x ≠ 0 → ∀ (w : State), (fderiv ℝ exposureStateLift (Jmap x)) ((fderiv ℝ Jmap x) w) = w
+@exposureStateLift_mem_Xset : ∀ {y : Fin 11 → ℝ}, y ∈ Yset → 0 < y 2 → exposureStateLift y ∈ Xset
+@Jmap_exposureStateLift : ∀ {y : Fin 11 → ℝ}, y ∈ Yset → 0 < y 2 → Jmap (exposureStateLift y) = y
+@cost_exposureStateLift : ∀ {y : Fin 11 → ℝ}, y ∈ Yset → 0 < y 2 → cost (exposureStateLift y) = √(y 2)
+@fderiv_exposureStateLift_Bfield : ∀ {y : Fin 11 → ℝ},
+  y ∈ Yset →
+    0 < y 2 →
+      ∀ (u : ℂ),
+        (fderiv ℝ exposureStateLift y) (Bfield y u) = (cost (exposureStateLift y))⁻¹ • vf (exposureStateLift y) u
+continuous_euclideanExposureCost : Continuous euclideanExposureCost
+@euclideanStateLift_spec : ∀ {z : ExposureEuclidean},
+  z ∈ euclideanExposureDomain →
+    0 < euclideanExposureCost z →
+      euclideanStateLift z ∈ Xset ∧
+        exposureEuclideanEquiv (Jmap (euclideanStateLift z)) = z ∧ cost (euclideanStateLift z) = euclideanExposureCost z
+@contDiffAt_euclideanStateLift : ∀ {z : ExposureEuclidean},
+  0 < euclideanExposureCost z → ContDiffAt ℝ 1 euclideanStateLift z
+@differentiableAt_euclideanStateLift : ∀ {z : ExposureEuclidean},
+  0 < euclideanExposureCost z → DifferentiableAt ℝ euclideanStateLift z
+@fderiv_euclideanStateLift_Bfield : ∀ {z : ExposureEuclidean},
+  z ∈ euclideanExposureDomain →
+    0 < euclideanExposureCost z →
+      ∀ (u : ℂ),
+        (fderiv ℝ euclideanStateLift z) (euclideanBfield z u) =
+          (cost (euclideanStateLift z))⁻¹ • vf (euclideanStateLift z) u
+@hasDerivAt_lifted_exposure_path : ∀ {y : ℝ → ExposureEuclidean} {t : ℝ} (u : ℂ),
+  y t ∈ euclideanExposureDomain →
+    0 < euclideanExposureCost (y t) →
+      HasDerivAt y (euclideanBfield (y t) u) t →
+        HasDerivAt (fun r => euclideanStateLift (y r))
+          ((cost (euclideanStateLift (y t)))⁻¹ • vf (euclideanStateLift (y t)) u) t
+PositiveExposureSegment.cost_pos : ∀ (S : PositiveExposureSegment) {t : ℝ},
+  t ∈ Set.Icc S.a S.b → 0 < euclideanExposureCost (S.y t)
+PositiveExposureSegment.liftedState_mem : ∀ (S : PositiveExposureSegment) {t : ℝ},
+  t ∈ Set.Icc S.a S.b → S.liftedState t ∈ Xset
+PositiveExposureSegment.cost_liftedState : ∀ (S : PositiveExposureSegment) {t : ℝ},
+  t ∈ Set.Icc S.a S.b → cost (S.liftedState t) = euclideanExposureCost (S.y t)
+PositiveExposureSegment.exists_lipschitzOnWith_liftedState : ∀ (S : PositiveExposureSegment),
+  ∃ K, LipschitzOnWith K S.liftedState (Set.Icc S.a S.b)
+PositiveExposureSegment.continuousOn_liftedState : ∀ (S : PositiveExposureSegment),
+  ContinuousOn S.liftedState (Set.Icc S.a S.b)
+PositiveExposureSegment.ae_hasDerivAt_liftedState : ∀ (S : PositiveExposureSegment),
+  ∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc S.a S.b),
+    HasDerivAt S.liftedState ((cost (S.liftedState t))⁻¹ • vf (S.liftedState t) (S.u t)) t
+PositiveExposureSegment.continuousOn_clockRate : ∀ (S : PositiveExposureSegment),
+  ContinuousOn S.clockRate (Set.Icc S.a S.b)
+PositiveExposureSegment.measurable_clockRate : ∀ (S : PositiveExposureSegment), Measurable S.clockRate
+PositiveExposureSegment.intervalIntegrable_clockRate : ∀ (S : PositiveExposureSegment),
+  IntervalIntegrable S.clockRate MeasureTheory.volume S.a S.b
+PositiveExposureSegment.clock_at_start : ∀ (S : PositiveExposureSegment), S.clock S.a = 0
+PositiveExposureSegment.clockRate_bounds : ∀ (S : PositiveExposureSegment) {t : ℝ},
+  t ∈ Set.Icc S.a S.b → 1 ≤ S.clockRate t ∧ S.clockRate t ≤ S.cutoff⁻¹
+PositiveExposureSegment.clock_increment_bounds : ∀ (S : PositiveExposureSegment) {s t : ℝ},
+  s ∈ Set.Icc S.a S.b →
+    t ∈ Set.Icc S.a S.b → s ≤ t → t - s ≤ S.clock t - S.clock s ∧ S.clock t - S.clock s ≤ (t - s) / S.cutoff
+PositiveExposureSegment.strictMonoOn_clock : ∀ (S : PositiveExposureSegment), StrictMonoOn S.clock (Set.Icc S.a S.b)
+PositiveExposureSegment.duration_bounds : ∀ (S : PositiveExposureSegment),
+  0 < S.duration ∧ S.duration ≤ (S.b - S.a) / S.cutoff
+PositiveExposureSegment.hasDerivAt_clock : ∀ (S : PositiveExposureSegment) {t : ℝ},
+  t ∈ Set.Icc S.a S.b → HasDerivAt S.clock (S.clockRate t) t
+PositiveExposureSegment.absolutelyContinuous_clock : ∀ (S : PositiveExposureSegment),
+  AbsolutelyContinuousOnInterval S.clock S.a S.b
+PositiveExposureSegment.integral_cost_mul_clockRate : ∀ (S : PositiveExposureSegment),
+  ∫ (t : ℝ) in S.a..S.b, cost (S.liftedState t) * S.clockRate t = S.b - S.a
+'CZExposure.PositiveExposureSegment.ofTrajectory' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exposureStateLift_Jmap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.contDiffAt_exposureStateLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.fderiv_exposureStateLift_Jmap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.exposureStateLift_mem_Xset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.Jmap_exposureStateLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.cost_exposureStateLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.fderiv_exposureStateLift_Bfield' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.continuous_euclideanExposureCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.euclideanStateLift_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.contDiffAt_euclideanStateLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.fderiv_euclideanStateLift_Bfield' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.hasDerivAt_lifted_exposure_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.cost_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.liftedState_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.cost_liftedState' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.exists_lipschitzOnWith_liftedState' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.continuousOn_liftedState' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.ae_hasDerivAt_liftedState' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.continuousOn_clockRate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.measurable_clockRate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.intervalIntegrable_clockRate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.clock_at_start' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.clockRate_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.clock_increment_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.strictMonoOn_clock' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.duration_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.hasDerivAt_clock' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.PositiveExposureSegment.absolutelyContinuous_clock' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.PositiveExposureSegment.integral_cost_mul_clockRate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

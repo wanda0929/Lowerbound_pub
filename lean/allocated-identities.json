@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "python_flint": "0.9.0",
+  "negative_controls": [
+    "wrong phase sign",
+    "missing localizer",
+    "missing normalization",
+    "omitted off-diagonal",
+    "changed interior Bernstein coefficient",
+    "transposed conversion"
+  ],
+  "allocation": {
+    "regions": 1024,
+    "projections": 1078,
+    "tensor_identities": 1024,
+    "method": "all Gram expansions and all interval basis identities; linearity",
+    "decoded_sha256": "ead50f20b6737aa27efbd84c6f292d2ebfb52ec8ff58f634b6da7ba765883b5c"
+  },
+  "regional": {
+    "regions": 9728,
+    "projections": 6190,
+    "tensor_identities": 9728,
+    "method": "all Gram expansions and all interval basis identities; linearity",
+    "decoded_sha256": "23c3cd728a0bc046a8be3598ce352fd9edc9781a6f65b363c3fe7f2433021e9c"
+  },
+  "interface": {
+    "blocks": 536,
+    "tensor_identities": 16384,
+    "method": "full diagonal Gram expansions; all box basis identities; constant credit by partition of unity",
+    "decoded_sha256": "30393516a4c260192bc32bb5ce246752ef22d762112f3f0b85e1873dd67a608f"
+  },
+  "basis_changes_checked": 222,
+  "source_identity_checked": false,
+  "exhaustive_Lean_residual_evaluation": false,
+  "trust_boundary": "external exact algebra and decoder execution; no new kernel certificate instance",
+  "definitions_sha256": {
+    "/home/user/workspace/repo/lean/check_allocated_identities.py": "9f123929c482b9a4f4c54b4ead999eda3e27c75b6153c7973e7f5f5799ad5ac8",
+    "LowerBoundCZ/SlackAllocation.lean": "3aea98aa7adb23ba0dd6bb8d884ba42759f84100d9f26f95230f2dacc8ccdbd2",
+    "LowerBoundCZ/AllocationCodec.lean": "80d4533913302e94731c61a0958d4555993ca0d053fdd783e9551903d2ae654c",
+    "appendix-e/RequestProject/AppendixE/QuotientNormalForm.lean": "add0eefe96a28683cbea873cd9d0f17c49126c5c0b641ae32a6a778b26d278be",
+    "appendix-e/RequestProject/AppendixE/QuotientCertificate.lean": "426d620c21175df62de54a270138c4aaf8157a441d3961557d66030e83822ab6",
+    "appendix-e/RequestProject/AppendixE/Hierarchy.lean": "2fddd6062a13db2c927a8aa22a20596f88916fc0002e7356c3249f4dc428c0c8",
+    "AllocationDataAudit.lean": "2a7adc71816ac669708e7638ee9fb219cd3d820bd2d272ff706d61541b1679d3",
+    "RegionalDataAudit.lean": "8686d879d4163aff36b7cd424836baa9cef15d6bbba06daa95ecbe302de5103f",
+    "InterfaceDataAudit.lean": "32b0b932991392e682f066ce573164ea1bdcd91014df1e6ff703cf18ac656705",
+    "LowerBoundCZ/PinnedAllocations.lean": "869b6d4c7f716dea5af66cac2483ba06aaf8ed127f22a01a3aa9640214520cb0",
+    "LowerBoundCZ/PinnedRegions.lean": "75ffd64dfc31805a89ca41b6277f65d5d7cc65a26eee162f463035ea57f95adf",
+    "LowerBoundCZ/PinnedInterfaces.lean": "68495c2b11a8b5781096e5214bf8ea5847b109778a60832a2e51be89e00e23e9"
+  }
+}

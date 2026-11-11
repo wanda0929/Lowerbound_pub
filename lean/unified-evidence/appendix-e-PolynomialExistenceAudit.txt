@@ -1,0 +1,69 @@
+coordinateBox : (n : ℕ) → ℝ → Set (Fin n → ℝ)
+'CZExposure.PolynomialGeometry.coordinateBox' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CZExposure.PolynomialGeometry.BoxC1PolynomialApproximation : Prop :=
+∀ (n : ℕ),
+  2 ≤ n →
+    ∀ (R : ℝ),
+      0 < R →
+        ∀ (φ : (Fin n → ℝ) → ℝ),
+          ContDiff ℝ 1 φ →
+            ∀ (δ : ℝ),
+              0 < δ →
+                ∃ P,
+                  (∀ x ∈ coordinateBox n R, |(MvPolynomial.eval x) P - φ x| ≤ δ) ∧
+                    ∀ x ∈ coordinateBox n R,
+                      ∀ (i : Fin n),
+                        |(MvPolynomial.eval x) ((MvPolynomial.pderiv i) P) - (fderiv ℝ φ x) (Pi.single i 1)| ≤ δ
+BoxC1PolynomialApproximation : Prop
+'CZExposure.PolynomialGeometry.BoxC1PolynomialApproximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+@linearForm_apply_eq_sum : ∀ {n : ℕ} (L : (Fin n → ℝ) →L[ℝ] ℝ) (v : Fin n → ℝ), L v = ∑ i, v i * L (Pi.single i 1)
+'CZExposure.PolynomialGeometry.linearForm_apply_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+@linearForm_norm_le : ∀ {n : ℕ} (L : (Fin n → ℝ) →L[ℝ] ℝ) {δ : ℝ},
+  0 ≤ δ → (∀ (i : Fin n), |L (Pi.single i 1)| ≤ δ) → ‖L‖ ≤ ↑n * δ
+'CZExposure.PolynomialGeometry.linearForm_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@fderiv_eval_basis : ∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (x : Fin n → ℝ) (i : Fin n),
+  (fderiv ℝ (fun y => (MvPolynomial.eval y) P) x) (Pi.single i 1) = (MvPolynomial.eval x) ((MvPolynomial.pderiv i) P)
+'CZExposure.PolynomialGeometry.fderiv_eval_basis' depends on axioms: [propext, Classical.choice, Quot.sound]
+@fderiv_difference_norm_le : ∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (φ : (Fin n → ℝ) → ℝ) (x : Fin n → ℝ) {δ : ℝ},
+  0 ≤ δ →
+    (∀ (i : Fin n), |(MvPolynomial.eval x) ((MvPolynomial.pderiv i) P) - (fderiv ℝ φ x) (Pi.single i 1)| ≤ δ) →
+      ‖fderiv ℝ (fun y => (MvPolynomial.eval y) P) x - fderiv ℝ φ x‖ ≤ ↑n * δ
+'CZExposure.PolynomialGeometry.fderiv_difference_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+exists_box_for_Yset : ∃ R, 0 < R ∧ Yset ⊆ coordinateBox 11 R
+'CZExposure.PolynomialApproximation.exists_box_for_Yset' depends on axioms: [propext, Classical.choice, Quot.sound]
+@exists_C1ApproxOnY : ∀ {φ : (Fin 11 → ℝ) → ℝ}, ContDiff ℝ 1 φ → ∀ {η : ℝ}, 0 < η → ∃ P, C1ApproxOnY φ P η
+'CZExposure.PolynomialApproximation.exists_C1ApproxOnY' depends on axioms: [propext, Classical.choice, Quot.sound]
+@exists_strict_candidate : ∀ {φ : (Fin 11 → ℝ) → ℝ},
+  ContDiff ℝ 1 φ →
+    (∀ x ∈ Xset, ∀ (u : ℂ), ‖u‖ ≤ 1 → |(fderiv ℝ (centeredPullback φ) x) (vf x u)| ≤ cost x) →
+      ∀ a < φ y0 - φ yPi,
+        ∃ P η α,
+          0 < η ∧
+            0 < α ∧
+              α < 1 ∧
+                C1ApproxOnY φ P η ∧
+                  a < (MvPolynomial.eval x0) (strictPolynomial P η α) ∧
+                    (∀ x ∈ XCZ, (MvPolynomial.eval x) (strictPolynomial P η α) = 0) ∧
+                      ∀ x ∈ Xset,
+                        ∀ (u : ℂ),
+                          ‖u‖ ≤ 1 →
+                            ∀ (ξ : ℝ),
+                              α * cost x ≤ (MvPolynomial.eval (pt ξ x u)) (cpoly + lieDeriv (strictPolynomial P η α))
+'CZExposure.PolynomialApproximation.exists_strict_candidate' depends on axioms: [propext, Classical.choice, Quot.sound]
+exists_strict_candidate_below_Cstar : EuclideanDirectedArcSuperposition →
+  ∀ (a : ℝ),
+    ↑a < Cstar →
+      ∃ P η α,
+        0 < η ∧
+          0 < α ∧
+            α < 1 ∧
+              a < (MvPolynomial.eval x0) (strictPolynomial P η α) ∧
+                (∀ x ∈ XCZ, (MvPolynomial.eval x) (strictPolynomial P η α) = 0) ∧
+                  ∀ x ∈ Xset,
+                    ∀ (u : ℂ),
+                      ‖u‖ ≤ 1 →
+                        ∀ (ξ : ℝ),
+                          α * cost x ≤ (MvPolynomial.eval (pt ξ x u)) (cpoly + lieDeriv (strictPolynomial P η α))
+'CZExposure.PolynomialApproximation.exists_strict_candidate_below_Cstar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

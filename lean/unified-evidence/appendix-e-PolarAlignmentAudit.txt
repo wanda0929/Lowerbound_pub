@@ -1,0 +1,47 @@
+structure CZExposure.EuclideanCurrentArcData.CurrentIdentity.{u_1} {T : EuclideanNormalCurrentData}
+  {source sink : ExposureEuclidean} {A : Type u_1} [MeasurableSpace A] (D : EuclideanCurrentArcData T source sink A) :
+  Type
+number of parameters: 6
+fields:
+  CZExposure.EuclideanCurrentArcData.CurrentIdentity.remainderDirection : ExposureEuclidean → ExposureEuclidean
+  CZExposure.EuclideanCurrentArcData.CurrentIdentity.remainder_measurable : Measurable self.remainderDirection
+  CZExposure.EuclideanCurrentArcData.CurrentIdentity.remainder_unit : ∀ᵐ (x :
+      ExposureEuclidean) ∂(T.vectorMeasure - D.retained).variation, ‖self.remainderDirection x‖ = 1
+  CZExposure.EuclideanCurrentArcData.CurrentIdentity.pairing_measurable : ∀ (q : ExposureEuclidean → ExposureEuclidean),
+      Measurable q →
+        (∀ (x : ExposureEuclidean), ‖q x‖ ≤ 1) →
+          MeasureTheory.AEStronglyMeasurable (fun a => EuclideanCurrentArcData.arcPairing (D.arc a) q) D.ensemble
+  CZExposure.EuclideanCurrentArcData.CurrentIdentity.current : ∀ (q : ExposureEuclidean → ExposureEuclidean),
+      Measurable q →
+        (∀ (x : ExposureEuclidean), ‖q x‖ ≤ 1) →
+          ∫ (x : ExposureEuclidean), inner ℝ (q x) (T.direction x) ∂T.vectorMeasure.variation =
+            ∫ (x : ExposureEuclidean),
+                inner ℝ (q x) (self.remainderDirection x) ∂(T.vectorMeasure - D.retained).variation +
+              ∫ (a : A), EuclideanCurrentArcData.arcPairing (D.arc a) q ∂D.ensemble
+constructor:
+  CZExposure.EuclideanCurrentArcData.CurrentIdentity.mk.{u_1} {T : EuclideanNormalCurrentData}
+    {source sink : ExposureEuclidean} {A : Type u_1} [MeasurableSpace A] {D : EuclideanCurrentArcData T source sink A}
+    (remainderDirection : ExposureEuclidean → ExposureEuclidean) (remainder_measurable : Measurable remainderDirection)
+    (remainder_unit : ∀ᵐ (x : ExposureEuclidean) ∂(T.vectorMeasure - D.retained).variation, ‖remainderDirection x‖ = 1)
+    (pairing_measurable :
+      ∀ (q : ExposureEuclidean → ExposureEuclidean),
+        Measurable q →
+          (∀ (x : ExposureEuclidean), ‖q x‖ ≤ 1) →
+            MeasureTheory.AEStronglyMeasurable (fun a => EuclideanCurrentArcData.arcPairing (D.arc a) q) D.ensemble)
+    (current :
+      ∀ (q : ExposureEuclidean → ExposureEuclidean),
+        Measurable q →
+          (∀ (x : ExposureEuclidean), ‖q x‖ ≤ 1) →
+            ∫ (x : ExposureEuclidean), inner ℝ (q x) (T.direction x) ∂T.vectorMeasure.variation =
+              ∫ (x : ExposureEuclidean),
+                  inner ℝ (q x) (remainderDirection x) ∂(T.vectorMeasure - D.retained).variation +
+                ∫ (a : A), EuclideanCurrentArcData.arcPairing (D.arc a) q ∂D.ensemble) :
+    D.CurrentIdentity
+@EuclideanCurrentArcData.CurrentIdentity.isDirected : ∀ {T : EuclideanNormalCurrentData}
+  {source sink : ExposureEuclidean} {A : Type u_1} [inst : MeasurableSpace A]
+  {D : EuclideanCurrentArcData T source sink A} (H : D.CurrentIdentity), D.IsDirected
+EuclideanCurrentSuperposition.directed : EuclideanCurrentSuperposition → EuclideanDirectedArcSuperposition
+'CZExposure.EuclideanCurrentArcData.CurrentIdentity.isDirected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.EuclideanCurrentSuperposition.directed' depends on axioms: [propext, Classical.choice, Quot.sound]

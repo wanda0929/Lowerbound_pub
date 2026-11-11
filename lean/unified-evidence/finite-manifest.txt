@@ -1,0 +1,2 @@
+PASS: 65 acceptance leaf fields mapped; 327 local file hashes match
+Evidence index only: external finite checks remain hypotheses, not kernel proof terms.

@@ -1,0 +1,47 @@
+import RequestProject.AppendixE.ExposureCurrent
+
+#check @CZExposure.vectorMeasure_variation_le_of_bound
+#check @CZExposure.withDensity_vectorMeasure_variation_le
+#check @CZExposure.fderiv_comp_exposureEuclideanEquiv
+#check @CZExposure.exists_euclidean_exposure_flow
+#check @CZExposure.EuclideanExposureFlow.vectorMeasure_apply
+#check @CZExposure.EuclideanExposureFlow.variation_le_massBound
+#check @CZExposure.EuclideanExposureFlow.variation_univ_lt_top
+#check @CZExposure.EuclideanExposureFlow.variation_support
+#check @CZExposure.EuclideanExposureFlow.action_add
+#check @CZExposure.EuclideanExposureFlow.action_smul
+#check @CZExposure.EuclideanExposureFlow.action_integrable_of_bound
+#check @CZExposure.EuclideanExposureFlow.action_norm_le
+#check @CZExposure.EuclideanExposureFlow.boundary_eq
+#check @CZExposure.EuclideanExposureFlow.boundary_norm_le
+#check @CZExposure.exists_exposure_current
+#check @CZExposure.EuclideanExposureFlow.measurable_exposureTimeWeight
+#check @CZExposure.EuclideanExposureFlow.exposureTimeWeight_eq_top_of_velocity_eq_zero
+#check @CZExposure.EuclideanExposureFlow.weighted_massBound_le
+#check @CZExposure.EuclideanExposureFlow.weighted_variation_le
+#check @CZExposure.EuclideanExposureFlow.weighted_submeasure_le
+#check @CZExposure.EuclideanExposureFlow.weighted_submeasure_lt_top
+#check @CZExposure.EuclideanExposureFlow.exists_component_le_exposure_mass
+
+#print axioms CZExposure.vectorMeasure_variation_le_of_bound
+#print axioms CZExposure.withDensity_vectorMeasure_variation_le
+#print axioms CZExposure.fderiv_comp_exposureEuclideanEquiv
+#print axioms CZExposure.exists_euclidean_exposure_flow
+#print axioms CZExposure.EuclideanExposureFlow.vectorMeasure_apply
+#print axioms CZExposure.EuclideanExposureFlow.variation_le_massBound
+#print axioms CZExposure.EuclideanExposureFlow.variation_univ_lt_top
+#print axioms CZExposure.EuclideanExposureFlow.variation_support
+#print axioms CZExposure.EuclideanExposureFlow.action_add
+#print axioms CZExposure.EuclideanExposureFlow.action_smul
+#print axioms CZExposure.EuclideanExposureFlow.action_integrable_of_bound
+#print axioms CZExposure.EuclideanExposureFlow.action_norm_le
+#print axioms CZExposure.EuclideanExposureFlow.boundary_eq
+#print axioms CZExposure.EuclideanExposureFlow.boundary_norm_le
+#print axioms CZExposure.exists_exposure_current
+#print axioms CZExposure.EuclideanExposureFlow.measurable_exposureTimeWeight
+#print axioms CZExposure.EuclideanExposureFlow.exposureTimeWeight_eq_top_of_velocity_eq_zero
+#print axioms CZExposure.EuclideanExposureFlow.weighted_massBound_le
+#print axioms CZExposure.EuclideanExposureFlow.weighted_variation_le
+#print axioms CZExposure.EuclideanExposureFlow.weighted_submeasure_le
+#print axioms CZExposure.EuclideanExposureFlow.weighted_submeasure_lt_top
+#print axioms CZExposure.EuclideanExposureFlow.exists_component_le_exposure_mass

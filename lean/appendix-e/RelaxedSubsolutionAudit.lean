@@ -1,0 +1,17 @@
+import RequestProject.AppendixE.RelaxedSubsolution
+
+#check @CZExposure.pRelaxed_le_domainMass
+#check @CZExposure.exists_finite_balance_obstruction
+#check @CZExposure.convex_attainableBalanceSet
+#check @CZExposure.exists_smooth_balance_separator
+#check @CZExposure.exists_unit_balance_subsolution
+#check @CZExposure.smooth_subsolution_relaxed
+#check @CZExposure.smooth_subsolution_of_realization
+
+#print axioms CZExposure.pRelaxed_le_domainMass
+#print axioms CZExposure.exists_finite_balance_obstruction
+#print axioms CZExposure.convex_attainableBalanceSet
+#print axioms CZExposure.exists_smooth_balance_separator
+#print axioms CZExposure.exists_unit_balance_subsolution
+#print axioms CZExposure.smooth_subsolution_relaxed
+#print axioms CZExposure.smooth_subsolution_of_realization

@@ -1,0 +1,22 @@
+@Flow.integral_pathMeasure : ∀ {V : Type u_1} [inst : Fintype V] (f : CZExposure.FiniteRouting.Flow V)
+  (pos : V → CZExposure.ExposureEuclidean) (g : CZExposure.StoppedPathSpace → ℝ),
+  ∫ (a : CZExposure.StoppedPathSpace), g a ∂f.pathMeasure pos = total f.decomposition fun γ => g (γ.realize pos).curve
+@Flow.initial_integral : ∀ {V : Type u_1} [inst : Fintype V] (f : CZExposure.FiniteRouting.Flow V)
+  (pos : V → CZExposure.ExposureEuclidean) (g : CZExposure.ExposureEuclidean → ℝ),
+  ∫ (a : CZExposure.StoppedPathSpace), g (a.path 0) ∂f.pathMeasure pos = ∑ v, f.source v * g (pos v)
+@Flow.terminal_integral : ∀ {V : Type u_1} [inst : Fintype V] (f : CZExposure.FiniteRouting.Flow V)
+  (pos : V → CZExposure.ExposureEuclidean) (g : CZExposure.ExposureEuclidean → ℝ),
+  ∫ (a : CZExposure.StoppedPathSpace), g (a.path a.duration) ∂f.pathMeasure pos = ∑ v, f.sink v * g (pos v)
+@Flow.duration_integral : ∀ {V : Type u_1} [inst : Fintype V] (f : CZExposure.FiniteRouting.Flow V)
+  (pos : V → CZExposure.ExposureEuclidean),
+  ∫ (a : CZExposure.StoppedPathSpace), a.duration ∂f.pathMeasure pos = ∑ u, ∑ v, f.edge u v * ‖pos v - pos u‖
+@Flow.pathMeasure_probability : ∀ {V : Type u_1} [inst : Fintype V] (f : CZExposure.FiniteRouting.Flow V)
+  (pos : V → CZExposure.ExposureEuclidean), ∑ v, f.source v = 1 → MeasureTheory.IsProbabilityMeasure (f.pathMeasure pos)
+PASS CZExposure.FiniteRouting.Flow.integrable_pathMeasure: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.FiniteRouting.Flow.pathMeasure_finite: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.FiniteRouting.Flow.integral_pathMeasure: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.FiniteRouting.Flow.initial_integral: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.FiniteRouting.Flow.terminal_integral: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.FiniteRouting.Flow.duration_integral: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.FiniteRouting.Flow.pathMeasure_mass: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.FiniteRouting.Flow.pathMeasure_probability: [propext, Quot.sound, Classical.choice]

@@ -1,0 +1,64 @@
+LocalSteering.cutoffOverhead : LocalSteering → ℝ → ℝ → ℝ → ℝ
+'CZExposure.LocalSteering.cutoffOverhead' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.cutoffCoefficient : LocalSteering → ℝ → ℝ
+'CZExposure.LocalSteering.cutoffCoefficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.cutoffCoefficient_nonneg : ∀ (H : LocalSteering) {T : ℝ}, 0 ≤ T → 0 ≤ H.cutoffCoefficient T
+'CZExposure.LocalSteering.cutoffCoefficient_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+@LocalSteering.fifth_power_le_half : ∀ {β : ℝ}, 0 ≤ β → β ≤ 1 / 12 → β ^ 5 ≤ β / 2
+'CZExposure.LocalSteering.fifth_power_le_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.cutoffOverhead_eq : ∀ (H : LocalSteering) {T β : ℝ},
+  0 ≤ T → 0 < β → H.cutoffOverhead T (β ^ 5) β = H.cutoffCoefficient T * β.rpow (3 / 8)
+'CZExposure.LocalSteering.cutoffOverhead_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.tendsto_cutoffOverhead : ∀ (H : LocalSteering) {T : ℝ},
+  0 ≤ T → Filter.Tendsto (fun β => H.cutoffOverhead T (β ^ 5) β) (nhdsWithin 0 (Set.Ioi 0)) (nhds 0)
+'CZExposure.LocalSteering.tendsto_cutoffOverhead' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exists_cutoff_for_error : ∀ (H : LocalSteering) {T ε : ℝ},
+  0 ≤ T →
+    0 < ε →
+      ∃ β,
+        0 < β ∧
+          β ≤ 1 / 12 ∧
+            β ^ 5 ≤ β / 2 ∧ 32 * √(β ^ 5) ≤ H.radius ∧ 8 * T * √β ≤ H.radius ∧ H.cutoffOverhead T (β ^ 5) β < ε
+'CZExposure.LocalSteering.exists_cutoff_for_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exists_pulse_approx_exposure_trajectory : ∀ (H : LocalSteering) {T : ℝ} {y : ℝ → ExposureEuclidean}
+  {u : ℝ → ℂ} {K : NNReal},
+  0 ≤ T →
+    LipschitzWith K y →
+      Measurable u →
+        (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+          (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+            (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+              y 0 = exposureEuclideanEquiv y0 →
+                y T = exposureEuclideanEquiv yPi → ∀ {ε : ℝ}, 0 < ε → ∃ γ, γ.exposure ≤ T + ε
+'CZExposure.LocalSteering.exists_pulse_approx_exposure_trajectory' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+LocalSteering.exists_pulse_of_record_of_superposition : ∀ (H : LocalSteering),
+  EuclideanDirectedArcSuperposition →
+    ∀ (ν : MeasureTheory.Measure ExposureAmbient),
+      IsExposureRecord ν → ∀ {ε : ℝ}, 0 < ε → ∃ γ, γ.exposure ≤ (ν Set.univ).toReal + ε
+'CZExposure.LocalSteering.exists_pulse_of_record_of_superposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+LocalSteering.Cstar_le_pRelaxed_of_superposition : ∀ (H : LocalSteering),
+  EuclideanDirectedArcSuperposition → Cstar ≤ pRelaxed
+'CZExposure.LocalSteering.Cstar_le_pRelaxed_of_superposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.pRelaxed_eq_Cstar_of_superposition : ∀ (H : LocalSteering),
+  EuclideanDirectedArcSuperposition → pRelaxed = Cstar
+'CZExposure.LocalSteering.pRelaxed_eq_Cstar_of_superposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exists_pulse_of_record : ∀ (H : LocalSteering) (ν : MeasureTheory.Measure ExposureAmbient),
+  IsExposureRecord ν → ∀ {ε : ℝ}, 0 < ε → ∃ γ, γ.exposure ≤ (ν Set.univ).toReal + ε
+'CZExposure.LocalSteering.exists_pulse_of_record' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ CZExposure.External.euclideanDirectedArcSuperposition]
+LocalSteering.Cstar_le_pRelaxed : ∀ (H : LocalSteering), Cstar ≤ pRelaxed
+'CZExposure.LocalSteering.Cstar_le_pRelaxed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ CZExposure.External.euclideanDirectedArcSuperposition]
+LocalSteering.pRelaxed_eq_Cstar : ∀ (H : LocalSteering), pRelaxed = Cstar
+'CZExposure.LocalSteering.pRelaxed_eq_Cstar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ CZExposure.External.euclideanDirectedArcSuperposition]

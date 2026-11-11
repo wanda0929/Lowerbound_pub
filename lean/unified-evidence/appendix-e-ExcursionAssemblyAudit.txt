@@ -1,0 +1,138 @@
+LocalSteering.exposureBound_mono : ∀ (H : LocalSteering) {d e : ℝ},
+  0 ≤ d → d ≤ e → H.exposureBound d ≤ H.exposureBound e
+'CZExposure.LocalSteering.exposureBound_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+@FiniteExcursionSelection.retainedPhaseRatio : {T α β : ℝ} →
+  {y : ℝ → ExposureEuclidean} → {u : ℝ → ℂ} → (S : FiniteExcursionSelection T α β y u) → Fin S.count → ℂ
+'CZExposure.FiniteExcursionSelection.retainedPhaseRatio' depends on axioms: [propext, Classical.choice, Quot.sound]
+@FiniteExcursionSelection.retainedPhaseProduct : {T α β : ℝ} →
+  {y : ℝ → ExposureEuclidean} → {u : ℝ → ℂ} → FiniteExcursionSelection T α β y u → ℂ
+'CZExposure.FiniteExcursionSelection.retainedPhaseProduct' depends on axioms: [propext, Classical.choice, Quot.sound]
+@FiniteExcursionSelection.norm_ordered_endpoint_unitPhase : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u),
+  α ≤ 1 / 12 →
+    ∀ (i : Fin S.count),
+      ‖complexUnitPhase (exposureProgressPath y (S.orderedSegment i).a)‖ = 1 ∧
+        ‖complexUnitPhase (exposureProgressPath y (S.orderedSegment i).b)‖ = 1
+'CZExposure.FiniteExcursionSelection.norm_ordered_endpoint_unitPhase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@FiniteExcursionSelection.retainedPhaseProduct_of_count_eq_zero : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u), S.count = 0 → S.retainedPhaseProduct = 1
+'CZExposure.FiniteExcursionSelection.retainedPhaseProduct_of_count_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@FiniteExcursionSelection.retained_phase_product_mul_gap_product : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u),
+  α ≤ 1 / 12 →
+    y 0 = exposureEuclideanEquiv y0 →
+      y T = exposureEuclideanEquiv yPi →
+        S.retainedPhaseProduct *
+            ∏ j,
+              complexUnitPhase (exposureProgressPath y (S.gapRight j)) /
+                complexUnitPhase (exposureProgressPath y (S.gapLeft j)) =
+          -1
+'CZExposure.FiniteExcursionSelection.retained_phase_product_mul_gap_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@FiniteExcursionSelection.retained_phase_and_error : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) {K : NNReal},
+  0 ≤ T →
+    α ≤ 1 / 12 →
+      LipschitzWith K y →
+        Measurable u →
+          (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+            (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+              (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T), HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+                y 0 = exposureEuclideanEquiv y0 →
+                  y T = exposureEuclideanEquiv yPi →
+                    β ≤ 1 / 12 →
+                      S.retainedPhaseProduct = -phaseFactor (-S.discardedAngularIntegral) ∧
+                        |S.discardedAngularIntegral| ≤ 8 * T * √β
+'CZExposure.FiniteExcursionSelection.retained_phase_and_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@FiniteExcursionSelection.exists_repaired_blocks : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) (H : LocalSteering),
+  0 ≤ α →
+    α ≤ 1 / 12 →
+      32 * √α ≤ H.radius →
+        ∃ B,
+          ∀ (i : Fin S.count),
+            (B i).initial = faceProjection ((S.orderedSegment i).physicalPath 0) ∧
+              (B i).terminal = faceProjection ((S.orderedSegment i).physicalPath (S.orderedSegment i).duration) ∧
+                (B i).segment.duration ≤ (S.orderedSegment i).duration + 2 * H.timeBound (32 * √α) ∧
+                  (B i).segment.exposure ≤ (S.orderedSegment i).physicalExposure + 2 * H.exposureBound (32 * √α) ∧
+                    (B i).phaseRatio = S.retainedPhaseRatio i
+'CZExposure.FiniteExcursionSelection.exists_repaired_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+@FiniteExcursionSelection.exists_repaired_assembly : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) (H : LocalSteering),
+  0 ≤ T →
+    0 < α →
+      α ≤ 1 / 12 →
+        32 * √α ≤ H.radius →
+          ∃ A,
+            A.initial = x0 ∧
+              A.segment.duration ≤ T / α + 2 * ↑S.count * H.timeBound (32 * √α) ∧
+                A.segment.exposure ≤ T + 2 * ↑S.count * H.exposureBound (32 * √α) ∧
+                  A.phaseRatio = S.retainedPhaseProduct
+'CZExposure.FiniteExcursionSelection.exists_repaired_assembly' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@FiniteExcursionSelection.exists_pulse_with_count_budget : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u) (H : LocalSteering) {K : NNReal},
+  0 ≤ T →
+    0 < α →
+      α < β →
+        LipschitzWith K y →
+          Measurable u →
+            (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+              (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+                (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+                    HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+                  y 0 = exposureEuclideanEquiv y0 →
+                    y T = exposureEuclideanEquiv yPi →
+                      β ≤ 1 / 12 →
+                        32 * √α ≤ H.radius →
+                          8 * T * √β ≤ H.radius →
+                            ∃ γ,
+                              γ.S ≤ T / α + 2 * ↑S.count * H.timeBound (32 * √α) + H.timeBound (8 * T * √β) ∧
+                                γ.exposure ≤ T + 2 * ↑S.count * H.exposureBound (32 * √α) + H.exposureBound (8 * T * √β)
+'CZExposure.FiniteExcursionSelection.exists_pulse_with_count_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@FiniteExcursionSelection.count_bound_half_cutoff : ∀ {T α β : ℝ} {y : ℝ → ExposureEuclidean} {u : ℝ → ℂ}
+  (S : FiniteExcursionSelection T α β y u),
+  0 ≤ T →
+    0 ≤ α →
+      0 < β →
+        α ≤ β / 2 →
+          LipschitzOnWith (3 / 2) (fun t => costThreeHalves (euclideanExposureCost (y t))) (Set.Icc 0 T) →
+            ↑S.count * (2 / 3 * costThreeHalves β) ≤ T
+'CZExposure.FiniteExcursionSelection.count_bound_half_cutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+LocalSteering.exists_pulse_of_exposure_trajectory : ∀ (H : LocalSteering) {T α β : ℝ} {y : ℝ → ExposureEuclidean}
+  {u : ℝ → ℂ} {K : NNReal},
+  0 ≤ T →
+    0 < α →
+      0 < β →
+        α ≤ β / 2 →
+          LipschitzWith K y →
+            Measurable u →
+              (∀ (t : ℝ), ‖u t‖ ≤ 1) →
+                (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) →
+                  (∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+                      HasDerivAt y (euclideanBfield (y t) (u t)) t) →
+                    y 0 = exposureEuclideanEquiv y0 →
+                      y T = exposureEuclideanEquiv yPi →
+                        β ≤ 1 / 12 →
+                          32 * √α ≤ H.radius →
+                            8 * T * √β ≤ H.radius →
+                              ∃ γ,
+                                γ.S ≤
+                                    T / α + 3 * T / costThreeHalves β * H.timeBound (32 * √α) +
+                                      H.timeBound (8 * T * √β) ∧
+                                  γ.exposure ≤
+                                    T + 3 * T / costThreeHalves β * H.exposureBound (32 * √α) +
+                                      H.exposureBound (8 * T * √β)
+'CZExposure.LocalSteering.exists_pulse_of_exposure_trajectory' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

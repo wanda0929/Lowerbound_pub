@@ -1,0 +1,45 @@
+import RequestProject.AppendixE.ExposureClock
+
+open CZExposure
+
+#check @euclideanBfield_bounded
+#check @EuclideanExposureFlow.velocity_bounded
+#check @EuclideanArc.inverseSpeed_lower_bound_ae
+#check @EuclideanArc.exposureClock_increment_lower_bound
+#check @EuclideanArc.strictMonoOn_exposureClock_of_speed_bound
+#check @EuclideanArc.exposureClock_dist_lower_bound
+#check @EuclideanArc.strictMonoOn_exposureClock
+#check @EuclideanArc.exposureTime_toReal_pos
+#check @EuclideanArc.exposureClock_image_interval
+#check @EuclideanArc.coe_clockOrderIso_apply
+#check @EuclideanArc.exposureClock_clockInverse
+#check @EuclideanArc.clockInverse_clockOrderIso
+#check @EuclideanArc.lipschitz_clockInverse
+#check @EuclideanArc.exists_lipschitz_clockInverse
+#check @EuclideanArc.lipschitz_reparameterizedPath
+#check @EuclideanArc.reparameterizedPath_mem_domain
+#check @EuclideanArc.clockInverse_zero
+#check @EuclideanArc.clockInverse_terminal
+#check @EuclideanArc.reparameterizedPath_zero
+#check @EuclideanArc.reparameterizedPath_terminal
+
+#print axioms euclideanBfield_bounded
+#print axioms EuclideanExposureFlow.velocity_bounded
+#print axioms EuclideanArc.inverseSpeed_lower_bound_ae
+#print axioms EuclideanArc.exposureClock_increment_lower_bound
+#print axioms EuclideanArc.strictMonoOn_exposureClock_of_speed_bound
+#print axioms EuclideanArc.exposureClock_dist_lower_bound
+#print axioms EuclideanArc.strictMonoOn_exposureClock
+#print axioms EuclideanArc.exposureTime_toReal_pos
+#print axioms EuclideanArc.exposureClock_image_interval
+#print axioms EuclideanArc.coe_clockOrderIso_apply
+#print axioms EuclideanArc.exposureClock_clockInverse
+#print axioms EuclideanArc.clockInverse_clockOrderIso
+#print axioms EuclideanArc.lipschitz_clockInverse
+#print axioms EuclideanArc.exists_lipschitz_clockInverse
+#print axioms EuclideanArc.lipschitz_reparameterizedPath
+#print axioms EuclideanArc.reparameterizedPath_mem_domain
+#print axioms EuclideanArc.clockInverse_zero
+#print axioms EuclideanArc.clockInverse_terminal
+#print axioms EuclideanArc.reparameterizedPath_zero
+#print axioms EuclideanArc.reparameterizedPath_terminal

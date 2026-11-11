@@ -1,0 +1,1312 @@
+{
+  "schema": "LowerBoundCZ.unified-acceptance.v1",
+  "status": "PASS",
+  "completed_utc": "2026-11-11T12:55:14.886496+00:00",
+  "sources": {
+    "AllocationDataAudit.lean": "2a7adc71816ac669708e7638ee9fb219cd3d820bd2d272ff706d61541b1679d3",
+    "AppendixBDAudit.lean": "96deb03c20145c11d8d460b0889f980f51194b826d8172a6d00acfeafb4cacdb",
+    "AppendixEAudit.lean": "6d9426816770e1ff4e7b6e618f6177e4d2f77e21549d83d7bda02e564fdd6233",
+    "CertificateContractsAudit.lean": "a10c007bc42788daefe2988b76dd95033ced34e7ef461cb1bba02df0838f1600",
+    "CoverageDataAudit.lean": "79d0779d0203d42a70e0ba77009ef1ffa820fc460a0763695db3420de0b92317",
+    "FixedArchiveAudit.lean": "6f23c13cbb7c95429596de371f7589cb3dd80f0288904ed77a2b672750dfa330",
+    "InterfaceDataAudit.lean": "170ed3aa9655e85f8f4d06b9333603ac61ba3e6088f86899d130ab49f09703a6",
+    "LowerBoundCZ/AllocationCodec.lean": "80d4533913302e94731c61a0958d4555993ca0d053fdd783e9551903d2ae654c",
+    "LowerBoundCZ/AllocationData/Source0.lean": "fe9641d90bb1a19d6e921ae6f147b73aa7f320e9f545669ff223c17d95d0613c",
+    "LowerBoundCZ/AllocationData/Source1.lean": "3f200b78775757355f77cd2c281942475bdac4e03d26c7ecbfcf58f739bf33ef",
+    "LowerBoundCZ/AllocationData/Source2.lean": "705669681271f804cd74e8eee36fad84d28697916ca227fd364614b9df5fad6a",
+    "LowerBoundCZ/AllocationData/Source3.lean": "5c23a819555a897ed2c2b5acd9e89337e74034bcf2db579ecef0dbbbd0065167",
+    "LowerBoundCZ/AllocationData/Source4.lean": "a798c208aab9397f241c49d5a36a90f10d18f2e5f10770955f402ba1491b748e",
+    "LowerBoundCZ/AllocationData/Source5.lean": "4120d13e8426321ef789f92519fadb93c5fde4a9b49a5bed12643a7c7ae32f12",
+    "LowerBoundCZ/AllocationData/Source6.lean": "37c16d610fa3e7a8acd324d679b33a2038b3c21f277b0b0e7b2b6bbe533629d9",
+    "LowerBoundCZ/AllocationData/Source7.lean": "d0b6b92e54c3f2b36cd3a4a4795c3f7189c2d8b1097e302d8dc66b972c81a706",
+    "LowerBoundCZ/AllocationData.lean": "1940f06fa07266d7e41d13f78a7c17060ae8e012810aaec6d4be530c6f6edb53",
+    "LowerBoundCZ/AppendixB.lean": "a6ab3dfa9af0f89469129c78648d60c12394ac728bc81add36180801e4ab7d0e",
+    "LowerBoundCZ/AppendixD.lean": "f52eb5d3f8b2f7246413e68e7f7da9583f391507f8517a852d92ab929c010a40",
+    "LowerBoundCZ/AppendixE/Algebra.lean": "357ac4a2cc59c44a065d5bf8e82aa1263a034f129ec4202acb556c49c06242bd",
+    "LowerBoundCZ/AppendixE/Hierarchy.lean": "7342ed7e532038190d553f3835865d8e2f81435922b9f75ebedcbbf34cf7c059",
+    "LowerBoundCZ/AppendixE/Model.lean": "1d29802b121c96dc2383fef9ce504e5c2f67ba37a6360e739b87492fec0262b2",
+    "LowerBoundCZ/AppendixE/Patching.lean": "476270d4de8f38b0f546fe5a1763f53b8c82352e1b788318d2880fe3ac021a6d",
+    "LowerBoundCZ/AppendixE.lean": "faf941e612db1352c5c3c5449a0a36e6bdf97790b162c56dfe4bd5d444b2dec8",
+    "LowerBoundCZ/ArchiveData.lean": "20d7f9cd2158b06b3967ebc964f93f18dd54b41e68ff06df1b185bb991924b57",
+    "LowerBoundCZ/Basic.lean": "3b0938005996975c64cbf3abe47094e79bb8822aaeb80255e20b814b68a5d8d9",
+    "LowerBoundCZ/CertificateContracts.lean": "844a788c1943ac8f3d374f1736cd18a5b4001b99554a7b60b3888bf159ee2d47",
+    "LowerBoundCZ/CertificateData.lean": "0fe714566c857e3a09d8d070844fcddc87192ce2fdb5b26cec07456f9c163f6f",
+    "LowerBoundCZ/CoverageData.lean": "70f2128b1cfa795b9f5d1e58731e7563eaa9f8b4b65ab75d79cc19b034389a5a",
+    "LowerBoundCZ/Dual.lean": "891e72e0049d31670ef7188299814a7a26d24e7b078a3695729435de2482a16a",
+    "LowerBoundCZ/Dynamics.lean": "a508bc44b9d5eb78fefff8b8a88e1bec2f93d3882ab52d570515eadab9fe5394",
+    "LowerBoundCZ/Fiber.lean": "3b8fa24cff28211a4c72bec10573ee9a2a537d26c88ae07b59b915e0d9624fc1",
+    "LowerBoundCZ/FixedArchive.lean": "247f99423c795af5499f6714eb10f9730073f18a2db44786f3deace52a8bd04f",
+    "LowerBoundCZ/GramBridge.lean": "119071a424b5c0cdd1f7f5d3d6bd5aebc8b88563fc85e84e846d39c1abcf9df9",
+    "LowerBoundCZ/InterfaceData.lean": "03aa1a4e031c529fb09f3170ca0b46ed7e8a0383e697a7f14461f6c009f959a8",
+    "LowerBoundCZ/MandatoryPrefix.lean": "571c87506d60028e5c82baaf3a647e00861324ac216e2bc9cd44311420d07d2f",
+    "LowerBoundCZ/NoGo.lean": "89d74dd0c5ccaab1d027cde0eecc0b527ae17333fe5a7106965e3564ccc61fe5",
+    "LowerBoundCZ/OccupationCoverage.lean": "c7153b402ba6f286e57fadc3dfd264389b36709c4100c7b48331bde4254100f8",
+    "LowerBoundCZ/OccupationLedger.lean": "8da019c57314b3c865bd0f500641cc2166f2c1e8a4b1731fd85fb3820e68780f",
+    "LowerBoundCZ/PinnedAllocations.lean": "869b6d4c7f716dea5af66cac2483ba06aaf8ed127f22a01a3aa9640214520cb0",
+    "LowerBoundCZ/PinnedCertificates.lean": "16e74946555ceb585797977dea5ea433f39c2944021c6cf3d1ecd5ca717de865",
+    "LowerBoundCZ/PinnedInterfaces.lean": "68495c2b11a8b5781096e5214bf8ea5847b109778a60832a2e51be89e00e23e9",
+    "LowerBoundCZ/PinnedRegions.lean": "75ffd64dfc31805a89ca41b6277f65d5d7cc65a26eee162f463035ea57f95adf",
+    "LowerBoundCZ/PopulationBarrier.lean": "a1d81a5d479beb07a30051c9b65fa3c21b5318264c8bb30ae17175d4602fafcd",
+    "LowerBoundCZ/PotentialBasis.lean": "363f2752b732fb5558dd65dbae15672312164383ec3fbb098a2565761aee95bc",
+    "LowerBoundCZ/PrefixData.lean": "9553647dfbae466f64fe99a9ff0c7158c1d08ee1c060e1a1de0479f6d156abd3",
+    "LowerBoundCZ/ProfileData.lean": "b28a0771911c19a3b1bf7128175663d4ba60c05a063cf77640b7c356fdfea8af",
+    "LowerBoundCZ/Reductions.lean": "ac5f0a17135e85663725148f081e883c538eda74530f9776455c8fec9cc27803",
+    "LowerBoundCZ/RegionalData/Source0_0.lean": "13571d6c6cffd82c748fb85168e726f61607d502681ef607b55d13ff653f5bc1",
+    "LowerBoundCZ/RegionalData/Source0_1.lean": "93e434848d332c403f724d2f34cbd96962b36a9324731af9eaabb869993ab7ab",
+    "LowerBoundCZ/RegionalData/Source0_2.lean": "4f65a164b2edcff438387455b1d4551044f831235f4f676ef9facc4a3b192473",
+    "LowerBoundCZ/RegionalData/Source0_3.lean": "8d1e9d069471e5a32623a9a4c12871ed75670c83967f8e7d565d39af391587d0",
+    "LowerBoundCZ/RegionalData/Source0_4.lean": "2730fadaddfa20ca72c9b265b3ad735001e8fea038f3bef89c3d52981b89cb8c",
+    "LowerBoundCZ/RegionalData/Source0_5.lean": "5524f04d15090063313288142be2b2bc0029cceb715b9ed70d3e767be3b9cf0a",
+    "LowerBoundCZ/RegionalData/Source0_6.lean": "bef7b3a95de6624973e4ec80b0c3b60b8cde4b6ff52fce82e83f140c966d5bac",
+    "LowerBoundCZ/RegionalData/Source0_7.lean": "498aa783799b60750ed03567f6a09ba54c234bfac9c1d6963cd3e82890bb1907",
+    "LowerBoundCZ/RegionalData/Source1_0.lean": "f6605f0001d7fb579029d64f8c14a00bb3163b0e8affa76b2fa7ec8841f3d585",
+    "LowerBoundCZ/RegionalData/Source1_1.lean": "43429a7a037422389faa99d3ce6b0a2843076cb08fd01515db788e741576b31a",
+    "LowerBoundCZ/RegionalData/Source1_2.lean": "15e936b2934b31a8ab85d32557941eea48f9e4ecb995f34ed1f9e73ced5e6ccb",
+    "LowerBoundCZ/RegionalData/Source1_3.lean": "bc0bce4fab40c876a8ddf39f82ece8060fbebddb781eff9ce8f02aa9a7c38dea",
+    "LowerBoundCZ/RegionalData/Source1_4.lean": "1444ff352936e91ca69b639cd743364545b7c52e150a5e45bacd4da953057ae9",
+    "LowerBoundCZ/RegionalData/Source1_5.lean": "6ad499315cbe501b075248c8bcb7bf137abdb0ca2541e8d80dff4f085949c9a6",
+    "LowerBoundCZ/RegionalData/Source1_6.lean": "151c08deec0e7a10291da95b7814f8133a9885bdf89d818efa2832782df64fed",
+    "LowerBoundCZ/RegionalData/Source1_7.lean": "da1c54360f4a22c204fef082d77a3c0e45d33f441c065cf8e24b81230580c69f",
+    "LowerBoundCZ/RegionalData/Source2_0.lean": "684df9b909b7ebf528fa8c415fa7496855c9ef468e6241a8cef3f08ea792ac08",
+    "LowerBoundCZ/RegionalData/Source2_1.lean": "bb8579ab35f4094477fe0cd9ef951a5289ff5a9d469db6e2a99893b1b7e6a30a",
+    "LowerBoundCZ/RegionalData/Source2_2.lean": "ccb0575c6fc2da79229a5362924cb5c06db04881a391cb50d7f1365d81a725ea",
+    "LowerBoundCZ/RegionalData/Source2_3.lean": "2afd84af6d82025d907639c519ac39ccb414172092f733b822faade51916ceb0",
+    "LowerBoundCZ/RegionalData/Source2_4.lean": "2486e9b0b0dbd0767b7a371f8ba77e4b57889b300b2288efc22afd547d2c3a39",
+    "LowerBoundCZ/RegionalData/Source2_5.lean": "321621f7fac3bafa85c6a2e3edd6ce24ca9e1791ff217cf738f585dc0b4eb384",
+    "LowerBoundCZ/RegionalData/Source2_6.lean": "828795cfedd638ecee177b2e44ddc3dc8bce26712b7f870233d93598c0a38db9",
+    "LowerBoundCZ/RegionalData/Source2_7.lean": "eaa7a6a9c57d03ce8d1872f41a6751b7db353a5a9dfb3bd56086d999e4a39c52",
+    "LowerBoundCZ/RegionalData/Source3_0.lean": "a029584d369ac2af556c11065297b8f13c9bb8c692a6f173363f917446e5b90c",
+    "LowerBoundCZ/RegionalData/Source3_1.lean": "9adac0e08d955c23e7e6773f01057abdf89192e2b16a2586acec67ebd300ded8",
+    "LowerBoundCZ/RegionalData/Source3_2.lean": "727cf4297d854c79f4226aa796607ea924dafc40d65535e8241c3a85c4821e77",
+    "LowerBoundCZ/RegionalData/Source3_3.lean": "87c81a28856b61d106ef3f13804f9166b2eb8325ab3935f3f50a2e8c149327ee",
+    "LowerBoundCZ/RegionalData/Source3_4.lean": "6feee5b6f6a0c19bf8fce39ed2e74c7fa18574c79d6dccd09d33aacba245d7e1",
+    "LowerBoundCZ/RegionalData/Source3_5.lean": "51f0ebc6cbeccfd88ea0f01384ed5ae246ba8e58c3e06450ba8a0c24749bd5fe",
+    "LowerBoundCZ/RegionalData/Source3_6.lean": "d83ee25ee6aa8bae6f0fd1bde6f399540d3d7ee30f2d1807c797e95d8f25bbf5",
+    "LowerBoundCZ/RegionalData/Source3_7.lean": "4fc22bc1aa09c8a173fc31892304c8790e978ac191ead7550b6737b06e61cb1f",
+    "LowerBoundCZ/RegionalData/Source4_0.lean": "aaef3e303cb9f3af7e04964280b494195e807f37b63e867c9f721e22895b565b",
+    "LowerBoundCZ/RegionalData/Source4_1.lean": "787b98d5c21d52dad6f5514643cfac7fa45dc96fde36c9f0b6a7990542565f08",
+    "LowerBoundCZ/RegionalData/Source4_2.lean": "f8dd5adcf4ad0cb3a9960de1da1ec61f7b914a2f84c2a28e8307ca96b140d313",
+    "LowerBoundCZ/RegionalData/Source4_3.lean": "eba4cde500c20631ae7f4f25a71529b0893ff3429e70ee23214911ff8561f76e",
+    "LowerBoundCZ/RegionalData/Source4_4.lean": "5a7119793fe4ff4186e9054bf9803d77356cc601472a281d0b48b6481facf229",
+    "LowerBoundCZ/RegionalData/Source4_5.lean": "9faf600e983f00450abdea109e05c70ccb799570cc7f8d4a7be1fd1dd1f05b83",
+    "LowerBoundCZ/RegionalData/Source4_6.lean": "0f335bd97ef77be0fb4f9f39ac88a5e5aab28a387aef19c46842ce72c69491dc",
+    "LowerBoundCZ/RegionalData/Source4_7.lean": "648c9dde10c83c6b60aba1936343b07acc6b164f0fde8ed88382bce21ebfccbf",
+    "LowerBoundCZ/RegionalData/groups0.lean": "2e39f3700a7d5db23c72bc22a5e4f22d47aa79ecd4b6893cae93a6978df319bc",
+    "LowerBoundCZ/RegionalData/groups1.lean": "9decdda5d28b7acaae979adc545268ad0dcb748c22af65665a6d4d6ea1e37b30",
+    "LowerBoundCZ/RegionalData/groups10.lean": "b025cd1a2c58726b973036514d1eb481cdc4ca0f5976ce31186e2d0ab7043ea9",
+    "LowerBoundCZ/RegionalData/groups11.lean": "ba1a1cd70a9ff7b49bdc9efd01e3fe5e0505186362b7531cd1d7d973cd2b86ac",
+    "LowerBoundCZ/RegionalData/groups12.lean": "7862fbb6b6f2512d6f41cc329695b843edff92ac33818922124fa39476be461a",
+    "LowerBoundCZ/RegionalData/groups13.lean": "9e48b8b57a3f64e5188c7ec4e4f71db4fdcb6d1e7b5b1b938036272d8260ce55",
+    "LowerBoundCZ/RegionalData/groups14.lean": "091632d0e96743bc7b78fd8fa5c7fb5a17c619ea42f86a765d08a06acfa44ed3",
+    "LowerBoundCZ/RegionalData/groups2.lean": "2bb4db0f9ba23b00ed7c7dde75d408433370f8475cbe4c9c5b81f54eb1f38696",
+    "LowerBoundCZ/RegionalData/groups3.lean": "bcf157aeddc371d8fe2b40079ed16193c5fd75c0642991ae87e5a40affd66603",
+    "LowerBoundCZ/RegionalData/groups4.lean": "f74c1c64755e7d5c068a8c92cabcfcf5cfe134f015e166675c7a5f5a421c514b",
+    "LowerBoundCZ/RegionalData/groups5.lean": "d5d234d9afe496eb24ac0f9576c53edaac8b4c77f33deb0f343697a03ba3e96d",
+    "LowerBoundCZ/RegionalData/groups6.lean": "57cb40c10ef5e76d6f18ba0adf9589072addb1cf80e6dd5556128bc3f8cd2532",
+    "LowerBoundCZ/RegionalData/groups7.lean": "12748a28c6e052a3874c3af08e647e502729e4ef30183f746bd74894f8a66aa6",
+    "LowerBoundCZ/RegionalData/groups8.lean": "56829f90af0a8f6798a78329aa668d6953f80da8a1747e0a3d336e78bb2885f4",
+    "LowerBoundCZ/RegionalData/groups9.lean": "87b93a3e7eb157399166c600d894eefe0b81c0b5f9c1c5323e636a79202c07e3",
+    "LowerBoundCZ/RegionalData/maps0.lean": "f9d4271c6e75de21240819f03c2f189d5b5ad5dc232c2e4191cd9aa4570dd10d",
+    "LowerBoundCZ/RegionalData/maps1.lean": "119278145c434e0b874165663c76f9d86b1e5c83036501ca9ed60ef5bc37fce4",
+    "LowerBoundCZ/RegionalData/maps2.lean": "f8dca15c7feecd5adf4e692251e577a20ebea59c46a2eeafdb352f399aa42232",
+    "LowerBoundCZ/RegionalData/maps3.lean": "2d931207797ee36edaa928c85313e240167d45c2db2e49351882a30a8ac02044",
+    "LowerBoundCZ/RegionalData/maps4.lean": "543f063e52e266f130cbf97003b8b705915babf90cf1ed027d6920d27d8a8484",
+    "LowerBoundCZ/RegionalData/maps5.lean": "dbcbcdaca720b26f79cdb4d2b318b5c788d1958948efa3fecae8cb2b09792228",
+    "LowerBoundCZ/RegionalData/projections0.lean": "ba2c106f383452610fe64d05e98033629124840750fed6bff069b453ddfdd37a",
+    "LowerBoundCZ/RegionalData/projections1.lean": "3a1450202325db92af69d5a0eb45b808d7890113eb9f4889a45549e106d6607e",
+    "LowerBoundCZ/RegionalData/projections10.lean": "979abcbf36d498771915959d1981a0346fe4acf661e48b5b615ecb6fc7cdd65d",
+    "LowerBoundCZ/RegionalData/projections11.lean": "fa4e2d8e85640bd09c3b1116ea1f00686e93f6177a987230c79e0cb7d59d0c94",
+    "LowerBoundCZ/RegionalData/projections12.lean": "e97442385965eacb0b65b3c68763a5d7b2cd24b42ee9337a1f82e37d775c70e8",
+    "LowerBoundCZ/RegionalData/projections2.lean": "91f5ba6b813575bf1be36ac4de4f424c0155804b863bbfdb1d5ca28d5004941a",
+    "LowerBoundCZ/RegionalData/projections3.lean": "d38f50c1e7f80ab7ee97cef8118e3eecfc22089bbc4b2597c0c0f7abaf835d34",
+    "LowerBoundCZ/RegionalData/projections4.lean": "4319df8276d7d2668fd27cdd523612592d051fe8d9210d12209b37bd7c0844eb",
+    "LowerBoundCZ/RegionalData/projections5.lean": "b04ef834bae2ce857c179913cd949df333873151b8925f2232dd23282772ea14",
+    "LowerBoundCZ/RegionalData/projections6.lean": "e97cb5efc979d564d0e1d0f67675851cab10ae925ce9ef76fbe24480975f8b65",
+    "LowerBoundCZ/RegionalData/projections7.lean": "0581fe5aff63d42447e506f22b3f5328faff53925c5285ef85da881c06648fac",
+    "LowerBoundCZ/RegionalData/projections8.lean": "b1dd9592ff7a49bc0e78d6a3a5f31aec8f4a1bd9ebc6e3e1653ca3b62295b485",
+    "LowerBoundCZ/RegionalData/projections9.lean": "d4e0fe7eea581e8ead47ef88a70321e841b2053a081834b7146741179b393ca9",
+    "LowerBoundCZ/RegionalData/regions0.lean": "ee701358aa782f66a52c6659d6b685b4e3bac4c21722a54dfb94629ad6e2aa6d",
+    "LowerBoundCZ/RegionalData/regions1.lean": "9c87807f62eda9d6defcd1e43855b5bbc8dfebf393b401c0627c2e321d411fec",
+    "LowerBoundCZ/RegionalData/regions10.lean": "af14f451aab50ac1029c0c1dbc6b4568152192a732b9089dba72a0bf49030416",
+    "LowerBoundCZ/RegionalData/regions11.lean": "4606929db113ef1f4a79a1c3d131f2c1ab73967a50c0bdb187434f111364f13a",
+    "LowerBoundCZ/RegionalData/regions12.lean": "6f68783b0e881db7e88863f9e6f006bdc0ab4fb57bd4c4f6d2ae8da6c8ff0a8a",
+    "LowerBoundCZ/RegionalData/regions13.lean": "858d94c3d655c50722c9b9fad4a37fa2a6efcced23d446a3ccce59f6dcaebc0d",
+    "LowerBoundCZ/RegionalData/regions14.lean": "c3ec8f1cda61b14e56edcd2b722bb9d38ce1edff0ffaba1203d041bdd349cfd2",
+    "LowerBoundCZ/RegionalData/regions15.lean": "af3cf79da28bf93b11d5212014e0600fe94e5551966fe9bb60ceb15ff12fbcb1",
+    "LowerBoundCZ/RegionalData/regions16.lean": "d4aa721797b08084a1ce4e33234864ef8441c55eb6a53ce5fb9e4186eabfeda2",
+    "LowerBoundCZ/RegionalData/regions17.lean": "120cfe22b3060470b34cfb36086a8b0de45f08831a26eecf7d3582dbe8ac3513",
+    "LowerBoundCZ/RegionalData/regions18.lean": "f52fcfc6e9705920d558de9289444e55a4328c2c97d164959df71ce3539955e8",
+    "LowerBoundCZ/RegionalData/regions2.lean": "dbc60be4dc8f044c9f55c3bea1e6611fb700adddeb1264dbd75b36f7b212a38c",
+    "LowerBoundCZ/RegionalData/regions3.lean": "455f5efa074f6ba1bc36b31c86feda9e602039410cfb6ae8a78270ea9c154932",
+    "LowerBoundCZ/RegionalData/regions4.lean": "d0158fa6585ad6ee897c30fed57d0dfa2b5397ce94989e9d23fef30b151c9581",
+    "LowerBoundCZ/RegionalData/regions5.lean": "919551cb196e31b3536cfe5c40d33c2011c9e00fad4916c8a3358fa1c8f20377",
+    "LowerBoundCZ/RegionalData/regions6.lean": "b2f5d88301b5f72e702b8abf4da992b067570bcbf5fdf344d221b9d190ff4619",
+    "LowerBoundCZ/RegionalData/regions7.lean": "e2aa783a77e2d16cc4e93441343141e4cde0a278a05884b3e9c676fa8599a242",
+    "LowerBoundCZ/RegionalData/regions8.lean": "5cae377177513af6f2879fc208375fc1ee42e1e05e63231ce267ab1c3e9edfa2",
+    "LowerBoundCZ/RegionalData/regions9.lean": "33cf48af913e97d4c76d76c7de5745b7494f0cea6fc37316d63df267c2cbf884",
+    "LowerBoundCZ/RegionalData.lean": "369e3a61b24294ba366c91b79cf9639b9e80819104626ba907ce115025c161fd",
+    "LowerBoundCZ/Results.lean": "0355a4637e487c3cf914b45f3f412d3ffbff79c11324575e5c1fe31ca9bf2bea",
+    "LowerBoundCZ/SlackAllocation.lean": "3aea98aa7adb23ba0dd6bb8d884ba42759f84100d9f26f95230f2dacc8ccdbd2",
+    "LowerBoundCZ/SlackCalculus.lean": "1d6d2e1060f943b8a0446a1bb79e4ea8646538b5d579fd37bc617dc8b0406a31",
+    "LowerBoundCZ/SlackCrossing.lean": "1227cddd86d46e2962a112ca3353cd4b4bebce261b874e551792b834aed8c6b8",
+    "LowerBoundCZ/SlackData.lean": "d3bf0dcc45aecaa493d3473ee622a17d3b73a3c51b27c7e6518bf14cf5776e9b",
+    "LowerBoundCZ/SlackEndpoint.lean": "c7eae5997e8ad84b4e62d43ac5cd8c143a024bf3f642880d11bbff649361d0f1",
+    "LowerBoundCZ/SlackReachability.lean": "0305373a0d7ce4bfe8e24f18309fb67324a3d4a800f1245d35f69403381413e5",
+    "LowerBoundCZ/StrengthenedBound.lean": "c91acc158a347055b5e9655311194c918b10ecfa059f433931022c61394400a9",
+    "LowerBoundCZ/Upper.lean": "a118217fb0eda0043960d454542281a88459da873eec48ec4d6f3af4cced8081",
+    "LowerBoundCZ/UpperAD.lean": "0d199307b618ffa66cc8cffb438018456d85b02df52e33e7ae756b15365b950d",
+    "LowerBoundCZ/UpperAnalytic.lean": "78a6e3c1772a27d26e8848c53e0a5f2f48b870e7cb12b63d85fda0bf91e1029e",
+    "LowerBoundCZ/UpperSegments.lean": "c2ba26145a82ade00700dfd386e564d2181ebb8fa0ec878082d3599316a1af76",
+    "LowerBoundCZ/UpperWitness.lean": "d0285c27e4ed16406e8bced094fd090b019a2e7a4d6e0d1807a38e36b52082df",
+    "LowerBoundCZ.lean": "c1808a70c4cdb199c957301db8555fff23a015990806cfd061c3f95dfd1f20a2",
+    "NoGoAudit.lean": "b2f766448db14090bb1816fcc8079444615256cc44868e0a91a5b0d0ca196587",
+    "PrefixDataAudit.lean": "f7760394ea12f8ca26bdcba6442b57e8c0e1c9f89a1d15ff8d4a518d59c9d502",
+    "ProfileDataAudit.lean": "9640381f8309269b448297391c7d03086f2a9e3d96a43fc04e489bcd79e96495",
+    "RegionalDataAudit.lean": "8686d879d4163aff36b7cd424836baa9cef15d6bbba06daa95ecbe302de5103f",
+    "ResidualFactorsAudit.lean": "2d6718e6c8a080cb6dd7da409dec95251b063878bb23317078decf205f95f4bf",
+    "SourceIdentityDataAudit.lean": "3bdd66552d18abd490641fa6d22353472e5f652b209bb549c7335ce6b6c271dc",
+    "appendix-e/RequestProject/AppendixE/ActiveClock.lean": "bf9dbbbad65abb755fd65a2c5620bc6bcd4a07ec68cc4a6fc4baddee0a778dce",
+    "appendix-e/RequestProject/AppendixE/ActiveDynamics.lean": "15fb32fd90fa9629fadc4a885eb18a9eac15530a7212726da52cdfcc4c6af6d4",
+    "appendix-e/RequestProject/AppendixE/ActiveExposure.lean": "f23e40423cf2ad1739f7e5332db1bc31d1cd4cd4afd770452b7c31e05e3f3ad5",
+    "appendix-e/RequestProject/AppendixE/Algebra.lean": "a30a0488b60537d8358fa3fcac21c735aeade18a05759d0a7370c81d6f3b283d",
+    "appendix-e/RequestProject/AppendixE/ArcCompactness.lean": "b0b95f0cdb1bac467c74262ba65f16cccf19c649fc16e34116e1b2f3634aafba",
+    "appendix-e/RequestProject/AppendixE/ArcCurrent.lean": "f97702946b61ae161db51ce7ef37bbd05e86c0125f3653a5d113e2e109878465",
+    "appendix-e/RequestProject/AppendixE/ArcSpace.lean": "6d6342788b077f6e57282a89d4cd9fce4ee650524e090a00c5da1fb77db2def9",
+    "appendix-e/RequestProject/AppendixE/AtomicBoundaryCorrection.lean": "9610f2bef732ea7c2adbae27e418a103cb58eacaad2b196779ced6b005806a0b",
+    "appendix-e/RequestProject/AppendixE/BFieldRegularity.lean": "65f22c05864a9220d3ee00388511c63e42f2e0ac61c0b15c3b8320ead375754c",
+    "appendix-e/RequestProject/AppendixE/BallBoxInput.lean": "2c0da5de3d3ec74b5f2b1feeb062ba67d2ed8ee8bf7c0950d3a386b17df674b2",
+    "appendix-e/RequestProject/AppendixE/BallBoxSteering.lean": "0dd6fcee6dc7d6806c9e4bb35d71bc6a42c4a659d931967ad95a73e964248eaf",
+    "appendix-e/RequestProject/AppendixE/BernsteinApproximation.lean": "cbf1821dc741eef6e0c299dd783dcf8b03a41cacbf02813b42d1e5c0ae586906",
+    "appendix-e/RequestProject/AppendixE/BernsteinC1.lean": "ad77883923a81e0257f03840a744b3ce8a1cd79a71b7a035215d0994d7cf172c",
+    "appendix-e/RequestProject/AppendixE/BernsteinConvergence.lean": "823b84e503e0c4b7fbee24ac8bb3eebe94209959ac5f4cbc0289241fa8643f1c",
+    "appendix-e/RequestProject/AppendixE/BernsteinDerivatives.lean": "e3c3600af2a7e0eb2e266ff85f3f78e9d13e6a07dd03066b71651c267c5815c2",
+    "appendix-e/RequestProject/AppendixE/C1ApproximationInput.lean": "835df78c8b7ec3ee731013ece0c9c085701d723da85cc671cc4e0818859a5390",
+    "appendix-e/RequestProject/AppendixE/Calculus.lean": "f38882df36a3edd5d2dcbf12578d6f5ffba44056eda1cadffe1a84daa9f137c6",
+    "appendix-e/RequestProject/AppendixE/CommutatorFactorization.lean": "cca65682cbc6168adef4c53945bbf30d3574d2959147dec76f070bdf850f3e4c",
+    "appendix-e/RequestProject/AppendixE/CompactQuantization.lean": "e1601991f487d7deff70aa35f4fbdd8aea287e539e4aae5109b4f85508bd11a1",
+    "appendix-e/RequestProject/AppendixE/Completeness.lean": "1f0ea39b7bc6b659facd72c2c0d0d7cf41ee606cd0bdf8e90546e0e8ce87c8f6",
+    "appendix-e/RequestProject/AppendixE/ConcretePartitioned.lean": "f9c4632dad8c2d8db11db230494cade8cd51a35fb0f50d8e9e889ec8721d6107",
+    "appendix-e/RequestProject/AppendixE/ConcreteStationary.lean": "c566db5f70d9d3d1d5b1e3e73829ac08049c00b761bd5ea57ef2c3bc81f5861c",
+    "appendix-e/RequestProject/AppendixE/ConditionalAcceptance.lean": "52eaa9d1ce6e4b1b6ab8a7a4ec769759850dbf7bd86788d0c137ae2951236486",
+    "appendix-e/RequestProject/AppendixE/ConjugateGram.lean": "ee64fbb1fd6912d9a73a0408c27165610c8ccfb731b61ec391a8adfcaf9e31a9",
+    "appendix-e/RequestProject/AppendixE/ControlAveraging.lean": "d9b8a7c0a94421dcf27d88ec50d174f136992941fc112926ebf99b2442af64c3",
+    "appendix-e/RequestProject/AppendixE/ControlLieAlgebra.lean": "be20e81e26c49760a1258d0d66f531db0d8bf0c51a4b74d6874cf50f5b60eba5",
+    "appendix-e/RequestProject/AppendixE/ControlTranslation.lean": "972e02f5e59db1b6b2c39b8ccdeb30a8ed889385ba2e9a0d0616bcc6f956daed",
+    "appendix-e/RequestProject/AppendixE/CostGrowth.lean": "cc30c409c78b3e7d56e5a7baff89906825fdf1c940ebb773ed0284274618ad8d",
+    "appendix-e/RequestProject/AppendixE/CurrentArcDecomposition.lean": "95af3261294df7cf320a5ba0ea39458a56e43900f44b09d16ffd6af03f8af5ea",
+    "appendix-e/RequestProject/AppendixE/CutoffExcursions.lean": "8872355c0ea6d399b47a6597e888e935b188480987dd46b00a399a332c7f6575",
+    "appendix-e/RequestProject/AppendixE/CutoffLimit.lean": "aed5e6be2404806369bbb4165b5c065e835eae81400aaf674c02fa31ee651f89",
+    "appendix-e/RequestProject/AppendixE/CycleRemoval.lean": "e1104499adebc57a6101da11d3755c354e62d859facd89b7aa052daeb6be172f",
+    "appendix-e/RequestProject/AppendixE/DiscardedProgress.lean": "a5748df31e1f892a632042906a10215c60831f4dd32fcdf72f98cac9b0d4489d",
+    "appendix-e/RequestProject/AppendixE/EndpointMap.lean": "1ae76e44d8bd24b75bf3083ad78bfdd467991b455a131d92f040c02a1a551958",
+    "appendix-e/RequestProject/AppendixE/EndpointRepair.lean": "b20075eae054cb5da0145f50eeb82d4bb9e4468a66ad0aacea0739338615f700",
+    "appendix-e/RequestProject/AppendixE/Evaluation.lean": "cee9d033834dedfcdee17c1884baa476922a5f4452fa6c8145d43cfd7da89982",
+    "appendix-e/RequestProject/AppendixE/ExcursionAssembly.lean": "f3eb6127f61d70d807b6d21883a55aac95b76f5148b8127b2b05a13c85f012dd",
+    "appendix-e/RequestProject/AppendixE/ExcursionGaps.lean": "ec1db0c2f48e69b7ebff0e08485ed157145f05e85daa9d697b28851a16d26bc2",
+    "appendix-e/RequestProject/AppendixE/ExcursionPhaseAccounting.lean": "2b07ab8a59535f264de640f5957d8dc71008b2b34e520e2490f8e29a6a0dc142",
+    "appendix-e/RequestProject/AppendixE/ExcursionSelection.lean": "b351c958efd4ca8c7b0572c2dc33a1264445fee27dcb59a3a1bafc79d0580226",
+    "appendix-e/RequestProject/AppendixE/ExposureArc.lean": "8c2b60f5fb0ddde6cad06658374b34f1a259fac9149d563ca1fe80b6123d6890",
+    "appendix-e/RequestProject/AppendixE/ExposureClock.lean": "c228604b64dbfb86fab00fe0a0cb71b535ea692c77ee64ed6eca87ba899bc816",
+    "appendix-e/RequestProject/AppendixE/ExposureClockTransport.lean": "aa299cddefbc01c94a9438e130de60239db305133a44762f5da5ac75c2872fc2",
+    "appendix-e/RequestProject/AppendixE/ExposureCompactness.lean": "847a46eea807e864c76d98e058413d93e6d1c3beb91f5f69e99082000ba36530",
+    "appendix-e/RequestProject/AppendixE/ExposureCoords.lean": "44ff58030d296865afa5172fcb608e0a2976974e301b969bf1cbaeee1cd3126c",
+    "appendix-e/RequestProject/AppendixE/ExposureCurrent.lean": "d3e11d9e29784c35f67975ce4f55d4e615c4b29664de81dadff2bfef5131aef1",
+    "appendix-e/RequestProject/AppendixE/ExposureDecomposition.lean": "0d30860b3ed82d2c29e2bdddeff805a93a10eff6597f48c6b0a4461bded1b1b6",
+    "appendix-e/RequestProject/AppendixE/ExposureDisintegration.lean": "355cfbc6f9a478bbcdf822bc754dcf39b22beb8bf670d4a47483e250eb4fdcf2",
+    "appendix-e/RequestProject/AppendixE/ExposureExcursions.lean": "495f0db08605c76bf838e5d56fa31c84f0eaa28148975590c3fa2435e5d4e4c8",
+    "appendix-e/RequestProject/AppendixE/ExposurePolarCurrent.lean": "912b7e691d19abfbdf43e2d875cf92c599a93dfa0ee8d2ae1f053511da7a531d",
+    "appendix-e/RequestProject/AppendixE/ExposureProgress.lean": "6e86f47a33340dd8846671ddc951677e7c32d0c2d1d6f17d65486f76d8b96bed",
+    "appendix-e/RequestProject/AppendixE/ExposureRecordSelection.lean": "6f55fa6c0ad0fe92cc620af21c1e38a38dd77b66fe3ba53bb85e4633fb758dcb",
+    "appendix-e/RequestProject/AppendixE/ExposureReparamODE.lean": "f43ebd5c5247746fa2e70e0e743db02ba63b4e198d4b39e22f2590784bdd13bb",
+    "appendix-e/RequestProject/AppendixE/ExposureSeparation.lean": "c932af50a0bcf49511b4608b6cebb9c79f3dfd862e749084c50c0432d6f3bd50",
+    "appendix-e/RequestProject/AppendixE/ExposureStateLift.lean": "863c97ea64955b625ffece9b7e3a4faeeebd27310b24b0a491a8bb5313b21cd2",
+    "appendix-e/RequestProject/AppendixE/ExposureSubcurrent.lean": "9fa68129bf1a38ca26417ba37304e7b4acce8e2ec145d1a703b3889f51f7a67a",
+    "appendix-e/RequestProject/AppendixE/ExposureSuperposition.lean": "47bdcafb2c1473f740d2cb9ff24501157cec48555a6accf2d40221dbf0fc7374",
+    "appendix-e/RequestProject/AppendixE/FaceBlockAssembly.lean": "7350a2b53ccd6a6b3d5dc946e9def6e43714178a65baf6c1ec2acad85e170f88",
+    "appendix-e/RequestProject/AppendixE/FaceGram.lean": "26d55182b3d90262a4c8699bfc6d816c184c01961a47fdf44f94687b327e9308",
+    "appendix-e/RequestProject/AppendixE/FaceProjection.lean": "3d04f49acf1acdda179cebac45c194e3db713963c936feae2b73d9751a9d3d29",
+    "appendix-e/RequestProject/AppendixE/FaceRestriction.lean": "12edb2b144e1f9d80366e0bdc20877fc1622eb20fcc47ed07b777d0cb61c242c",
+    "appendix-e/RequestProject/AppendixE/FinitePathDecomposition.lean": "aac5492ea6734af41989f31ff5212500f06a641cb3a858f024275f4cc270dac3",
+    "appendix-e/RequestProject/AppendixE/FinitePathMeasure.lean": "a3deeb07b4412f5a9b00aa43051ee521293b8593f7c4a8ea1cd46dfb071d77c5",
+    "appendix-e/RequestProject/AppendixE/Hierarchy.lean": "2fddd6062a13db2c927a8aa22a20596f88916fc0002e7356c3249f4dc428c0c8",
+    "appendix-e/RequestProject/AppendixE/LocalSteeringConstruction.lean": "d561e4e9de1963138057a5ccfbb657de01a9c01f7caaac49e3945cef7f98a599",
+    "appendix-e/RequestProject/AppendixE/LowCostPhase.lean": "1ff260142236a0fdff98f26ad0c66d104bcd562f916b4d811b04152442fd08e6",
+    "appendix-e/RequestProject/AppendixE/MatrixCorrection.lean": "4b4fc09c86856479e05fd28bc28420a1b3efd5800ce66fadfdabff5b395cfc6e",
+    "appendix-e/RequestProject/AppendixE/MatrixExtraction.lean": "9ac56cd7d2d477c1591e089b46a3a2f2b5c595a966113ecd7b1728f62f721e7b",
+    "appendix-e/RequestProject/AppendixE/MatrixSOSApproximation.lean": "827557fa0429bb29a972dccc3fd51bd8cf69dd4b386827c16913d0e92300ba20",
+    "appendix-e/RequestProject/AppendixE/MatrixSOSInput.lean": "bd048e32177b24308f92b210d13d4f110362aabf4a8a6ac72a6fdd5c52b7cc4e",
+    "appendix-e/RequestProject/AppendixE/MatrixSOSRemainder.lean": "6ef3d3bd889ac09bf24a159e138cd48ee00d7ce73e2a2282646be3587c3d263c",
+    "appendix-e/RequestProject/AppendixE/MatrixSOSTheorem.lean": "27b9b7f4708422093544fd0850abbbd07439882e1eaec958d63657d8a5896319",
+    "appendix-e/RequestProject/AppendixE/Model.lean": "8bd1cc46d224fbdac6fa1edd25c33a93cf85b4cddf1c3a69f4f4e7151c25b96a",
+    "appendix-e/RequestProject/AppendixE/NormalFaceBasis.lean": "016d50c91339a51914ff020357d5fec3c872132a9e2db9bc246366d25edc4b47",
+    "appendix-e/RequestProject/AppendixE/OverlapArea.lean": "4aeffe6284437625fa63050a02a2b93a19333a5b27e12005f135851e5200f0e3",
+    "appendix-e/RequestProject/AppendixE/PhaseTransport.lean": "b008b953cf3633ee449160bdcc8ecacef069bd50c020ce45904b18934970a06c",
+    "appendix-e/RequestProject/AppendixE/PhysicalClock.lean": "33dd9bdda5a523d58de15cc4315b9c27e04e2ab1591f15509f7d26b239de1606",
+    "appendix-e/RequestProject/AppendixE/PhysicalClockInverse.lean": "909d137685f2cb6845e82a5e908e555eed22c62a6f7f5c86856c3cb9a0685013",
+    "appendix-e/RequestProject/AppendixE/PhysicalCompleteness.lean": "683ce26d5b0dd8be49cfb936192c99fdd7bb4b4d1950043fe7065d153efea07e",
+    "appendix-e/RequestProject/AppendixE/PhysicalConcatenation.lean": "c3ab521a7b88cba55c37c17eaf944d4d2774db17e70fa02507de18c66fe345e3",
+    "appendix-e/RequestProject/AppendixE/PhysicalReparam.lean": "fd2268cc8fdd665d417aeac07f3b870d39173a286a02dbd1148105d07836a3ea",
+    "appendix-e/RequestProject/AppendixE/PhysicalSegment.lean": "e6f45b3da6c6b6606c7d5473237e761f25a52d5b4a80d3d6739be37341473ae3",
+    "appendix-e/RequestProject/AppendixE/PolarAlignment.lean": "3f5d08fd1cfc4b867716ede67cc2411c28459b354e35ff94f397e4969a69f70f",
+    "appendix-e/RequestProject/AppendixE/PolygonalRealization.lean": "37b6d35d27c2a5ae2f60d297cd336bbeae1c9699f88b616bbe558f740a12bcf5",
+    "appendix-e/RequestProject/AppendixE/PolynomialApproximation.lean": "5059714af1f7425ce038c23f98ca8c4057907b6293fe092cc3c7754e6fcc61c1",
+    "appendix-e/RequestProject/AppendixE/PolynomialExistence.lean": "a07f0662657c010c132a08c74442f7c6b28784cd3a2e7d9b899268956a02c895",
+    "appendix-e/RequestProject/AppendixE/PolynomialIntegration.lean": "ae6eb3c12164f147265eac1760894b55d6ad10a8eac0409ae7fda54a5623a64a",
+    "appendix-e/RequestProject/AppendixE/PolynomialSymmetry.lean": "96e1ad93ab6938d18fc0d12ae6f56e7337dde4f91108665dd05bcf2edc4cdddf",
+    "appendix-e/RequestProject/AppendixE/PositiveResidualMatrix.lean": "04bee98be9b6f42111b18f33bafe6c75eb4cf7a36919b2c8d6daae410e63c652",
+    "appendix-e/RequestProject/AppendixE/PulseExpansion.lean": "4c74190761c6ccd73a9c04297d7dd6880408cfa147cac4b003490ddfc0ddcf04",
+    "appendix-e/RequestProject/AppendixE/PulseSegment.lean": "ed49981a440507ff7ab6fa3de7fe097c1eb80198723bb355d8ce3248681607eb",
+    "appendix-e/RequestProject/AppendixE/PulseWords.lean": "7c6c8b6259eb6fed301690f3079668212a89236463fa60d56497fa992164057e",
+    "appendix-e/RequestProject/AppendixE/QuantitativeSteering.lean": "2515df3ba99ddf4393250b598195290b5b62283b4deddcde4608df511adb3b3c",
+    "appendix-e/RequestProject/AppendixE/QuotientCertificate.lean": "426d620c21175df62de54a270138c4aaf8157a441d3961557d66030e83822ab6",
+    "appendix-e/RequestProject/AppendixE/QuotientNormalForm.lean": "add0eefe96a28683cbea873cd9d0f17c49126c5c0b641ae32a6a778b26d278be",
+    "appendix-e/RequestProject/AppendixE/QuotientSymmetry.lean": "0fae3048588c7bda70e1002f48ae36d451b6dab4c44cf586442f9dfa93da3be8",
+    "appendix-e/RequestProject/AppendixE/ReducedBasis.lean": "228bbe4d700f168490144d9493ec2e6896435d6fa9b0f46ee98ff2c2e64706f1",
+    "appendix-e/RequestProject/AppendixE/Relaxation.lean": "15fd6e2f45e8ad68b3e3cdfdfabc1dab840bcaf4f75ce1964ad02d603d349eaa",
+    "appendix-e/RequestProject/AppendixE/RelaxedSubsolution.lean": "a41162db05ea5bb6e98cddaceb76ccb718a4774384635ac59f7864b6b58b914e",
+    "appendix-e/RequestProject/AppendixE/ResidualFactors.lean": "858cc023cebbb4ab7847614e3dc7544b0b7af151969e45f928c031469ddd5f79",
+    "appendix-e/RequestProject/AppendixE/ResidualSymmetry.lean": "5a9d7a0c36f7b8575440de8a4e1a7ad434381735461a2bdf578c0422ef72856a",
+    "appendix-e/RequestProject/AppendixE/RootRegularity.lean": "1c620fd282c56d55ec52f9a08ea505e922039e352d7353b00e9c38393f5f0f16",
+    "appendix-e/RequestProject/AppendixE/RotationAction.lean": "9af338bfc5754c3e95b4aafce88f5bd1c07a7a20eefa3ea323ce0182d88387a4",
+    "appendix-e/RequestProject/AppendixE/RotationAverage.lean": "d9fe5da86f94cbc0b44b816b330a7ae9b3954b5e6eb90d52bb5e3e35caf25f2f",
+    "appendix-e/RequestProject/AppendixE/SOSOrderBounds.lean": "efeea3dc2d39289d830e152e8e7b166e3aa753ead3e2661fe21d8b653dc684b7",
+    "appendix-e/RequestProject/AppendixE/SOSRepresentation.lean": "d85692493d2167d04ae07840a31e6544f53ed2251345ea7922eafd7cfb594496",
+    "appendix-e/RequestProject/AppendixE/SOSSeparation.lean": "6143040abfd731268408631180036641ccf9ed460fad6a00e4349f4838aedce6",
+    "appendix-e/RequestProject/AppendixE/SOSStates.lean": "d65f2d16321a85c9ed2de6fa238a21277bf085da7d6a8bef1e3d465d8a67b88b",
+    "appendix-e/RequestProject/AppendixE/ScalarSOSRepresentation.lean": "c812b2ecea6b00b2fe9d45856e98ce403621c94ae10edc2acc34fea843774250",
+    "appendix-e/RequestProject/AppendixE/SectorPhase.lean": "d8bb4301e499d1fbc13a310946f2395025ca2a8f4c5b1d47e496955d29c2a11c",
+    "appendix-e/RequestProject/AppendixE/ShortPulse.lean": "082d4628ff45130e962beb94e40588406431e98240c77cdb62c92dab10b37b94",
+    "appendix-e/RequestProject/AppendixE/ShortSegmentApproximation.lean": "cbbefeb73912dd3cbe84356cbdf3940974906d88af9ee9318adad40c9060869d",
+    "appendix-e/RequestProject/AppendixE/SignedRootPulse.lean": "fc25de27f486d330c74195e54875e85c6881ae839d238969cc1eb7f07cda32f5",
+    "appendix-e/RequestProject/AppendixE/StateGeometry.lean": "d07ad8297c79bb680042bcb0c3cd4a3efe355997ea2cb614d5c9bacd2066f2df",
+    "appendix-e/RequestProject/AppendixE/StationaryGram.lean": "105008bdb7c895af3e5c687512e636d1209aa6986ada471501f6e1ccc4722387",
+    "appendix-e/RequestProject/AppendixE/SteeringExposure.lean": "95370e938910571d7c89f09390503e1be9e78b0634040d2c13ab8ced840bfac8",
+    "appendix-e/RequestProject/AppendixE/SymmetryGram.lean": "21ac8299811b641ce03efe44deca7b37bca4af59dcb518870867676fcccb3a59",
+    "appendix-e/RequestProject/AppendixE/TerminalCertificate.lean": "10aa7223305f98bcd37730aa0eebb9739ea915ecb84718e40dd39eef8ec4fd81",
+    "appendix-e/RequestProject/AppendixE/UnitControlRealization.lean": "93c610b51820cd0e89771f73d36943f90b87684ab46e031ef2be695eca2cfe10",
+    "appendix-e/RequestProject/AppendixE/VectorMeasureBounds.lean": "8897d7c57c6961da9e6b0a279ce07e7d2154a0652545bd448853ca8feecd173f",
+    "appendix-e/RequestProject/AppendixE/VectorMeasureDensity.lean": "f447b6a0afda24b5a553ce2ff85e6dec30e8a4d7fdafb5fbbf1399b1d3a91a66",
+    "appendix-e/RequestProject/AppendixE/VectorSubcurrent.lean": "c378979153586c838df6a09e409309f58fa8c832a0a2225f65eb9f9021758990",
+    "appendix-e/RequestProject/AppendixE/WeakDuality.lean": "fb92a31cd6b1d6d07700b7ed16c02153cc03765489257fd9189c38e36691708b",
+    "appendix-e/lakefile.toml": "b1481968ce2912f2b85288fc18aa05fb22750e4083f9e03f49f59a8814ba268a",
+    "appendix-e/lean-toolchain": "db7bb24b756d745bbde83fe92718b51bd3625dae3701ba0f598d0eedcd3f3028",
+    "bind_allocations.py": "bb11a3eb040f83389323f78aea50a0e98a6cb0272f8efdd6c39c2909bcb1f134",
+    "bind_archive.py": "300a17921fa085a676b590d5d738321323b73cf18afdf55ee26b9f85efa6f871",
+    "bind_certificates.py": "2ebe7c95cd61e45c7b0651816ba3fa9928dc6524057ee32290cb82323e1c51f5",
+    "bind_coverage.py": "f9c477628f6967503bbadf530d7cbb962b9b95a8ce6a4dc2483b8d919252bf4e",
+    "bind_interfaces.py": "02ce75924b577f94cef9a4a1b9c6231261b16daa4ccd6175041fbdc32d879c10",
+    "bind_prefix.py": "b8e5d2ed71beb03b1c062334473b0229d056721721685752db167f89a4b1ff0d",
+    "bind_profiles.py": "dc069b95b2e0f20165a7afd63045c5c3a58248b6136d72e86fb10c0a6af2d0d1",
+    "bind_regions.py": "ac9405ecb43bcddd2ed1b067d3faa6598d75c6d9a9d40ba709dbc5e5e2383bf5",
+    "bind_slack.py": "f6994cb649c471757a6b0570d8cb21cfc5b6100e2d9e360811bdfab745d260b1",
+    "check_acceptance.py": "2ee36824cb4f39f91d27b35ef8c1a5be06c03488057968221410fe4369a5065d",
+    "check_allocated_identities.py": "9f123929c482b9a4f4c54b4ead999eda3e27c75b6153c7973e7f5f5799ad5ac8",
+    "check_allocation_domination.py": "39b42719a85a808e79eabbbd7548dc61bbe9eceefc8c56e918ede5396fe61e0e",
+    "check_residual_correspondence.py": "c3696c887df24139ca4e74b752fa983b77504a99193b76a6dc92876274e74825",
+    "check_source_identities.py": "2a96205be5864ffaf37bf835b78569908ea74cd238c44ca3a64702bc10494dd6",
+    "check_unified.py": "eb38dda4fc75e54adae8a66c9da1de864f7f6ae3377ebbefc4829dd1f3ab7c97",
+    "lakefile.toml": "63ce4e02b15183f56d78475896ef21e0bec5e95eb38bb4fac48b9252de401b56",
+    "lean-toolchain": "db7bb24b756d745bbde83fe92718b51bd3625dae3701ba0f598d0eedcd3f3028",
+    "test_acceptance.py": "2b9797de11c7fd3206399f829e4383b0499a092a4abda417546f5bc1505114f9",
+    "appendix-e/FaceRestrictionAudit.lean": "4ab45d83f85fe4b522477aa173fef98a91e31fa80fa42fad4e939b332e0cd5c5",
+    "appendix-e/ExposurePolarCurrentAudit.lean": "2635518980e1745bf750205db0380d5b4895073d4f291eceb672cff81f8d794b",
+    "appendix-e/ExposureCurrentAudit.lean": "ea87a87672229074683bf0d7f9bf05c9a464bf7c48a1e562e24cb17d96a61e7a",
+    "appendix-e/ExposureSuperpositionAudit.lean": "d0633ed33f29d5d6d93ef7d0ffff2ab34c347b7e09ff9b44c180fd53946b186a",
+    "appendix-e/ExposureAveragingAudit.lean": "03a4064f54921bdb0e5f5c847c2cc4bd73f5ecb900ad036d153ce099103d68ed",
+    "appendix-e/QuotientCertificateAudit.lean": "330180aacb51781c3ec440376b20dac258401ebdede05bd36d879f029a81b3ba",
+    "appendix-e/PhysicalCompletenessAudit.lean": "a44683207b923c70412de20fe1b4aee75e675cf974d31fd2131df5a008a7895b",
+    "appendix-e/AtomicBoundaryCorrectionAudit.lean": "a3713dc87f81ca80623dae6db377230ef1cbc3b016c9e656e53e8157a08277be",
+    "appendix-e/UnitControlAudit.lean": "2976207530c3795ba0afe7ceb4a825734ba6c9bf7b86a710aaa8e66631c5c089",
+    "appendix-e/ActiveTimeAudit.lean": "84e6f237088211539bcfce619fff68ee80ccfd9ce1f5dffa81cbdc53fe251bb5",
+    "appendix-e/QuotientSymmetryAudit.lean": "d4a5575a86c343cad5e4aaf1b23b41e30d69e44f035a424ae4a3fe71c0f00444",
+    "appendix-e/DiscardedProgressAudit.lean": "daab81ae3c0c503f74faedb506f3602df20a248d620b83d9418e951874036a91",
+    "appendix-e/ExposureArcAudit.lean": "5c5a998245186b4588fa59fd3de329ee9c6afd45b79e18d8915ce8b0f731ae76",
+    "appendix-e/TerminalCertificateAudit.lean": "e50cb878130e9e56e10c98392f62dfec86a94468793f6bac7aa04bce8f5eb1f5",
+    "appendix-e/ExposureReparamAudit.lean": "6164e261d9ba53feb43aa404d8e9e9873fbff81e2805fad9f4be3bddf0d3ea87",
+    "appendix-e/PhaseTransportAudit.lean": "fca7e2de7a6443056de46f8ecf54a19d7caaa94fb4a6e762ad4e31fd87557bd4",
+    "appendix-e/EndpointRepairAudit.lean": "b989318a54ba27542aeaf906d7ecd5c93eebc755d5e30f61c8a4374e29201c50",
+    "appendix-e/BernsteinC1Audit.lean": "f9ee7c3a5fa58e7d60f84d4ae8c5eed45903f231db5061b69243dd3800307ddc",
+    "appendix-e/PolynomialExistenceAudit.lean": "a5cda89c5d5f9604c6584c31c258bd304df0eb0273d84c336e1ee2bc06511318",
+    "appendix-e/ExposureExcursionsAudit.lean": "8d6627b3088282f17541be237a1c9843a6bf1b2f7b407d46940077fab798de64",
+    "appendix-e/ExposureSubcurrentAudit.lean": "85427ecaa4f13154dbab25f338a05ab10da6b9be5fad504a45917a7c245c0e98",
+    "appendix-e/ExposureClockAudit.lean": "f221bfb668735b8a6f045898bb4eb3b025a36b7501d386bd52858a8e2968f190",
+    "appendix-e/CompactQuantizationAudit.lean": "cc5ea99148d414505a523a3d024dc2f2ac4d2011dbf5a8ecfc1623758e8f0051",
+    "appendix-e/ResidualFactorsAudit.lean": "544205535a0a94695b93b738a9a3e0feaddc56f47c4f9236deb194a41e30f84c",
+    "appendix-e/ReducedBasisAudit.lean": "899aaaf02acf3a360c57c196f91e02f4da976b51f512f82742738b7b217e3f8e",
+    "appendix-e/LocalControlConstructionAudit.lean": "8c9416f6b873e99256ea482e5db439d2dad1cbb5e7344fc40a7eb7e306aa60a4",
+    "appendix-e/SteeringExposureAudit.lean": "00d903b0bc8c666cdfd0d19399e8e038e3a70eb642e3b4c66338a3d625a6f0f5",
+    "appendix-e/ExcursionAssemblyAudit.lean": "b5c27b8aa925250582d2c8949a003de6fe3eb8a4e900279eb1f3a7ec53082193",
+    "appendix-e/ExcursionSelectionAudit.lean": "644b13e1c8729c90d613ea207375b869d97eb0f1a7e34f2d3b020285d1d1427e",
+    "appendix-e/SymmetryGramAudit.lean": "951bded4ac28d53230e30190fe8f82396b980cda997d5a529ccb7c3d8b68605c",
+    "appendix-e/PhysicalClockAudit.lean": "4c36608aa8a32773d06290e6dfc4da7ac7b475891a3498082f7b8f9e26417579",
+    "appendix-e/PolarAlignmentAudit.lean": "b835c6bc9a4c3b0f63e981bdfe844b764235a557d1ab0047096a76f879df7a9d",
+    "appendix-e/PolynomialApproximationAudit.lean": "8335dc2e4a6e336a71c86be53edf0fed470e9a76b8925801748b72bb99c49d8b",
+    "appendix-e/BallBoxSteeringAudit.lean": "f282d844da7de4678adaaed0be98f71aab32a4cc40da71ba84cb94e298e54c12",
+    "appendix-e/QuotientNormalFormAudit.lean": "e7ed090ece89458ba843e44cd04a0b69e46faa193fdba10471ba9f0626af23b0",
+    "appendix-e/PositiveResidualMatrixAudit.lean": "14d8f5e2130ab9c7642d48bd1b66f19305619974d86c4089831fedfbd1f8311a",
+    "appendix-e/BFieldRegularityAudit.lean": "1f6eb7d9c61d9f34860eb83c42539c9efeac945a96fb2ccaff26d70abb6d71ef",
+    "appendix-e/RotationAverageAudit.lean": "f2e84d29f5d6055b4e61cfad9572aecd57fc34577d6224a5a29da2abb384703b",
+    "appendix-e/CompletenessAudit.lean": "080fea64d8300080b4154e5bc4a2bae09f855b2627316b31a95319fb99fb108d",
+    "appendix-e/ControlLieAlgebraAudit.lean": "e65812749e42ed29b2ca88b913f6df41f3ed24bb72a769f4c4e230eca81ea90f",
+    "appendix-e/ConditionalAcceptanceAudit.lean": "f18355c51039e2ee305057312728b1d32eac0731746ed4fc944e20580a9cb5b3",
+    "appendix-e/SOSRepresentationAudit.lean": "f9a1a1532fbeb003d70ea2eb1bbcdc604e7dafcd8ad5598365812e7a233bbbb1",
+    "appendix-e/StateGeometryAudit.lean": "9226a0decde9c5d234fade549d1a3288e216f1023752be0f9c0c19cb0712d48d",
+    "appendix-e/ExposureCompactnessAudit.lean": "32097dac8f34783ababeadd577054158bfdc147b12bbcbe5cba5be7b097e9c68",
+    "appendix-e/MatrixCorrectionAudit.lean": "624e083ca899b96cc64f8d6ed301cf07d5338c64254726f19bb4f2ccfe43936b",
+    "appendix-e/ConcreteStationaryAudit.lean": "fb493d796c5923620050284755185563254e40f46919d0f33b89f6fa57973b4e",
+    "appendix-e/PolynomialSymmetryAudit.lean": "82348a838d41d68c35be50b1cf71c95db1f392f422a38db4a4841ebc3ea32c4a",
+    "appendix-e/FaceGramAudit.lean": "038e861074b19703c9d7c41de8c9d18ed2fc68f4794f3a7a981fbb10165dab0f",
+    "appendix-e/ExcursionGapsAudit.lean": "1578793c592f1a5ed35364d786f7d03fdfe45fcbae12b33c37f1d506850028d3",
+    "appendix-e/PhysicalReparamAudit.lean": "4f907008350a611eabe04852476975aafb60dc1fe480d18394a9b1e2d5a8ece3",
+    "appendix-e/ShortSegmentApproximationAudit.lean": "0e11a4cdc91275771df6645c3aa816d178d96274bf47c1c413641b8a5b9eb1fe",
+    "appendix-e/ExposureDecompositionAudit.lean": "9f57d6b5d62623b9172621b6d9755ec92fc445db0715e2d56d45fcf68ae4bf92",
+    "appendix-e/ConcretePartitionedAudit.lean": "7e01ae05a4e90af505e95d0ef115f666fd626d31981a1e9413f065549c464c37",
+    "appendix-e/FinitePathMeasureAudit.lean": "ff4e2e6d0361a8900c7216eee061439b3d696dd43e4872b2740d2928e5949e92",
+    "appendix-e/PhysicalAssemblyAudit.lean": "117f3b83ade2c481e8f6b7501136dff9cedec0cf20b93e8a4e6ca40a3e09aba8",
+    "appendix-e/ResidualSymmetryAudit.lean": "578516d19eec0c56b4c095473d125b2a0287e07795bd317053f9665648c8836b",
+    "appendix-e/StationaryGramAudit.lean": "b207807c656780b5ea815ff03528d93048b067eecb5f6b86cb3d79699b4179c2",
+    "appendix-e/ConjugateGramAudit.lean": "b6627c1079761f664f551e5cf138c1ff76322a8f5bb9f8e5b74088d079edac6b",
+    "appendix-e/RelaxedSubsolutionAudit.lean": "dedbbcac1a5edd2ec0a650bc6062664b066b78c51a2f822d03077f04d46d7bc0",
+    "lake-manifest.json": "e7ac68ef2b561156ce5a090dd947546cece0a6bb21087d85d5aa1f10010f4600",
+    "appendix-e/lake-manifest.json": "116c6ef00aa899fb38c08c5e4c92c0e434d0e7f9d574fcb5d4d42cc90ffb07cb"
+  },
+  "publication_revision": "139dfc0aeb39fbc09d9352a3cbfcd603cb6612e2",
+  "runs": [
+    {
+      "name": "all-libraries",
+      "command": [
+        "lake",
+        "build",
+        "LowerBoundCZ",
+        "RequestProject"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/all-libraries.txt",
+      "sha256": "16f831735eff784de148d296655ab586bcea3a83407232a6af1a493d85684bee"
+    },
+    {
+      "name": "finite-replay",
+      "command": [
+        "/tmp/cz-accept-env/bin/python",
+        "-B",
+        "check_acceptance.py",
+        "--replay",
+        "/tmp/cz-publication",
+        "--write"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/finite-replay.txt",
+      "sha256": "a24032316c0ede798a6a00fa6a1694df6a73be962cac5dbaf1f402fef98c138c"
+    },
+    {
+      "name": "finite-manifest",
+      "command": [
+        "/tmp/cz-accept-env/bin/python",
+        "-B",
+        "check_acceptance.py"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/finite-manifest.txt",
+      "sha256": "e744a1bd690c20cb84fd8337313d5b39a4f96838cfe646a25daf60cd4141eb96"
+    },
+    {
+      "name": "cli-regressions",
+      "command": [
+        "/tmp/cz-accept-env/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_acceptance"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/cli-regressions.txt",
+      "sha256": "eb879c789c078d752e4952743c8be05e82eddbc1ca1aa2b4d0b48df82e99d50b"
+    },
+    {
+      "name": "NoGoAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "NoGoAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/NoGoAudit.txt",
+      "sha256": "e80dddc32ce3130d70c3029b85ca1dd22d0f8840690ec26634766fc50fefe84a"
+    },
+    {
+      "name": "AppendixBDAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "AppendixBDAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/AppendixBDAudit.txt",
+      "sha256": "b3792cf8a635b85926bd27d2ed16e05200d57886793c6cd496ca87dac88061cf"
+    },
+    {
+      "name": "AppendixEAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "AppendixEAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/AppendixEAudit.txt",
+      "sha256": "e043aef0b92fbf778611f4293bb7d23295379b587eb8bd8bf17c5c6d6c28533c"
+    },
+    {
+      "name": "CertificateContractsAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "CertificateContractsAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/CertificateContractsAudit.txt",
+      "sha256": "c7d85abb899566386b87c46e3399c2e3c0419a175d99ec7bcc78b5230037344c"
+    },
+    {
+      "name": "appendix-e-ActiveTimeAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ActiveTimeAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ActiveTimeAudit.txt",
+      "sha256": "326c92e51a35b6133888f6cca8a3875f199d47c50820a36a8381257ad2d5bcf4"
+    },
+    {
+      "name": "appendix-e-AtomicBoundaryCorrectionAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/AtomicBoundaryCorrectionAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-AtomicBoundaryCorrectionAudit.txt",
+      "sha256": "871a925d1558ee6eff434e400d80270673c43ca12b5b0feea5a7f0e5658fa3e6"
+    },
+    {
+      "name": "appendix-e-BFieldRegularityAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/BFieldRegularityAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-BFieldRegularityAudit.txt",
+      "sha256": "ded3bdce5fad025dec8fea8b0f67f6f0b200fb5b4f3e44bfb461e212e2ab5146"
+    },
+    {
+      "name": "appendix-e-BallBoxSteeringAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/BallBoxSteeringAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-BallBoxSteeringAudit.txt",
+      "sha256": "1378412dc307b6cd9af30c53c5338421b95427839cbbe6186e209efb643683d9"
+    },
+    {
+      "name": "appendix-e-BernsteinC1Audit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/BernsteinC1Audit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-BernsteinC1Audit.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "appendix-e-CompactQuantizationAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/CompactQuantizationAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-CompactQuantizationAudit.txt",
+      "sha256": "f613d3c34dbfcaa70b8787516402705100b3f1c5cd5b115f053cd8d1eefde98c"
+    },
+    {
+      "name": "appendix-e-CompletenessAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/CompletenessAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-CompletenessAudit.txt",
+      "sha256": "f9c5b23b77bbca3b671416d8202c4c5f24b4edfc7a91031f0ca1b46b405b5b3e"
+    },
+    {
+      "name": "appendix-e-ConcretePartitionedAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ConcretePartitionedAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ConcretePartitionedAudit.txt",
+      "sha256": "22c02dfbc22b8d679b471ba4a7e72fac9b9f19bf6555e70106cb364a4b122342"
+    },
+    {
+      "name": "appendix-e-ConcreteStationaryAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ConcreteStationaryAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ConcreteStationaryAudit.txt",
+      "sha256": "6052fd4df6ac7952e2607a681612f85c53a3b1563a8c723c9710e4c1e4ee5c50"
+    },
+    {
+      "name": "appendix-e-ConditionalAcceptanceAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ConditionalAcceptanceAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ConditionalAcceptanceAudit.txt",
+      "sha256": "f58291a9ccf093d7d85b539cbc2d3d806f10c53a66440d4f5fec963e171a80a7"
+    },
+    {
+      "name": "appendix-e-ConjugateGramAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ConjugateGramAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ConjugateGramAudit.txt",
+      "sha256": "6091339d52df6bcf506276fab3ac85fb7680adacdee95b05c725da362221036a"
+    },
+    {
+      "name": "appendix-e-ControlLieAlgebraAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ControlLieAlgebraAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ControlLieAlgebraAudit.txt",
+      "sha256": "6757e482ff3e7a9fdda6820723d3d9aebf5e0d797f079f04a58cbc0aa6123c04"
+    },
+    {
+      "name": "appendix-e-DiscardedProgressAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/DiscardedProgressAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-DiscardedProgressAudit.txt",
+      "sha256": "26e582b636492e2f87b7c8b9b79ecf3dc4a4c02594fe99f6b884e9c221f062ec"
+    },
+    {
+      "name": "appendix-e-EndpointRepairAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/EndpointRepairAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-EndpointRepairAudit.txt",
+      "sha256": "16a9d72f7c75053f91ce55d18b816f525268a9084223f0b76ed7156e2612cf14"
+    },
+    {
+      "name": "appendix-e-ExcursionAssemblyAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExcursionAssemblyAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExcursionAssemblyAudit.txt",
+      "sha256": "9fed2510895e072888bb027652f3ca251a228b67a6981d66136d809924e9c36c"
+    },
+    {
+      "name": "appendix-e-ExcursionGapsAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExcursionGapsAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExcursionGapsAudit.txt",
+      "sha256": "0be4ec1020d8724d3f8225bf506bdf4b9396abfd47ddcc9c24fa0310f48c090b"
+    },
+    {
+      "name": "appendix-e-ExcursionSelectionAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExcursionSelectionAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExcursionSelectionAudit.txt",
+      "sha256": "a18bac296fc8b43c898ed56df1328d35ce6c3ad38f01c2c8d2381863f77f137c"
+    },
+    {
+      "name": "appendix-e-ExposureArcAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExposureArcAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExposureArcAudit.txt",
+      "sha256": "c6cb62379be5a44f19badf240493cef4b3b72b8f51764a7e227349b043822d90"
+    },
+    {
+      "name": "appendix-e-ExposureAveragingAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExposureAveragingAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExposureAveragingAudit.txt",
+      "sha256": "4babc9e1056ade0030a1a6f33cd8ba134e825f8d5e1e35183d9c2bede591b80b"
+    },
+    {
+      "name": "appendix-e-ExposureClockAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExposureClockAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExposureClockAudit.txt",
+      "sha256": "19ad853fd196a9dc1cab97fcfde306573a006433da94f62ad6dbeb9a1083ae3d"
+    },
+    {
+      "name": "appendix-e-ExposureCompactnessAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExposureCompactnessAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExposureCompactnessAudit.txt",
+      "sha256": "70d1116d3e2dc82eaa391ac96bd2943fa475fdafb70f16ba31082b6161ffd6dd"
+    },
+    {
+      "name": "appendix-e-ExposureCurrentAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExposureCurrentAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExposureCurrentAudit.txt",
+      "sha256": "72303e435dde1bcf9635ed8a140f220fa9ba4d2366f1cdeb6d36081863990252"
+    },
+    {
+      "name": "appendix-e-ExposureDecompositionAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExposureDecompositionAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExposureDecompositionAudit.txt",
+      "sha256": "f6b631190faf6e85b446c8b574a83e7d61630d57358ce3b9e5e71dee91a40e77"
+    },
+    {
+      "name": "appendix-e-ExposureExcursionsAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExposureExcursionsAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExposureExcursionsAudit.txt",
+      "sha256": "f09d6b0b08968b235619a679a9cb48f64b50bd085ccde46bc2af403dc5c4f305"
+    },
+    {
+      "name": "appendix-e-ExposurePolarCurrentAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExposurePolarCurrentAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExposurePolarCurrentAudit.txt",
+      "sha256": "44bbf6c5804c7ac35473915df9d173b9b24d301839782f1ad82d4b188f0a360b"
+    },
+    {
+      "name": "appendix-e-ExposureReparamAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExposureReparamAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExposureReparamAudit.txt",
+      "sha256": "d7ce713d7a0a83d567273d3b1d05dc711a9e14fa42b72b30eca06b72fbae0f92"
+    },
+    {
+      "name": "appendix-e-ExposureSubcurrentAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExposureSubcurrentAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExposureSubcurrentAudit.txt",
+      "sha256": "6e2db3f9a0ac0cc7db63facba9c3fd184c63200ac06f05853de41c183259e95c"
+    },
+    {
+      "name": "appendix-e-ExposureSuperpositionAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ExposureSuperpositionAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ExposureSuperpositionAudit.txt",
+      "sha256": "f09e0fe29095da8c9bd1f991e1d047e76c83911ec8b106b57913c53d69b4d839"
+    },
+    {
+      "name": "appendix-e-FaceGramAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/FaceGramAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-FaceGramAudit.txt",
+      "sha256": "74b286dc9284f4438d6bee3e54d627318847163664a53e288fe8b8c3de767d3a"
+    },
+    {
+      "name": "appendix-e-FaceRestrictionAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/FaceRestrictionAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-FaceRestrictionAudit.txt",
+      "sha256": "6680916055aa25a572d9eed0f95b53d45bcc0f0e2690824d0e8d11bd9bf9dd73"
+    },
+    {
+      "name": "appendix-e-FinitePathMeasureAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/FinitePathMeasureAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-FinitePathMeasureAudit.txt",
+      "sha256": "647db3385f947e2beeeca0b3ddc1693abec0b031de969fd114488685ee16e7db"
+    },
+    {
+      "name": "appendix-e-LocalControlConstructionAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/LocalControlConstructionAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-LocalControlConstructionAudit.txt",
+      "sha256": "bbcb8a233b9af173b17eb9b188a371aea273b23dda4b87b2591674cb71c4a796"
+    },
+    {
+      "name": "appendix-e-MatrixCorrectionAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/MatrixCorrectionAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-MatrixCorrectionAudit.txt",
+      "sha256": "b8df3999f403a37f159a44ad0c9bffb4b881f80f265e8a1b0bd28fad5772ff6b"
+    },
+    {
+      "name": "appendix-e-PhaseTransportAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/PhaseTransportAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-PhaseTransportAudit.txt",
+      "sha256": "e61d7a8f8805a3fb5dd54debcac231b1b28f01f01861bd82eace3acbfc968f02"
+    },
+    {
+      "name": "appendix-e-PhysicalAssemblyAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/PhysicalAssemblyAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-PhysicalAssemblyAudit.txt",
+      "sha256": "004a2b079df4b59379c4848b6cb3e2112cd6b06cf2660d56d072f0865f3e72b6"
+    },
+    {
+      "name": "appendix-e-PhysicalClockAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/PhysicalClockAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-PhysicalClockAudit.txt",
+      "sha256": "f0218b01f35014a17c1036bf9f44e73c5c74c0410457d758dadde2d955eaf26b"
+    },
+    {
+      "name": "appendix-e-PhysicalCompletenessAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/PhysicalCompletenessAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-PhysicalCompletenessAudit.txt",
+      "sha256": "37ecc2eed74b67118bf0cb5a232b13081d353c5179f1b4f25e257de33cee2856"
+    },
+    {
+      "name": "appendix-e-PhysicalReparamAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/PhysicalReparamAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-PhysicalReparamAudit.txt",
+      "sha256": "0721ea980682bdcdf1d150584c9349f97a59d49c29388edbfbffe9f1cfce0e35"
+    },
+    {
+      "name": "appendix-e-PolarAlignmentAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/PolarAlignmentAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-PolarAlignmentAudit.txt",
+      "sha256": "26d80a64d8e479b9dc4f6024ed1456594c447d0ba2ae0aa356475e9f153c7fba"
+    },
+    {
+      "name": "appendix-e-PolynomialApproximationAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/PolynomialApproximationAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-PolynomialApproximationAudit.txt",
+      "sha256": "7040c8d3c12117b29390685849d41f2dfca5a60b88277219683975ccb19c2f09"
+    },
+    {
+      "name": "appendix-e-PolynomialExistenceAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/PolynomialExistenceAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-PolynomialExistenceAudit.txt",
+      "sha256": "52b7a954e61c5cae900947eba26b5e9db4955ead96e4314c296e63b46c739ccb"
+    },
+    {
+      "name": "appendix-e-PolynomialSymmetryAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/PolynomialSymmetryAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-PolynomialSymmetryAudit.txt",
+      "sha256": "9a6033b886677a8a9c218377c8b19110f5462929264af17ba7eff652318f5fa0"
+    },
+    {
+      "name": "appendix-e-PositiveResidualMatrixAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/PositiveResidualMatrixAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-PositiveResidualMatrixAudit.txt",
+      "sha256": "b9c32ea1e5ba19a70dc4d069abcf847f1adedd02af1015dd3b270eb1a12d0779"
+    },
+    {
+      "name": "appendix-e-QuotientCertificateAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/QuotientCertificateAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-QuotientCertificateAudit.txt",
+      "sha256": "cc4fc0c8e0a859d393f5b972b047f7bd61fc525ad8f37bbe7979bedfa3fb3815"
+    },
+    {
+      "name": "appendix-e-QuotientNormalFormAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/QuotientNormalFormAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-QuotientNormalFormAudit.txt",
+      "sha256": "f547ab5acc8e9a92941a6bd37e560f8481ca4c029d9ec93e3344a649cf5e4fa1"
+    },
+    {
+      "name": "appendix-e-QuotientSymmetryAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/QuotientSymmetryAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-QuotientSymmetryAudit.txt",
+      "sha256": "7d89bea8d609370df3d8193ef1a98bba529832a191850877c0fef8bf07e65a5d"
+    },
+    {
+      "name": "appendix-e-ReducedBasisAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ReducedBasisAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ReducedBasisAudit.txt",
+      "sha256": "a1c3ab659422c3bf103771c524346052f643ba1aa7816e1fcdef5c51c2183571"
+    },
+    {
+      "name": "appendix-e-RelaxedSubsolutionAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/RelaxedSubsolutionAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-RelaxedSubsolutionAudit.txt",
+      "sha256": "c64dcf61b7548d963f991ab9aa0922690cc413e502cd854fc82eba91f9b38f36"
+    },
+    {
+      "name": "appendix-e-ResidualFactorsAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ResidualFactorsAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ResidualFactorsAudit.txt",
+      "sha256": "975c73de41345875be8df9628fd5b1b1328e0c800ae83e9487850d16633e01cd"
+    },
+    {
+      "name": "appendix-e-ResidualSymmetryAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ResidualSymmetryAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ResidualSymmetryAudit.txt",
+      "sha256": "4a545e30801fc08b494bc631c6bbe2c7872f042e1d4b3ddea72f731082f3baa0"
+    },
+    {
+      "name": "appendix-e-RotationAverageAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/RotationAverageAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-RotationAverageAudit.txt",
+      "sha256": "5427f506e37936c2cea278cdf783bbddcccce7e569598d9501cdfd7db65eb22f"
+    },
+    {
+      "name": "appendix-e-SOSRepresentationAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/SOSRepresentationAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-SOSRepresentationAudit.txt",
+      "sha256": "8f57e0f43d9c74c3d4dd3acfdffc7cd3e416a51d56b4c908787e8ad84ad920da"
+    },
+    {
+      "name": "appendix-e-ShortSegmentApproximationAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/ShortSegmentApproximationAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-ShortSegmentApproximationAudit.txt",
+      "sha256": "10b9b0557ae65ab41f1ba75c0b73fa3108d169044cfde1c66dde368c995d5cfa"
+    },
+    {
+      "name": "appendix-e-StateGeometryAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/StateGeometryAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-StateGeometryAudit.txt",
+      "sha256": "c2f790a820eee79bf3c7fc807b70fc1c31f8f1e4f0e6e4c76f9189bd29631892"
+    },
+    {
+      "name": "appendix-e-StationaryGramAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/StationaryGramAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-StationaryGramAudit.txt",
+      "sha256": "120fc22183843fe1261b750271400d6f72b23be7aa84c56822bfc7d57056a5a9"
+    },
+    {
+      "name": "appendix-e-SteeringExposureAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/SteeringExposureAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-SteeringExposureAudit.txt",
+      "sha256": "d7342cf9206bdfbbd0f836ab164770a6564e3e7cea48aedf132a348caea058c2"
+    },
+    {
+      "name": "appendix-e-SymmetryGramAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/SymmetryGramAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-SymmetryGramAudit.txt",
+      "sha256": "a6a488715839586f879a076f21cb3dd367b9d7fc6b4d26d29f9ad8efd0c45e73"
+    },
+    {
+      "name": "appendix-e-TerminalCertificateAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/TerminalCertificateAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-TerminalCertificateAudit.txt",
+      "sha256": "3bb6d4eeabc148f01f2a4ebe23fd63380cb4dfcd6e83afe6f86b3b32200d816e"
+    },
+    {
+      "name": "appendix-e-UnitControlAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "12000",
+        "appendix-e/UnitControlAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "unified-evidence/appendix-e-UnitControlAudit.txt",
+      "sha256": "3b158acd09dcfdd4dd5eb308479e5ba79b86147f2878520f6ee5588ab19706ec"
+    }
+  ],
+  "acceptance_manifest_sha256": "6901c33216bae0401e5730a7ff782dbd676ee06d76794cfd77e5e1ee06103381",
+  "acceptance_replay_sha256": "4790ab3b0364ab0045165dabaccad6fa24b457a0c0594c6d672089d472a74be0",
+  "trust_boundary": "Lean reasoning plus external finite checks; historical numerical reports reused only after exact decoded-input matching; Appendix E retains EuclideanCurrentSuperposition as an explicit hypothesis"
+}

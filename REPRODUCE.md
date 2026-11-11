@@ -4,6 +4,12 @@ Run from this repository's root unless a step says otherwise. Do not use
 `python -O` or `PYTHONOPTIMIZE`: some inherited proof obligations are assertions.
 The scripts below are existing upstream tools; no acceptance gate was relaxed.
 
+For the complete Lean main-bound, NoGo and Appendix B/D/E verification, see
+[Lean verification scope and reproduction](LEAN_VERIFICATION.md). That guide
+separates a quick receipt check from rebuilding both libraries and rerunning
+the unified acceptance. Its fixed numerical input is obtained from this same
+repository at the original data revision; no private development access is needed.
+
 ## 1. Exact lower bound, including the original global audit
 
 Requirements: Python 3.11, `python-flint==0.8.0`, a current stable Rust toolchain,

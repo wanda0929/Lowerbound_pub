@@ -1,0 +1,152 @@
+PhysicalSegment.controlDirection : ℂ → ℂ
+'CZExposure.PhysicalSegment.controlDirection' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.measurable_controlDirection : Measurable PhysicalSegment.controlDirection
+'CZExposure.PhysicalSegment.measurable_controlDirection' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.norm_controlDirection : ∀ (u : ℂ), ‖PhysicalSegment.controlDirection u‖ = 1
+'CZExposure.PhysicalSegment.norm_controlDirection' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.norm_smul_controlDirection : ∀ (u : ℂ), ‖u‖ • PhysicalSegment.controlDirection u = u
+'CZExposure.PhysicalSegment.norm_smul_controlDirection' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.vf_real_smul_control : ∀ (x : State) (r : ℝ) (u : ℂ), vf x (r • u) = r • vf x u
+'CZExposure.PhysicalSegment.vf_real_smul_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.vf_controlDirection : ∀ (x : State) (u : ℂ), vf x u = ‖u‖ • vf x (PhysicalSegment.controlDirection u)
+'CZExposure.PhysicalSegment.vf_controlDirection' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PhysicalSegment.norm_vf_le_norm_control : ∀ {x : State}, x ∈ Xset → ∀ (u : ℂ), ‖vf x u‖ ≤ ‖u‖
+'CZExposure.PhysicalSegment.norm_vf_le_norm_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.intervalIntegrable_controlNorm : ∀ (P : PhysicalSegment),
+  IntervalIntegrable (fun t => ‖P.control t‖) volume 0 P.duration
+'CZExposure.PhysicalSegment.intervalIntegrable_controlNorm' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.intervalIntegrable_controlNorm_subinterval : ∀ (P : PhysicalSegment) {a b : ℝ},
+  a ∈ Set.Icc 0 P.duration → b ∈ Set.Icc 0 P.duration → IntervalIntegrable (fun t => ‖P.control t‖) volume a b
+'CZExposure.PhysicalSegment.intervalIntegrable_controlNorm_subinterval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PhysicalSegment.activeClock : PhysicalSegment → ℝ → ℝ
+'CZExposure.PhysicalSegment.activeClock' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeDuration : PhysicalSegment → ℝ
+'CZExposure.PhysicalSegment.activeDuration' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeClock_zero : ∀ (P : PhysicalSegment), P.activeClock 0 = 0
+'CZExposure.PhysicalSegment.activeClock_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeClock_increment : ∀ (P : PhysicalSegment) {s t : ℝ},
+  s ∈ Set.Icc 0 P.duration →
+    t ∈ Set.Icc 0 P.duration → P.activeClock t - P.activeClock s = ∫ (q : ℝ) in s..t, ‖P.control q‖
+'CZExposure.PhysicalSegment.activeClock_increment' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeClock_increment_bounds : ∀ (P : PhysicalSegment) {s t : ℝ},
+  s ∈ Set.Icc 0 P.duration →
+    t ∈ Set.Icc 0 P.duration → s ≤ t → 0 ≤ P.activeClock t - P.activeClock s ∧ P.activeClock t - P.activeClock s ≤ t - s
+'CZExposure.PhysicalSegment.activeClock_increment_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.monotoneOn_activeClock : ∀ (P : PhysicalSegment), MonotoneOn P.activeClock (Set.Icc 0 P.duration)
+'CZExposure.PhysicalSegment.monotoneOn_activeClock' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.lipschitzOn_activeClock : ∀ (P : PhysicalSegment),
+  LipschitzOnWith 1 P.activeClock (Set.Icc 0 P.duration)
+'CZExposure.PhysicalSegment.lipschitzOn_activeClock' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeDuration_bounds : ∀ (P : PhysicalSegment), 0 ≤ P.activeDuration ∧ P.activeDuration ≤ P.duration
+'CZExposure.PhysicalSegment.activeDuration_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeClock_image_interval : ∀ (P : PhysicalSegment),
+  P.activeClock '' Set.Icc 0 P.duration = Set.Icc 0 P.activeDuration
+'CZExposure.PhysicalSegment.activeClock_image_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeClock_mem : ∀ (P : PhysicalSegment) {t : ℝ},
+  t ∈ Set.Icc 0 P.duration → P.activeClock t ∈ Set.Icc 0 P.activeDuration
+'CZExposure.PhysicalSegment.activeClock_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.path_increment_le_activeClock : ∀ (P : PhysicalSegment) {s t : ℝ},
+  s ∈ Set.Icc 0 P.duration →
+    t ∈ Set.Icc 0 P.duration → s ≤ t → ‖P.path t - P.path s‖ ≤ P.activeClock t - P.activeClock s
+'CZExposure.PhysicalSegment.path_increment_le_activeClock' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.path_dist_le_activeClock : ∀ (P : PhysicalSegment) {s t : ℝ},
+  s ∈ Set.Icc 0 P.duration → t ∈ Set.Icc 0 P.duration → ‖P.path t - P.path s‖ ≤ |P.activeClock t - P.activeClock s|
+'CZExposure.PhysicalSegment.path_dist_le_activeClock' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.path_eq_of_activeClock_eq : ∀ (P : PhysicalSegment) {s t : ℝ},
+  s ∈ Set.Icc 0 P.duration → t ∈ Set.Icc 0 P.duration → P.activeClock s = P.activeClock t → P.path s = P.path t
+'CZExposure.PhysicalSegment.path_eq_of_activeClock_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.path_eq_initial_of_activeDuration_zero : ∀ (P : PhysicalSegment),
+  P.activeDuration = 0 → ∀ {t : ℝ}, t ∈ Set.Icc 0 P.duration → P.path t = P.path 0
+'CZExposure.PhysicalSegment.path_eq_initial_of_activeDuration_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PhysicalSegment.exists_activeClock_preimage : ∀ (P : PhysicalSegment) (s : ↑(Set.Icc 0 P.activeDuration)),
+  ∃ t, P.activeClock ↑t = ↑s
+'CZExposure.PhysicalSegment.exists_activeClock_preimage' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeClockSection : (P : PhysicalSegment) → ↑(Set.Icc 0 P.activeDuration) → ↑(Set.Icc 0 P.duration)
+'CZExposure.PhysicalSegment.activeClockSection' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeClockSection_spec : ∀ (P : PhysicalSegment) (s : ↑(Set.Icc 0 P.activeDuration)),
+  P.activeClock ↑(P.activeClockSection s) = ↑s
+'CZExposure.PhysicalSegment.activeClockSection_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.strictMono_activeClockSection : ∀ (P : PhysicalSegment), StrictMono P.activeClockSection
+'CZExposure.PhysicalSegment.strictMono_activeClockSection' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeTimeSelector : PhysicalSegment → ℝ → ℝ
+'CZExposure.PhysicalSegment.activeTimeSelector' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeTimeSelector_mem : ∀ (P : PhysicalSegment) (s : ℝ), P.activeTimeSelector s ∈ Set.Icc 0 P.duration
+'CZExposure.PhysicalSegment.activeTimeSelector_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.monotone_activeTimeSelector : ∀ (P : PhysicalSegment), Monotone P.activeTimeSelector
+'CZExposure.PhysicalSegment.monotone_activeTimeSelector' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.measurable_activeTimeSelector : ∀ (P : PhysicalSegment), Measurable P.activeTimeSelector
+'CZExposure.PhysicalSegment.measurable_activeTimeSelector' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeClock_activeTimeSelector : ∀ (P : PhysicalSegment) (s : ℝ),
+  P.activeClock (P.activeTimeSelector s) = ↑(Set.projIcc 0 P.activeDuration ⋯ s)
+'CZExposure.PhysicalSegment.activeClock_activeTimeSelector' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeClock_activeTimeSelector_of_mem : ∀ (P : PhysicalSegment) {s : ℝ},
+  s ∈ Set.Icc 0 P.activeDuration → P.activeClock (P.activeTimeSelector s) = s
+'CZExposure.PhysicalSegment.activeClock_activeTimeSelector_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PhysicalSegment.activePath : PhysicalSegment → ℝ → State
+'CZExposure.PhysicalSegment.activePath' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activePath_mem : ∀ (P : PhysicalSegment) (s : ℝ), P.activePath s ∈ Xset
+'CZExposure.PhysicalSegment.activePath_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activePath_activeClock : ∀ (P : PhysicalSegment) {t : ℝ},
+  t ∈ Set.Icc 0 P.duration → P.activePath (P.activeClock t) = P.path t
+'CZExposure.PhysicalSegment.activePath_activeClock' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.lipschitz_activePath : ∀ (P : PhysicalSegment), LipschitzWith 1 P.activePath
+'CZExposure.PhysicalSegment.lipschitz_activePath' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activePath_zero : ∀ (P : PhysicalSegment), P.activePath 0 = P.path 0
+'CZExposure.PhysicalSegment.activePath_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activePath_terminal : ∀ (P : PhysicalSegment), P.activePath P.activeDuration = P.path P.duration
+'CZExposure.PhysicalSegment.activePath_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activePath_image_interval : ∀ (P : PhysicalSegment),
+  P.activePath '' Set.Icc 0 P.activeDuration = P.path '' Set.Icc 0 P.duration
+'CZExposure.PhysicalSegment.activePath_image_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeControl : PhysicalSegment → ℝ → ℂ
+'CZExposure.PhysicalSegment.activeControl' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.measurable_activeControl : ∀ (P : PhysicalSegment), Measurable P.activeControl
+'CZExposure.PhysicalSegment.measurable_activeControl' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.norm_activeControl : ∀ (P : PhysicalSegment) (s : ℝ), ‖P.activeControl s‖ = 1
+'CZExposure.PhysicalSegment.norm_activeControl' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeExposure : PhysicalSegment → ℝ
+'CZExposure.PhysicalSegment.activeExposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.weightedExposure : PhysicalSegment → ℝ
+'CZExposure.PhysicalSegment.weightedExposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.continuous_cost_activePath : ∀ (P : PhysicalSegment), Continuous fun s => cost (P.activePath s)
+'CZExposure.PhysicalSegment.continuous_cost_activePath' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.intervalIntegrable_cost_activePath : ∀ (P : PhysicalSegment) (a b : ℝ),
+  IntervalIntegrable (fun s => cost (P.activePath s)) volume a b
+'CZExposure.PhysicalSegment.intervalIntegrable_cost_activePath' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PhysicalSegment.intervalIntegrable_weightedCost : ∀ (P : PhysicalSegment),
+  IntervalIntegrable (fun t => cost (P.path t) * ‖P.control t‖) volume 0 P.duration
+'CZExposure.PhysicalSegment.intervalIntegrable_weightedCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeCostPrimitive : PhysicalSegment → ℝ → ℝ
+'CZExposure.PhysicalSegment.activeCostPrimitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeCostPrimitive_zero : ∀ (P : PhysicalSegment), P.activeCostPrimitive 0 = 0
+'CZExposure.PhysicalSegment.activeCostPrimitive_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.hasDerivAt_activeCostPrimitive : ∀ (P : PhysicalSegment) (s : ℝ),
+  HasDerivAt P.activeCostPrimitive (cost (P.activePath s)) s
+'CZExposure.PhysicalSegment.hasDerivAt_activeCostPrimitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.lipschitz_activeCostPrimitive : ∀ (P : PhysicalSegment), LipschitzWith 1 P.activeCostPrimitive
+'CZExposure.PhysicalSegment.lipschitz_activeCostPrimitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.ae_hasDerivAt_activeClock : ∀ (P : PhysicalSegment),
+  ∀ᵐ (t : ℝ), t ∈ Set.uIoc 0 P.duration → HasDerivAt P.activeClock ‖P.control t‖ t
+'CZExposure.PhysicalSegment.ae_hasDerivAt_activeClock' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeExposure_eq_weightedExposure : ∀ (P : PhysicalSegment), P.activeExposure = P.weightedExposure
+'CZExposure.PhysicalSegment.activeExposure_eq_weightedExposure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PhysicalSegment.activeExposure_nonneg : ∀ (P : PhysicalSegment), 0 ≤ P.activeExposure
+'CZExposure.PhysicalSegment.activeExposure_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeExposure_le_exposure : ∀ (P : PhysicalSegment), P.activeExposure ≤ P.exposure
+'CZExposure.PhysicalSegment.activeExposure_le_exposure' depends on axioms: [propext, Classical.choice, Quot.sound]
+PhysicalSegment.activeTimeSelector : PhysicalSegment → ℝ → ℝ
+PhysicalSegment.activeDuration_bounds : ∀ (P : PhysicalSegment), 0 ≤ P.activeDuration ∧ P.activeDuration ≤ P.duration
+PhysicalSegment.activePath_image_interval : ∀ (P : PhysicalSegment),
+  P.activePath '' Set.Icc 0 P.activeDuration = P.path '' Set.Icc 0 P.duration
+PhysicalSegment.activeExposure_eq_weightedExposure : ∀ (P : PhysicalSegment), P.activeExposure = P.weightedExposure
+PhysicalSegment.activeExposure_le_exposure : ∀ (P : PhysicalSegment), P.activeExposure ≤ P.exposure

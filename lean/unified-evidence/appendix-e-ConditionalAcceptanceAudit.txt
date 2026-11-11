@@ -1,0 +1,235 @@
+structure CZExposure.EuclideanNormalCurrentData : Type
+number of parameters: 0
+fields:
+  CZExposure.EuclideanNormalCurrentData.vectorMeasure : MeasureTheory.VectorMeasure ExposureEuclidean ExposureEuclidean
+  CZExposure.EuclideanNormalCurrentData.finite_variation : MeasureTheory.IsFiniteMeasure self.vectorMeasure.variation
+  CZExposure.EuclideanNormalCurrentData.direction : ExposureEuclidean → ExposureEuclidean
+  CZExposure.EuclideanNormalCurrentData.measurable_direction : Measurable self.direction
+  CZExposure.EuclideanNormalCurrentData.direction_integrable : MeasureTheory.Integrable self.direction
+      self.vectorMeasure.variation
+  CZExposure.EuclideanNormalCurrentData.direction_unit : ∀ᵐ (z : ExposureEuclidean) ∂self.vectorMeasure.variation,
+      ‖self.direction z‖ = 1
+  CZExposure.EuclideanNormalCurrentData.represents : self.vectorMeasure =
+      self.vectorMeasure.variation.withDensityᵥ self.direction
+  CZExposure.EuclideanNormalCurrentData.boundaryPlus : MeasureTheory.Measure ExposureEuclidean
+  CZExposure.EuclideanNormalCurrentData.finite_boundaryPlus : MeasureTheory.IsFiniteMeasure self.boundaryPlus
+  CZExposure.EuclideanNormalCurrentData.boundaryMinus : MeasureTheory.Measure ExposureEuclidean
+  CZExposure.EuclideanNormalCurrentData.finite_boundaryMinus : MeasureTheory.IsFiniteMeasure self.boundaryMinus
+  CZExposure.EuclideanNormalCurrentData.boundary : ∀ (ψ : ExposureEuclidean → ℝ),
+      ContDiff ℝ (↑⊤) ψ →
+        HasCompactSupport ψ →
+          MeasureTheory.Integrable (fun z => (fderiv ℝ ψ z) (self.direction z)) self.vectorMeasure.variation ∧
+            ∫ (z : ExposureEuclidean), (fderiv ℝ ψ z) (self.direction z) ∂self.vectorMeasure.variation =
+              ∫ (z : ExposureEuclidean), ψ z ∂self.boundaryPlus - ∫ (z : ExposureEuclidean), ψ z ∂self.boundaryMinus
+constructor:
+  CZExposure.EuclideanNormalCurrentData.mk
+    (vectorMeasure : MeasureTheory.VectorMeasure ExposureEuclidean ExposureEuclidean)
+    (finite_variation : MeasureTheory.IsFiniteMeasure vectorMeasure.variation)
+    (direction : ExposureEuclidean → ExposureEuclidean) (measurable_direction : Measurable direction)
+    (direction_integrable : MeasureTheory.Integrable direction vectorMeasure.variation)
+    (direction_unit : ∀ᵐ (z : ExposureEuclidean) ∂vectorMeasure.variation, ‖direction z‖ = 1)
+    (represents : vectorMeasure = vectorMeasure.variation.withDensityᵥ direction)
+    (boundaryPlus : MeasureTheory.Measure ExposureEuclidean)
+    (finite_boundaryPlus : MeasureTheory.IsFiniteMeasure boundaryPlus)
+    (boundaryMinus : MeasureTheory.Measure ExposureEuclidean)
+    (finite_boundaryMinus : MeasureTheory.IsFiniteMeasure boundaryMinus)
+    (boundary :
+      ∀ (ψ : ExposureEuclidean → ℝ),
+        ContDiff ℝ (↑⊤) ψ →
+          HasCompactSupport ψ →
+            MeasureTheory.Integrable (fun z => (fderiv ℝ ψ z) (direction z)) vectorMeasure.variation ∧
+              ∫ (z : ExposureEuclidean), (fderiv ℝ ψ z) (direction z) ∂vectorMeasure.variation =
+                ∫ (z : ExposureEuclidean), ψ z ∂boundaryPlus - ∫ (z : ExposureEuclidean), ψ z ∂boundaryMinus) :
+    EuclideanNormalCurrentData
+structure CZExposure.EuclideanCurrentArcData.{u_1} (T : EuclideanNormalCurrentData) (source sink : ExposureEuclidean)
+  (A : Type u_1) [MeasurableSpace A] : Type u_1
+number of parameters: 5
+fields:
+  CZExposure.EuclideanCurrentArcData.retained : MeasureTheory.VectorMeasure ExposureEuclidean ExposureEuclidean
+  CZExposure.EuclideanCurrentArcData.subcurrent : IsVectorSubcurrent self.retained T.vectorMeasure
+  CZExposure.EuclideanCurrentArcData.ensemble : MeasureTheory.Measure A
+  CZExposure.EuclideanCurrentArcData.massDecomposition : LocalizedMeasureDecomposition self.ensemble
+      self.retained.variation
+  CZExposure.EuclideanCurrentArcData.arc : A → EuclideanArc
+  CZExposure.EuclideanCurrentArcData.component_eq : ∀ᵐ (a : A) ∂self.ensemble,
+      self.massDecomposition.component a = (self.arc a).lengthMeasure
+  CZExposure.EuclideanCurrentArcData.measurable_initial : Measurable fun a => (self.arc a).path 0
+  CZExposure.EuclideanCurrentArcData.measurable_terminal : Measurable fun a => (self.arc a).path (self.arc a).length
+  CZExposure.EuclideanCurrentArcData.initial_law : MeasureTheory.Measure.map (fun a => (self.arc a).path 0)
+        self.ensemble =
+      MeasureTheory.Measure.dirac source
+  CZExposure.EuclideanCurrentArcData.terminal_law : MeasureTheory.Measure.map
+        (fun a => (self.arc a).path (self.arc a).length) self.ensemble =
+      MeasureTheory.Measure.dirac sink
+constructor:
+  CZExposure.EuclideanCurrentArcData.mk.{u_1} {T : EuclideanNormalCurrentData} {source sink : ExposureEuclidean}
+    {A : Type u_1} [MeasurableSpace A] (retained : MeasureTheory.VectorMeasure ExposureEuclidean ExposureEuclidean)
+    (subcurrent : IsVectorSubcurrent retained T.vectorMeasure) (ensemble : MeasureTheory.Measure A)
+    (massDecomposition : LocalizedMeasureDecomposition ensemble retained.variation) (arc : A → EuclideanArc)
+    (component_eq : ∀ᵐ (a : A) ∂ensemble, massDecomposition.component a = (arc a).lengthMeasure)
+    (measurable_initial : Measurable fun a => (arc a).path 0)
+    (measurable_terminal : Measurable fun a => (arc a).path (arc a).length)
+    (initial_law : MeasureTheory.Measure.map (fun a => (arc a).path 0) ensemble = MeasureTheory.Measure.dirac source)
+    (terminal_law :
+      MeasureTheory.Measure.map (fun a => (arc a).path (arc a).length) ensemble = MeasureTheory.Measure.dirac sink) :
+    EuclideanCurrentArcData T source sink A
+structure CZExposure.LocalizedMeasureDecomposition.{u_1, u_2} {A : Type u_1} {X : Type u_2} [MeasurableSpace A]
+  [MeasurableSpace X] (η : MeasureTheory.Measure A) (m : MeasureTheory.Measure X) : Type (max u_1 u_2)
+number of parameters: 6
+fields:
+  CZExposure.LocalizedMeasureDecomposition.component : A → MeasureTheory.Measure X
+  CZExposure.LocalizedMeasureDecomposition.measurable_component : Measurable self.component
+  CZExposure.LocalizedMeasureDecomposition.localized : ∀ (s : Set X),
+      MeasurableSet s → m s = ∫⁻ (a : A), (self.component a) s ∂η
+constructor:
+  CZExposure.LocalizedMeasureDecomposition.mk.{u_1, u_2} {A : Type u_1} {X : Type u_2} [MeasurableSpace A]
+    [MeasurableSpace X] {η : MeasureTheory.Measure A} {m : MeasureTheory.Measure X}
+    (component : A → MeasureTheory.Measure X) (measurable_component : Measurable component)
+    (localized : ∀ (s : Set X), MeasurableSet s → m s = ∫⁻ (a : A), (component a) s ∂η) :
+    LocalizedMeasureDecomposition η m
+structure CZExposure.EuclideanArc : Type
+number of parameters: 0
+fields:
+  CZExposure.EuclideanArc.length : ℝ
+  CZExposure.EuclideanArc.length_pos : 0 < self.length
+  CZExposure.EuclideanArc.path : ℝ → ExposureEuclidean
+  CZExposure.EuclideanArc.lipschitz : LipschitzWith 1 self.path
+  CZExposure.EuclideanArc.injectiveOn : Set.InjOn self.path (Set.Icc 0 self.length)
+  CZExposure.EuclideanArc.unit_speed : ∀ᵐ (s : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 self.length),
+      ∃ w, HasDerivAt self.path w s ∧ ‖w‖ = 1
+constructor:
+  CZExposure.EuclideanArc.mk (length : ℝ) (length_pos : 0 < length) (path : ℝ → ExposureEuclidean)
+    (lipschitz : LipschitzWith 1 path) (injectiveOn : Set.InjOn path (Set.Icc 0 length))
+    (unit_speed : ∀ᵐ (s : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 length), ∃ w, HasDerivAt path w s ∧ ‖w‖ = 1) :
+    EuclideanArc
+structure CZExposure.EuclideanCurrentArcData.CurrentIdentity.{u_1} {T : EuclideanNormalCurrentData}
+  {source sink : ExposureEuclidean} {A : Type u_1} [MeasurableSpace A] (D : EuclideanCurrentArcData T source sink A) :
+  Type
+number of parameters: 6
+fields:
+  CZExposure.EuclideanCurrentArcData.CurrentIdentity.remainderDirection : ExposureEuclidean → ExposureEuclidean
+  CZExposure.EuclideanCurrentArcData.CurrentIdentity.remainder_measurable : Measurable self.remainderDirection
+  CZExposure.EuclideanCurrentArcData.CurrentIdentity.remainder_unit : ∀ᵐ (x :
+      ExposureEuclidean) ∂(T.vectorMeasure - D.retained).variation, ‖self.remainderDirection x‖ = 1
+  CZExposure.EuclideanCurrentArcData.CurrentIdentity.pairing_measurable : ∀ (q : ExposureEuclidean → ExposureEuclidean),
+      Measurable q →
+        (∀ (x : ExposureEuclidean), ‖q x‖ ≤ 1) →
+          MeasureTheory.AEStronglyMeasurable (fun a => EuclideanCurrentArcData.arcPairing (D.arc a) q) D.ensemble
+  CZExposure.EuclideanCurrentArcData.CurrentIdentity.current : ∀ (q : ExposureEuclidean → ExposureEuclidean),
+      Measurable q →
+        (∀ (x : ExposureEuclidean), ‖q x‖ ≤ 1) →
+          ∫ (x : ExposureEuclidean), inner ℝ (q x) (T.direction x) ∂T.vectorMeasure.variation =
+            ∫ (x : ExposureEuclidean),
+                inner ℝ (q x) (self.remainderDirection x) ∂(T.vectorMeasure - D.retained).variation +
+              ∫ (a : A), EuclideanCurrentArcData.arcPairing (D.arc a) q ∂D.ensemble
+constructor:
+  CZExposure.EuclideanCurrentArcData.CurrentIdentity.mk.{u_1} {T : EuclideanNormalCurrentData}
+    {source sink : ExposureEuclidean} {A : Type u_1} [MeasurableSpace A] {D : EuclideanCurrentArcData T source sink A}
+    (remainderDirection : ExposureEuclidean → ExposureEuclidean) (remainder_measurable : Measurable remainderDirection)
+    (remainder_unit : ∀ᵐ (x : ExposureEuclidean) ∂(T.vectorMeasure - D.retained).variation, ‖remainderDirection x‖ = 1)
+    (pairing_measurable :
+      ∀ (q : ExposureEuclidean → ExposureEuclidean),
+        Measurable q →
+          (∀ (x : ExposureEuclidean), ‖q x‖ ≤ 1) →
+            MeasureTheory.AEStronglyMeasurable (fun a => EuclideanCurrentArcData.arcPairing (D.arc a) q) D.ensemble)
+    (current :
+      ∀ (q : ExposureEuclidean → ExposureEuclidean),
+        Measurable q →
+          (∀ (x : ExposureEuclidean), ‖q x‖ ≤ 1) →
+            ∫ (x : ExposureEuclidean), inner ℝ (q x) (T.direction x) ∂T.vectorMeasure.variation =
+              ∫ (x : ExposureEuclidean),
+                  inner ℝ (q x) (remainderDirection x) ∂(T.vectorMeasure - D.retained).variation +
+                ∫ (a : A), EuclideanCurrentArcData.arcPairing (D.arc a) q ∂D.ensemble) :
+    D.CurrentIdentity
+def CZExposure.EuclideanCurrentSuperposition : Prop :=
+∀ (T : EuclideanNormalCurrentData) (source sink : ExposureEuclidean),
+  source ≠ sink →
+    T.boundaryPlus = MeasureTheory.Measure.dirac sink →
+      T.boundaryMinus = MeasureTheory.Measure.dirac source →
+        (∃ K, IsCompact K ∧ T.vectorMeasure.variation Kᶜ = 0) → ∃ A mA D, Nonempty D.CurrentIdentity
+structure CZExposure.Pulse : Type
+number of parameters: 0
+fields:
+  CZExposure.Pulse.S : ℝ
+  CZExposure.Pulse.S_nonneg : 0 ≤ self.S
+  CZExposure.Pulse.u : ℝ → ℂ
+  CZExposure.Pulse.u_measurable : Measurable self.u
+  CZExposure.Pulse.x : ℝ → State
+  CZExposure.Pulse.u_unit : ∀ s ∈ Set.Icc 0 self.S, ‖self.u s‖ = 1
+  CZExposure.Pulse.x_mem : ∀ s ∈ Set.Icc 0 self.S, self.x s ∈ Xset
+  CZExposure.Pulse.integrable : ∀ (i : Fin 8),
+      IntervalIntegrable (fun t => vf (self.x t) (self.u t) i) MeasureTheory.volume 0 self.S
+  CZExposure.Pulse.ode : ∀ s ∈ Set.Icc 0 self.S,
+      ∀ (i : Fin 8), self.x s i = x0 i + ∫ (t : ℝ) in 0..s, vf (self.x t) (self.u t) i
+  CZExposure.Pulse.terminal : self.x self.S ∈ XCZ
+constructor:
+  CZExposure.Pulse.mk (S : ℝ) (S_nonneg : 0 ≤ S) (u : ℝ → ℂ) (u_measurable : Measurable u) (x : ℝ → State)
+    (u_unit : ∀ s ∈ Set.Icc 0 S, ‖u s‖ = 1) (x_mem : ∀ s ∈ Set.Icc 0 S, x s ∈ Xset)
+    (integrable : ∀ (i : Fin 8), IntervalIntegrable (fun t => vf (x t) (u t) i) MeasureTheory.volume 0 S)
+    (ode : ∀ s ∈ Set.Icc 0 S, ∀ (i : Fin 8), x s i = x0 i + ∫ (t : ℝ) in 0..s, vf (x t) (u t) i)
+    (terminal : x S ∈ XCZ) : Pulse
+def CZExposure.Cstar : EReal :=
+⨅ γ, ↑γ.exposure
+structure CZExposure.ExposurePartition : Type
+number of parameters: 0
+fields:
+  CZExposure.ExposurePartition.J : ℕ
+  CZExposure.ExposurePartition.J_pos : 0 < self.J
+  CZExposure.ExposurePartition.a : ℕ → ℝ
+  CZExposure.ExposurePartition.a_zero : self.a 0 = 0
+  CZExposure.ExposurePartition.a_last : self.a self.J = 1
+  CZExposure.ExposurePartition.a_lt : ∀ j < self.J, self.a j < self.a (j + 1)
+constructor:
+  CZExposure.ExposurePartition.mk (J : ℕ) (J_pos : 0 < J) (a : ℕ → ℝ) (a_zero : a 0 = 0) (a_last : a J = 1)
+    (a_lt : ∀ j < J, a j < a (j + 1)) : ExposurePartition
+ConditionalAcceptance.relaxed_equality : EuclideanCurrentSuperposition → pRelaxed = Cstar
+ConditionalAcceptance.smooth_bounds : EuclideanCurrentSuperposition →
+  ∀ (a : ℝ),
+    ↑a < Cstar →
+      ∃ φ,
+        ContDiff ℝ (↑⊤) φ ∧
+          HasCompactSupport φ ∧
+            (∀ x ∈ Xset, ∀ (u : ℂ), ‖u‖ ≤ 1 → |(fderiv ℝ (fun x' => φ (Jmap x') - φ yPi) x) (vf x u)| ≤ cost x) ∧
+              (∀ x ∈ XCZ, φ (Jmap x) - φ yPi = 0) ∧ a < φ (Jmap x0) - φ yPi
+ConditionalAcceptance.certificates : EuclideanCurrentSuperposition →
+  ∀ {ε : ℝ}, 0 < ε → ∃ d W, 1 ≤ d ∧ StationaryFeasible d W ∧ Cstar.toReal - ε < (MvPolynomial.eval x0) W
+ConditionalAcceptance.stationary : EuclideanCurrentSuperposition →
+  (∀ (d : ℕ), 1 ≤ d → 0 ≤ Lunsplit d ∧ Lunsplit d ≤ Lunsplit (d + 1) ∧ Lunsplit (d + 1) ≤ Cstar) ∧
+    Filter.Tendsto Lunsplit Filter.atTop (nhds Cstar)
+ConditionalAcceptance.partitioned : EuclideanCurrentSuperposition →
+  ∀ (P : ExposurePartition) (U : ℝ),
+    (∃ γ, γ.exposure < U) →
+      (∀ (d : ℕ),
+          1 ≤ d →
+            0 ≤ Lunsplit d ∧
+              Lunsplit d ≤ Lsplit P U d ∧ Lsplit P U d ≤ Lsplit P U (d + 1) ∧ Lsplit P U (d + 1) ≤ Cstar) ∧
+        Filter.Tendsto (Lsplit P U) Filter.atTop (nhds Cstar)
+ConditionalAcceptance.concrete_stationary : EuclideanCurrentSuperposition →
+  ∀ {ε : ℝ},
+    0 < ε →
+      ∃ D,
+        1 ≤ D ∧
+          ∀ d ≥ D,
+            0 ≤ Cstar.toReal - (ConcreteStationary.optimum d).toReal ∧
+              Cstar.toReal - (ConcreteStationary.optimum d).toReal < ε
+ConditionalAcceptance.concrete_partitioned : EuclideanCurrentSuperposition →
+  ∀ (P : ExposurePartition) (U : ℝ),
+    (∃ γ, γ.exposure < U) → Filter.Tendsto (ConcretePartitioned.optimum P U) Filter.atTop (nhds Cstar)
+PASS CZExposure.ConditionalAcceptance.relaxed_equality: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ConditionalAcceptance.smooth_bounds: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ConditionalAcceptance.certificates: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ConditionalAcceptance.stationary: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ConditionalAcceptance.partitioned: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ConditionalAcceptance.concrete_stationary: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ConditionalAcceptance.concrete_partitioned: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.EuclideanCurrentSuperposition.directed: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.EuclideanCurrentArcData.CurrentIdentity.isDirected: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.Cstar_finite_physical: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.nonempty_physical_pulse: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.stationary_hierarchy_bounds: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.split_hierarchy_bounds: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ConcretePartitioned.potentialOptimum_eq: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ConcretePartitioned.stationary_le_optimum: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ConcretePartitioned.optimum_mono: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.ConcretePartitioned.optimum_le_Cstar: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.sos_factors_vanish_on_face: [propext, Quot.sound, Classical.choice]

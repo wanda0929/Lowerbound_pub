@@ -1,0 +1,83 @@
+@vectorMeasure_enorm_le_variation : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] (T : MeasureTheory.VectorMeasure X E) {s : Set X},
+  MeasurableSet s → ‖↑T s‖ₑ ≤ T.variation s
+@vectorMeasure_variation_zero : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E], MeasureTheory.VectorMeasure.variation 0 = 0
+@vectorMeasure_variation_add_le : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] (S T : MeasureTheory.VectorMeasure X E), (S + T).variation ≤ S.variation + T.variation
+@vectorMeasure_variation_eq_zero_iff : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] (T : MeasureTheory.VectorMeasure X E), T.variation = 0 ↔ T = 0
+@IsVectorSubcurrent.refl : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X] [inst_1 : NormedAddCommGroup E]
+  (T : MeasureTheory.VectorMeasure X E), IsVectorSubcurrent T T
+@IsVectorSubcurrent.zero : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X] [inst_1 : NormedAddCommGroup E]
+  (T : MeasureTheory.VectorMeasure X E), IsVectorSubcurrent 0 T
+@IsVectorSubcurrent.complement : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] {S T : MeasureTheory.VectorMeasure X E},
+  IsVectorSubcurrent S T → IsVectorSubcurrent (T - S) T
+@IsVectorSubcurrent.trans : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X] [inst_1 : NormedAddCommGroup E]
+  {R S T : MeasureTheory.VectorMeasure X E}, IsVectorSubcurrent R S → IsVectorSubcurrent S T → IsVectorSubcurrent R T
+@IsVectorSubcurrent.totalMass_eq : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] {S T : MeasureTheory.VectorMeasure X E},
+  IsVectorSubcurrent S T → (T - S).variation Set.univ + S.variation Set.univ = T.variation Set.univ
+@IsVectorSubcurrent.variation_add_eq : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] {S T : MeasureTheory.VectorMeasure X E},
+  IsVectorSubcurrent S T → T.variation Set.univ < ⊤ → (T - S).variation + S.variation = T.variation
+@IsVectorSubcurrent.variation_le : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] {S T : MeasureTheory.VectorMeasure X E},
+  IsVectorSubcurrent S T → T.variation Set.univ < ⊤ → S.variation ≤ T.variation
+@IsVectorSubcurrent.variation_univ_lt_top : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] {S T : MeasureTheory.VectorMeasure X E},
+  IsVectorSubcurrent S T → T.variation Set.univ < ⊤ → S.variation Set.univ < ⊤
+@IsVectorSubcurrent.variation_null : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] {S T : MeasureTheory.VectorMeasure X E},
+  IsVectorSubcurrent S T → T.variation Set.univ < ⊤ → ∀ {s : Set X}, T.variation s = 0 → S.variation s = 0
+@IsVectorSubcurrent.antisymm : ∀ {X : Type u_1} {E : Type u_2} [inst : MeasurableSpace X]
+  [inst_1 : NormedAddCommGroup E] {S T : MeasureTheory.VectorMeasure X E},
+  IsVectorSubcurrent S T → IsVectorSubcurrent T S → T.variation Set.univ < ⊤ → S = T
+EuclideanExposureFlow.subcurrent_variation_le : ∀ (F : EuclideanExposureFlow)
+  {S : MeasureTheory.VectorMeasure ExposureEuclidean ExposureEuclidean},
+  IsVectorSubcurrent S F.vectorMeasure → S.variation ≤ F.vectorMeasure.variation
+EuclideanExposureFlow.subcurrent_variation_support : ∀ (F : EuclideanExposureFlow)
+  {S : MeasureTheory.VectorMeasure ExposureEuclidean ExposureEuclidean},
+  IsVectorSubcurrent S F.vectorMeasure → S.variation euclideanExposureDomainᶜ = 0
+EuclideanExposureFlow.weighted_subcurrent_le : ∀ (F : EuclideanExposureFlow)
+  {S : MeasureTheory.VectorMeasure ExposureEuclidean ExposureEuclidean},
+  IsVectorSubcurrent S F.vectorMeasure →
+    ∫⁻ (z : ExposureEuclidean), F.exposureTimeWeight z ∂S.variation ≤ F.stateMeasure Set.univ
+EuclideanExposureFlow.weighted_subcurrent_lt_top : ∀ (F : EuclideanExposureFlow)
+  {S : MeasureTheory.VectorMeasure ExposureEuclidean ExposureEuclidean},
+  IsVectorSubcurrent S F.vectorMeasure → ∫⁻ (z : ExposureEuclidean), F.exposureTimeWeight z ∂S.variation < ⊤
+@ExposureMeasureDecomposition.ofSubcurrent : {A : Type u_1} →
+  [inst : MeasurableSpace A] →
+    (F : EuclideanExposureFlow) →
+      (S : MeasureTheory.VectorMeasure ExposureEuclidean ExposureEuclidean) →
+        IsVectorSubcurrent S F.vectorMeasure →
+          (η : MeasureTheory.Measure A) →
+            LocalizedMeasureDecomposition η S.variation →
+              (initial terminal : A → ExposureEuclidean) →
+                Measurable initial →
+                  Measurable terminal →
+                    MeasureTheory.Measure.map initial η = MeasureTheory.Measure.dirac (exposureEuclideanEquiv y0) →
+                      MeasureTheory.Measure.map terminal η = MeasureTheory.Measure.dirac (exposureEuclideanEquiv yPi) →
+                        ExposureMeasureDecomposition F A
+'CZExposure.vectorMeasure_enorm_le_variation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.vectorMeasure_variation_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.vectorMeasure_variation_add_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.vectorMeasure_variation_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.IsVectorSubcurrent.refl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.IsVectorSubcurrent.zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.IsVectorSubcurrent.complement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.IsVectorSubcurrent.trans' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.IsVectorSubcurrent.totalMass_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.IsVectorSubcurrent.variation_add_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.IsVectorSubcurrent.variation_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.IsVectorSubcurrent.variation_univ_lt_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.IsVectorSubcurrent.variation_null' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.IsVectorSubcurrent.antisymm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.subcurrent_variation_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.subcurrent_variation_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.EuclideanExposureFlow.weighted_subcurrent_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanExposureFlow.weighted_subcurrent_lt_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ExposureMeasureDecomposition.ofSubcurrent' depends on axioms: [propext, Classical.choice, Quot.sound]

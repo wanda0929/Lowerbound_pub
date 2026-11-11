@@ -1,0 +1,27 @@
+'CZExposure.QuotientNormalForm.normalTerm_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.term_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.normalTerm_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.term_degreeOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.normalTerm_normal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.term_eq_monomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.normalize_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.normalize_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.normalize_normal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.exists_normal_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.toMixed_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.eval_toMixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.eval_relations_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.eval_normalize' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.factorExpansion_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.factorExpansion_normal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.eval_factorExpansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.evaluate_mixedRestriction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.QuotientNormalForm.stationary_expansion_restriction_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+exists_normal_expansion : ∀ (p : MixedPoly),
+  ∃ q, p - q ∈ relations ∧ totalDegree q ≤ totalDegree p ∧ ∀ a ∈ support q, Normal ⇑a
+eval_factorExpansion : ∀ (p : Poly) (ξ : ℝ) {x : State},
+  x ∈ Xset → ∀ {u : ℂ}, ‖u‖ = 1 → (eval (mixedPoint ξ x u)) (factorExpansion p) = ↑((eval (pt ξ x u)) p)
+@stationary_expansion_restriction_zero : ∀ {W : StatePoly} {N : ℕ} {h : Fin N → Poly},
+  cpoly + lieDeriv W - ∑ l, h l ^ 2 ∈ normIdeal → ∀ (l : Fin N), mixedRestriction (factorExpansion (h l)) = 0

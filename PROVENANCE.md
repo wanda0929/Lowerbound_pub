@@ -1,5 +1,26 @@
 # Source provenance
 
+## Lean proof and acceptance snapshot added 2026-11-11
+
+- Source repository: https://github.com/wanda0929/LowerBoundCZ
+- Source commit: `7f9d30aa63e55d3b68f65a6e67b5ef64e2b0e6fb`.
+- All 469 tracked files under `lean/` are copied byte for byte, including
+  dependency locks, generated data, exact-input bindings, 63 additional Lean
+  audit logs, numerical replay records and the snapshot hash manifest.
+- Accepted conclusions and retained hypotheses: `LEAN_VERIFICATION.md`.
+- The numerical inputs remain pinned to this repository's existing commit
+  `139dfc0aeb39fbc09d9352a3cbfcd603cb6612e2`; reproduction uses a detached
+  worktree of that revision, not a weakened revision check.
+- `lean/UnifiedAcceptance.md` is the historical pre-commit acceptance report;
+  its statements about then-uncommitted delivery and development manuscript
+  hashes describe that run, not the current Git publication status.
+- No private thread or development-repository access is needed to run the
+  published verification. Original provenance identifiers are retained.
+- The root manuscript and all existing numerical inputs remain unchanged.
+  `validation/lean-publication-check.json` records the transfer checks.
+
+## Original numerical/manuscript packaging
+
 Packaging date: 2026-10-15. Source files are copied without scientific rewrites.
 The root manifest records their packaged bytes. No source repository history,
 agent instructions, credentials, virtual environments or compiled binaries are
@@ -81,5 +102,5 @@ data, with attribution to Han WANG, exAClior, and contributors. `LICENSING.md`
 defines the scope; `LICENSE` and `LICENSE-DATA` contain the license texts.
 Manuscript and figure reuse rights are not newly granted. Historical notices
 inside retained packages are preserved as provenance, not rewritten to erase
-their original licensing status. The repository remains private until the
-owner separately authorizes public release at publication.
+their original licensing status. The repository was private at the original
+packaging date; it is public as checked on 2026-11-11.

@@ -1,0 +1,6 @@
+'CZExposure.QuotientCertificate.stationary_exact_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+@stationary_exact_gram : ∀ {d : ℕ} {W : StatePoly},
+  StationaryFeasible d W →
+    ∃ s Q,
+      s ⊆ NormalFaceBasis.basis d ∧
+        Q.PosSemidef ∧ (embed (cpoly + lieDeriv W) - gram Q fun i => term (⇑↑i) 1) ∈ relations

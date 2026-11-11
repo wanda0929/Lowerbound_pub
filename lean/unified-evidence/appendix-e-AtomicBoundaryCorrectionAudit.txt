@@ -1,0 +1,37 @@
+@correction_boundary : ∀ {ι : Type u_1} [inst : Fintype ι] (w : ι → ℝ) (x y : ι → ExposureEuclidean)
+  (ψ : ExposureEuclidean → ℝ),
+  ContDiff ℝ (↑⊤) ψ →
+    HasCompactSupport ψ → correctionAction w x y (fderiv ℝ ψ) = ∑ i, w i * ψ (y i) - ∑ i, w i * ψ (x i)
+@correctionAction_indicator : ∀ {ι : Type u_1} [inst : Fintype ι] (w : ι → ℝ) (x y : ι → ExposureEuclidean)
+  (L : ExposureEuclidean →L[ℝ] ℝ) {s : Set ExposureEuclidean},
+  MeasurableSet s → correctionAction w x y (s.indicator fun x => L) = L (↑(correction w x y) s)
+@correction_variation_le : ∀ {ι : Type u_1} [inst : Fintype ι] (w : ι → ℝ) (x y : ι → ExposureEuclidean),
+  (correction w x y).variation ≤ ∑ i, ‖w i‖ₑ • (AtomicBoundaryCorrection.segment (x i) (y i)).variation
+@correction_mass_le : ∀ {ι : Type u_1} [inst : Fintype ι] (w : ι → ℝ) (x y : ι → ExposureEuclidean),
+  (correction w x y).variation Set.univ ≤ ∑ i, ‖w i‖ₑ * ENNReal.ofReal ‖y i - x i‖
+@correction_compact_support : ∀ {ι : Type u_1} [inst : Fintype ι] (w : ι → ℝ) (x y : ι → ExposureEuclidean),
+  ∃ K, IsCompact K ∧ (correction w x y).variation Kᶜ = 0
+@correction_mass_le_of_displacement : ∀ {ι : Type u_1} [inst : Fintype ι] (w : ι → ℝ) (x y : ι → ExposureEuclidean)
+  (ε : ℝ) (M : ENNReal),
+  (∀ (i : ι), ‖y i - x i‖ ≤ ε) → ∑ i, ‖w i‖ₑ ≤ M → (correction w x y).variation Set.univ ≤ M * ENNReal.ofReal ε
+@correction_mass_tendsto_zero : ∀ {κ : ℕ → Type u_1} [inst : (n : ℕ) → Fintype (κ n)] (w : (n : ℕ) → κ n → ℝ)
+  (x y : (n : ℕ) → κ n → ExposureEuclidean),
+  Filter.Tendsto (fun n => ∑ i, ‖w n i‖ₑ * ENNReal.ofReal ‖y n i - x n i‖) Filter.atTop (nhds 0) →
+    Filter.Tendsto (fun n => (correction (w n) (x n) (y n)).variation Set.univ) Filter.atTop (nhds 0)
+PASS CZExposure.AtomicBoundaryCorrection.segment_univ: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.segment_mass: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.segment_compact_support: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.segmentAction_indicator: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.segment_boundary: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.variation_smul_le: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.variation_sum_le: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.correction_apply: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.correctionAction_indicator: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.correction_boundary: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.correction_variation_le: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.correction_mass_le: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.correction_compact_support: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.correction_finite: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.correction_mass_le_of_displacement: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.correction_apply_le: [propext, Quot.sound, Classical.choice]
+PASS CZExposure.AtomicBoundaryCorrection.correction_mass_tendsto_zero: [propext, Quot.sound, Classical.choice]

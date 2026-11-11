@@ -1,0 +1,29 @@
+'CZExposure.SymmetryGram.separate_posSemidef' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SymmetryGram.separate_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SymmetryGram.monomial_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SymmetryGram.rotatePoint_physical' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SymmetryGram.rephased_monomial_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.SymmetryGram.real_invariant_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+@monomial_gram : ∀ {ι : Type u_1} {κ : Type u_2} [inst : Fintype ι] [inst_1 : Fintype κ]
+  (a : ι → QuotientNormalForm.Powers) (A : Matrix κ ι ℂ) (S : Set (Fin 11 → ℂ)) (p : (Fin 11 → ℂ) → ℂ),
+  (∀ x ∈ S,
+      ∀ (t : FaceRestriction.Parameters),
+        ∑ k,
+            (starRingEnd ℂ) (∑ i, A k i * (MvPolynomial.eval (rotatePoint t x)) (QuotientNormalForm.term (a i) 1)) *
+              ∑ i, A k i * (MvPolynomial.eval (rotatePoint t x)) (QuotientNormalForm.term (a i) 1) =
+          p x) →
+    ∃ B,
+      B.PosSemidef ∧
+        (∀ (i j : ι), monomialCharge (a i) ≠ monomialCharge (a j) → B i j = 0) ∧
+          ∀ x ∈ S, (value B fun i => (MvPolynomial.eval x) (QuotientNormalForm.term (a i) 1)) = p x
+@real_invariant_gram : ∀ {ι : Type u_1} {Ω : Type u_2} [inst : Fintype ι] [DecidableEq ι] (q : ι → Charge)
+  (odd : ι → Bool) (Q : Matrix ι ι ℂ),
+  Q.PosSemidef →
+    ∀ (v : Ω → ι → ℂ) (p : Ω → ℝ),
+      (∀ (x : Ω) (t : FaceRestriction.Parameters), (value Q fun i => phase (q i) t * v x i) = ↑(p x)) →
+        (∀ (x : Ω) (t : FaceRestriction.Parameters),
+            (value Q fun i => phase (q i) t * ((if odd i = true then -1 else 1) * (starRingEnd ℂ) (v x i))) = ↑(p x)) →
+          ∃ B,
+            B.PosSemidef ∧
+              (∀ (i j : ι), q i ≠ q j → B i j = 0) ∧
+                ∀ (x : Ω), (value (fun i j => ↑(B i j)) fun i => rephaser (odd i) * v x i) = ↑(p x)

@@ -1,0 +1,1 @@
+PASS: 321 fixed grids; 10752 retained and 12336 excluded box entries

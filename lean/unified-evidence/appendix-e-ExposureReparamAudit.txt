@@ -1,0 +1,132 @@
+EuclideanArc.weightedParameterMeasure_univ : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  (γ.weightedParameterMeasure F) Set.univ = γ.exposureTime F
+EuclideanArc.clockInverseReal_mem : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow) (hfinite : γ.exposureTime F < ⊤)
+  (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain) (t : ℝ),
+  γ.clockInverseReal F hfinite hdom t ∈ Set.Icc 0 γ.length
+EuclideanArc.clockInverseReal_of_mem : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow) (hfinite : γ.exposureTime F < ⊤)
+  (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain) {t : ℝ}
+  (ht : t ∈ Set.Icc 0 (γ.exposureTime F).toReal),
+  γ.clockInverseReal F hfinite hdom t = ↑(γ.clockInverse F hfinite hdom ⟨t, ht⟩)
+EuclideanArc.lipschitz_clockInverseReal : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain) {K : NNReal},
+  0 < K → (∀ s ∈ Set.Icc 0 γ.length, ‖F.velocity (γ.path s)‖ ≤ ↑K) → LipschitzWith K (γ.clockInverseReal F hfinite hdom)
+EuclideanArc.continuous_clockInverseReal : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain),
+  Continuous (γ.clockInverseReal F hfinite hdom)
+EuclideanArc.exposureClock_clockInverseReal : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain) {t : ℝ},
+  t ∈ Set.Icc 0 (γ.exposureTime F).toReal → γ.exposureClock F (γ.clockInverseReal F hfinite hdom t) = t
+EuclideanArc.clockInverseReal_exposureClock : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain) {s : ℝ},
+  s ∈ Set.Icc 0 γ.length → γ.clockInverseReal F hfinite hdom (γ.exposureClock F s) = s
+EuclideanArc.clockInverseReal_le_iff : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow) (hfinite : γ.exposureTime F < ⊤)
+  (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain) {t s : ℝ},
+  t ∈ Set.Icc 0 (γ.exposureTime F).toReal →
+    s ∈ Set.Icc 0 γ.length → (γ.clockInverseReal F hfinite hdom t ≤ s ↔ t ≤ γ.exposureClock F s)
+EuclideanArc.lintegral_exposureTimeWeight_Icc_lt_top : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  γ.exposureTime F < ⊤ →
+    ∀ {s : ℝ}, s ∈ Set.Icc 0 γ.length → ∫⁻ (q : ℝ) in Set.Icc 0 s, F.exposureTimeWeight (γ.path q) < ⊤
+EuclideanArc.exposureClock_eq_toReal_lintegral : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  γ.exposureTime F < ⊤ →
+    ∀ {s : ℝ},
+      s ∈ Set.Icc 0 γ.length → γ.exposureClock F s = (∫⁻ (q : ℝ) in Set.Icc 0 s, F.exposureTimeWeight (γ.path q)).toReal
+EuclideanArc.weightedParameterMeasure_Iic : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  γ.exposureTime F < ⊤ →
+    ∀ {s : ℝ},
+      s ∈ Set.Icc 0 γ.length → (γ.weightedParameterMeasure F) (Set.Iic s) = ENNReal.ofReal (γ.exposureClock F s)
+EuclideanArc.clockInverseReal_map_exposureMeasure : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain),
+  MeasureTheory.Measure.map (γ.clockInverseReal F hfinite hdom) (γ.exposureParameterMeasure F) =
+    γ.weightedParameterMeasure F
+EuclideanArc.clockInverseReal_ae_transfer : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain)
+  {P : ℝ → Prop},
+  (∀ᵐ (s : ℝ) ∂γ.parameterMeasure, P s) →
+    ∀ᵐ (t : ℝ) ∂γ.exposureParameterMeasure F, P (γ.clockInverseReal F hfinite hdom t)
+EuclideanArc.ae_hasDerivAt_exposureClock : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow),
+  γ.exposureTime F < ⊤ → ∀ᵐ (s : ℝ) ∂γ.parameterMeasure, HasDerivAt (γ.exposureClock F) (γ.inverseSpeed F s) s
+EuclideanArc.exposurePathReal_of_mem : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow) (hfinite : γ.exposureTime F < ⊤)
+  (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain) {t : ℝ}
+  (ht : t ∈ Set.Icc 0 (γ.exposureTime F).toReal),
+  γ.exposurePathReal F hfinite hdom t = γ.reparameterizedPath F hfinite hdom ⟨t, ht⟩
+EuclideanArc.exists_lipschitz_exposurePathReal : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain),
+  ∃ K, 0 < K ∧ LipschitzWith K (γ.exposurePathReal F hfinite hdom)
+EuclideanArc.exposurePathReal_mem_domain : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain) (t : ℝ),
+  γ.exposurePathReal F hfinite hdom t ∈ euclideanExposureDomain
+EuclideanArc.exposurePathReal_zero : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow) (hfinite : γ.exposureTime F < ⊤)
+  (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain),
+  γ.exposurePathReal F hfinite hdom 0 = γ.path 0
+EuclideanArc.exposurePathReal_terminal : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain),
+  γ.exposurePathReal F hfinite hdom (γ.exposureTime F).toReal = γ.path γ.length
+EuclideanArc.measurable_exposureControl : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain),
+  Measurable (γ.exposureControl F hfinite hdom)
+EuclideanArc.exposureControl_bound : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow) (hfinite : γ.exposureTime F < ⊤)
+  (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain) (t : ℝ),
+  ‖γ.exposureControl F hfinite hdom t‖ ≤ 1
+EuclideanArc.hasDerivAt_clockInverseReal : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain) {t : ℝ},
+  t ∈ Set.Ioo 0 (γ.exposureTime F).toReal →
+    HasDerivAt (γ.exposureClock F) (γ.inverseSpeed F (γ.clockInverseReal F hfinite hdom t))
+        (γ.clockInverseReal F hfinite hdom t) →
+      F.velocity (γ.path (γ.clockInverseReal F hfinite hdom t)) ≠ 0 →
+        HasDerivAt (γ.clockInverseReal F hfinite hdom) ‖F.velocity (γ.path (γ.clockInverseReal F hfinite hdom t))‖ t
+EuclideanArc.ae_hasDerivAt_clockInverseReal : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain),
+  ∀ᵐ (t : ℝ) ∂γ.exposureParameterMeasure F,
+    HasDerivAt (γ.clockInverseReal F hfinite hdom) ‖F.velocity (γ.path (γ.clockInverseReal F hfinite hdom t))‖ t
+EuclideanArc.ae_hasDerivAt_exposurePathReal : ∀ (γ : EuclideanArc) (F : EuclideanExposureFlow)
+  (hfinite : γ.exposureTime F < ⊤) (hdom : Set.MapsTo γ.path (Set.Icc 0 γ.length) euclideanExposureDomain),
+  γ.IsDirectedBy F →
+    ∀ᵐ (t : ℝ) ∂γ.exposureParameterMeasure F,
+      HasDerivAt (γ.exposurePathReal F hfinite hdom)
+        (euclideanBfield (γ.exposurePathReal F hfinite hdom t) (γ.exposureControl F hfinite hdom t)) t
+@ExposureArcRealization.exists_exposure_time_trajectory : ∀ {F : EuclideanExposureFlow} {A : Type u_1}
+  [inst : MeasurableSpace A] {D : ExposureMeasureDecomposition F A} (R : ExposureArcRealization D),
+  (∀ᵐ (a : A) ∂D.ensemble, (R.arc a).IsDirectedBy F) →
+    ∃ T,
+      0 < T ∧
+        ENNReal.ofReal T ≤ F.stateMeasure Set.univ ∧
+          ∃ y u,
+            Measurable u ∧
+              (∀ (t : ℝ), ‖u t‖ ≤ 1) ∧
+                (∃ K, LipschitzWith K y) ∧
+                  y 0 = exposureEuclideanEquiv y0 ∧
+                    y T = exposureEuclideanEquiv yPi ∧
+                      (∀ t ∈ Set.Icc 0 T, y t ∈ euclideanExposureDomain) ∧
+                        ∀ᵐ (t : ℝ) ∂MeasureTheory.volume.restrict (Set.Icc 0 T),
+                          HasDerivAt y (euclideanBfield (y t) (u t)) t
+'CZExposure.EuclideanArc.weightedParameterMeasure_univ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.clockInverseReal_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.clockInverseReal_of_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.lipschitz_clockInverseReal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.continuous_clockInverseReal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.exposureClock_clockInverseReal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.clockInverseReal_exposureClock' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.clockInverseReal_le_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.lintegral_exposureTimeWeight_Icc_lt_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.EuclideanArc.exposureClock_eq_toReal_lintegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.weightedParameterMeasure_Iic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.clockInverseReal_map_exposureMeasure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.EuclideanArc.clockInverseReal_ae_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.ae_hasDerivAt_exposureClock' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.exposurePathReal_of_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.exists_lipschitz_exposurePathReal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.exposurePathReal_mem_domain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.exposurePathReal_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.exposurePathReal_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.measurable_exposureControl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.exposureControl_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.hasDerivAt_clockInverseReal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.ae_hasDerivAt_clockInverseReal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.EuclideanArc.ae_hasDerivAt_exposurePathReal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ExposureArcRealization.exists_exposure_time_trajectory' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

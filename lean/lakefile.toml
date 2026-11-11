@@ -1,0 +1,15 @@
+name = "lowerBoundCZ"
+version = "0.1.0"
+defaultTargets = ["LowerBoundCZ"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.28.0"
+
+[[require]]
+name = "RequestProject"
+path = "appendix-e"
+
+[[lean_lib]]
+name = "LowerBoundCZ"

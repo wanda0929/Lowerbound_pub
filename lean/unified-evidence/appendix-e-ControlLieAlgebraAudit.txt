@@ -1,0 +1,107 @@
+Params : Type
+act : Params → State → State
+'CZExposure.ControlLie.act' depends on axioms: [propext, Classical.choice, Quot.sound]
+actLM : Params → State →ₗ[ℝ] State
+'CZExposure.ControlLie.actLM' depends on axioms: [propext, Classical.choice, Quot.sound]
+actCLM : Params → State →L[ℝ] State
+'CZExposure.ControlLie.actCLM' depends on axioms: [propext, Classical.choice, Quot.sound]
+actCLM_apply : ∀ (p : Params) (x : State), (actCLM p) x = act p x
+'CZExposure.ControlLie.actCLM_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+hasFDerivAt_act : ∀ (p : Params) (x : State), HasFDerivAt (act p) (actCLM p) x
+'CZExposure.ControlLie.hasFDerivAt_act' depends on axioms: [propext, Classical.choice, Quot.sound]
+contDiff_act : ∀ (p : Params), ContDiff ℝ ⊤ (act p)
+'CZExposure.ControlLie.contDiff_act' depends on axioms: [propext, Classical.choice, Quot.sound]
+coeffBracket : Params → Params → Params
+'CZExposure.ControlLie.coeffBracket' depends on axioms: [propext, Classical.choice, Quot.sound]
+lieBracket_act : ∀ (p q : Params), VectorField.lieBracket ℝ (act p) (act q) = act (coeffBracket p q)
+'CZExposure.ControlLie.lieBracket_act' depends on axioms: [propext, Classical.choice, Quot.sound]
+vf_eq_act : ∀ (x : State) (u : ℂ), vf x u = act ![u.re / 2, u.im / 2, 0, √2 * u.re / 2, √2 * u.im / 2, 0] x
+'CZExposure.ControlLie.vf_eq_act' depends on axioms: [propext, Classical.choice, Quot.sound]
+def CZExposure.ControlLie.driveX : State → State :=
+fun x => vf x 1
+def CZExposure.ControlLie.driveY : State → State :=
+fun x => vf x Complex.I
+def CZExposure.ControlLie.bracket2 : State → State :=
+VectorField.lieBracket ℝ driveX driveY
+def CZExposure.ControlLie.bracket3X : State → State :=
+VectorField.lieBracket ℝ driveY bracket2
+def CZExposure.ControlLie.bracket3Y : State → State :=
+VectorField.lieBracket ℝ bracket2 driveX
+def CZExposure.ControlLie.bracket4 : State → State :=
+VectorField.lieBracket ℝ driveX bracket3Y
+'CZExposure.ControlLie.driveX' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ControlLie.driveY' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ControlLie.bracket2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ControlLie.bracket3X' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ControlLie.bracket3Y' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ControlLie.bracket4' depends on axioms: [propext, Classical.choice, Quot.sound]
+driveX_eq_act : driveX = act ![1 / 2, 0, 0, √2 / 2, 0, 0]
+'CZExposure.ControlLie.driveX_eq_act' depends on axioms: [propext, Classical.choice, Quot.sound]
+driveY_eq_act : driveY = act ![0, 1 / 2, 0, 0, √2 / 2, 0]
+'CZExposure.ControlLie.driveY_eq_act' depends on axioms: [propext, Classical.choice, Quot.sound]
+bracket2_eq_act : bracket2 = act ![0, 0, -1 / 2, 0, 0, -1]
+'CZExposure.ControlLie.bracket2_eq_act' depends on axioms: [propext, Classical.choice, Quot.sound]
+bracket3X_eq_act : bracket3X = act ![1 / 2, 0, 0, √2, 0, 0]
+'CZExposure.ControlLie.bracket3X_eq_act' depends on axioms: [propext, Classical.choice, Quot.sound]
+bracket3Y_eq_act : bracket3Y = act ![0, 1 / 2, 0, 0, √2, 0]
+'CZExposure.ControlLie.bracket3Y_eq_act' depends on axioms: [propext, Classical.choice, Quot.sound]
+bracket4_eq_act : bracket4 = act ![0, 0, -1 / 2, 0, 0, -2]
+'CZExposure.ControlLie.bracket4_eq_act' depends on axioms: [propext, Classical.choice, Quot.sound]
+bracketFields : Fin 6 → State → State
+'CZExposure.ControlLie.bracketFields' depends on axioms: [propext, Classical.choice, Quot.sound]
+contDiff_bracketFields : ∀ (i : Fin 6), ContDiff ℝ ⊤ (bracketFields i)
+'CZExposure.ControlLie.contDiff_bracketFields' depends on axioms: [propext, Classical.choice, Quot.sound]
+normal : State → State → Fin 2 → ℝ
+'CZExposure.ControlLie.normal' depends on axioms: [propext, Classical.choice, Quot.sound]
+normalLM : State → State →ₗ[ℝ] Fin 2 → ℝ
+'CZExposure.ControlLie.normalLM' depends on axioms: [propext, Classical.choice, Quot.sound]
+normalCLM : State → State →L[ℝ] Fin 2 → ℝ
+'CZExposure.ControlLie.normalCLM' depends on axioms: [propext, Classical.choice, Quot.sound]
+normalCLM_apply : ∀ (x v : State), (normalCLM x) v = normal x v
+'CZExposure.ControlLie.normalCLM_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+normalization : State → Fin 2 → ℝ
+'CZExposure.ControlLie.normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+normalization_eq_norms : ∀ (x : State), normalization x = ![‖g1 x‖ ^ 2 + ‖r1 x‖ ^ 2, ‖g2 x‖ ^ 2 + ‖r2 x‖ ^ 2]
+'CZExposure.ControlLie.normalization_eq_norms' depends on axioms: [propext, Classical.choice, Quot.sound]
+mem_Xset_iff_normalization : ∀ (x : State), x ∈ Xset ↔ normalization x = fun x => 1
+'CZExposure.ControlLie.mem_Xset_iff_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+hasFDerivAt_normalization : ∀ (x : State), HasFDerivAt normalization (2 • normalCLM x) x
+'CZExposure.ControlLie.hasFDerivAt_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+tangentSpace : State → Submodule ℝ State
+'CZExposure.ControlLie.tangentSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+mem_tangentSpace_iff : ∀ (x v : State), v ∈ tangentSpace x ↔ normal x v = 0
+'CZExposure.ControlLie.mem_tangentSpace_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+mem_tangentSpace_iff_fderiv : ∀ (x v : State), v ∈ tangentSpace x ↔ (fderiv ℝ normalization x) v = 0
+'CZExposure.ControlLie.mem_tangentSpace_iff_fderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+@normal_surjective : ∀ {x : State}, x ∈ Xset → Function.Surjective (normal x)
+'CZExposure.ControlLie.normal_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+act_mem_tangent : ∀ (x : State) (p : Params), act p x ∈ tangentSpace x
+'CZExposure.ControlLie.act_mem_tangent' depends on axioms: [propext, Classical.choice, Quot.sound]
+frame : State → Fin 6 → State
+'CZExposure.ControlLie.frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+frameCoords : State → State → Params
+'CZExposure.ControlLie.frameCoords' depends on axioms: [propext, Classical.choice, Quot.sound]
+@frameCoords_act : ∀ {x : State}, x ∈ Xset → ∀ (p : Params), frameCoords x (act p x) = p
+'CZExposure.ControlLie.frameCoords_act' depends on axioms: [propext, Classical.choice, Quot.sound]
+@act_frameCoords : ∀ {x : State}, x ∈ Xset → ∀ {v : State}, v ∈ tangentSpace x → act (frameCoords x v) x = v
+'CZExposure.ControlLie.act_frameCoords' depends on axioms: [propext, Classical.choice, Quot.sound]
+tangentEquiv : (x : State) → x ∈ Xset → Params ≃ₗ[ℝ] ↥(tangentSpace x)
+'CZExposure.ControlLie.tangentEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+@finrank_tangentSpace : ∀ {x : State}, x ∈ Xset → Module.finrank ℝ ↥(tangentSpace x) = 6
+'CZExposure.ControlLie.finrank_tangentSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+bracketCoordinates : Params → Params
+'CZExposure.ControlLie.bracketCoordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+act_eq_sum_bracketFields : ∀ (p : Params) (x : State), act p x = ∑ i, bracketCoordinates p i • bracketFields i x
+'CZExposure.ControlLie.act_eq_sum_bracketFields' depends on axioms: [propext, Classical.choice, Quot.sound]
+bracketFields_mem_tangent : ∀ (x : State) (i : Fin 6), bracketFields i x ∈ tangentSpace x
+'CZExposure.ControlLie.bracketFields_mem_tangent' depends on axioms: [propext, Classical.choice, Quot.sound]
+@span_bracketFields_eq_tangentSpace : ∀ {x : State},
+  x ∈ Xset → Submodule.span ℝ (Set.range fun i => bracketFields i x) = tangentSpace x
+'CZExposure.ControlLie.span_bracketFields_eq_tangentSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+@linearIndependent_bracketFields : ∀ {x : State}, x ∈ Xset → LinearIndependent ℝ fun i => bracketFields i x
+'CZExposure.ControlLie.linearIndependent_bracketFields' depends on axioms: [propext, Classical.choice, Quot.sound]
+@finrank_prefix : ∀ {x : State},
+  x ∈ Xset →
+    ∀ (n : ℕ) (hn : n ≤ 6),
+      Module.finrank ℝ ↥(Submodule.span ℝ (Set.range fun i => bracketFields (Fin.castLE hn i) x)) = n
+'CZExposure.ControlLie.finrank_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]

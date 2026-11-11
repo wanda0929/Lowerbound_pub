@@ -1,0 +1,77 @@
+@LocalizedMeasureDecomposition.eq_bind : ∀ {A : Type u_1} {X : Type u_2} [inst : MeasurableSpace A]
+  [inst_1 : MeasurableSpace X] {η : MeasureTheory.Measure A} {m : MeasureTheory.Measure X}
+  (D : LocalizedMeasureDecomposition η m), m = η.bind D.component
+@LocalizedMeasureDecomposition.measurable_component_lintegral : ∀ {A : Type u_1} {X : Type u_2}
+  [inst : MeasurableSpace A] [inst_1 : MeasurableSpace X] {η : MeasureTheory.Measure A} {m : MeasureTheory.Measure X}
+  (D : LocalizedMeasureDecomposition η m) {w : X → ENNReal},
+  Measurable w → Measurable fun a => ∫⁻ (x : X), w x ∂D.component a
+@LocalizedMeasureDecomposition.lintegral_components : ∀ {A : Type u_1} {X : Type u_2} [inst : MeasurableSpace A]
+  [inst_1 : MeasurableSpace X] {η : MeasureTheory.Measure A} {m : MeasureTheory.Measure X}
+  (D : LocalizedMeasureDecomposition η m) {w : X → ENNReal},
+  Measurable w → ∫⁻ (a : A), ∫⁻ (x : X), w x ∂D.component a ∂η = ∫⁻ (x : X), w x ∂m
+@LocalizedMeasureDecomposition.ae_components : ∀ {A : Type u_1} {X : Type u_2} [inst : MeasurableSpace A]
+  [inst_1 : MeasurableSpace X] {η : MeasureTheory.Measure A} {m : MeasureTheory.Measure X}
+  (D : LocalizedMeasureDecomposition η m) {P : X → Prop},
+  (∀ᵐ (x : X) ∂m, P x) → ∀ᵐ (a : A) ∂η, ∀ᵐ (x : X) ∂D.component a, P x
+@ExposureMeasureDecomposition.isProbabilityMeasure_ensemble : ∀ {F : EuclideanExposureFlow} {A : Type u_1}
+  [inst : MeasurableSpace A] (D : ExposureMeasureDecomposition F A), MeasureTheory.IsProbabilityMeasure D.ensemble
+@ExposureMeasureDecomposition.ae_endpoints : ∀ {F : EuclideanExposureFlow} {A : Type u_1} [inst : MeasurableSpace A]
+  (D : ExposureMeasureDecomposition F A),
+  ∀ᵐ (a : A) ∂D.ensemble, D.initial a = exposureEuclideanEquiv y0 ∧ D.terminal a = exposureEuclideanEquiv yPi
+@ExposureMeasureDecomposition.measurable_componentTime : ∀ {F : EuclideanExposureFlow} {A : Type u_1}
+  [inst : MeasurableSpace A] (D : ExposureMeasureDecomposition F A), Measurable D.componentTime
+@ExposureMeasureDecomposition.average_componentTime : ∀ {F : EuclideanExposureFlow} {A : Type u_1}
+  [inst : MeasurableSpace A] (D : ExposureMeasureDecomposition F A),
+  ∫⁻ (a : A), D.componentTime a ∂D.ensemble = ∫⁻ (z : ExposureEuclidean), F.exposureTimeWeight z ∂D.mass
+@ExposureMeasureDecomposition.average_componentTime_le : ∀ {F : EuclideanExposureFlow} {A : Type u_1}
+  [inst : MeasurableSpace A] (D : ExposureMeasureDecomposition F A),
+  ∫⁻ (a : A), D.componentTime a ∂D.ensemble ≤ F.stateMeasure Set.univ
+@ExposureMeasureDecomposition.ae_componentTime_lt_top : ∀ {F : EuclideanExposureFlow} {A : Type u_1}
+  [inst : MeasurableSpace A] (D : ExposureMeasureDecomposition F A), ∀ᵐ (a : A) ∂D.ensemble, D.componentTime a < ⊤
+@ExposureMeasureDecomposition.ae_component_domain : ∀ {F : EuclideanExposureFlow} {A : Type u_1}
+  [inst : MeasurableSpace A] (D : ExposureMeasureDecomposition F A),
+  ∀ᵐ (a : A) ∂D.ensemble, ∀ᵐ (z : ExposureEuclidean) ∂D.massDecomposition.component a, z ∈ euclideanExposureDomain
+@ExposureMeasureDecomposition.ae_component_velocity_ne_zero : ∀ {F : EuclideanExposureFlow} {A : Type u_1}
+  [inst : MeasurableSpace A] (D : ExposureMeasureDecomposition F A),
+  ∀ᵐ (a : A) ∂D.ensemble, ∀ᵐ (z : ExposureEuclidean) ∂D.massDecomposition.component a, F.velocity z ≠ 0
+@ExposureMeasureDecomposition.exists_component_le_exposure_mass : ∀ {F : EuclideanExposureFlow} {A : Type u_1}
+  [inst : MeasurableSpace A] (D : ExposureMeasureDecomposition F A) (Good : A → Prop),
+  (∀ᵐ (a : A) ∂D.ensemble, Good a) →
+    ∃ a,
+      Good a ∧
+        D.initial a = exposureEuclideanEquiv y0 ∧
+          D.terminal a = exposureEuclideanEquiv yPi ∧
+            (∀ᵐ (z : ExposureEuclidean) ∂D.massDecomposition.component a, z ∈ euclideanExposureDomain) ∧
+              (∀ᵐ (z : ExposureEuclidean) ∂D.massDecomposition.component a, F.velocity z ≠ 0) ∧
+                D.componentTime a ≤ F.stateMeasure Set.univ ∧ D.componentTime a < ⊤
+'CZExposure.LocalizedMeasureDecomposition.eq_bind' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.LocalizedMeasureDecomposition.measurable_component_lintegral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.LocalizedMeasureDecomposition.lintegral_components' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.LocalizedMeasureDecomposition.ae_components' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ExposureMeasureDecomposition.isProbabilityMeasure_ensemble' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.ExposureMeasureDecomposition.ae_endpoints' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ExposureMeasureDecomposition.measurable_componentTime' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.ExposureMeasureDecomposition.average_componentTime' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.ExposureMeasureDecomposition.average_componentTime_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.ExposureMeasureDecomposition.ae_componentTime_lt_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.ExposureMeasureDecomposition.ae_component_domain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CZExposure.ExposureMeasureDecomposition.ae_component_velocity_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CZExposure.ExposureMeasureDecomposition.exists_component_le_exposure_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
