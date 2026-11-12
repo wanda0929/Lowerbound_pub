@@ -30,8 +30,11 @@ part of the publication snapshot.
 
 - Repository: https://github.com/wanda0929/LowerBoundCZ
 - Revision: `fb03dd152c69bdf112262945fb176b93d0e20f6b`
-- Retained paths: `main.tex`, `main.pdf`; the three included figures;
+- Retained paths: the three included figures;
   selected `proof/data` and the transitive script dependencies; `certificates/`.
+- The originally packaged `main.tex` and `main.pdf` have been removed.
+  Read the paper at https://arxiv.org/abs/2611.07388; historical manuscript
+  hashes in acceptance records are preserved.
 - Original package manifests and provenance remain unchanged.
 
 ## Final lower-bound extension and historical auditors

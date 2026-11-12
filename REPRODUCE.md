@@ -136,8 +136,10 @@ the optimizer-free core-only source audit for the headline proof.
 
 ## 6. Manuscript and schematic figures
 
-Use a TeX installation with REVTeX 4.2, AMS packages, booktabs, hyperref, Latin
-Modern, standalone and TikZ. Compile the two schematic figure `.tex` files
-inside `figures/` if changing them, then compile `main.tex` twice from the root.
-The three manuscript PDF figures are already included. No manuscript text was
-rewritten as part of packaging.
+Read the manuscript and obtain its source from
+https://arxiv.org/abs/2611.07388. No manuscript copy is maintained here.
+The two schematic figure `.tex` sources and all three rendered PDF figures
+remain in `figures/`. Compile the schematic sources from that directory with
+a TeX installation providing their declared packages, including standalone
+and TikZ. Pulse-figure reproduction uses the retained plotting script and data
+listed in `ARTIFACT_MAP.md`; removing the manuscript does not remove those inputs.

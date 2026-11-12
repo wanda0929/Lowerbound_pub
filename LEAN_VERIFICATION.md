@@ -132,9 +132,11 @@ constants or old reports merely to make a check pass.
 
 ## Manuscript version and historical metadata
 
-This addition preserves this repository's original `main.tex` and `main.pdf`.
-They are not byte-identical to the later development manuscript whose hashes
-appear in `lean/UnifiedAcceptance.md`. The table above identifies the actual
+The paper is available on [arXiv](https://arxiv.org/abs/2611.07388).
+The older manuscript copies formerly shipped here have been removed to avoid
+version confusion. The development manuscript hashes in
+`lean/UnifiedAcceptance.md` remain historical acceptance metadata, not paths
+to files shipped in this repository. The table above identifies the actual
 formalized conclusions; no whole-manuscript version-equivalence audit is
 asserted by the file transfer. Paper text, figure readability, literature
 positioning and submission metadata are outside Lean's mathematical checks.

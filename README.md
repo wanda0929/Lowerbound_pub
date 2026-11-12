@@ -1,17 +1,19 @@
 # Lowerbound_pub
 
-Code, data, and exact certificates supporting the accompanying manuscript
-`main.tex`: exposure bounds for an ideal-blockade CZ gate under one global
-drive, with unrestricted finite duration.
+Code, data, and exact certificates supporting
+[Certifying the Rydberg-exposure limit of a globally driven controlled-Z gate](https://arxiv.org/abs/2611.07388):
+exposure bounds for an ideal-blockade CZ gate under one global drive, with
+unrestricted finite duration. Read the paper on arXiv; this repository does
+not maintain a separate manuscript copy.
 
 The headline interval is
 
 **2.931287735220 ≤ C* < 2.935875225844105.**
 
 This is a curated snapshot, not a merge of development histories. It includes
-the lower-proof dependency chain, not just its final checker. The original
-manuscript is copied unchanged; its old companion-repository paths are mapped
-below. The repository is public. The complete Lean proof and acceptance
+the lower-proof dependency chain, not just its final checker. Historical
+companion-repository paths are mapped below. The repository is public.
+The complete Lean proof and acceptance
 snapshot was added on 2026-11-11 without changing the manuscript or numerical
 certificate data.
 
@@ -25,7 +27,7 @@ hypothesis. This is not an unconditional Lean proof of every paper statement.
 
 | Location | Purpose |
 | --- | --- |
-| `main.tex`, `main.pdf` | Manuscript snapshot, not an edited availability statement |
+| [Paper on arXiv](https://arxiv.org/abs/2611.07388) | Manuscript; no separate paper copy is maintained here |
 | `sdp/` | Native exact auditor, pinned source certificate, predecessor proof chain, final slack checker |
 | `certificates/` | Order-6 exact archives and audit records; standalone interval upper proof |
 | `finite-source/` | Pinned Python stationary-torus SDP source, order-6–11 numerical outputs, analytical fiber integral |

@@ -29,8 +29,8 @@ paper citation metadata will be added when the author list is settled.
 
 ## Manuscript, figures, and third-party materials
 
-The licenses above do not grant a new reuse license for `main.tex`, `main.pdf`,
-the rendered manuscript figures, their figure-design `.tex` sources, or quoted
+The licenses above do not grant a new reuse license for the paper linked on
+arXiv, the rendered manuscript figures, their figure-design `.tex` sources, or quoted
 third-party material. Rights in those works remain with their respective
 holders. The figure-generation Python scripts are software under MIT; the
 resulting manuscript figures are excluded from that software grant.
